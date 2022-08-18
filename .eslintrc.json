@@ -45,12 +45,6 @@
     ],
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
-    "@typescript-eslint/explicit-function-return-type": [
-      "error",
-      {
-        "allowExpressions": true
-      }
-    ],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/prop-types": "off",
@@ -80,7 +74,6 @@
   },
   "ignorePatterns": ["src/tests"],
   "overrides": [
-    // override "simple-import-sort" config
     {
       "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
       "rules": {
@@ -88,17 +81,11 @@
           "error",
           {
             "groups": [
-              // Packages `react` related packages come first.
               ["^react", "^@?\\w"],
-              // Internal packages.
               ["^(@|components)(/.*|$)"],
-              // Side effect imports.
               ["^\\u0000"],
-              // Parent imports. Put `..` last.
               ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
-              // Other relative imports. Put same-folder imports and `.` last.
               ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
-              // Style imports.
               ["^.+\\.?(css)$"]
             ]
           }
