@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import axios from 'axios';
 
 export function TextBook() {
@@ -14,3 +15,7 @@ export function TextBook() {
     </div>
   );
 }
+=======
+
+export const TextBook = () => (<h1>TextBook</h1>);
+>>>>>>> 0759eee411c639740a4d6a418e7d3ecf20b403b5
