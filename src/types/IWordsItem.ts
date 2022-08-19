@@ -1,4 +1,4 @@
-export interface IItem {
+export interface IWordsItem {
   id: string;
   group: number;
   page: number;

@@ -1,20 +1,20 @@
 import React from 'react';
 
-import { IItem } from '../../types/IItem';
+import { IWordsItem } from '../../types/IWordsItem';
 
-import { AudioButton } from './AudioButton';
 import { LoggedBtns } from './LoggedBtns';
+import { Word } from './Word';
 
 import styles from './WordListItem.module.css';
 
-interface IItemProps {
-  item: IItem;
+interface IWordsItemProps {
+  item: IWordsItem;
   isLogged: boolean;
 }
 
-export const WordListItem = ({ item, isLogged }: IItemProps) => (
+export const WordListItem = ({ item, isLogged }: IWordsItemProps) => (
   <div className={styles.wrapper}>
-    <h4>{item.word}</h4>
+    <Word item={item} />
     <span>{item.transcription}</span>
     <span>{item.wordTranslate}</span>
     <span dangerouslySetInnerHTML={{ __html: item.textMeaning }} />
@@ -22,7 +22,6 @@ export const WordListItem = ({ item, isLogged }: IItemProps) => (
     <span dangerouslySetInnerHTML={{ __html: item.textExample }} />
     <span>{item.textExampleTranslate}</span>
     <img src={`https://rslang-mdg.herokuapp.com/${item.image}`} alt={`${item.word} img`} />
-    <AudioButton item={item} />
     {isLogged && <LoggedBtns />}
   </div>
 );

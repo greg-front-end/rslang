@@ -1,21 +1,19 @@
 import React from 'react';
 
-import { IItem } from '../../types/IItem';
+import { URL } from '../../constants/URL';
 
-interface IItemProps {
-  item: IItem;
+interface IWordsItemProps {
+  path: string;
 }
 
-export const AudioButton = ({ item }: IItemProps) => {
-  const getAudioUrls = () => [item.audio, item.audioMeaning, item.audioExample].map((url) => `https://rslang-mdg.herokuapp.com/${url}`);
+export const AudioButton = ({ path }: IWordsItemProps) => {
+  const getAudioUrl = () => `${URL}${path}`;
 
-  const createAudio = (audioUrls: string[]) => audioUrls.map((url) => new Audio(url));
+  const createAudio = (audioUrl: string) => new Audio(audioUrl);
 
   const playAudio = () => {
-    const [audio, audioMeaning, audioExample] = createAudio(getAudioUrls());
+    const audio = createAudio(getAudioUrl());
     audio.play();
-    audio.onended = () => audioMeaning.play();
-    audioMeaning.onended = () => audioExample.play();
   };
 
   return (
