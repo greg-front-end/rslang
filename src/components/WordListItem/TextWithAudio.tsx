@@ -1,17 +1,20 @@
 import React from 'react';
 
-import { IWordsItem } from '../../types/IWordsItem';
-
 import { AudioButton } from './AudioButton';
 
-interface IWordsItemProps {
-  item: IWordsItem;
+interface ITextWithAudioProps {
+  text: string;
+  translate: string;
+  audioPath: string;
 }
 // import styles from './LoggedBtns.module.css';
 
-export const TextWithAudio = ({ }: IWordsItemProps) => (
+export const TextWithAudio = ({ text, translate, audioPath }: ITextWithAudioProps) => (
   <div>
-    <span>{item.word}</span>
-    <AudioButton path={item.audioMeaning} />
+    <div>
+      <span dangerouslySetInnerHTML={{ __html: text }} />
+      <AudioButton path={audioPath} />
+    </div>
+    <span>{translate}</span>
   </div>
 );
