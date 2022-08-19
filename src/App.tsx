@@ -1,8 +1,14 @@
 import React from 'react';
 
+import { TextBook } from './pages/TextBook/TextBook';
+
 function App(): JSX.Element {
   return (
-    <h1>RSLang</h1>
+    <div>
+      <h1>RSLang</h1>
+      <TextBook />
+    </div>
+
   );
 }
 
