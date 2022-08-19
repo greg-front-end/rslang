@@ -1,9 +1,7 @@
 import React from 'react';
 
-function App(): JSX.Element {
-  return (
-    <h1>RSLang</h1>
-  );
-}
+import { RouteApp } from './router/RouteApp';
 
-export default App;
+export const App = () => (
+  <RouteApp />
+);
