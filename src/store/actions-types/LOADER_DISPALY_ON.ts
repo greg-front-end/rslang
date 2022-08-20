@@ -1,0 +1,1 @@
+export const LOADER_DISPALY_ON = 'LOADER_DISPLAY_ON';
