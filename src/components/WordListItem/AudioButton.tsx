@@ -4,15 +4,18 @@ import { URL } from '../../constants/URL';
 
 interface IWordsItemProps {
   path: string;
+  setAudio: React.Dispatch<React.SetStateAction<HTMLAudioElement>>;
 }
 
-export const AudioButton = ({ path }: IWordsItemProps) => {
+export const AudioButton = ({ path, setAudio }: IWordsItemProps) => {
   const getAudioUrl = () => `${URL}${path}`;
-
-  const createAudio = (audioUrl: string) => new Audio(audioUrl);
+  const audio = new Audio(getAudioUrl());
 
   const playAudio = () => {
-    const audio = createAudio(getAudioUrl());
+    setAudio((prev) => {
+      prev.pause();
+      return audio;
+    });
     audio.play();
   };
 
