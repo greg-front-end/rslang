@@ -1,3 +1,7 @@
 import { combineReducers } from 'redux';
 
-export const rootReducer = combineReducers({});
+import { wordsLoad } from '../actions/wordsLoad';
+
+export const rootReducer = combineReducers({
+  wordsLoad,
+});
