@@ -1,3 +1,7 @@
 import { combineReducers } from 'redux';
 
-export const rootReducer = combineReducers({});
+import { switchOffAudioReducer } from './switchOffAudioReducer';
+
+export const rootReducer = combineReducers({
+  switchOffAudioReducer,
+});
