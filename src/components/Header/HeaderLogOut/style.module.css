@@ -1,0 +1,32 @@
+.header {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+}
+.logo {
+  width: 140px;
+}
+.logo img {
+  max-width: 100%;
+}
+.nav {
+  display: flex;
+  gap: 20px;
+}
+.link {
+  color: var(--color - white);
+}
+.link:hover {
+  color: var(--color - yellow);
+}
+.active {
+  color: var(--color - yellow);
+}
