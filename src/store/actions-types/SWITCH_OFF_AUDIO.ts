@@ -1,1 +1,0 @@
-export const SWITCH_OFF_AUDIO = 'SWITCH_OFF_AUDIO';
