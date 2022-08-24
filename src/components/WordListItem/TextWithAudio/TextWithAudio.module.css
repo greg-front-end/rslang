@@ -1,0 +1,29 @@
+.block__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 22px;
+}
+
+.text__wrapper {
+  display: flex;
+  flex-direction: column;
+  column-gap: 5px;
+}
+
+.text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.translate {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #959BA5;
+}
