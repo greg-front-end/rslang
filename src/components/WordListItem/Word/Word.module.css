@@ -1,0 +1,28 @@
+.title__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title{
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.transcription {
+  padding-left: 10px;
+  color: white;
+  font-weight: 500;
+}
+
+.translate {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #959BA5;
+}
