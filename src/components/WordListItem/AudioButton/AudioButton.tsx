@@ -1,8 +1,8 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 
 import { URL } from '../../../constants/URL';
-import { switchOffAudio } from '../../../store/actions/switchOffAudio';
+import { stopAudio } from '../../../features/audioSlice';
+import { useAppDispatch } from '../../../hooks/useAppDispatch';
 
 import styles from './AudioButton.module.css';
 
@@ -16,10 +16,10 @@ interface IWordsItemProps {
 export const AudioButton = ({ path, Icon }: IWordsItemProps) => {
   const getAudioUrl = () => `${URL}${path}`;
   const audio = new Audio(getAudioUrl());
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const playAudio = () => {
-    dispatch(switchOffAudio(audio));
+    dispatch(stopAudio(audio));
     audio.play();
   };
 

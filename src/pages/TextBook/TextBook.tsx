@@ -1,21 +1,26 @@
+// import React from 'react';
+
+// export const TextBook = () => (<h1>TextBook</h1>);
+
 import React from 'react';
-<<<<<<< HEAD
-import axios from 'axios';
 
-export function TextBook() {
-  axios.get('https://rslang-mdg.herokuapp.com/words')
-    .then((response) => {
-      console.log(response.data);
-    });
+import { WordListItem } from '../../components/WordListItem/WordListItem';
 
-  return (
-    <div>
-      <div>gg</div>
-      <div>gg</div>
-    </div>
-  );
-}
-=======
+const item = {
+  id: '5e9f5ee35eb9e72bc21af4a1',
+  group: 0,
+  page: 0,
+  word: 'agree',
+  image: 'files/01_0001.jpg',
+  audio: 'files/01_0001.mp3',
+  audioMeaning: 'files/01_0001_meaning.mp3',
+  audioExample: 'files/01_0001_example.mp3',
+  textMeaning: 'To <i>agree</i> is to have the same opinion or belief as another person.',
+  textExample: 'The students <b>agree</b> they have too much homework.',
+  transcription: '[əgríː]',
+  textExampleTranslate: 'Студенты согласны, что у них слишком много домашней работы',
+  textMeaningTranslate: 'Согласиться - значит иметь то же мнение или убеждение, что и другой человек',
+  wordTranslate: 'согласна',
+};
 
-export const TextBook = () => (<h1>TextBook</h1>);
->>>>>>> 0759eee411c639740a4d6a418e7d3ecf20b403b5
+export const TextBook = () => (<WordListItem item={item} />);
