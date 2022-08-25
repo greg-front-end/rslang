@@ -1,0 +1,15 @@
+.logo {
+  width: 140px;
+}
+.logo img {
+  max-width: 100%;
+}
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+}
+.link:hover {
+  color: var(--color-yellow);
+}

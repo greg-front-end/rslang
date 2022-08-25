@@ -1,0 +1,9 @@
+.footer {
+  background: linear-gradient(285.91deg, #2B2F48 29.89%, rgba(51, 62, 91, 0.83) 129.82%);
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
