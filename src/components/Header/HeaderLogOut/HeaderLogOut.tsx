@@ -21,8 +21,8 @@ export const HeaderLogOut = () => {
             <NavLink className={activeLink} to="about">About</NavLink>
           </nav>
           <div className={style.auth_wrapper}>
-            <NavLink to="log-in" className="auth_link btn">Log in</NavLink>
-            <NavLink to="register" className={`${style.btn_register} auth_link btn`}>Register</NavLink>
+            <NavLink to="log-in" className={`${style.auth_link} btn`}>Log in</NavLink>
+            <NavLink to="register" className={`${style.btn_register} ${style.auth_link} btn`}>Register</NavLink>
           </div>
         </div>
       </div>

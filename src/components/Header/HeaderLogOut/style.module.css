@@ -48,3 +48,12 @@
   align-items: center;
   gap: var(--pd20);
 }
+.auth_link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 50px;
+  padding: var(--pd10);
+  color: inherit;
+}
