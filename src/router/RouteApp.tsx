@@ -1,7 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import { Auth } from '../components/Auth/Auth';
 import { Layout } from '../components/Layout/Layout';
+import { LogIn } from '../components/LogIn/LogIn';
 import { About } from '../pages/About/About';
 import { AudioCall } from '../pages/AudioCall/AudioCall';
 import { Games } from '../pages/Games/Games';
@@ -38,8 +40,16 @@ export const RouteApp = () => (
         element={<AudioCall />}
       />
       <Route
-        path="About"
+        path="about"
         element={<About />}
+      />
+      <Route
+        path="log-in"
+        element={<LogIn />}
+      />
+      <Route
+        path="register"
+        element={<Auth />}
       />
     </Route>
   </Routes>
