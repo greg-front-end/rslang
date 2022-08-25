@@ -1,16 +1,30 @@
 .card__frame {
   display: flex;
-  width: 795px;
+  width: 100%;
+  max-width: 795px;
   margin: 0 auto;
   overflow: hidden;
-  height: 340px;
   color: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 4px 4px 8px rgba(152, 118, 248, 0.2);
   backdrop-filter: blur(26.1418px);
+  border-width: 0px 1px 4px 0px;
+  border-style: solid;
+}
+
+.transparent {
+  border-color: transparent;
+}
+
+.red {
+  border-color: var(--color-red);
+}
+
+.green {
+  border-color: var(--color-green);
 }
 
 .img__wrapper {
-  width: 31.32%;
+  width: 41%;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -25,6 +39,6 @@
   display: flex;
   row-gap: 23px;
   flex-direction: column;
-  padding: 0 23px 0 16px;
+  padding: 20px 23px 20px 16px;
   justify-content: center;
 }
