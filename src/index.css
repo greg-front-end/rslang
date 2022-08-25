@@ -4,6 +4,7 @@
 :root {
   --color-white: #fff;
   --color-yellow: #FEF100;
+  --color-light-blue: #517AF3;
   --color-blue: #404869;
   --color-darkblue: #303850;
   --border-radius: 30px;
@@ -57,20 +58,18 @@ body {
 
 .btn {
   position: relative;
-  width: 100px;
-  height: 50px;
-  border-radius:  30px;
+  border-radius:  var(--border-radius);
   background: linear-gradient(135deg, #343A55 0%, #404869 100%);
   opacity: 0.95;
   box-shadow: -12.552px -12.552px 41.84px rgb(85 93 131 / 56%), 16.736px 16.736px 37.656px rgb(34 36 45 / 40%), inset 2.092px 2.092px 2.092px rgb(38 49 105 / 5%), inset -2.092px -2.092px 8.368px rgb(83 92 136 / 12%);
-  padding: var(--pd10) var(--pd20);
+  padding: var(--pd20) var(--pd30);
   color: var(--color-white);
 }
 .btn::before {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 30px; 
+  border-radius: var(--border-radius); 
   border-image-slice: 1;
   padding: 2px; 
   background: linear-gradient(135deg, rgba(88, 95, 132, 0.7) 0%, rgba(39, 44, 67, 0.7) 100%);
