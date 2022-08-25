@@ -1,7 +1,9 @@
-#hero {
-  position: relative;
+.hero {
+  background: linear-gradient(296.82deg, #2B2F48 0%, rgba(51, 62, 91, 0.83) 100%);
+  padding-top: var(--header-height);
 }
 .wrapper {
+  position: relative;
   display: flex;
   align-items: center;
   height: 100vh;
@@ -27,8 +29,8 @@
 }
 .hero_img_wrapper {
   position: absolute;
-  right: -20px;
-  top: 50px;
+  right: -90px;
+  top: 0px;
   display: flex;
   align-items: flex-start;
   justify-content: center;

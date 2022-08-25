@@ -7,7 +7,7 @@ import { ReactComponent as ArrowLeft } from '../../assets/svg/arrow-left.svg';
 import style from './style.module.css';
 
 export const Hero = () => (
-  <div className={style.hero} id={style.hero}>
+  <div className={style.hero} id="hero">
     <div className="container">
       <div className={style.wrapper}>
         <div className={style.hero_content}>
