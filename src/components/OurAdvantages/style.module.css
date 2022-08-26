@@ -1,0 +1,39 @@
+.advant {
+  background: linear-gradient(243.42deg, #2B2F48 0%, rgba(51, 62, 91, 0.83) 96.92%);
+  position: relative;
+  height: 100vh;
+}
+.wrapper {
+  display: flex;
+  gap: var(--pd60);
+  align-items: center;
+}
+.advant_content {
+  max-width: 745px;
+}
+.advant_items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pd30);
+}
+.advant_item {
+  display: flex;
+  gap: var(--pd20);
+  align-items: center;
+  line-height: 140%;
+}
+.advant_item svg {
+  width: 30px;
+  height: 30px;
+}
+.bookmark_left {
+  left: 200px;
+}
+.bookmark_left::after {
+  background-color: var(--color-light-green);
+}
+.man_left::after {
+  left: -100px;
+  background-color: var(--color-light-green);
+  border-top-right-radius: var(--border-radius);
+}
