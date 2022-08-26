@@ -16,7 +16,7 @@ interface IWordsItemProps {
 export const setDifficultOrLearnedStyle = () => styles.red;
 
 export const WordListItem = ({ item }: IWordsItemProps) => {
-  const isLogged = true;
+  const isLogged = false;
   const borderColor = isLogged ? setDifficultOrLearnedStyle() : styles.transparent;
   return (
     <div className={`frame ${styles.card__frame} ${borderColor}`}>

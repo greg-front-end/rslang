@@ -24,9 +24,10 @@
 }
 
 .img__wrapper {
-  width: 41%;
+  width: 31.32%;
   overflow: hidden;
   display: flex;
+  flex-shrink: 0;
   justify-content: center;
 }
 
@@ -37,8 +38,9 @@
 
 .text__wrapper {
   display: flex;
+  width: 100%;
   row-gap: 23px;
   flex-direction: column;
-  padding: 20px 23px 20px 16px;
+  padding: 26px 26px 20px 16px;
   justify-content: center;
 }
