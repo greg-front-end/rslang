@@ -3,10 +3,11 @@ import { NavLink } from 'react-router-dom';
 
 import LogoImg from '../../../assets/img/logo/dark/logo-desktop-dark.png';
 
+import styleLogOut from '../../../style/log_out.module.css';
 import style from './style.module.css';
 
 export const HeaderLogOut = () => {
-  const activeLink = ({ isActive }: {isActive: boolean}) => (isActive ? `${style.link} ${style.active}` : style.link);
+  const activeLink = ({ isActive }: {isActive: boolean}) => (isActive ? `${styleLogOut.link} ${style.active}` : styleLogOut.link);
   return (
     <header className={style.header}>
       <div className="container">
@@ -18,7 +19,7 @@ export const HeaderLogOut = () => {
             <NavLink className={activeLink} to="/">Home</NavLink>
             <NavLink className={activeLink} to="textbook">TextBook</NavLink>
             <NavLink className={activeLink} to="games">Play and learn</NavLink>
-            <NavLink className={activeLink} to="about">About</NavLink>
+            <NavLink className={styleLogOut.link} to={{ pathname: '/', hash: '#about-us' }}>About</NavLink>
           </nav>
           <div className={style.auth_wrapper}>
             <NavLink to="log-in" className={`${style.auth_link} btn`}>Log in</NavLink>
