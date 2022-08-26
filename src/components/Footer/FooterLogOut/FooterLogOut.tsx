@@ -32,7 +32,7 @@ export const FooterLogOut = () => (
           <nav className={style.nav}>
             <a className={styleLogOut.link} href="#hero">Home</a>
             <a className={styleLogOut.link} href="#our-advantages">Our advantages</a>
-            <a className={styleLogOut.link} href="#about-us">About us</a>
+            <a className={styleLogOut.link} href="#our-team">Our team</a>
           </nav>
         </div>
         <div className={styleLogOut.logo}>
