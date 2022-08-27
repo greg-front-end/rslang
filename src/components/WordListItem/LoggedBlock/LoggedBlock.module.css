@@ -1,0 +1,27 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 23.5%;
+}
+
+.btns__wrapper {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  column-gap: 30px;
+  align-items: flex-end;
+}
+
+.red, 
+.green {
+  padding: 20px 30px;
+}
+
+.red {
+  color: var(--color-red);
+}
+
+.green {
+  color: var(--color-green);
+}

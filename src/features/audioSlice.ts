@@ -13,10 +13,9 @@ const audioSlice = createSlice({
   initialState,
   reducers: {
     stopAudio(state, action: PayloadAction<HTMLAudioElement>) {
-      const newState = state;
       state.audio.pause();
-      newState.audio.currentTime = 0;
-      newState.audio = action.payload as Draft<HTMLAudioElement>;
+      state.audio.currentTime = 0;
+      state.audio = action.payload as Draft<HTMLAudioElement>;
     },
   },
 });
