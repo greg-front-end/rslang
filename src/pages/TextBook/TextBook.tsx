@@ -1,26 +1,36 @@
-// import React from 'react';
+import React, { useEffect } from 'react';
 
-// export const TextBook = () => (<h1>TextBook</h1>);
-
-import React from 'react';
-
+import { getCard } from '../../api/getCard';
 import { WordListItem } from '../../components/WordListItem/WordListItem';
+import { setGroup } from '../../features/textBookSlice';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
-const item = {
-  id: '5e9f5ee35eb9e72bc21af4a1',
-  group: 0,
-  page: 0,
-  word: 'agree',
-  image: 'files/01_0001.jpg',
-  audio: 'files/01_0001.mp3',
-  audioMeaning: 'files/01_0001_meaning.mp3',
-  audioExample: 'files/01_0001_example.mp3',
-  textMeaning: 'To <i>agree</i> is to have the same opinion or belief as another person.',
-  textExample: 'The students <b>agree</b> they have too much homework.',
-  transcription: '[əgríː]',
-  textExampleTranslate: 'Студенты согласны, что у них слишком много домашней работы',
-  textMeaningTranslate: 'Согласиться - значит иметь то же мнение или убеждение, что и другой человек',
-  wordTranslate: 'согласна',
+import style from './TextBook.module.css';
+
+export const TextBook: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const cards = useAppSelector((state) => state.textBook.cards);
+  // useEffect(() => { dispatch(getCard()); }, [dispatch]);
+
+  function changePage(num: number) {
+    dispatch(setGroup(num));
+    dispatch(getCard());
+  }
+
+  return (
+
+    <div>
+      <div className={style.container}>
+        <button className={style.btn} onClick={() => changePage(0)} type="button">A1 | Elementary</button>
+        <button className={style.btn} onClick={() => changePage(1)} type="button">A2 | Pre-Intermediate</button>
+        <button className={style.btn} onClick={() => changePage(2)} type="button">B1 | Intermediate</button>
+        <button className={style.btn} onClick={() => changePage(3)} type="button">B2 | Upper-Intermediate</button>
+        <button className={style.btn} onClick={() => changePage(4)} type="button">C1 | Upper-Intermediate</button>
+        <button className={style.btn} onClick={() => changePage(5)} type="button">C2 | Upper-Intermediate</button>
+      </div>
+      {cards.map((item) => (<WordListItem key={item.id} item={item} />))}
+    </div>
+
+  );
 };
-
-export const TextBook = () => (<WordListItem item={item} />);
