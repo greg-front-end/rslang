@@ -28,6 +28,10 @@
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
     "no-use-before-define": "off",
+    "no-param-reassign": ["error", {
+      "props": true,
+      "ignorePropertyModificationsFor": ["state"]
+      }],
     "@typescript-eslint/no-use-before-define": ["error"],
     "react/jsx-filename-extension": [
       "warn",

@@ -1,5 +1,7 @@
+import { IToken } from './IToken';
+
 export interface IAuthState {
-  token: string | null;
+  token: IToken | null;
   name: string;
   email: string;
   id: string;
