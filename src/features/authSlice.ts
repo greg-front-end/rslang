@@ -1,13 +1,12 @@
-/* eslint no-param-reassign: ["error", { "props": false }] */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { URL } from '../constants/URL';
 import { IAuthState } from '../types/IAuthState';
 import { ICreateUser } from '../types/ICreateUser';
-import { IToken } from '../types/IToken';
+import { ICreateUserResponse } from '../types/ICreateUserResponse';
 
-export const registerUser = createAsyncThunk<IToken, ICreateUser,
+export const registerUser = createAsyncThunk<ICreateUserResponse, ICreateUser,
   { rejectValue: string }
 >(
   'auth/registerUser',
@@ -15,7 +14,7 @@ export const registerUser = createAsyncThunk<IToken, ICreateUser,
     try {
       const token = await axios.post(`${URL}users`, { ...values });
       localStorage.setItem('token', JSON.stringify(token.data));
-      return token.data as IToken;
+      return token.data as ICreateUserResponse;
     } catch (error) {
       if (axios.isAxiosError(error)) {
         return rejectWithValue(error.response?.data as string);

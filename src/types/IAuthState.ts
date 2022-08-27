@@ -1,7 +1,7 @@
-import { IToken } from './IToken';
+import { ICreateUserResponse } from './ICreateUserResponse';
 
 export interface IAuthState {
-  token: IToken | null;
+  token: ICreateUserResponse | null;
   name: string;
   email: string;
   id: string;
