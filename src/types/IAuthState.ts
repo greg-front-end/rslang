@@ -1,7 +1,7 @@
-import { ICreateUserResponse } from './ICreateUserResponse';
+import { ILogIn } from './ILogIn';
 
 export interface IAuthState {
-  token: ICreateUserResponse | null;
+  token: ILogIn | null;
   name: string;
   email: string;
   id: string;

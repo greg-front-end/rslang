@@ -1,8 +1,10 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, {
+  ChangeEvent, FormEvent, useState,
+} from 'react';
 
-import { registerUser } from '../../features/authSlice';
+import { logIn } from '../../api/logIn';
+import { registerUser } from '../../api/registerUser';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { useAppSelector } from '../../hooks/useAppSelector';
 import { ICreateUser } from '../../types/ICreateUser';
 
 import style from './style.module.css';
@@ -11,8 +13,6 @@ export const Auth = () => {
   const [formState, setFormState] = useState<ICreateUser>({
     name: '', email: '', password: '',
   });
-  const userState = useAppSelector((state) => state.auth);
-  console.log(userState);
   const dispatch = useAppDispatch();
 
   const handleInutChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
@@ -32,6 +32,7 @@ export const Auth = () => {
         password,
       };
       dispatch(registerUser(formBody));
+      dispatch(logIn({ email, password }));
       setFormState({
         name: '',
         email: '',
@@ -39,6 +40,7 @@ export const Auth = () => {
       });
     }
   };
+
   return (
     <div className={style.auth}>
       <div className="container">
