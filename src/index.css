@@ -5,6 +5,7 @@
   --color-white: #fff;
   --color-yellow: #FEF100;
   --color-light-yellow: #F1EC83;
+  --color-secondary: #959BA5;
   --color-light-blue: #517AF3;
   --color-blue: #404869;
   --color-darkblue: #303850;
@@ -21,6 +22,7 @@
   --pd30: 30px;
   --pd20: 20px;
   --pd10: 10px;
+  --transitionAll3sec: all 0.3s;
 }  
 
 #root {

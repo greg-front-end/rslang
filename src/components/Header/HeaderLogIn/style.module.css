@@ -1,0 +1,130 @@
+.header {
+  width: 270px;
+  height: 100vh;
+  background-color: var(--color-blue);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  left: 0;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: start;
+  height: 100vh;
+  width: 180px;
+}
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pd40);
+  width: 100%;
+}
+.link {
+  display: flex;
+  align-items: center;
+  gap: var(--pd10);
+  color: var(--secondary);
+  font-weight: 700;
+  transition: var(--transitionAll3sec);
+  position: relative;
+}
+.link:hover {
+  color: var(--color-light-yellow);
+}
+.link svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--color-secondary);
+}
+.link::before {
+  content: '';
+  position: absolute;
+  left: 280px;
+  display: block;
+  border-radius: var(--border-radius);
+  background-color: var(--color-darkblue);
+  width: 320px;
+  padding: var(--pd30) 0;
+  z-index: -1;
+  transition: var(--transitionAll3sec);
+}
+.link.active .span1::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--color-darkblue);
+  z-index: -1;
+}
+.link.active::before {
+  content: '';
+  position: absolute;
+  color: var(--color-white);
+  left: -20px;
+}
+.link.active::after {
+  content: '';
+  position: absolute;
+  top: 30px;
+  right: -60px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--color-darkblue);
+}
+.link span::after {
+  content: '';
+  position: absolute;
+  background-color: var(--color-blue);
+  opacity: 0;
+}
+.link.active span::after {
+  content: '';
+  position: absolute;
+  background-color: var(--color-blue);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  right: -45px;
+  top: 42px;
+  opacity: 1;
+  z-index: 1;
+}
+.link span::before {
+  content: '';
+  position: absolute;
+  background-color: var(--color-blue);
+  opacity: 0;
+}
+.link.active span::before {
+  content: '';
+  position: absolute;
+  background-color: var(--color-blue);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  right: -45px;
+  top: -98px;
+  opacity: 1;
+  z-index: -1;
+}
+.active svg {
+  fill: var(--color-light-yellow);
+}
+.auth_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--pd30);
+}
+.auth_btn {
+  display: flex;
+  align-items: center;
+  gap: var(--pd10);
+  color: var(--color-secondary);
+}

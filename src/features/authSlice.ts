@@ -20,7 +20,23 @@ const initialState: IAuthState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    logOutUser(state) {
+      localStorage.removeItem('token');
+      return {
+        ...state,
+        token: null,
+        name: '',
+        email: '',
+        id: '',
+        registerStatus: '',
+        registerError: '',
+        loginStatus: '',
+        loginError: '',
+        userLoaded: false,
+      };
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(
@@ -96,4 +112,5 @@ const authSlice = createSlice({
   },
 });
 
+export const { logOutUser } = authSlice.actions;
 export default authSlice.reducer;

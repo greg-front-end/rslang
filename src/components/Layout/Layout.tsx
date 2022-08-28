@@ -10,11 +10,14 @@ import { HeaderLogOut } from '../Header/HeaderLogOut/HeaderLogOut';
 
 export const Layout = () => {
   const userAuthState = useAppSelector((state) => state.auth);
-  const [isUserLoggined, serIsUserLoggined] = useState(false);
+  const [isUserLoggined, setIsUserLoggined] = useState(false);
 
   useEffect(() => {
     if (userAuthState.token?.token) {
-      serIsUserLoggined(isUserLogIn());
+      setIsUserLoggined(isUserLogIn());
+    }
+    if (!userAuthState.token?.token) {
+      setIsUserLoggined(isUserLogIn());
     }
   }, [userAuthState.token?.token]);
   return (
