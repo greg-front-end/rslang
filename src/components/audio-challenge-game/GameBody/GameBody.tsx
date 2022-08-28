@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { WordItems } from './WordItems';
+import { getCard } from '../../../api/getCard';
+import { setGroup } from '../../../features/textBookSlice';
+import { useAppDispatch } from '../../../hooks/useAppDispatch';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { mixArray } from '../utils/mixArray';
+
+import { WordItems } from './WordItems/WordItems';
 
 // import { URL } from '../../constants/URL';
 // import { IWordsItem } from '../../types/IWordsItem';

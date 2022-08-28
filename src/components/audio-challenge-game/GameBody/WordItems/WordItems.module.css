@@ -1,0 +1,6 @@
+.wrapper {
+  display: flex;
+  row-gap: 20px;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,14 +1,12 @@
 import { IWordsItem } from '../../../types/IWordsItem';
 
-const shuffle = (a: IWordsItem[]) => {
-  const arr = a;
-  for (let i = arr.length - 1; i > 0; i -= 1) {
-    const num = Math.floor(Math.random() * (i + 1));
-    const d = arr[num];
-    arr[num] = arr[i];
-    arr[i] = d;
-  }
-  return arr;
-};
+function shuffle(arr: IWordsItem[]) {
+  return [...arr].map((_, i, arrCopy) => {
+    const rand = i + (Math.floor(Math.random() * (arrCopy.length - i)));
+    // eslint-disable-next-line no-param-reassign
+    [arrCopy[rand], arrCopy[i]] = [arrCopy[i], arrCopy[rand]];
+    return arrCopy[i];
+  });
+}
 
 export const mixArray = (a: IWordsItem[]) => shuffle([...a]);
