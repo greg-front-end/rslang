@@ -1,0 +1,30 @@
+.auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(296.82deg, #2B2F48 0%, rgba(51, 62, 91, 0.83) 100%);
+}
+.auth_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+  max-width: 1050px;
+  height: 630px;
+}
+.form {
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--pd20);
+  margin-right: 50px;
+}
+@media (min-width: 1200px) {
+  .auth_wrapper {
+    background-image: url('../../assets/img/signin/signin-desktop-bg.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+}

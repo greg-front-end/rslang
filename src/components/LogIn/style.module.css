@@ -1,0 +1,40 @@
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(296.82deg, #2B2F48 0%, rgba(51, 62, 91, 0.83) 100%);
+}
+.login_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+  max-width: 1050px;
+  height: 630px;
+}
+.form {
+  width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--pd20);
+  margin-top: var(--pd60);
+}
+.form_icon {
+  width: 20px;
+  height: 20px;
+}
+.form_label_email {
+  margin-left: 100px;
+}
+.form_label_password {
+  margin-left: 60px;
+}
+@media (min-width: 1200px) {
+  .login_wrapper {
+    background-image: url('../../assets/img/login/login-bg.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+}
