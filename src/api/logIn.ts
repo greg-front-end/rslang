@@ -9,11 +9,10 @@ import { ILogIn } from '../types/ILogIn';
 export const logIn = createAsyncThunk<ILogIn, Omit<ICreateUser, 'name'>,
   { rejectValue: string }
 >(
-  'auth/login',
+  'auth/logIn',
   async (values, { rejectWithValue }) => {
     try {
       const token = await axios.post(`${URL}${ApiPath.Signin}`, { ...values });
-      localStorage.setItem('token', JSON.stringify(token.data));
       return token.data as ILogIn;
     } catch (error) {
       if (axios.isAxiosError(error)) {

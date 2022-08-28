@@ -59,12 +59,20 @@ const authSlice = createSlice({
         (state) => ({ ...state, registerStatus: ResponseStatus.Pending }),
       );
     builder
-      .addCase(logIn.fulfilled, (state, { payload }) => ({
-        ...state,
-        token: payload,
-        loginStatus: payload.message,
-        registerStatus: ResponseStatus.Success,
-      }));
+      .addCase(logIn.fulfilled, (state, { payload }) => {
+        localStorage.setItem('token', JSON.stringify({
+          id: payload.userId,
+          name: state.name,
+          token: payload.token,
+          refreshToken: payload.refreshToken,
+        }));
+        return {
+          ...state,
+          token: payload,
+          loginStatus: payload.message,
+          registerStatus: ResponseStatus.Success,
+        };
+      });
     builder
       .addCase(
         logIn.rejected,

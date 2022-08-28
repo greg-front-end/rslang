@@ -32,7 +32,7 @@ export const Auth = () => {
         password,
       };
       dispatch(registerUser(formBody));
-      dispatch(logIn({ email, password }));
+      dispatch(logIn({ email: formBody.email, password: formBody.password }));
       setFormState({
         name: '',
         email: '',
