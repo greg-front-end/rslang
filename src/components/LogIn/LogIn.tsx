@@ -57,7 +57,7 @@ export const LogIn = () => {
       <div className="container">
         <div className={style.login_wrapper}>
           <form className={style.form} onSubmit={handleSubmit}>
-            <label className="form_label" htmlFor="email">
+            <label className={`${style.form_label_email} form_label`} htmlFor="email">
               <EmailICon className="form_input_icon" />
               <input
                 type="email"
@@ -73,7 +73,7 @@ export const LogIn = () => {
                 onChange={handleInutChange}
               />
             </label>
-            <label className="form_label" htmlFor="password">
+            <label className={`${style.form_label_password} form_label`} htmlFor="password">
               <KeyIcon className="form_input_icon" />
               <input
                 type="password"
@@ -89,7 +89,7 @@ export const LogIn = () => {
                 onChange={handleInutChange}
               />
             </label>
-            <button className="form_btn" type="submit">Log In</button>
+            <button className={`${style.form_btn} form_btn`} type="submit">Log In</button>
           </form>
         </div>
       </div>
