@@ -18,9 +18,9 @@ export const PageButtons: React.FC = () => {
   }
   return (
     <div className={style.pageButtonsContainer}>
-      {pageButtons.map((el, index) => (
+      {pageButtons.map((el) => (
         <button
-          onClick={() => changePage(index)}
+          onClick={() => changePage(el)}
           type="button"
           className={page === el ? `${style.btn} ${style.active}` : style.btn}
         >
