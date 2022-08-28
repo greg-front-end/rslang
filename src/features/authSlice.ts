@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { logIn } from '../api/logIn';
-import { registerUser } from '../api/registerUser';
+import { signIn } from '../api/signIn';
 import { IAuthState } from '../types/IAuthState';
 import { ResponseStatus } from '../types/ResponseStatus';
 
@@ -24,11 +24,11 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(
-        registerUser.pending,
+        signIn.pending,
         (state) => ({ ...state, registerStatus: ResponseStatus.Pending }),
       );
     builder
-      .addCase(registerUser.fulfilled, (state, { payload }) => ({
+      .addCase(signIn.fulfilled, (state, { payload }) => ({
         ...state,
         name: payload.name,
         email: payload.email,
@@ -37,7 +37,7 @@ const authSlice = createSlice({
       }));
     builder
       .addCase(
-        registerUser.rejected,
+        signIn.rejected,
         (state, action) => {
           if (action.payload) {
             return {
@@ -69,6 +69,7 @@ const authSlice = createSlice({
         return {
           ...state,
           token: payload,
+          userLoaded: true,
           loginStatus: payload.message,
           registerStatus: ResponseStatus.Success,
         };

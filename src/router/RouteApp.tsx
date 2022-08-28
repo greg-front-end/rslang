@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { Auth } from '../components/Auth/Auth';
 import { Layout } from '../components/Layout/Layout';
 import { LogIn } from '../components/LogIn/LogIn';
+import { SignIn } from '../components/SignIn/SignIn';
 import { useAppSelector } from '../hooks/useAppSelector';
 import { About } from '../pages/About/About';
 import { AudioCall } from '../pages/AudioCall/AudioCall';
@@ -59,7 +59,7 @@ export const RouteApp = () => {
         />
         <Route
           path="register"
-          element={<Auth />}
+          element={<SignIn />}
         />
       </Route>
     </Routes>

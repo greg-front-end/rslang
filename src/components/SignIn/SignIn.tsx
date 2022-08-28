@@ -4,14 +4,14 @@ import React, {
 import { useNavigate } from 'react-router-dom';
 
 import { logIn } from '../../api/logIn';
-import { registerUser } from '../../api/registerUser';
+import { signIn } from '../../api/signIn';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { ICreateUser } from '../../types/ICreateUser';
 
 import style from './style.module.css';
 
-export const Auth = () => {
+export const SignIn = () => {
   const [formState, setFormState] = useState<ICreateUser>({
     name: '', email: '', password: '',
   });
@@ -35,7 +35,7 @@ export const Auth = () => {
         email,
         password,
       };
-      await dispatch(registerUser(formBody));
+      await dispatch(signIn(formBody));
       await dispatch(logIn({ email: formBody.email, password: formBody.password }));
       setFormState({
         name: '',
