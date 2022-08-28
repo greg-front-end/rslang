@@ -7,12 +7,14 @@ export type TextBookState = {
   cards: IWordsItem[];
   group: number,
   page: number,
+  pageButtons: number[]
 }
 
 const initialState: TextBookState = {
   cards: [],
   group: 0,
   page: 0,
+  pageButtons: [0, 1, 2, 3, 4, 5, 6],
 };
 
 const textBookSlice = createSlice({
@@ -20,9 +22,13 @@ const textBookSlice = createSlice({
   initialState,
   reducers: {
     setGroup: (state, action: PayloadAction<number>) => {
-      console.log(action);
-      const newState = state;
-      newState.group = action.payload;
+      state.group = action.payload;
+    },
+    setPage: (state, action: PayloadAction<number>) => {
+      state.page = action.payload;
+    },
+    setPageButtons: (state, action: PayloadAction<number[]>) => {
+      state.pageButtons = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -44,5 +50,5 @@ const textBookSlice = createSlice({
   },
 });
 
-export const { setGroup } = textBookSlice.actions;
+export const { setGroup, setPage, setPageButtons } = textBookSlice.actions;
 export default textBookSlice.reducer;
