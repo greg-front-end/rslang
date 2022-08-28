@@ -14,7 +14,7 @@ export const getCard = createAsyncThunk<IWordsItem[], undefined, { rejectValue: 
       {
         params: {
           group: state.textBook.group,
-          page: 0,
+          page: state.textBook.page,
         },
       },
     );
