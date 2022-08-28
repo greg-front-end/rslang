@@ -1,10 +1,12 @@
 import React, {
-  ChangeEvent, FormEvent, useState,
+  ChangeEvent, FormEvent, useEffect, useState,
 } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { logIn } from '../../api/logIn';
 import { registerUser } from '../../api/registerUser';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
 import { ICreateUser } from '../../types/ICreateUser';
 
 import style from './style.module.css';
@@ -13,6 +15,8 @@ export const Auth = () => {
   const [formState, setFormState] = useState<ICreateUser>({
     name: '', email: '', password: '',
   });
+  const userState = useAppSelector((state) => state.auth);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleInutChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +26,7 @@ export const Auth = () => {
     });
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
     const { name, email, password } = formState;
     if (name && email && password) {
@@ -31,8 +35,8 @@ export const Auth = () => {
         email,
         password,
       };
-      dispatch(registerUser(formBody));
-      dispatch(logIn({ email: formBody.email, password: formBody.password }));
+      await dispatch(registerUser(formBody));
+      await dispatch(logIn({ email: formBody.email, password: formBody.password }));
       setFormState({
         name: '',
         email: '',
@@ -40,6 +44,12 @@ export const Auth = () => {
       });
     }
   };
+
+  useEffect(() => {
+    if (userState.token?.token) {
+      navigate('/');
+    }
+  }, [navigate, userState.token?.token]);
 
   return (
     <div className={style.auth}>
