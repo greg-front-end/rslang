@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { logIn } from '../../api/logIn';
+import { loginUser } from '../../api/loginUser';
 import { ReactComponent as EmailICon } from '../../assets/svg/auth/email.svg';
 import { ReactComponent as KeyIcon } from '../../assets/svg/auth/key.svg';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
@@ -22,7 +22,6 @@ export const LogIn = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const userState = useAppSelector((state) => state.auth);
-  console.log(userState);
 
   const handleInutChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
     setFormState({
@@ -39,7 +38,7 @@ export const LogIn = () => {
         email,
         password,
       };
-      dispatch(logIn(formBody));
+      dispatch(loginUser(formBody));
       setFormState({
         email: '',
         password: '',
@@ -48,10 +47,10 @@ export const LogIn = () => {
   };
 
   useEffect(() => {
-    if (userState.token?.token) {
+    if (userState.token) {
       navigate('/');
     }
-  }, [navigate, userState.token?.token]);
+  }, [navigate, userState.token]);
   return (
     <div className={style.login}>
       <div className="container">

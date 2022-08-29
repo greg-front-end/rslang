@@ -3,8 +3,8 @@ import React, {
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { logIn } from '../../api/logIn';
-import { signIn } from '../../api/signIn';
+import { loginUser } from '../../api/loginUser';
+import { registerUser } from '../../api/registerUser';
 import { ReactComponent as EmailICon } from '../../assets/svg/auth/email.svg';
 import { ReactComponent as KeyIcon } from '../../assets/svg/auth/key.svg';
 import { ReactComponent as UserIcon } from '../../assets/svg/auth/user.svg';
@@ -38,8 +38,8 @@ export const SignIn = () => {
         email,
         password,
       };
-      await dispatch(signIn(formBody));
-      await dispatch(logIn({ email: formBody.email, password: formBody.password }));
+      await dispatch(registerUser(formBody));
+      await dispatch(loginUser({ email: formBody.email, password: formBody.password }));
       setFormState({
         name: '',
         email: '',
@@ -49,10 +49,10 @@ export const SignIn = () => {
   };
 
   useEffect(() => {
-    if (userState.token?.token) {
+    if (userState.token) {
       navigate('/');
     }
-  }, [navigate, userState.token?.token]);
+  }, [navigate, userState.token]);
 
   return (
     <div className={style.auth}>
