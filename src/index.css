@@ -21,7 +21,7 @@
   --pd30: 30px;
   --pd20: 20px;
   --pd10: 10px;
-}  
+}
 
 #root {
   display: flex;
@@ -80,13 +80,37 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: var(--border-radius); 
+  border-radius: var(--border-radius);
   border-image-slice: 1;
-  padding: 2px; 
+  padding: 2px;
   background: linear-gradient(135deg, rgba(88, 95, 132, 0.7) 0%, rgba(39, 44, 67, 0.7) 100%);
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
-  mask-composite: exclude; 
+  mask-composite: exclude;
+}
+
+.A1 {
+  color: #875CFF;
+}
+
+.A2 {
+  color: #FF9B8C;
+}
+
+.B1 {
+  color: #B0E021;
+}
+
+.B2 {
+  color: #F2B233;
+}
+
+.C1 {
+  color: #64E3FF;
+}
+
+.C2 {
+  color: #00FFCE;
 }

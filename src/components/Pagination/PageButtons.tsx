@@ -4,11 +4,13 @@ import { getCard } from '../../api/getCard';
 import { setPage } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { levels } from '../LevelButtons/LevelButtons';
 
 import style from './Pagination.module.css';
 
 export const PageButtons: React.FC = () => {
   const page = useAppSelector((state) => state.textBook.page);
+  const group = useAppSelector((state) => state.textBook.group);
   const pageButtons = useAppSelector((state) => state.textBook.pageButtons);
 
   const dispatch = useAppDispatch();
@@ -22,7 +24,7 @@ export const PageButtons: React.FC = () => {
         <button
           onClick={() => changePage(el)}
           type="button"
-          className={page === el ? `${style.btn} ${style.active}` : style.btn}
+          className={page === el ? `btn ${style.active} ${style.btn_pagination} ${levels[group].level}` : `btn ${style.btn_pagination} ${levels[group].level}`}
         >
           {el + 1}
         </button>

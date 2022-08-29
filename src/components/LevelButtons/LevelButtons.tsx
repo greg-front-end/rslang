@@ -1,27 +1,21 @@
 import React from 'react';
 
-import { getCard } from '../../api/getCard';
-import { setGroup } from '../../features/textBookSlice';
-import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { Level, LevelButton } from './LevelButton';
 
 import style from './LevelButtons.module.css';
 
-export const LevelButtons: React.FC = () => {
-  const dispatch = useAppDispatch();
+export const levels: Level[] = [
+  { level: 'A1', name: 'Elementary', group: 0 },
+  { level: 'A2', name: 'Pre-Intermediate', group: 1 },
+  { level: 'B1', name: 'Intermediate', group: 2 },
+  { level: 'B2', name: 'Upper-Intermediate', group: 3 },
+  { level: 'C1', name: 'Upper-Intermediate', group: 4 },
+  { level: 'C2', name: 'Upper-Intermediate', group: 5 },
+];
 
-  function changeGroup(num: number) {
-    dispatch(setGroup(num));
-    dispatch(getCard());
-  }
-
-  return (
-    <div className={style.container}>
-      <button className={style.btn} onClick={() => changeGroup(0)} type="button">A1 | Elementary</button>
-      <button className={style.btn} onClick={() => changeGroup(1)} type="button">A2 | Pre-Intermediate</button>
-      <button className={style.btn} onClick={() => changeGroup(2)} type="button">B1 | Intermediate</button>
-      <button className={style.btn} onClick={() => changeGroup(3)} type="button">B2 | Upper-Intermediate</button>
-      <button className={style.btn} onClick={() => changeGroup(4)} type="button">C1 | Upper-Intermediate</button>
-      <button className={style.btn} onClick={() => changeGroup(5)} type="button">C2 | Upper-Intermediate</button>
-    </div>
-  );
-};
+export const LevelButtons: React.FC = () => (
+  <div className={style.container}>
+    <h2 className={style.title}>Level</h2>
+    {levels.map((el) => <LevelButton level={el.level} name={el.name} group={el.group} />)}
+  </div>
+);
