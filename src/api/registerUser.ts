@@ -6,10 +6,10 @@ import { ApiPath } from '../types/ApiPath';
 import { ICreateUser } from '../types/ICreateUser';
 import { ICreateUserResponse } from '../types/ICreateUserResponse';
 
-export const signIn = createAsyncThunk<ICreateUserResponse, ICreateUser,
+export const registerUser = createAsyncThunk<ICreateUserResponse, ICreateUser,
   { rejectValue: string }
 >(
-  'auth/signIn',
+  'auth/registerUser',
   async (values, { rejectWithValue }) => {
     try {
       const response = await axios.post(`${URL}${ApiPath.Users}`, { ...values });

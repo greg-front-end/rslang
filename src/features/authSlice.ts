@@ -1,15 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { logIn } from '../api/logIn';
-import { signIn } from '../api/signIn';
+import { getNewToken } from '../api/getNewToken';
+import { loadUser } from '../api/loadUser';
+import { loginUser } from '../api/loginUser';
+import { registerUser } from '../api/registerUser';
 import { IAuthState } from '../types/IAuthState';
 import { ResponseStatus } from '../types/ResponseStatus';
+import { getValueLocalStorage } from '../utils/getValueLocalStorage';
+import { removeValueLocalStorage } from '../utils/removeValueLocalStorage';
+import { setValueLocalStorage } from '../utils/setValueLocalStorage';
 
 const initialState: IAuthState = {
-  token: JSON.parse(localStorage.getItem('token') as string),
-  name: '',
+  id: getValueLocalStorage('UserId') as string || '',
+  token: getValueLocalStorage('Token'),
+  name: getValueLocalStorage('UserName') as string || '',
   email: '',
-  id: '',
   registerStatus: '',
   registerError: '',
   loginStatus: '',
@@ -22,7 +27,10 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     logOutUser(state) {
-      localStorage.removeItem('token');
+      removeValueLocalStorage('Token');
+      removeValueLocalStorage('UserId');
+      removeValueLocalStorage('UserName');
+      removeValueLocalStorage('LoginStatus');
       return {
         ...state,
         token: null,
@@ -40,20 +48,24 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(
-        signIn.pending,
+        registerUser.pending,
         (state) => ({ ...state, registerStatus: ResponseStatus.Pending }),
       );
     builder
-      .addCase(signIn.fulfilled, (state, { payload }) => ({
-        ...state,
-        name: payload.name,
-        email: payload.email,
-        id: payload.id,
-        registerStatus: ResponseStatus.Success,
-      }));
+      .addCase(registerUser.fulfilled, (state, { payload }) => {
+        setValueLocalStorage('UserId', payload.id);
+        setValueLocalStorage('UserName', payload.name);
+        return {
+          ...state,
+          name: payload.name,
+          email: payload.email,
+          id: payload.id,
+          registerStatus: ResponseStatus.Success,
+        };
+      });
     builder
       .addCase(
-        signIn.rejected,
+        registerUser.rejected,
         (state, action) => {
           if (action.payload) {
             return {
@@ -71,20 +83,17 @@ const authSlice = createSlice({
       );
     builder
       .addCase(
-        logIn.pending,
+        loginUser.pending,
         (state) => ({ ...state, registerStatus: ResponseStatus.Pending }),
       );
     builder
-      .addCase(logIn.fulfilled, (state, { payload }) => {
-        localStorage.setItem('token', JSON.stringify({
-          id: payload.userId,
-          name: state.name,
-          token: payload.token,
-          refreshToken: payload.refreshToken,
-        }));
+      .addCase(loginUser.fulfilled, (state, { payload }) => {
+        setValueLocalStorage('Token', payload.token);
+        setValueLocalStorage('UserId', payload.userId);
+        setValueLocalStorage('LoginStatus', ResponseStatus.Authorized);
         return {
           ...state,
-          token: payload,
+          token: payload.token,
           userLoaded: true,
           loginStatus: payload.message,
           registerStatus: ResponseStatus.Success,
@@ -92,8 +101,9 @@ const authSlice = createSlice({
       });
     builder
       .addCase(
-        logIn.rejected,
+        loginUser.rejected,
         (state, action) => {
+          removeValueLocalStorage('LoginStatus');
           if (action.payload) {
             return {
               ...state,
@@ -106,6 +116,45 @@ const authSlice = createSlice({
             ...state,
             registerError: action.error as string,
             registerStatus: ResponseStatus.Rejected,
+          };
+        },
+      );
+    builder
+      .addCase(
+        getNewToken.pending,
+        (state) => ({ ...state, registerStatus: ResponseStatus.Pending }),
+      );
+    builder
+      .addCase(getNewToken.fulfilled, (state, { payload }) => {
+        setValueLocalStorage('LoginStatus', ResponseStatus.Authorized);
+        return {
+          ...state,
+          name: payload.name,
+          userLoaded: true,
+          token: payload.token,
+          loginStatus: ResponseStatus.Authorized,
+          registerStatus: ResponseStatus.Success,
+        };
+      });
+    builder
+      .addCase(
+        getNewToken.rejected,
+        (state, action) => {
+          if (action.payload) {
+            removeValueLocalStorage('LoginStatus');
+            return {
+              ...state,
+              registerError: action.payload,
+              loginError: action.payload,
+              registerStatus: ResponseStatus.Rejected,
+              userLoaded: false,
+            };
+          }
+          return {
+            ...state,
+            registerError: action.error as string,
+            registerStatus: ResponseStatus.Rejected,
+            userLoaded: false,
           };
         },
       );

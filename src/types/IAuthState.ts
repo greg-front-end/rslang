@@ -1,7 +1,5 @@
-import { ILogIn } from './ILogIn';
-
 export interface IAuthState {
-  token: ILogIn | null;
+  token: string | null;
   name: string;
   email: string;
   id: string;
