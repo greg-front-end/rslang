@@ -38,81 +38,6 @@
   height: 24px;
   fill: var(--color-secondary);
 }
-.link::before {
-  content: '';
-  position: absolute;
-  left: 280px;
-  display: block;
-  border-radius: var(--border-radius);
-  background-color: var(--color-darkblue);
-  width: 320px;
-  padding: var(--pd30) 0;
-  z-index: -1;
-  transition: var(--transitionAll3sec);
-}
-.link.active .span1::before {
-  content: '';
-  position: absolute;
-  top: -60px;
-  right: -60px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: var(--color-darkblue);
-  z-index: -1;
-}
-.link.active::before {
-  content: '';
-  position: absolute;
-  color: var(--color-white);
-  left: -20px;
-}
-.link.active::after {
-  content: '';
-  position: absolute;
-  top: 30px;
-  right: -60px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: var(--color-darkblue);
-}
-.link span::after {
-  content: '';
-  position: absolute;
-  background-color: var(--color-blue);
-  opacity: 0;
-}
-.link.active span::after {
-  content: '';
-  position: absolute;
-  background-color: var(--color-blue);
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  right: -45px;
-  top: 42px;
-  opacity: 1;
-  z-index: 1;
-}
-.link span::before {
-  content: '';
-  position: absolute;
-  background-color: var(--color-blue);
-  opacity: 0;
-}
-.link.active span::before {
-  content: '';
-  position: absolute;
-  background-color: var(--color-blue);
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  right: -45px;
-  top: -98px;
-  opacity: 1;
-  z-index: -1;
-}
 .active svg {
   fill: var(--color-light-yellow);
 }
@@ -127,4 +52,57 @@
   align-items: center;
   gap: var(--pd10);
   color: var(--color-secondary);
+}
+
+.span1 {
+  position: absolute;
+  left: 280px;
+  width: 280px;
+  height: 60px;
+  padding: var(--pd30) 0;
+  opacity: 0;
+  z-index: -1;
+  border-radius: var(--border-radius);
+  background-color: var(--color-darkblue);
+  transition: var(--transitionAll3sec);
+}
+.active .span1 {
+  left: -20px;
+  width: 560px;
+  opacity: 1;
+}
+.active .span1::before,
+.active .span1::after {
+  content: '';
+  position: absolute;
+  background-color: var(--color-darkblue);
+  border-radius: 50%;
+  right: 280px;
+  width: 70px;
+  height: 70px;
+  z-index: -1;
+}
+.active .span1::before {
+  top: -38px;
+}
+.active .span1::after {
+  top: 30px;
+}
+.active .span2::before,
+.active .span2::after {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  right: 315px;
+  border-radius: 50%;
+  background-color: var(--color-blue);
+}
+.active .span2::before {
+  top: -80px;
+  opacity: 1;
+}
+.active .span2::after {
+  top: 60px;
+  opacity: 1;
 }
