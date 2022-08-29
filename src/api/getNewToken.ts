@@ -12,7 +12,7 @@ export const getNewToken = createAsyncThunk<ITokenData, null,
   'auth/getNewToken',
   async (_, { rejectWithValue }) => {
     try {
-      const id = JSON.stringify(getValueLocalStorage('UserId'));
+      const id = getValueLocalStorage('UserId');
       const token = getValueLocalStorage('Token');
       const response = await axios.get(`${URL}${ApiPath.Users}/${id}/tokens`, {
         headers: {
