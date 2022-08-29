@@ -14,8 +14,6 @@ export const OurTeamLogIn = () => (
       <div className="container_login">
         <h2 className={`${styleLogOut.title} title`}>
           Our team
-          {' '}
-          <span />
         </h2>
         <div className={style.wrapper}>
           <div className={style.team_content}>
