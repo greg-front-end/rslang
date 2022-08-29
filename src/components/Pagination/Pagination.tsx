@@ -19,7 +19,6 @@ export const Pagination: React.FC = () => {
   const page = useAppSelector((state) => state.textBook.page);
   const group = useAppSelector((state) => state.textBook.group);
   const pageButtons = useAppSelector((state) => state.textBook.pageButtons);
-  console.log(pageButtons);
 
   const dispatch = useAppDispatch();
 

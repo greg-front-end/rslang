@@ -20,13 +20,13 @@ export const PageButtons: React.FC = () => {
   }
   return (
     <div className={style.pageButtonsContainer}>
-      {pageButtons.map((el) => (
+      {pageButtons.map((el, index) => (
         <button
           onClick={() => changePage(el)}
           type="button"
           className={page === el ? `btn ${style.active} ${style.btn_pagination} ${levels[group].level}` : `btn ${style.btn_pagination} ${levels[group].level}`}
         >
-          {el + 1}
+          {index === pageButtons.length - 2 ? '...' : el + 1}
         </button>
       ))}
     </div>

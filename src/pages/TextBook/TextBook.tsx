@@ -18,7 +18,7 @@ export const TextBook: React.FC = () => {
   return (
 
     <div className={style.container}>
-      <h2 className={`title title-textbook ${levels[group].level}`}>{`${levels[group].level} ${levels[group].name}`}</h2>
+      <h2 className={`title ${levels[group].level}`}>{`${levels[group].level} ${levels[group].name}`}</h2>
       <Pagination />
       <LevelButtons />
       {cards.map((item) => (<WordListItem key={item.id} item={item} />))}
