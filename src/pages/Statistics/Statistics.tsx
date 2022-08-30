@@ -19,10 +19,10 @@ export const Statistics = () => (
         <AccuracyOfGame />
         <WordsLearned />
       </div>
-      <div className={style.AudioChallengeTable}>
+      <div className={style.game_wrapper}>
         <AudioChallenge />
       </div>
-      <div className={style.Srpint}>
+      <div className={style.game_wrapper}>
         <Sprint />
       </div>
     </div>

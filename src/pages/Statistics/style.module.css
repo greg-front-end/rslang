@@ -1,5 +1,6 @@
 .statistics_wrapper {
   display: flex;
+  gap: var(--pd30);
 }
 .title_wrapper {
   display: flex;
@@ -18,4 +19,12 @@
   justify-content: space-between;
   gap: var(--pd20);
   max-width: 220px;
+}
+.game_wrapper {
+  display: flex;
+  align-items: center;
+  width: 260px;
+  background-color: var(--color-blue);
+  border-radius: var(--border-radius);
+  padding: var(--pd10) var(--pd20);
 }

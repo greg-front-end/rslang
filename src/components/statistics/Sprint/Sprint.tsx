@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
-import { GamesStatisticsTable } from '../../GamesStatisticsTable/GamesStatisticsTable';
 import { Titlehallenge } from '../../TitleGames/Titlehallenge';
+import { GamesStatisticsTable } from '../GamesStatisticsTable/GamesStatisticsTable';
 
 import style from './style.module.css';
 
