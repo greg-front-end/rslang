@@ -18,7 +18,7 @@ export const LearnedWords: FC = () => {
   const data = {
     labels,
     datasets: [{
-      label: 'Progress',
+      label: 'Learned words',
       backgroundColor: '#F1EC83',
       borderColor: 'rgba(100, 227, 255, 1)',
       data: [0, 20, 5, 2, 20, 10, 45],
