@@ -191,7 +191,7 @@ body {
   }
   .container_login {
     margin-left: auto;
-    max-width: 1095px;
+    max-width: 1050px;
     padding-right: var(--pd30);
   }
   .form_input,

@@ -12,7 +12,6 @@ import style from './style.module.css';
 
 export const Statistics = () => (
   <div className="container_login">
-    <UserInfo />
     <div className={style.title_wrapper}>
       <CalendarIcon />
       <h2 className={style.title_today}>Today</h2>
@@ -27,6 +26,9 @@ export const Statistics = () => (
       </div>
       <div className={style.game_wrapper}>
         <Sprint />
+      </div>
+      <div className={style.user}>
+        <UserInfo />
       </div>
     </div>
     <div className={style.all_time_wrapper}>
