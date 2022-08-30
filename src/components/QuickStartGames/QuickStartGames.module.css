@@ -3,23 +3,19 @@
     z-index: 5;
     display: flex;
     width: 240px;
-    height: 453px;
+    height: 202px;
     flex-direction: column;
     right: 50px;
-    top: 20px;
+    top: 530px;
     align-items: center;
     padding: 10px 16px;
     gap: 16px;
 }
 
 .title {
-    width: 81px;
-    height: 45px;
-    font-style: normal;
     font-weight: 500;
-    font-size: 32px;
     line-height: 140%;
-    color: #CEC485;
+    color: #959BA5;
 }
 
 .btn {
@@ -27,26 +23,16 @@
     align-items: center;
     padding-left: 15px;
     background: #404869;
-    box-shadow: 10px 10px 80px rgba(63, 39, 102, 0.1);
     border-radius: 24px;
     width: 240px;
-    height: 48px;
-    gap: 10px;
+    height: 57px;
+    gap: 20px;
+    color: #ffffff;
 }
 
 .boundary {
     width: 2px;
-    height: 20px;
+    height: 37px;
     background-color: #FCD051;
     border-radius: 1px;
 }
-
-.letter{
-    width: 21px;
-    height: 28px;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 140%;
-}
-
