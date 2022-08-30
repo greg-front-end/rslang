@@ -39,12 +39,20 @@
 }
 .d3_learned_words,
 .d3_progress {  
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 234px;
-  width: 380px;
+  width: 380px;;
   background-color: var(--color-blue);
   border-radius: var(--border-radius);
 }
 .d3_title {
   text-align: center;
   margin: var(--pd20) 0;
+}
+.d3_learned_words canvas,
+.d3_progress canvas{
+  width: 300px;
+  border-radius: var(--border-radius);
 }
