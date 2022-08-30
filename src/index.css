@@ -3,6 +3,8 @@
 
 :root {
   --color-white: #fff;
+  --color-bright-yellow: #F4CF31;
+  --color-dark-yellow: #CEC485;
   --color-yellow: #FEF100;
   --color-light-yellow: #F1EC83;
   --color-secondary: #959BA5;
@@ -32,7 +34,10 @@
   min-height: 100vh;
   overflow-x: hidden;
 }
-
+main {
+  max-width: 1920px;
+  margin: 0 auto;
+}
 body {
   font-family: 'Comfortaa', cursive;
   font-weight: normal;
@@ -40,6 +45,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--color-darkblue);
   color: var(--color-white);
+      --color-background: rgb(51, 51, 51);
+    --color-on-background:#fff;
+
+    --color-tooltip:rgba(0,5,11,0.9);
+    --color-on-tooltip: #fff;
+
+    --color-handle-fill: #2c343a;
+    --color-handle-stroke: #67c2e4;
+    --color-handle-drag-fill: transparent;
+    --color-handle-dots: #67c2e4;
+    --color-handle-line: #67c2e4;
 }
 
 .frame {
@@ -186,7 +202,7 @@ body {
   }
   .container_login {
     margin-left: auto;
-    max-width: 1095px;
+    max-width: 1050px;
     padding-right: var(--pd30);
   }
   .form_input,
