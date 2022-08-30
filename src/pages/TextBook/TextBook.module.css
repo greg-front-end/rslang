@@ -1,8 +1,9 @@
 .wrapper {
     display: flex;
-    margin-top: 200px;
     flex-direction: column;
     gap: 40px;
+   width: 1050px;
+   text-align: left;
 }
 
 
