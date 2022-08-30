@@ -6,7 +6,7 @@ import { GamesStatisticsTable } from '../GamesStatisticsTable/GamesStatisticsTab
 import style from './style.module.css';
 
 export const Sprint: FC = () => (
-  <div className={style.audio_challenge}>
+  <div className={style.sprint}>
     <Titlehallenge text="Sprint" icon="sprint" />
     <GamesStatisticsTable value={0} />
   </div>

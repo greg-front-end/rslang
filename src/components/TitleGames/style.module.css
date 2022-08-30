@@ -1,15 +1,22 @@
 .title_wrapper {
   display: flex;
   align-items: center;
+  position: relative;
   gap: var(--pd10);
 }
 .title {
   font-size: 18px;
   font-weight: 700;
+  margin-left: var(--pd10);
 }
 .title::before {
   content: '';
-  border: 2px solid var(--color-bright-yellow);
-  margin-right: var(--pd10);
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 50px;
+  width: 2px;
+  height: 40px;
   border-radius: 4px;
+  background-color: var(--color-bright-yellow);
 }

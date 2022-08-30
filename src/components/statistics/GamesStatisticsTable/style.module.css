@@ -1,0 +1,26 @@
+.state_list {
+  margin-top: var(--pd20);
+  display: flex;
+  flex-direction: column;
+  gap: var(--pd10);
+}
+.state_list_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.state_list_int
+.state_list_text {
+  font-weight: 600;
+}
+.state_list_text::before {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  left: 22%;
+  top: 50%;
+  border: 1px dashed var(--color-bright-yellow);
+  height: 2px;
+  width: 55px;
+}
