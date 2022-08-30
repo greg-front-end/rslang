@@ -5,9 +5,9 @@ import { Titlehallenge } from '../../TitleGames/Titlehallenge';
 
 import style from './style.module.css';
 
-export const AudioChallenge: FC = () => (
+export const Sprint: FC = () => (
   <div className={style.audio_challenge}>
-    <Titlehallenge text="Audio Challenge" icon="audio" />
+    <Titlehallenge text="Sprint" icon="sprint" />
     <GamesStatisticsTable value={0} />
   </div>
 );
