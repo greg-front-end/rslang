@@ -14,7 +14,9 @@ export const TextBook: React.FC = () => {
   const dispatch = useAppDispatch();
   const cards = useAppSelector((state) => state.textBook.cards);
   const group = useAppSelector((state) => state.textBook.group);
-  useEffect(() => { dispatch(getCard()); }, [dispatch]);
+  useEffect(() => {
+    dispatch(getCard());
+  }, [dispatch]);
 
   return (
     <div className={isUserLogIn() ? 'container_login' : 'container'}>

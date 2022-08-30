@@ -17,6 +17,7 @@ export const LevelButton: React.FC<Level> = ({ level, name, group }) => {
 
   function changeGroup(num: number) {
     dispatch(setGroup(num));
+    localStorage.setItem('group', JSON.stringify(num));
     dispatch(getCard());
   }
 
