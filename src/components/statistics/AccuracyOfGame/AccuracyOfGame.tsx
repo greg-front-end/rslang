@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
-import { ReactComponent as AccurIcon } from '../../assets/svg/statistics/accuracy.svg';
-import { ReactComponent as GoalIcon } from '../../assets/svg/statistics/goal.svg';
+import { ReactComponent as AccurIcon } from '../../../assets/svg/statistics/accuracy.svg';
+import { ReactComponent as GoalIcon } from '../../../assets/svg/statistics/goal.svg';
 
 import style from './style.module.css';
 
