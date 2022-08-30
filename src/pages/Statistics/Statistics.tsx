@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { ReactComponent as CalendarIcon } from '../../assets/svg/statistics/calendar.svg';
-import { AccuracyOfGame } from '../../components/AccuracyOfGame/AccuracyOfGame';
+import { AccuracyOfGame } from '../../components/statistics/AccuracyOfGame/AccuracyOfGame';
+import { WordsLearned } from '../../components/statistics/WordsLearned/WordsLearned';
 
 import style from './style.module.css';
 
@@ -11,6 +12,9 @@ export const Statistics = () => (
       <CalendarIcon />
       <h2 className={style.title_today}>Today</h2>
     </div>
-    <AccuracyOfGame />
+    <div className={style.words_module}>
+      <AccuracyOfGame />
+      <WordsLearned />
+    </div>
   </div>
 );

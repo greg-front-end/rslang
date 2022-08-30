@@ -4,14 +4,13 @@
   justify-content: center;
   gap: var(--pd10);
   background-color: var(--color-blue);
-  width: max-content;
   padding: var(--pd10) var(--pd20);
   border-radius: var(--border-radius);
 }
 .title {
   margin-bottom: var(--pd20);
   color: var(--color-secondary);
-  font-size: 32px;
+  font-size: 20px;
 }
 .goal {
   display: flex;
@@ -42,5 +41,5 @@
 .procent_value {
   font-weight: 700;
   font-size: 48px;
-  color: var(--color-light-yellow);
+  color: var(--color-bright-yellow);
 }

@@ -9,3 +9,10 @@
   font-weight: 600;
   color: var(--color-light-yellow);
 }
+.words_module {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--pd20);
+  max-width: 220px;
+}
