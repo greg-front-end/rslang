@@ -1,0 +1,32 @@
+.wrapper {
+  position: relative;
+  width: max-content;
+  align-self: flex-end;
+  margin-right: 134px;
+}
+
+.counter{
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 67px;
+  letter-spacing: 0em;
+  text-align: left;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.track {
+  stroke: #F1E8BD;
+  stroke-width: 10px;
+  fill: none;
+}
+
+.progress {
+  transition: 1s;
+  stroke: #F4CF31;
+  stroke-width: 10px;
+  fill: none;
+  stroke-dasharray: 252;
+}

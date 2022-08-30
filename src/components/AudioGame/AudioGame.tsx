@@ -1,17 +1,10 @@
 import React, { useEffect } from 'react';
 
-import { getCard } from '../../api/getCard';
-import {
-  changeCurrentWord, changeWords, clearUsedWords, setInitState,
-} from '../../features/audioChallengeSlice';
-import { setGroup } from '../../features/textBookSlice';
+import { setInitState } from '../../features/audioChallengeSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import { IWordsItem } from '../../types/IWordsItem';
 
 import { GameBody } from './GameBody/GameBody';
-import { GameContextProvider } from './GameContext/GameContext';
-import { getRandomNum } from './utils/getRandomNum';
 import { mixArray } from './utils/mixArray';
 import { setStartGameState } from './utils/setStartGameState';
 

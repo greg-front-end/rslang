@@ -1,0 +1,7 @@
+.icon {
+  transition: 0.3s;
+}
+
+.icon:active {
+  transform: scale(0.95);
+}
