@@ -10,6 +10,7 @@ import {
 } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { isUserLogIn } from '../../utils/isUserLogIn';
 
 import { PageButtons } from './PageButtons';
 
@@ -21,12 +22,12 @@ export const Pagination: React.FC = () => {
   const page = useAppSelector((state) => state.textBook.page);
   const group = useAppSelector((state) => state.textBook.group);
   const pageButtons = useAppSelector((state) => state.textBook.pageButtons);
-  console.log(pageButtons);
 
   const dispatch = useAppDispatch();
 
   function changePage(num: number) {
     dispatch(setPage(num));
+    localStorage.setItem('page', JSON.stringify(num));
     dispatch(getCard());
   }
 
@@ -51,7 +52,6 @@ export const Pagination: React.FC = () => {
     if (page !== 0) {
       if (page === pageButtons[2] && pageButtons[1] !== 1) {
         const arr = pageButtons.map((el) => el - 1);
-
         arr[0] = 0;
         arr[arr.length - 1] = 29;
         dispatch(setPageButtons(arr));
@@ -66,7 +66,8 @@ export const Pagination: React.FC = () => {
   };
 
   return (
-    <div className={style.container}>
+
+    <div className={isUserLogIn() ? `${style.wrapper}` : `${style.wrapper} ${style.log_out}`}>
       <div
         className={style.btn_incr_decr}
         onClick={decrement}

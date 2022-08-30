@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { isUserLogIn } from '../../utils/isUserLogIn';
+
+import { HardWords } from './HardWords';
 import { Level, LevelButton } from './LevelButton';
 
 import style from './LevelButtons.module.css';
@@ -14,8 +17,9 @@ export const levels: Level[] = [
 ];
 
 export const LevelButtons: React.FC = () => (
-  <div className={style.container}>
+  <div className={style.wrapper}>
     <h2 className={style.title}>Level</h2>
     {levels.map((el) => <LevelButton level={el.level} name={el.name} group={el.group} />)}
+    {isUserLogIn() && <HardWords />}
   </div>
 );

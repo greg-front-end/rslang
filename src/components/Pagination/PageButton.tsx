@@ -28,8 +28,8 @@ export const PageButton: React.FC<PageButton> = ({ el, index }) => {
 
   if ((index === 1)
     && ((page > 4)
-      || ((page === 3 || page === 4) && pageButtons[1] === 2)
-      || (decrement && page <= 5 && page > 2)
+      || ((page === 3 || page === 4) && (pageButtons[1] === 2 || pageButtons[1] === 3))
+      || ((decrement) && page <= 5 && page > 2)
     )) numPage = '...';
 
   if (
@@ -53,6 +53,7 @@ export const PageButton: React.FC<PageButton> = ({ el, index }) => {
       }
 
       dispatch(setPage(num));
+      localStorage.setItem('page', JSON.stringify(num));
       dispatch(getCard());
       dispatch(setDecrement(false));
       dispatch(setIncrement(false));
