@@ -27,6 +27,7 @@ export const Pagination: React.FC = () => {
 
   function changePage(num: number) {
     dispatch(setPage(num));
+    localStorage.setItem('page', JSON.stringify(num));
     dispatch(getCard());
   }
 

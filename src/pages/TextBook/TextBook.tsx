@@ -4,6 +4,7 @@ import { getCard } from '../../api/getCard';
 import { LevelButtons, levels } from '../../components/LevelButtons/LevelButtons';
 import { Pagination } from '../../components/Pagination/Pagination';
 import { WordListItem } from '../../components/WordListItem/WordListItem';
+import { setGroup, setPage } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { isUserLogIn } from '../../utils/isUserLogIn';
@@ -15,6 +16,8 @@ export const TextBook: React.FC = () => {
   const cards = useAppSelector((state) => state.textBook.cards);
   const group = useAppSelector((state) => state.textBook.group);
   useEffect(() => {
+    dispatch(setPage(Number(localStorage.getItem('page'))));
+    dispatch(setGroup(Number(localStorage.getItem('group'))));
     dispatch(getCard());
   }, [dispatch]);
 
