@@ -1,3 +1,7 @@
 import React from 'react';
 
-export const Statistics = () => (<h1>Statistics</h1>);
+import { AccuracyOfGame } from '../../components/AccuracyOfGame/AccuracyOfGame';
+
+export const Statistics = () => (
+  <AccuracyOfGame />
+);
