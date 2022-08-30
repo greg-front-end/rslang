@@ -6,6 +6,7 @@ import { Pagination } from '../../components/Pagination/Pagination';
 import { WordListItem } from '../../components/WordListItem/WordListItem';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { isUserLogIn } from '../../utils/isUserLogIn';
 
 import style from './TextBook.module.css';
 
@@ -16,7 +17,7 @@ export const TextBook: React.FC = () => {
   useEffect(() => { dispatch(getCard()); }, [dispatch]);
 
   return (
-    <div className="container">
+    <div className={isUserLogIn() ? 'container_login' : 'container'}>
       <div className={style.wrapper}>
         <h2 className={`title ${levels[group].level}`}>{`${levels[group].level} ${levels[group].name}`}</h2>
         <Pagination />
@@ -24,6 +25,5 @@ export const TextBook: React.FC = () => {
         {cards.map((item) => (<WordListItem key={item.id} item={item} />))}
       </div>
     </div>
-
   );
 };

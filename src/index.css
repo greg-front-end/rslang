@@ -220,3 +220,6 @@ body {
 .C2 {
   color: #00FFCE;
 }
+.hard_group{
+color: var(--color-red);
+}
