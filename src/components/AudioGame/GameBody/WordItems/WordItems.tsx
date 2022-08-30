@@ -11,6 +11,7 @@ const firstLetToUpCase = (word: string) => `${word[0].toUpperCase()}${word.slice
 
 export const WordItems = () => {
   const item = useAppSelector((state) => state.audioChallenge.currentWord);
+  console.log('item', item);
 
   return (
     <div className={styles.pre_wrapper}>

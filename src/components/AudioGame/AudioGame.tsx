@@ -19,6 +19,7 @@ export const AudioGame = () => {
       dispatch(setInitState(setStartGameState(words)));
     }
   }, [cards]);
+  console.log('AudioGame rerender');
 
   return (
     // <GameContextProvider value={words}>

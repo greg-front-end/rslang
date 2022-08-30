@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import { changeCurrentWord, reset } from '../../../../features/audioChallengeSlice';
+import { changeCurrentWord, reset, stopTimer } from '../../../../features/audioChallengeSlice';
 import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
 import { IWordsItem } from '../../../../types/IWordsItem';
@@ -17,22 +17,40 @@ export const GameBtns = () => {
   const [btns, setBtns] = useState<string[]>([]);
   const currentWord = useAppSelector((state) => state.audioChallenge.currentWord);
   const words = useAppSelector((state) => state.audioChallenge.words);
-  const [style, setStyle] = useState([styles.sign, styles.green, styles.hide]);
+  const [isHide, setIsHide] = useState(Array(4).fill(true));
+  let rightId = 0;
+
+  const signStyle = {
+    color: 'transparent',
+  };
+
+  const btnStyle = {
+    background: 'white',
+  };
+
   const compair = (word: string) => word === currentWord.wordTranslate;
+
+  const setId = (id: number, word: string) => {
+    if (compair(word)) {
+      rightId = id;
+    }
+    return id.toString();
+  };
+
+  const showAnswers = (id: number) => {
+    const newState = [...isHide];
+    newState[id] = false;
+    newState[rightId] = false;
+    return newState;
+  };
 
   const getAnswer = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     document.body.style.pointerEvents = 'none';
-
-    const btn = event.currentTarget as HTMLElement;
-    const span = btn.firstElementChild as HTMLSpanElement;
-
-    btn.style.backgroundColor = 'white';
-    console.log('click');
-    span.style.visibility = 'visible';
-    setStyle([styles.sign, styles.green]);
-    document.body.style.pointerEvents = 'auto';
+    const btnId = +event.currentTarget.id;
+    setIsHide(showAnswers(btnId));
     setTimeout(() => {
       dispatch(reset());
+      document.body.style.pointerEvents = 'auto';
     }, 1000);
   };
 
@@ -40,12 +58,13 @@ export const GameBtns = () => {
     if (words.length) {
       setBtns(createBtnsArray(BTNS_COUNT, words, currentWord));
     }
-    setStyle([styles.sign, styles.green, styles.hide]);
+    setIsHide(Array(4).fill(true));
+    dispatch(stopTimer(false));
   }, [currentWord]);
 
   return (
     <div className={styles.wrapper}>
-      {words.length && btns.map((btn) => {
+      {words.length && btns.map((btn, i) => {
         if (compair(btn)) {
           return (
             <button
@@ -53,9 +72,12 @@ export const GameBtns = () => {
               className={`${styles.btn}`}
               key={Math.random()}
               onClick={(e) => getAnswer(e)}
+              id={setId(i, btn)}
+              style={isHide[i] ? undefined : btnStyle}
             >
               <span
-                className={style.join(' ')}
+                className={`${styles.sign} ${styles.green}`}
+                style={isHide[i] ? signStyle : undefined}
               >
                 ✔
               </span>
@@ -64,11 +86,22 @@ export const GameBtns = () => {
           );
         }
         return (
-          <Btn
-            btn={btn}
-            currentWord={currentWord}
-            getAnswer={getAnswer}
-          />
+          <button
+            type="button"
+            className={`${styles.btn}`}
+            key={Math.random()}
+            onClick={(e) => getAnswer(e)}
+            id={setId(i, btn)}
+            style={isHide[i] ? undefined : btnStyle}
+          >
+            <span
+              className={`${styles.sign} ${styles.red}`}
+              style={isHide[i] ? signStyle : undefined}
+            >
+              ✘
+            </span>
+            <p className={styles.word}>{btn}</p>
+          </button>
         );
       })}
     </div>

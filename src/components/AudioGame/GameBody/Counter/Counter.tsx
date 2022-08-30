@@ -1,49 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import {
-  changeCurrentWord,
-  reset, resetTimer, startTimer,
+  change, changeCurrentWord, resetTimer, startTimer,
 } from '../../../../features/audioChallengeSlice';
 import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
-import CounterFrame from '../../img/counter-frame.svg';
+import { Timer } from '../../../Timer/Timer';
+import { changeWord } from '../../utils/changeWord';
 
 import styles from './Counter.module.css';
 
+const TIMER_TIME = 15;
+
 export const Counter = () => {
-  let timeout: NodeJS.Timeout;
+  let counter: NodeJS.Timeout;
   const timer = useAppSelector((state) => state.audioChallenge.end);
   const dispatch = useAppDispatch();
-  const [style, setStyle] = useState({
-    strokeDashoffset: 0,
-  });
+  const isTimer = useAppSelector((state) => state.audioChallenge.timerStop);
+  const words = useAppSelector((state) => state.audioChallenge.words);
+  const index = useAppSelector((state) => state.audioChallenge.currentIndex);
 
   useEffect(() => {
-    timeout = setTimeout(() => dispatch(startTimer()), 1000);
-    setStyle({
-      // eslint-disable-next-line no-mixed-operators
-      strokeDashoffset: 40 * 2 * Math.PI / 15 * (15 - timer),
-    });
-    if (timer < 0) {
-      dispatch(reset());
-      clearTimeout(timeout);
+    if (!isTimer) {
+      counter = setTimeout(() => dispatch(startTimer()), 1000);
+    }
+    if (timer < 1) {
+      clearTimeout(counter);
       dispatch(resetTimer());
-      dispatch(changeCurrentWord());
+      dispatch(change());
+      dispatch(changeCurrentWord(changeWord(words, index)));
     }
   }, [timer]);
 
   return (
     <div className={styles.wrapper}>
-      {/* <img
-        src={CounterFrame}
-        alt="frame"
-        className={styles.frame}
-      /> */}
-      <svg width="100" height="100">
-        <circle r="40" cx="50" cy="50" className={styles.track} />
-        <circle r="40" cx="50" cy="50" className={styles.progress} style={style} />
-      </svg>
-      <span className={styles.counter}>{timer}</span>
+      <Timer timer={timer} timerTime={TIMER_TIME} />
     </div>
   );
 };
