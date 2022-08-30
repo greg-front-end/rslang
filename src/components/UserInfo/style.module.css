@@ -6,7 +6,7 @@
   justify-content: end;
   gap: var(--pd10);
   width: 240px;
-  height: 125px;
+  height: 150px;
   right: 30px;
   top: 100px;
   border-radius: var(--border-radius);
@@ -28,7 +28,7 @@
 }
 .user_img {
   position: absolute;
-  top: -90px;
+  top: -80px;
   left: 50%;
   transform: translateX(-50%);
   border: 5px solid var(--color-blue);
