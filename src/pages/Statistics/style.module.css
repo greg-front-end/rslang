@@ -1,6 +1,7 @@
 .statistics_wrapper {
   display: flex;
   gap: var(--pd30);
+  max-width: 770px;
 }
 .title_wrapper {
   display: flex;

@@ -4,6 +4,7 @@
 :root {
   --color-white: #fff;
   --color-bright-yellow: #F4CF31;
+  --color-dark-yellow: #CEC485;
   --color-yellow: #FEF100;
   --color-light-yellow: #F1EC83;
   --color-secondary: #959BA5;
@@ -33,7 +34,10 @@
   min-height: 100vh;
   overflow-x: hidden;
 }
-
+main {
+  max-width: 1920px;
+  margin: 0 auto;
+}
 body {
   font-family: 'Comfortaa', cursive;
   font-weight: normal;

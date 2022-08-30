@@ -1,0 +1,44 @@
+.all_time {
+  margin: var(--pd30) 0;
+  max-width: 770px;
+}
+.title_date_wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.title {
+  font-size: 24px;
+  color: var(--color-light-yellow);
+  font-weight: 700;
+}
+.date {
+  display: flex;
+  align-items: center;
+  gap: var(--pd20);
+  color: var(--color-secondary);
+}
+.date_btn,
+.date_btn svg {
+  width: 24px;
+  height: 24px;
+}
+.date_btn_left {
+  transform: rotate(180deg);
+}
+.d3_wrapper {
+  display: flex;
+  max-width: 770px;
+  justify-content: space-between;
+  margin: var(--pd20) 0;
+}
+.d3_learned_words,
+.d3_progress {  
+  height: 234px;
+  width: 355px;
+  background-color: var(--color-blue);
+  border-radius: var(--border-radius);
+}
+.d3_title {
+  text-align: center;
+  margin: var(--pd20) 0;
+}
