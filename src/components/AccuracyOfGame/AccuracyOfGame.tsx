@@ -7,18 +7,16 @@ import style from './style.module.css';
 
 export const AccuracyOfGame: FC = () => (
   <div className={style.accuracy}>
-    <div className="container_login">
-      <div className={style.goal}>
-        <h3 className={style.title}>Accuracy</h3>
-        <div className={style.svg_wrapper}>
-          <AccurIcon />
-          <GoalIcon />
-        </div>
+    <div className={style.goal}>
+      <h3 className={style.title}>Accuracy</h3>
+      <div className={style.svg_wrapper}>
+        <AccurIcon className={style.circle_icon} />
+        <GoalIcon className={style.goal_icon} />
       </div>
-      <div className={style.description}>
-        <h4 className={style.value}>0</h4>
-        <span className={style.procent}>%</span>
-      </div>
+    </div>
+    <div className={style.description}>
+      <h4 className={style.procent_value}>75</h4>
+      <span className={style.procent}>%</span>
     </div>
   </div>
 );
