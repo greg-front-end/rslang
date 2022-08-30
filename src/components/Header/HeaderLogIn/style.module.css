@@ -35,7 +35,7 @@
 .link.active {
   color: var(--color-white);
 }
-.link:hover {
+.link:not(.active):hover {
   color: var(--color-light-yellow);
 }
 .link svg {
