@@ -1,3 +1,5 @@
 import React from 'react';
 
-export const About = () => (<h1>About</h1>);
+import { OurTeamLogIn } from '../../components/OurTeam/OurTeamLogIn/OurTeamLogIn';
+
+export const About = () => (<OurTeamLogIn />);

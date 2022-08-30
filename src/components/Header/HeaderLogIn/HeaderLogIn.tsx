@@ -24,26 +24,30 @@ export const HeaderLogIn = () => {
         <nav className={style.nav}>
           <NavLink className={activeLink} to={{ pathname: '/', hash: 'hero' }}>
             <HomeIcon />
-            <span className={style.span1} />
-            <span />
+            <span className={style.span1}>
+              <span className={style.span2} />
+            </span>
             Statistics
           </NavLink>
           <NavLink className={activeLink} to="textbook">
             <TextBookIcon fill="#959BA5" />
-            <span className={style.span1} />
-            <span />
+            <span className={style.span1}>
+              <span className={style.span2} />
+            </span>
             TextBook
           </NavLink>
           <NavLink className={activeLink} to="games">
             <GameControllerIcon fill="#959BA5" />
-            <span className={style.span1} />
-            <span />
+            <span className={style.span1}>
+              <span className={style.span2} />
+            </span>
             Play and learn
           </NavLink>
           <NavLink className={activeLink} to="about">
             <TeamIcon />
-            <span className={style.span1} />
-            <span />
+            <span className={style.span1}>
+              <span className={style.span2} />
+            </span>
             Our team
           </NavLink>
         </nav>

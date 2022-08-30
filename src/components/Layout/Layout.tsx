@@ -13,13 +13,13 @@ export const Layout = () => {
   const [isUserLoggined, setIsUserLoggined] = useState(false);
 
   useEffect(() => {
-    if (userAuthState.token?.token) {
+    if (userAuthState.token) {
       setIsUserLoggined(isUserLogIn());
     }
-    if (!userAuthState.token?.token) {
+    if (!userAuthState.token) {
       setIsUserLoggined(isUserLogIn());
     }
-  }, [userAuthState.token?.token]);
+  }, [userAuthState.token]);
   return (
     <>
       {isUserLoggined ? <HeaderLogIn /> : <HeaderLogOut />}

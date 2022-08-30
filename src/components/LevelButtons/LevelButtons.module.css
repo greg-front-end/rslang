@@ -1,19 +1,52 @@
 .container {
     position: fixed;
     display: flex;
+    width: 240px;
+    height: 453px;
     flex-direction: column;
-    right: 0;
+    right: 50px;
     top: var(--header-height);
     align-items: center;
     padding: 10px 16px;
     gap: 16px;
 }
 
+.title {
+    width: 81px;
+    height: 45px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 140%;
+    color: #CEC485;
+}
+
 .btn {
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
     background: #404869;
     box-shadow: 10px 10px 80px rgba(63, 39, 102, 0.1);
     border-radius: 24px;
     width: 240px;
     height: 48px;
-    color: #fff;
+    gap: 10px;
 }
+
+.boundary {
+    width: 2px;
+    height: 20px;
+    background-color: #FCD051;
+    border-radius: 1px;
+}
+
+.letter{
+    width: 21px;
+    height: 28px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 140%;
+/* color: #875CFF; */
+}
+

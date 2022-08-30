@@ -1,4 +1,4 @@
-export interface ILogIn {
+export interface ITokenData {
   message: string,
   token: string,
   refreshToken: string,

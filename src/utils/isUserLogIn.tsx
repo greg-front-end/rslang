@@ -1,5 +1,7 @@
+import { getValueLocalStorage } from './getValueLocalStorage';
+
 export const isUserLogIn = () => {
-  if (localStorage.getItem('token')) {
+  if (getValueLocalStorage('Token')) {
     return true;
   }
   return false;

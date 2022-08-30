@@ -4,16 +4,16 @@ import axios from 'axios';
 import { URL } from '../constants/URL';
 import { ApiPath } from '../types/ApiPath';
 import { ICreateUser } from '../types/ICreateUser';
-import { ILogIn } from '../types/ILogIn';
+import { ITokenData } from '../types/ITokenData';
 
-export const logIn = createAsyncThunk<ILogIn, Omit<ICreateUser, 'name'>,
+export const loginUser = createAsyncThunk<ITokenData, Omit<ICreateUser, 'name'>,
   { rejectValue: string }
 >(
-  'auth/logIn',
+  'auth/loginUser',
   async (values, { rejectWithValue }) => {
     try {
       const token = await axios.post(`${URL}${ApiPath.Signin}`, { ...values });
-      return token.data as ILogIn;
+      return token.data as ITokenData;
     } catch (error) {
       if (axios.isAxiosError(error)) {
         return rejectWithValue(error.response?.data as string);
