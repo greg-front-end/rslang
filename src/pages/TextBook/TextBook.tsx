@@ -16,12 +16,13 @@ export const TextBook: React.FC = () => {
   useEffect(() => { dispatch(getCard()); }, [dispatch]);
 
   return (
-
-    <div className={style.container}>
-      <h2 className={`title ${levels[group].level}`}>{`${levels[group].level} ${levels[group].name}`}</h2>
-      <Pagination />
-      <LevelButtons />
-      {cards.map((item) => (<WordListItem key={item.id} item={item} />))}
+    <div className="container">
+      <div className={style.wrapper}>
+        <h2 className={`title ${levels[group].level}`}>{`${levels[group].level} ${levels[group].name}`}</h2>
+        <Pagination />
+        <LevelButtons />
+        {cards.map((item) => (<WordListItem key={item.id} item={item} />))}
+      </div>
     </div>
 
   );
