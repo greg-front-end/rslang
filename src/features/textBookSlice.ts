@@ -9,7 +9,8 @@ export type TextBookState = {
   page: number,
   pageButtons: number[],
   increment: boolean,
-  decrement: boolean
+  decrement: boolean,
+  isLoad: boolean,
 }
 
 const initialState: TextBookState = {
@@ -19,12 +20,16 @@ const initialState: TextBookState = {
   pageButtons: [0, 1, 2, 3, 4, 5, 6],
   increment: false,
   decrement: false,
+  isLoad: false,
 };
 
 const textBookSlice = createSlice({
   name: 'textBookS',
   initialState,
   reducers: {
+    resetLoad: (state) => {
+      state.isLoad = false;
+    },
     setGroup: (state, action: PayloadAction<number>) => {
       state.group = action.payload;
     },
@@ -51,7 +56,7 @@ const textBookSlice = createSlice({
         console.log(action.payload);
         const newState = state;
         newState.cards = action.payload;
-        console.log('fulfilled');
+        state.isLoad = true;
       })
 
       .addCase(getCard.rejected, (state, action) => {
@@ -61,6 +66,6 @@ const textBookSlice = createSlice({
 });
 
 export const {
-  setGroup, setPage, setPageButtons, setIncrement, setDecrement,
+  setGroup, setPage, setPageButtons, setIncrement, setDecrement, resetLoad,
 } = textBookSlice.actions;
 export default textBookSlice.reducer;

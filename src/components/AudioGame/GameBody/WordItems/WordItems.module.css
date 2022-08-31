@@ -1,0 +1,12 @@
+.pre_wrapper {
+  width: max-content;
+  align-self: flex-end;
+  padding-bottom: 106px;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+}

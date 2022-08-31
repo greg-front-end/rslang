@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import audioChallengeSlice from '../features/audioChallengeSlice';
 import audioSlice from '../features/audioSlice';
 import authSlice from '../features/authSlice';
 import sideBarSlice from '../features/sideBarSlice';
@@ -11,6 +12,7 @@ export const store = configureStore({
     auth: authSlice,
     textBook: textBookSlice,
     sideBar: sideBarSlice,
+    audioChallenge: audioChallengeSlice,
   },
 });
 

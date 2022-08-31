@@ -1,3 +1,5 @@
 import React from 'react';
 
-export const AudioCall = () => (<h1>AudioCall</h1>);
+import { AudioGame } from '../../components/AudioGame/AudioGame';
+
+export const AudioCall = () => (<AudioGame />);
