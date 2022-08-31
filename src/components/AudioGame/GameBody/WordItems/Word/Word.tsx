@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { useAppSelector } from '../../../../hooks/useAppSelector';
+import { useAppSelector } from '../../../../../hooks/useAppSelector';
 
-import styles from './WordItems.module.css';
+import styles from './Word.module.css';
 
 const firstLetToUpCase = (word: string) => `${word[0].toUpperCase()}${word.slice(1)}`;
 

@@ -13,7 +13,7 @@ import styles from './GameBody.module.css';
 export const GameBody = () => {
   const finish = useAppSelector((state) => state.audioChallenge.finish);
 
-  console.log('bodyRer', finish);
+  console.log('body rr', finish);
   return (
     <div className={styles.wrapper}>
       {finish
