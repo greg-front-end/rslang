@@ -9,6 +9,7 @@ interface IState {
   end: number;
   timerStop: boolean;
   finish: boolean;
+  startLoading: boolean;
 }
 
 interface IInitState {
@@ -27,12 +28,16 @@ const initialState: IState = {
   end: 10,
   timerStop: false,
   finish: false,
+  startLoading: false,
 };
 
 const audioChallengeSlice = createSlice({
   name: 'audioChallenge',
   initialState,
   reducers: {
+    startLoading(state, action: PayloadAction<boolean>) {
+      state.startLoading = action.payload;
+    },
     finishGame(state, action: PayloadAction<boolean>) {
       console.log('change finish');
       state.finish = action.payload;
