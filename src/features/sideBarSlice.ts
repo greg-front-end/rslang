@@ -5,7 +5,7 @@ type IsActiveSideBar = {
 }
 
 const initialState: IsActiveSideBar = {
-  isActiveSideBar: true,
+  isActiveSideBar: false,
 };
 
 const sideBarSlice = createSlice({

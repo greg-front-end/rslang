@@ -24,7 +24,7 @@ export const SideBarMenu = () => {
         {' '}
         <MenuIcon />
       </span>
-      <span className={style.menu_text}>Dashboard</span>
+      {isOpenSideBar && <span className={style.menu_text}>Dashboard</span>}
     </button>
   );
 };

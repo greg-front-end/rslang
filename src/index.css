@@ -27,6 +27,9 @@
   --transitionAll3sec: all 0.3s;
   --header-login-width: 250px;
 }
+#root {
+  overflow-x: hidden;
+}
 .main_wrapper_log_out,
 .main_wrapper_log_in {
   display: flex;
@@ -41,7 +44,10 @@
 }
 .main_wrapper_log_in {
   position: relative;
-  left: calc(var(--header-login-width) + 50px);
+  left: 150px;
+}
+.header_active.main_wrapper_log_in {
+  left: 300px
 }
 body {
   font-family: 'Comfortaa', cursive;

@@ -10,8 +10,16 @@ import { HeaderLogOut } from '../Header/HeaderLogOut/HeaderLogOut';
 
 export const Layout = () => {
   const userAuthState = useAppSelector((state) => state.auth);
+  const isActiveSideBar = useAppSelector((state) => state.sideBar.isActiveSideBar);
   const [isUserLoggined, setIsUserLoggined] = useState(false);
-
+  let activeClass = 'main_wrapper_log_out';
+  if (isActiveSideBar && isUserLogIn()) {
+    activeClass = 'main_wrapper_log_in header_active';
+  } else if (isUserLogIn()) {
+    activeClass = 'main_wrapper_log_in';
+  } else {
+    activeClass = 'main_wrapper_log_out';
+  }
   useEffect(() => {
     if (userAuthState.token) {
       setIsUserLoggined(isUserLogIn());
@@ -21,7 +29,7 @@ export const Layout = () => {
     }
   }, [userAuthState.token]);
   return (
-    <div className={isUserLogIn() ? 'main_wrapper_log_in' : 'main_wrapper_log_out'}>
+    <div className={activeClass}>
       {isUserLoggined ? <HeaderLogIn /> : <HeaderLogOut />}
       <main>
         <Outlet />
