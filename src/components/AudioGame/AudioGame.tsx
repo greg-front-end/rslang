@@ -18,8 +18,6 @@ export const AudioGame = () => {
     }
   }, []);
 
-  console.log('main rer');
-
   return (
     <div className={styles.wrapper}>
       <GameBody />

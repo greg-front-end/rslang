@@ -21,12 +21,10 @@ export const Counter = () => {
   const finish = useAppSelector((state) => state.audioChallenge.finish);
 
   useEffect(() => {
-    console.log('timer', timer);
     if (!isTimer && !finish) {
       setTimeout(() => dispatch(startTimer()), 1000);
     }
     if (isTimer || timer === 0) {
-      console.log('one');
       dispatch(stopTimer(true));
       setTimeout(() => {
         words.length === index + 1
