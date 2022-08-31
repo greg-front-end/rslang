@@ -21,7 +21,7 @@ const color = ['#875CFF', '#FF9B8C', '#B0E021', '#F2B233', '#64E3FF', '#00FFCE']
 export const Pagination: React.FC = () => {
   const page = useAppSelector((state) => state.textBook.page);
   const group = useAppSelector((state) => state.textBook.group);
-  const pageButtons = useAppSelector((state) => state.textBook.pageButtons);
+  const pageButtons:number[] = useAppSelector((state) => state.textBook.pageButtons);
 
   const dispatch = useAppDispatch();
 

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { getCard } from '../../api/getCard';
 import { LevelButtons, levels } from '../../components/LevelButtons/LevelButtons';
 import { Pagination } from '../../components/Pagination/Pagination';
-import { QuickStartGames } from '../../components/QuickStartGames/QuikStartGames';
+import { QuickStartGame } from '../../components/QuickStartGame/QuickStartGame';
 import { WordListItem } from '../../components/WordListItem/WordListItem';
 import { setGroup, setPage } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
@@ -28,7 +28,7 @@ export const TextBook: React.FC = () => {
         <h2 className={`title ${levels[group].level}`}>{`${levels[group].level} ${levels[group].name}`}</h2>
         <Pagination />
         <LevelButtons />
-        <QuickStartGames />
+        <QuickStartGame />
         {cards.map((item) => (<WordListItem key={item.id} item={item} />))}
       </div>
     </div>
