@@ -1,5 +1,5 @@
 .header {
-  width: 270px;
+  width: var(--header-login-width);
   height: 100vh;
   background-color: var(--color-blue);
   position: fixed;
@@ -13,7 +13,6 @@
   justify-content: space-around;
   align-content: start;
   height: 100vh;
-  width: 180px;
 }
 .nav {
   display: flex;
@@ -61,7 +60,7 @@
 
 .span1 {
   position: absolute;
-  left: 260px;
+  left: calc(var(--header-login-width) - 14px);
   width: 0px;
   height: 60px;
   padding: var(--pd30) 0;
@@ -73,7 +72,8 @@
 }
 .active .span1 {
   left: -20px;
-  width: 280px;
+  /* //280 */
+  width: calc(var(--header-login-width) + 6px);
   opacity: 1;
 }
 .active .span1::before,

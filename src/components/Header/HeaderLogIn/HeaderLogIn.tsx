@@ -9,11 +9,14 @@ import { ReactComponent as TeamIcon } from '../../../assets/svg/our-team.svg';
 import { ReactComponent as SettiningsIcon } from '../../../assets/svg/set.svg';
 import { logOutUser } from '../../../features/authSlice';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { SideBarMenu } from '../../SideBarMenu/SideBarMenu';
 
 import style from './style.module.css';
 
 export const HeaderLogIn = () => {
   const activeLink = ({ isActive }: { isActive: boolean }) => (isActive ? `${style.link} ${style.active}` : style.link);
+  const isActiveSideBar = useAppSelector((state) => state.sideBar.isActiveSideBar);
   const dispatch = useAppDispatch();
   const handleLogOut = () => {
     dispatch(logOutUser());
@@ -21,6 +24,7 @@ export const HeaderLogIn = () => {
   return (
     <header className={style.header}>
       <div className={style.wrapper}>
+        <SideBarMenu />
         <nav className={style.nav}>
           <NavLink className={activeLink} to={{ pathname: '/', hash: 'hero' }}>
             <HomeIcon />

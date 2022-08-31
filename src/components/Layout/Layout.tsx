@@ -21,12 +21,12 @@ export const Layout = () => {
     }
   }, [userAuthState.token]);
   return (
-    <>
+    <div className={isUserLogIn() ? 'main_wrapper_log_in' : 'main_wrapper_log_out'}>
       {isUserLoggined ? <HeaderLogIn /> : <HeaderLogOut />}
-      <main className="main">
+      <main>
         <Outlet />
       </main>
       {isUserLoggined ? <FooterLogIn /> : <FooterLogOut />}
-    </>
+    </div>
   );
 };
