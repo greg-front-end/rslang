@@ -1,7 +1,9 @@
 import { IWordsItem } from '../../../types/IWordsItem';
 
-export const setStartGameState = (words: IWordsItem[]) => {
-  console.log('setStartGameState', words);
+import { mixArray } from './mixArray';
+
+export const setStartGameState = (cards: IWordsItem[]) => {
+  const words = mixArray(cards);
   const currentWord = words[0];
   return {
     words,

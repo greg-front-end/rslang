@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { ReactComponent as AudioIcon } from '../../img/audio-btn.svg';
+import { ReactComponent as AudioIcon } from '../../../img/audio-btn.svg';
 
 import styles from './AudioButton.module.css';
 

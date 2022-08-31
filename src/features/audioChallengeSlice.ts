@@ -8,7 +8,7 @@ interface IState {
   currentWord: IWordsItem;
   end: number;
   timerStop: boolean;
-  change: boolean;
+  finish: boolean;
 }
 
 interface IInitState {
@@ -24,41 +24,40 @@ const initialState: IState = {
   words: [],
   currentIndex: 0,
   currentWord: {} as IWordsItem,
-  end: 15,
+  end: 10,
   timerStop: false,
-  change: false,
+  finish: false,
 };
 
 const audioChallengeSlice = createSlice({
   name: 'audioChallenge',
   initialState,
   reducers: {
-    change(state) {
-      state.change = !state.change;
+    finishGame(state, action: PayloadAction<boolean>) {
+      console.log('change finish');
+      state.finish = action.payload;
     },
     stopTimer(state, action: PayloadAction<boolean>) {
       state.timerStop = action.payload;
     },
-    reset(state) {
-      state.end = 0;
-      state.timerStop = true;
-    },
     startTimer(state) {
-      state.end -= 1;
+      if (state.end) {
+        state.end -= 1;
+      }
+      return state;
     },
     resetTimer(state) {
-      state.end = 15;
+      state.end = 10;
     },
     setInitState(state, action: PayloadAction<IInitState>) {
       state.words = action.payload.words;
       state.currentWord = action.payload.currentWord;
-      state.currentIndex = 0;
+      state.currentIndex = initialState.currentIndex;
+      state.timerStop = false;
+      state.end = initialState.end;
     },
     changeWords(state, action: PayloadAction<IWordsItem[]>) {
       state.words = action.payload;
-    },
-    changeCurrentIndex(state, action: PayloadAction<number>) {
-      state.currentIndex = action.payload;
     },
     changeCurrentWord(state, action: PayloadAction<IChangeWordState>) {
       state.currentWord = action.payload.currentWord;
@@ -68,7 +67,7 @@ const audioChallengeSlice = createSlice({
 });
 
 export const {
-  changeWords, changeCurrentIndex, changeCurrentWord, change,
-  setInitState, resetTimer, startTimer, reset, stopTimer,
+  changeWords, changeCurrentWord, finishGame,
+  setInitState, resetTimer, startTimer, stopTimer,
 } = audioChallengeSlice.actions;
 export default audioChallengeSlice.reducer;

@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { changeCurrentWord, reset, stopTimer } from '../../../../features/audioChallengeSlice';
+import { resetTimer, stopTimer } from '../../../../features/audioChallengeSlice';
 import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
-import { IWordsItem } from '../../../../types/IWordsItem';
 import { createBtnsArray } from '../../utils/createBtnsArray';
 
 import { Btn } from './Btn';
@@ -14,19 +13,16 @@ const BTNS_COUNT = 4;
 
 export const GameBtns = () => {
   const dispatch = useAppDispatch();
-  const [btns, setBtns] = useState<string[]>([]);
+
   const currentWord = useAppSelector((state) => state.audioChallenge.currentWord);
   const words = useAppSelector((state) => state.audioChallenge.words);
+  const isTimerStop = useAppSelector((state) => state.audioChallenge.timerStop);
+  const finish = useAppSelector((state) => state.audioChallenge.finish);
+
   const [isHide, setIsHide] = useState(Array(4).fill(true));
-  let rightId = 0;
+  const [btns, setBtns] = useState<string[]>([]);
 
-  const signStyle = {
-    color: 'transparent',
-  };
-
-  const btnStyle = {
-    background: 'white',
-  };
+  let rightId: number;
 
   const compair = (word: string) => word === currentWord.wordTranslate;
 
@@ -44,66 +40,45 @@ export const GameBtns = () => {
     return newState;
   };
 
+  useEffect(() => {
+    if (!finish) {
+      if (words.length) {
+        setBtns(createBtnsArray(BTNS_COUNT, words, currentWord));
+      }
+      setIsHide(Array(4).fill(true));
+      dispatch(stopTimer(false));
+      dispatch(resetTimer());
+      document.body.style.pointerEvents = 'auto';
+    }
+  }, [currentWord]);
+
+  useEffect(() => {
+    if (isTimerStop) {
+      setIsHide(showAnswers(rightId));
+    }
+  }, [isTimerStop]);
+
   const getAnswer = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     document.body.style.pointerEvents = 'none';
     const btnId = +event.currentTarget.id;
     setIsHide(showAnswers(btnId));
     setTimeout(() => {
-      dispatch(reset());
-      document.body.style.pointerEvents = 'auto';
+      dispatch(stopTimer(true));
     }, 1000);
   };
 
-  useEffect(() => {
-    if (words.length) {
-      setBtns(createBtnsArray(BTNS_COUNT, words, currentWord));
-    }
-    setIsHide(Array(4).fill(true));
-    dispatch(stopTimer(false));
-  }, [currentWord]);
-
   return (
     <div className={styles.wrapper}>
-      {words.length && btns.map((btn, i) => {
-        if (compair(btn)) {
-          return (
-            <button
-              type="button"
-              className={`${styles.btn}`}
-              key={Math.random()}
-              onClick={(e) => getAnswer(e)}
-              id={setId(i, btn)}
-              style={isHide[i] ? undefined : btnStyle}
-            >
-              <span
-                className={`${styles.sign} ${styles.green}`}
-                style={isHide[i] ? signStyle : undefined}
-              >
-                ✔
-              </span>
-              <p className={styles.word}>{btn}</p>
-            </button>
-          );
-        }
-        return (
-          <button
-            type="button"
-            className={`${styles.btn}`}
-            key={Math.random()}
-            onClick={(e) => getAnswer(e)}
-            id={setId(i, btn)}
-            style={isHide[i] ? undefined : btnStyle}
-          >
-            <span
-              className={`${styles.sign} ${styles.red}`}
-              style={isHide[i] ? signStyle : undefined}
-            >
-              ✘
-            </span>
-            <p className={styles.word}>{btn}</p>
-          </button>
-        );
-      })}
+      {words.length && btns.map((btn, i) => (
+        <Btn
+          btn={btn}
+          currentWord={currentWord}
+          i={i}
+          getAnswer={getAnswer}
+          isHide={isHide}
+          setId={setId}
+        />
+      ))}
     </div>
   );
 };

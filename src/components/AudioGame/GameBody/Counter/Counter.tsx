@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import {
-  change, changeCurrentWord, resetTimer, startTimer,
+  changeCurrentWord, finishGame, startTimer, stopTimer,
 } from '../../../../features/audioChallengeSlice';
 import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
@@ -10,25 +10,30 @@ import { changeWord } from '../../utils/changeWord';
 
 import styles from './Counter.module.css';
 
-const TIMER_TIME = 15;
+const TIMER_TIME = 10;
 
 export const Counter = () => {
-  let counter: NodeJS.Timeout;
   const timer = useAppSelector((state) => state.audioChallenge.end);
   const dispatch = useAppDispatch();
   const isTimer = useAppSelector((state) => state.audioChallenge.timerStop);
   const words = useAppSelector((state) => state.audioChallenge.words);
   const index = useAppSelector((state) => state.audioChallenge.currentIndex);
+  const finish = useAppSelector((state) => state.audioChallenge.finish);
 
   useEffect(() => {
-    if (!isTimer) {
-      counter = setTimeout(() => dispatch(startTimer()), 1000);
+    console.log('timer', timer);
+    if (!isTimer && !finish) {
+      setTimeout(() => dispatch(startTimer()), 1000);
     }
-    if (timer < 1) {
-      clearTimeout(counter);
-      dispatch(resetTimer());
-      dispatch(change());
-      dispatch(changeCurrentWord(changeWord(words, index)));
+    if (isTimer || timer === 0) {
+      console.log('one');
+      dispatch(stopTimer(true));
+      setTimeout(() => {
+        words.length === index + 1
+          ? dispatch(finishGame(true))
+          : dispatch(changeCurrentWord(changeWord(words, index)));
+        document.body.style.pointerEvents = 'auto';
+      }, 2000);
     }
   }, [timer]);
 
