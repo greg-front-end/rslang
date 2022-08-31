@@ -1,0 +1,84 @@
+.pre_wrapper {
+  width: max-content;
+  align-self: flex-end;
+  padding-bottom: 106px;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+}
+
+.img__wrapper {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.img {
+  height: 100%;
+  position: absolute;
+  z-index: 0;
+}
+
+.word {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: left;
+  padding: 0 113px 0 33px;
+}
+
+.word_hide {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: left;
+  padding: 0 113px 0 33px;
+  color: transparent;
+}
+
+.img_appear {
+  position: absolute;
+}
+
+.plug {
+  position: absolute;
+  z-index: 5;
+}
+
+.plug_dis {
+  position: absolute;
+  z-index: -1;
+  /* animation: brightness 10s linear; */
+}
+
+
+@keyframes brightness {
+    0% {
+        opacity: 1;
+    }
+    54% {
+        filter: none;
+    }
+    58% {
+        opacity: 1;
+    }
+    59.99999% {
+        filter: brightness(10);
+        z-index: 1;
+    }
+    60% {
+        opacity: 0;
+        z-index: -1;
+    }
+}

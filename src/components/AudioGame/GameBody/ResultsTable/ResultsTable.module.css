@@ -1,0 +1,13 @@
+.btn_newGame {
+  transition: 0.3s;
+  padding: 20px 30px;
+  color: #79B496;
+}
+
+.btn_newGame:active {
+  transform: scale(0.95);
+}
+
+.btn_newGame:hover {
+  color: #7de0ad;
+}

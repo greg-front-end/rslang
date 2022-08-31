@@ -51,7 +51,6 @@ const textBookSlice = createSlice({
         console.log(action.payload);
         const newState = state;
         newState.cards = action.payload;
-        console.log('fulfilled');
       })
 
       .addCase(getCard.rejected, (state, action) => {
