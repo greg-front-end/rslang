@@ -1,7 +1,9 @@
 import React from 'react';
 
 import { URL } from '../../constants/URL';
+import { useAppSelector } from '../../hooks/useAppSelector';
 import { IWordsItem } from '../../types/IWordsItem';
+import { isUserLogIn } from '../../utils/isUserLogIn';
 
 import { LoggedBlock } from './LoggedBlock/LoggedBlock';
 import { TextWithAudio } from './TextWithAudio/TextWithAudio';
@@ -16,7 +18,7 @@ interface IWordsItemProps {
 export const setDifficultOrLearnedStyle = () => styles.red;
 
 export const WordListItem = ({ item }: IWordsItemProps) => {
-  const isLogged = false;
+  const isLogged = isUserLogIn();
   const borderColor = isLogged ? setDifficultOrLearnedStyle() : styles.transparent;
   return (
     <div className={`frame ${styles.card__frame} ${borderColor}`}>
