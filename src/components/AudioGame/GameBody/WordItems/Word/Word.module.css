@@ -1,0 +1,18 @@
+.word {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: left;
+  padding: 0 113px 0 33px;
+}
+
+.word_hide {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: left;
+  padding: 0 113px 0 33px;
+  color: transparent;
+}

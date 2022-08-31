@@ -26,7 +26,6 @@ export const GameCard = ({
   const isLoad = useAppSelector((state) => state.textBook.isLoad);
 
   const redirect = () => {
-    console.log(option.current.value);
     dispatch(setGroup(+option.current.value));
     dispatch(setPage(getRandomNum(30)));
     setStartLoading(true);
@@ -40,8 +39,9 @@ export const GameCard = ({
 
   useEffect(() => {
     if (isLoad) {
-      navigate(path);
       dispatch(resetLoad());
+      setStartLoading(false);
+      navigate(path);
     }
   }, [isLoad]);
 

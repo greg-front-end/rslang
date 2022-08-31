@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import { URL } from '../../../../constants/URL';
-import { useAppSelector } from '../../../../hooks/useAppSelector';
-import Plug from '../../img/img-plug.svg';
+import { URL } from '../../../../../constants/URL';
+import { useAppSelector } from '../../../../../hooks/useAppSelector';
+import Plug from '../../../img/img-plug.svg';
 
-import styles from '../WordItems/WordItems.module.css';
+import styles from './WordImage.module.css';
 
 export const WordImage = () => {
   const item = useAppSelector((state) => state.audioChallenge.currentWord);

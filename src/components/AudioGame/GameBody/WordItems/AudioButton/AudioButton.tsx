@@ -17,7 +17,6 @@ export const AudioButton = ({ path }: IWordsItemProps) => {
   };
 
   useEffect(() => {
-    console.log('play sound');
     playAudio();
   });
 
