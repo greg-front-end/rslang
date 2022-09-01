@@ -39,7 +39,7 @@
   background-color: var(--color-light-yellow);
 }
 .man_right:after {
-  right: -100px;
+  right: 300px;
   background-color: var(--color-light-yellow);
   border-top-left-radius: var(--border-radius);
 }

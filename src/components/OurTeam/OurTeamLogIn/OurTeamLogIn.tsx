@@ -12,7 +12,7 @@ export const OurTeamLogIn = () => (
   <div className={style.team} id="our-team">
     <div className={`${style.team_container} container`}>
       <div className="container_login">
-        <h2 className={`${styleLogOut.title} title`}>
+        <h2 className={`${styleLogOut.title} ${style.title} title`}>
           Our team
         </h2>
         <div className={style.wrapper}>
