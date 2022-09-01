@@ -40,6 +40,8 @@ export const GameBtns = () => {
     return newState;
   };
 
+  // document.addEventListener('keydown', )
+
   useEffect(() => {
     if (!finish) {
       if (words.length) {
