@@ -12,7 +12,7 @@ export const loadUser = createAsyncThunk<ICreateUserResponse, null,
   'auth/loadUser',
   async (_, { rejectWithValue }) => {
     try {
-      const token = getValueLocalStorage('Token');
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDlmN2U4NWViYmY5MDAxNjk2NDkwYSIsImlhdCI6MTY2MTk4Mjg4NiwiZXhwIjoxNjYxOTk3Mjg2fQ.WEU7f3XwMHRB4jkwfdenpFkvhlTuVAKe-lqTzQcNT44';
       const id = getValueLocalStorage('UserId');
       const response = await axios.get(`${URL}${ApiPath.Users}/${id}`, {
         headers: {
