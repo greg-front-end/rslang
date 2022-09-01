@@ -6,7 +6,7 @@
   gap: var(--pd60);
   align-items: center;
   position: relative;
-  height: 100vh;
+  max-width: 1050px;
 }
 .team_container {
   padding: 0 !important;
@@ -20,6 +20,7 @@
   background-color: var(--color-blue);
   border-radius: var(--border-radius);
 }
+
 .team_items {
   display: flex;
   flex-direction: column;
@@ -35,7 +36,17 @@
   width: 425px;
   position: absolute;
   right: 0;
-  bottom: -100px;
+  bottom: -206px;
+}
+.team_img_wrapper::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  bottom: 96px;
+  left: 78px;
+  width: 74px;
+  height: 2px;
+  background-color: var(--color-dark-yellow);
 }
 .team_img_wrapper img {
   max-width: 100%;
