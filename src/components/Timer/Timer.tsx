@@ -20,7 +20,7 @@ export const Timer = ({ timer, timerTime }: ITimerProps) => {
 
   return (
     <>
-      <svg width="100" height="100">
+      <svg width="100" height="100" className={styles.timer}>
         <circle r={COUNTER_RADIUS} cx="50" cy="50" className={styles.track} />
         <circle r={COUNTER_RADIUS} cx="50" cy="50" className={styles.progress} style={style} />
       </svg>

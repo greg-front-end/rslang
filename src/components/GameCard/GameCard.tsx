@@ -38,7 +38,7 @@ export const GameCard = ({
   }, [startLoading]);
 
   useEffect(() => {
-    if (isLoad) {
+    if (startLoading) {
       dispatch(resetLoad());
       setStartLoading(false);
       navigate(path);

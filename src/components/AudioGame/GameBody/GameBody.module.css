@@ -6,25 +6,3 @@
   padding-top: 26px;
   padding-bottom: 188px;
 }
-
-.btn_show_res {
-  transition: 0.3s;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 18px;
-  letter-spacing: 0em;
-  text-align: left;
-  padding: 20px 30px;
-  width: max-content;
-  align-self: center;
-  margin-top: 90px;
-  color: #79B496;
-}
-
-.btn_show_res:active {
-  transform: scale(0.95);
-}
-
-.btn_show_res:hover {
-  color: #7de0ad;
-}

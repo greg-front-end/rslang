@@ -1,4 +1,8 @@
-.counter{
+.timer{
+  transform: rotate(-90deg) scale(1, -1);
+}
+
+.counter {
   font-size: 40px;
   font-weight: 500;
   line-height: 67px;

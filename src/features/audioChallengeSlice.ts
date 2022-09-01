@@ -4,12 +4,12 @@ import { IWordsItem } from '../types/IWordsItem';
 
 interface IState {
   words: IWordsItem[];
+  rightWords: IWordsItem[];
   currentIndex: number;
   currentWord: IWordsItem;
   end: number;
   timerStop: boolean;
   finish: boolean;
-  startLoading: boolean;
 }
 
 interface IInitState {
@@ -23,20 +23,20 @@ interface IChangeWordState {
 
 const initialState: IState = {
   words: [],
+  rightWords: [],
   currentIndex: 0,
   currentWord: {} as IWordsItem,
   end: 10,
   timerStop: false,
   finish: false,
-  startLoading: false,
 };
 
 const audioChallengeSlice = createSlice({
   name: 'audioChallenge',
   initialState,
   reducers: {
-    startLoading(state, action: PayloadAction<boolean>) {
-      state.startLoading = action.payload;
+    addRightAnswer(state, action: PayloadAction<IWordsItem>) {
+      state.rightWords = [...state.rightWords, action.payload];
     },
     finishGame(state, action: PayloadAction<boolean>) {
       console.log('change finish');
@@ -60,6 +60,7 @@ const audioChallengeSlice = createSlice({
       state.currentIndex = initialState.currentIndex;
       state.timerStop = false;
       state.end = initialState.end;
+      state.rightWords = [];
     },
     changeWords(state, action: PayloadAction<IWordsItem[]>) {
       state.words = action.payload;
@@ -72,7 +73,7 @@ const audioChallengeSlice = createSlice({
 });
 
 export const {
-  changeWords, changeCurrentWord, finishGame,
+  changeWords, changeCurrentWord, finishGame, addRightAnswer,
   setInitState, resetTimer, startTimer, stopTimer,
 } = audioChallengeSlice.actions;
 export default audioChallengeSlice.reducer;

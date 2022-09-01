@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { IWordsItem } from '../../../../types/IWordsItem';
+import { IWordsItem } from '../../../../../types/IWordsItem';
 
-import styles from './GameBtns.module.css';
+import styles from './Btn.module.css';
 
 interface IBtnProps {
   btn: string;
