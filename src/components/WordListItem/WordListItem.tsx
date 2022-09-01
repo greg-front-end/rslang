@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { URL } from '../../constants/URL';
-import { useAppSelector } from '../../hooks/useAppSelector';
 import { IWordsItem } from '../../types/IWordsItem';
 import { isUserLogIn } from '../../utils/isUserLogIn';
 
@@ -37,7 +36,7 @@ export const WordListItem = ({ item }: IWordsItemProps) => {
           translate={item.textExampleTranslate}
           audioPath={item.audioExample}
         />
-        {isLogged && <LoggedBlock />}
+        {isLogged && <LoggedBlock item={item} />}
       </div>
     </div>
   );

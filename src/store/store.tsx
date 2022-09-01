@@ -5,6 +5,7 @@ import audioSlice from '../features/audioSlice';
 import authSlice from '../features/authSlice';
 import sideBarSlice from '../features/sideBarSlice';
 import textBookSlice from '../features/textBookSlice';
+import wordOptionSlice from '../features/wordOptionSlice';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     textBook: textBookSlice,
     sideBar: sideBarSlice,
     audioChallenge: audioChallengeSlice,
+    wordOption: wordOptionSlice,
   },
 });
 
