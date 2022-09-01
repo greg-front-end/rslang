@@ -69,21 +69,10 @@
   gap: var(--pd10);
   color: var(--color-secondary);
 }
-.span1 {
-  position: absolute;
-  left: calc(var(--header-login-width) - 14px);
-  width: 0px;
-  height: 60px;
-  padding: var(--pd30) 0;
-  opacity: 0;
-  z-index: -1;
-  border-radius: var(--border-radius);
-  background-color: var(--color-darkblue);
-  transition: var(--transitionAll3sec);
-}
+
+.span1,
 .span1_active {
   position: absolute;
-  left: calc(var(--header-login-width) - 14px);
   width: 0px;
   height: 60px;
   padding: var(--pd30) 0;
@@ -93,8 +82,15 @@
   background-color: var(--color-darkblue);
   transition: var(--transitionAll3sec);
 }
+
+.span1 {
+  left: calc(100px - 14px);
+}
+.span1_active {
+  left: calc(var(--header-login-width) - 14px);
+}
 .active .span1 {
-  left: -20px;
+  left: -23px;
   width: 120px;
   opacity: 1;
 }
@@ -103,6 +99,8 @@
   width: calc(var(--header-login-width) + 6px);
   opacity: 1;
 }
+.active .span1::before,
+.active .span1::after,
 .active .span1_active::before,
 .active .span1_active::after {
   content: '';
@@ -114,12 +112,16 @@
   height: 70px;
   z-index: -1;
 }
+.active .span1::before,
 .active .span1_active::before {
   top: -38px;
 }
+.active .span1::after,
 .active .span1_active::after {
   top: 30px;
 }
+.span2::before,
+.span2::after,
 .span2_active::before,
 .span2_active::after {
   content: '';
@@ -131,10 +133,12 @@
   border-radius: 50%;
   background-color: var(--color-blue);
 }
+.active .span2::before,
 .active .span2_active::before {
   top: -80px;
   opacity: 1;
 }
+.active .span2::after,
 .active .span2_active::after {
   top: 60px;
   opacity: 1;
