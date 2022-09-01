@@ -15,7 +15,7 @@ const initialState: wordOptionState = {
 };
 
 const wordOptionSlice = createSlice({
-  name: 'textBookS',
+  name: 'hardsLearnedWords',
   initialState,
   reducers: {},
   extraReducers: (builder) => {

@@ -10,25 +10,24 @@ import { getValueLocalStorage } from '../utils/getValueLocalStorage';
 export const addWordOption = createAsyncThunk<ICreateUserResponse, ICreateWordOptions,
   { rejectValue: string }
 >(
-  '/users/id/words',
+  'hardsLearnedWords/addWordOption',
   async (values, { rejectWithValue }) => {
     const { wordId, ...data } = values;
     try {
       const lsDataToken = getValueLocalStorage('Token')!;
       const token = JSON.parse(lsDataToken);
-      console.log(token);
+      // console.log(token);
       const lsDataId = getValueLocalStorage('UserId')!;
       const userId = JSON.parse(lsDataId);
       console.log(userId);
-      console.log(data);
+      // console.log(data);
       console.log(wordId);
-      const response = await axios.post(`${URL}${ApiPath.Users}/${userId}/${ApiPath.Words}/${wordId}`, {
+      const response = await axios.post(`${URL}${ApiPath.Users}/${userId}/${ApiPath.Words}/${wordId}`, { ...data }, {
         headers: {
           Authorization: `Bearer ${token}`,
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        data: values,
       });
       return response.data as ICreateUserResponse;
     } catch (error) {
