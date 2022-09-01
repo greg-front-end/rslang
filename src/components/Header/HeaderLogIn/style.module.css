@@ -1,5 +1,6 @@
 .header {
-  width: 270px;
+  width: 100px;
+  transition: var(--transitionAll3sec);
   height: 100vh;
   background-color: var(--color-blue);
   position: fixed;
@@ -7,15 +8,25 @@
   justify-content: center;
   left: 0;
 }
+.header_active {
+  width: var(--header-login-width);
+  height: 100vh;
+  background-color: var(--color-blue);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  transition: var(--transitionAll3sec);
+}
 .wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-content: start;
   height: 100vh;
-  width: 180px;
 }
-.nav {
+.nav,
+.nav_active {
   display: flex;
   flex-direction: column;
   gap: var(--pd40);
@@ -58,10 +69,21 @@
   gap: var(--pd10);
   color: var(--color-secondary);
 }
-
 .span1 {
   position: absolute;
-  left: 260px;
+  left: calc(var(--header-login-width) - 14px);
+  width: 0px;
+  height: 60px;
+  padding: var(--pd30) 0;
+  opacity: 0;
+  z-index: -1;
+  border-radius: var(--border-radius);
+  background-color: var(--color-darkblue);
+  transition: var(--transitionAll3sec);
+}
+.span1_active {
+  position: absolute;
+  left: calc(var(--header-login-width) - 14px);
   width: 0px;
   height: 60px;
   padding: var(--pd30) 0;
@@ -73,11 +95,16 @@
 }
 .active .span1 {
   left: -20px;
-  width: 280px;
+  width: 120px;
   opacity: 1;
 }
-.active .span1::before,
-.active .span1::after {
+.active .span1_active {
+  left: -20px;
+  width: calc(var(--header-login-width) + 6px);
+  opacity: 1;
+}
+.active .span1_active::before,
+.active .span1_active::after {
   content: '';
   position: absolute;
   background-color: var(--color-darkblue);
@@ -87,14 +114,14 @@
   height: 70px;
   z-index: -1;
 }
-.active .span1::before {
+.active .span1_active::before {
   top: -38px;
 }
-.active .span1::after {
+.active .span1_active::after {
   top: 30px;
 }
-.span2::before,
-.span2::after {
+.span2_active::before,
+.span2_active::after {
   content: '';
   position: absolute;
   width: 80px;
@@ -104,11 +131,11 @@
   border-radius: 50%;
   background-color: var(--color-blue);
 }
-.active .span2::before {
+.active .span2_active::before {
   top: -80px;
   opacity: 1;
 }
-.active .span2::after {
+.active .span2_active::after {
   top: 60px;
   opacity: 1;
 }

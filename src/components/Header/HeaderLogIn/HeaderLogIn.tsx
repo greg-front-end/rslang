@@ -9,52 +9,56 @@ import { ReactComponent as TeamIcon } from '../../../assets/svg/our-team.svg';
 import { ReactComponent as SettiningsIcon } from '../../../assets/svg/set.svg';
 import { logOutUser } from '../../../features/authSlice';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { SideBarMenu } from '../../SideBarMenu/SideBarMenu';
 
 import style from './style.module.css';
 
 export const HeaderLogIn = () => {
   const activeLink = ({ isActive }: { isActive: boolean }) => (isActive ? `${style.link} ${style.active}` : style.link);
+  const isActiveSideBar = useAppSelector((state) => state.sideBar.isActiveSideBar);
   const dispatch = useAppDispatch();
   const handleLogOut = () => {
     dispatch(logOutUser());
   };
   return (
-    <header className={style.header}>
+    <header className={isActiveSideBar ? `${style.header_active} header_active` : style.header}>
       <div className={style.wrapper}>
-        <nav className={style.nav}>
+        <SideBarMenu />
+        <nav className={isActiveSideBar ? style.nav_active : style.nav}>
           <NavLink className={activeLink} to={{ pathname: '/', hash: 'hero' }}>
             <HomeIcon />
-            <span className={style.span1}>
-              <span className={style.span2} />
+            <span className={isActiveSideBar ? style.span1_active : style.span1}>
+              <span className={isActiveSideBar ? style.span2_active : style.span2} />
             </span>
-            Statistics
+            { isActiveSideBar && <span>Statistics</span>}
           </NavLink>
           <NavLink className={activeLink} to="textbook">
             <TextBookIcon fill="#959BA5" />
-            <span className={style.span1}>
-              <span className={style.span2} />
+            <span className={isActiveSideBar ? style.span1_active : style.span1}>
+              <span className={isActiveSideBar ? style.span2_active : style.span2} />
             </span>
-            TextBook
+            { isActiveSideBar && <span>TextBook</span>}
           </NavLink>
           <NavLink className={activeLink} to="games">
             <GameControllerIcon fill="#959BA5" />
-            <span className={style.span1}>
-              <span className={style.span2} />
+            <span className={isActiveSideBar ? style.span1_active : style.span1}>
+              <span className={isActiveSideBar ? style.span2_active : style.span2} />
             </span>
-            Play and learn
+            { isActiveSideBar && <span>Play and learn</span>}
           </NavLink>
           <NavLink className={activeLink} to="about">
             <TeamIcon />
-            <span className={style.span1}>
-              <span className={style.span2} />
+            <span className={isActiveSideBar ? style.span1_active : style.span1}>
+              <span className={isActiveSideBar ? style.span2_active : style.span2} />
             </span>
-            Our team
+            { isActiveSideBar && <span>Our team</span>}
           </NavLink>
         </nav>
         <div className={style.auth_wrapper}>
           <button type="button" className={`${style.settings_btn} ${style.auth_btn}`}>
             <SettiningsIcon />
-            Settings
+            { isActiveSideBar && <span>Settings</span>}
           </button>
           <button
             type="button"
@@ -62,7 +66,7 @@ export const HeaderLogIn = () => {
             onClick={() => handleLogOut()}
           >
             <LogOutIcon />
-            Log out
+            { isActiveSideBar && <span>Log out</span>}
           </button>
         </div>
       </div>

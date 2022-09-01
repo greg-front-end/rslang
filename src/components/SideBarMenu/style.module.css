@@ -1,0 +1,26 @@
+.menu_btn {
+  display: flex;
+  align-items: center;
+  gap: var(--pd10);
+  width: 32px;
+  height: 32px;
+  font-weight: 700;
+  position: fixed;
+  top: 30px;
+}
+.menu_btn svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--color-pink);
+  transform: rotateZ(90deg);
+}
+.menu_text {
+  color: var(--color-light-yellow);
+}
+.menu_btn svg {
+  transition: var(--transitionAll3sec);
+}
+
+.menu_btn:hover svg{
+  transform: rotateZ(0);
+}
