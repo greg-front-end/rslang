@@ -2,11 +2,10 @@
   width: 100%;
   max-width: 1050px;
   margin-inline: auto;
-  margin-bottom: var(--pd20);
+  margin: var(--pd30) 0;
 }
 .footer_wrapper {
   width: 100%;
-  margin-left: 138px;
   border-radius: var(--border-radius);
   background-color: var(--color-blue);
 }
