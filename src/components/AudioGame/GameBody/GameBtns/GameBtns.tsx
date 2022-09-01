@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-import { resetTimer, stopTimer } from '../../../../features/audioChallengeSlice';
+import { addRightAnswer, resetTimer, stopTimer } from '../../../../features/audioChallengeSlice';
 import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
 import { createBtnsArray } from '../../utils/createBtnsArray';
 
-import { Btn } from './Btn';
+import { Btn } from './Btn/Btn';
 
 import styles from './GameBtns.module.css';
 
@@ -61,6 +61,9 @@ export const GameBtns = () => {
   const getAnswer = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     document.body.style.pointerEvents = 'none';
     const btnId = +event.currentTarget.id;
+    if (btnId === rightId) {
+      dispatch(addRightAnswer(currentWord));
+    }
     setIsHide(showAnswers(btnId));
     setTimeout(() => {
       dispatch(stopTimer(true));
