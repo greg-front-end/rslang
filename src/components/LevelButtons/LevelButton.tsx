@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { getCard } from '../../api/getCard';
-import { setGroup } from '../../features/textBookSlice';
+import { clearHardWords, setGroup } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 
 import style from './LevelButtons.module.css';
@@ -19,6 +19,7 @@ export const LevelButton: React.FC<Level> = ({ level, name, group }) => {
     dispatch(setGroup(num));
     localStorage.setItem('group', JSON.stringify(num));
     dispatch(getCard());
+    dispatch(clearHardWords());
   }
 
   return (

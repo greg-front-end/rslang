@@ -16,25 +16,26 @@ import style from './TextBook.module.css';
 export const TextBook: React.FC = () => {
   const dispatch = useAppDispatch();
   const cards = useAppSelector((state) => state.textBook.cards);
+  const hardWords = useAppSelector((state) => state.textBook.hardWords);
   const group = useAppSelector((state) => state.textBook.group);
   useEffect(() => {
     dispatch(setPage(Number(localStorage.getItem('page'))));
     dispatch(setGroup(Number(localStorage.getItem('group'))));
     isUserLogIn() ? dispatch(getAgregatedCard()) : dispatch(getCard());
-    //  dispatch(getCard());
+    // dispatch(getCard());
   }, [dispatch]);
 
   return (
     <div className={isUserLogIn() ? 'container_login' : 'container'}>
       <div className={style.wrapper}>
         <h2 className={`title ${levels[group].level}`}>{`${levels[group].level} ${levels[group].name}`}</h2>
-        <Pagination />
+        {!hardWords.length && <Pagination />}
         <LevelButtons />
         <div className={style.wrapper_QuickStartGame}>
           <QuickStartGame />
         </div>
-
-        {cards.map((item) => (<WordListItem key={item.id} item={item} />))}
+        {(hardWords.length ? hardWords : cards)
+          .map((item) => (<WordListItem key={item.id} item={item} />))}
       </div>
     </div>
   );
