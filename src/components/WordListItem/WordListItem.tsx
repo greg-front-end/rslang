@@ -23,7 +23,11 @@ export const setDifficultOrLearnedStyle = (options: State) => {
   if (typeof options === 'number') {
     return styles.transparent;
   }
-  return options.difficulty === 'hard' ? styles.red : styles.green;
+  switch (options.difficulty) {
+    case 'hard': return styles.red;
+    case 'easy': return styles.green;
+    default: return styles.transparent;
+  }
 };
 
 export const WordListItem = ({ item }: IWordsItemProps) => {
@@ -35,17 +39,6 @@ export const WordListItem = ({ item }: IWordsItemProps) => {
   const borderColor = isLogged && options
     ? setDifficultOrLearnedStyle(options)
     : styles.transparent;
-
-  const getOptions = async () => {
-    const data = await getWordOption(item.id);
-    if (data) {
-      setOptions(data);
-    }
-  };
-
-  useEffect(() => {
-    getOptions();
-  }, [difficultState]);
 
   return (
     <div className={`frame ${styles.card__frame} ${borderColor}`}>
