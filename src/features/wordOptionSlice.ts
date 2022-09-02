@@ -1,18 +1,39 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { addWordOption } from '../api/addWordOption';
+import { postWordOption } from '../api/postWordOption';
+import { putWordOption } from '../api/putWordOption';
 
 interface wordOptionState {
   id: string;
-  difficulty: string;
+  error: string,
   wordId: string;
+  difficultState: ICreateWordOptions;
 }
 
 const initialState: wordOptionState = {
   id: '',
-  difficulty: '',
   wordId: '',
+  error: '',
+  difficultState: {
+    id: '',
+    wordId: '',
+    difficulty: '',
+    optional: {
+      rigthTime: 0,
+    },
+  },
 };
+
+interface IOptional {
+  rigthTime: number;
+}
+
+export interface ICreateWordOptions {
+  wordId: string;
+  difficulty: string;
+  optional: IOptional;
+  id: string;
+}
 
 const wordOptionSlice = createSlice({
   name: 'hardsLearnedWords',
@@ -20,16 +41,30 @@ const wordOptionSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(addWordOption.pending, (state) => {
+      .addCase(postWordOption.pending, () => {
         console.log('pending');
       })
 
-      .addCase(addWordOption.fulfilled, (state, action) => {
+      .addCase(postWordOption.fulfilled, (state, action) => {
+        console.log('post', action.payload);
+        state.difficultState = action.payload;
+      })
+
+      .addCase(postWordOption.rejected, (state, action) => {
         console.log(action.payload);
       })
 
-      .addCase(addWordOption.rejected, (state, action) => {
-        console.log('rejected');
+      .addCase(putWordOption.pending, () => {
+        console.log('pending');
+      })
+
+      .addCase(putWordOption.fulfilled, (state, action) => {
+        console.log('put', action.payload);
+        state.difficultState = action.payload;
+      })
+
+      .addCase(putWordOption.rejected, (state, action) => {
+        console.log(action.payload);
       });
   },
 });
