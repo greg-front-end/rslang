@@ -83,7 +83,13 @@ export const GameBtns = () => {
     }
   };
 
-  document.onkeydown = defineBtn;
+  useEffect(() => {
+    document.addEventListener('keydown', defineBtn);
+
+    return () => {
+      document.removeEventListener('keydown', defineBtn);
+    };
+  }, []);
 
   return (
     <div className={styles.wrapper}>
