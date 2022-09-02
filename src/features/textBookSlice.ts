@@ -2,9 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { getCard } from '../api/getCard';
 import { IWordsItem } from '../types/IWordsItem';
+import { SprintWord } from '../types/SprintWord';
 
 export type TextBookState = {
   cards: IWordsItem[];
+  sprintWords: SprintWord[],
   group: number,
   page: number,
   pageButtons: number[],
@@ -15,6 +17,7 @@ export type TextBookState = {
 
 const initialState: TextBookState = {
   cards: [],
+  sprintWords: [],
   group: 0,
   page: 0,
   pageButtons: [0, 1, 2, 3, 4, 5, 6],
@@ -30,6 +33,10 @@ const textBookSlice = createSlice({
     resetLoad: (state) => {
       state.isLoad = false;
     },
+    setSprintWords: (state, action: PayloadAction<SprintWord[]>) => {
+      state.sprintWords = action.payload;
+    },
+
     setGroup: (state, action: PayloadAction<number>) => {
       state.group = action.payload;
     },
@@ -53,7 +60,6 @@ const textBookSlice = createSlice({
       })
 
       .addCase(getCard.fulfilled, (state, action) => {
-        console.log(action.payload);
         const newState = state;
         newState.cards = action.payload;
         state.isLoad = true;
@@ -66,6 +72,6 @@ const textBookSlice = createSlice({
 });
 
 export const {
-  setGroup, setPage, setPageButtons, setIncrement, setDecrement, resetLoad,
+  setGroup, setPage, setPageButtons, setIncrement, setDecrement, resetLoad, setSprintWords,
 } = textBookSlice.actions;
 export default textBookSlice.reducer;
