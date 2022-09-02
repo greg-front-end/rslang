@@ -12,14 +12,17 @@
 
 .transparent {
   border-color: transparent;
+  fill: none;
 }
 
 .red {
   border-color: var(--color-red);
+  fill: var(--color-red);
 }
 
 .green {
   border-color: var(--color-green);
+  fill: var(--color-green);
 }
 
 .img__wrapper {
@@ -42,4 +45,9 @@
   flex-direction: column;
   padding: 26px 26px 20px 16px;
   justify-content: center;
+}
+
+.flag {
+  position: absolute;
+  right: 80px;
 }
