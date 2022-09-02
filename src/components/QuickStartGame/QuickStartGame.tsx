@@ -8,10 +8,10 @@ import style from './style.module.css';
 export const QuickStartGame: FC = () => (
   <div className={style.quick_start_game}>
     <h4 className={style.title}>Quick start games</h4>
-    <NavLink to="games/audiocall" className={style.link}>
+    <NavLink to="/games/audiocall" className={style.link}>
       <Titlehallenge text="Audio Challenge" icon="audio" />
     </NavLink>
-    <NavLink to="games/sprint" className={style.link}>
+    <NavLink to="/games/sprint" className={style.link}>
       <Titlehallenge text="Sprint" icon="sprint" />
     </NavLink>
   </div>
