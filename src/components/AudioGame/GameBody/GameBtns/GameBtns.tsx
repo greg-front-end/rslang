@@ -11,6 +11,8 @@ import styles from './GameBtns.module.css';
 
 const BTNS_COUNT = 4;
 
+const BTNS_ID = [0, 1, 2, 3];
+
 export const GameBtns = () => {
   const dispatch = useAppDispatch();
 
@@ -58,17 +60,30 @@ export const GameBtns = () => {
     }
   }, [isTimerStop]);
 
-  const getAnswer = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const getAnswer = (id: number) => {
     document.body.style.pointerEvents = 'none';
-    const btnId = +event.currentTarget.id;
-    if (btnId === rightId) {
+    if (id === rightId) {
       dispatch(addRightAnswer(currentWord));
     }
-    setIsHide(showAnswers(btnId));
+    setIsHide(showAnswers(id));
     setTimeout(() => {
       dispatch(stopTimer(true));
     }, 1000);
   };
+
+  const defineID = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const id = +e.currentTarget.id;
+    getAnswer(id);
+  };
+
+  const defineBtn = (e: KeyboardEvent) => {
+    const id = +e.key - 1;
+    if (BTNS_ID.includes(id)) {
+      getAnswer(id);
+    }
+  };
+
+  document.onkeydown = defineBtn;
 
   return (
     <div className={styles.wrapper}>
@@ -77,7 +92,7 @@ export const GameBtns = () => {
           btn={btn}
           currentWord={currentWord}
           i={i}
-          getAnswer={getAnswer}
+          getAnswer={defineID}
           isHide={isHide}
           setId={setId}
         />

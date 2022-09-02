@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
+import { getWordOption, IPostWordOption } from '../../api/getWordOption';
 import { URL } from '../../constants/URL';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { IWordsItem } from '../../types/IWordsItem';
 import { isUserLogIn } from '../../utils/isUserLogIn';
@@ -15,11 +17,36 @@ interface IWordsItemProps {
   item: IWordsItem;
 }
 
-export const setDifficultOrLearnedStyle = () => styles.red;
+type State = IPostWordOption | number;
+
+export const setDifficultOrLearnedStyle = (options: State) => {
+  if (typeof options === 'number') {
+    return styles.transparent;
+  }
+  return options.difficulty === 'hard' ? styles.red : styles.green;
+};
 
 export const WordListItem = ({ item }: IWordsItemProps) => {
+  const difficultState = useAppSelector((state) => state.wordOption.difficultState);
+  const [options, setOptions] = useState<State>(0);
+
   const isLogged = isUserLogIn();
-  const borderColor = isLogged ? setDifficultOrLearnedStyle() : styles.transparent;
+
+  const borderColor = isLogged && options
+    ? setDifficultOrLearnedStyle(options)
+    : styles.transparent;
+
+  const getOptions = async () => {
+    const data = await getWordOption(item.id);
+    if (data) {
+      setOptions(data);
+    }
+  };
+
+  useEffect(() => {
+    getOptions();
+  }, [difficultState]);
+
   return (
     <div className={`frame ${styles.card__frame} ${borderColor}`}>
       <div className={styles.img__wrapper}>
@@ -37,7 +64,7 @@ export const WordListItem = ({ item }: IWordsItemProps) => {
           translate={item.textExampleTranslate}
           audioPath={item.audioExample}
         />
-        {isLogged && <LoggedBlock />}
+        {isLogged && <LoggedBlock item={item} />}
       </div>
     </div>
   );

@@ -54,7 +54,7 @@ export const RouteApp = () => {
         />
         <Route
           path="about"
-          element={<About />}
+          element={isUserLoggined ? <About /> : <Main />}
         />
         <Route
           path="log-in"
