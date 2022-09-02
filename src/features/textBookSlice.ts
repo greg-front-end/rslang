@@ -41,6 +41,7 @@ const textBookSlice = createSlice({
     },
     resetLoad: (state) => {
       state.isLoad = false;
+      console.log(state.isLoad);
     },
     setGroup: (state, action: PayloadAction<number>) => {
       state.group = action.payload;
@@ -71,6 +72,7 @@ const textBookSlice = createSlice({
       .addCase(getCard.fulfilled, (state, action) => {
         state.cards = action.payload;
         state.isLoad = true;
+        console.log('ppppppp');
       })
 
       .addCase(getCard.rejected, (state, action) => {

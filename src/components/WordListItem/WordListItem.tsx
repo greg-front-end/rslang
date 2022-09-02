@@ -30,7 +30,6 @@ const setDifficultOrLearnedStyle = (options: State) => {
 export const WordListItem = ({ item }: IWordsItemProps) => {
   const dif = item.userWord ? item.userWord.difficulty : '';
   const [difficulty, setdifficulty] = useState(dif);
-  console.log(item.userWord);
 
   const isLogged = isUserLogIn();
 

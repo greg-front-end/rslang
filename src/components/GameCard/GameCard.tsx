@@ -25,6 +25,10 @@ export const GameCard = ({
   const [startLoading, setStartLoading] = useState(false);
   const isLoad = useAppSelector((state) => state.textBook.isLoad);
 
+  useEffect(() => {
+    dispatch(resetLoad());
+  }, []);
+
   const redirect = () => {
     dispatch(setGroup(+option.current.value));
     dispatch(setPage(getRandomNum(30)));
