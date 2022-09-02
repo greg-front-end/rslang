@@ -49,6 +49,10 @@ const textBookSlice = createSlice({
     setDecrement: (state, action: PayloadAction<boolean>) => {
       state.decrement = action.payload;
     },
+    clearHardWords: (state) => {
+      state.hardWords = [];
+      console.log('clearHardWords');
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -57,7 +61,6 @@ const textBookSlice = createSlice({
       })
 
       .addCase(getCard.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.cards = action.payload;
         state.isLoad = true;
       })
@@ -70,7 +73,6 @@ const textBookSlice = createSlice({
       })
 
       .addCase(getAgregatedCard.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.cards = action.payload;
         state.isLoad = true;
       })
@@ -95,6 +97,6 @@ const textBookSlice = createSlice({
 });
 
 export const {
-  setGroup, setPage, setPageButtons, setIncrement, setDecrement, resetLoad,
+  setGroup, setPage, setPageButtons, setIncrement, setDecrement, resetLoad, clearHardWords,
 } = textBookSlice.actions;
 export default textBookSlice.reducer;
