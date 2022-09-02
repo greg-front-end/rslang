@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 
+import { getAgregatedCard } from '../../api/getAggregatedCard';
 import { getCard } from '../../api/getCard';
 import { LevelButtons, levels } from '../../components/LevelButtons/LevelButtons';
 import { Pagination } from '../../components/Pagination/Pagination';
@@ -19,7 +20,8 @@ export const TextBook: React.FC = () => {
   useEffect(() => {
     dispatch(setPage(Number(localStorage.getItem('page'))));
     dispatch(setGroup(Number(localStorage.getItem('group'))));
-    dispatch(getCard());
+    isUserLogIn() ? dispatch(getAgregatedCard()) : dispatch(getCard());
+    //  dispatch(getCard());
   }, [dispatch]);
 
   return (
@@ -28,7 +30,10 @@ export const TextBook: React.FC = () => {
         <h2 className={`title ${levels[group].level}`}>{`${levels[group].level} ${levels[group].name}`}</h2>
         <Pagination />
         <LevelButtons />
-        <QuickStartGame />
+        <div className={style.wrapper_QuickStartGame}>
+          <QuickStartGame />
+        </div>
+
         {cards.map((item) => (<WordListItem key={item.id} item={item} />))}
       </div>
     </div>
