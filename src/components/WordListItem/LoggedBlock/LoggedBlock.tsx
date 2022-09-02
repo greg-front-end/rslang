@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { addWordOption } from '../../../api/addWordOption';
+import { postWordOption } from '../../../api/postWordOption';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { ICreateWordOptions } from '../../../types/ICreateWordOptions';
 import { IWordsItem } from '../../../types/IWordsItem';
@@ -24,7 +24,7 @@ export const LoggedBlock = ({ item }: ILoggedBlockProps) => {
       },
       wordId: item.id,
     };
-    dispatch(addWordOption(options));
+    dispatch(postWordOption(options));
   };
 
   return (
