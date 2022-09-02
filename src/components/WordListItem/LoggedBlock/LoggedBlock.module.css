@@ -13,7 +13,8 @@
   align-items: flex-end;
 }
 
-.red, 
+.yellow,
+.red,
 .green {
   padding: 20px 30px;
 }
@@ -24,4 +25,8 @@
 
 .green {
   color: var(--color-green);
+}
+
+.yellow {
+  color: var(--color-yellow);
 }

@@ -4,6 +4,8 @@ import { getAgregatedCard } from '../api/getAggregatedCard';
 import { getCard } from '../api/getCard';
 import { getHardWords } from '../api/getHardWords';
 import { IWordsItem } from '../types/IWordsItem';
+import { getValueLocalStorage } from '../utils/getValueLocalStorage';
+import { setValueLocalStorage } from '../utils/setValueLocalStorage';
 
 export type TextBookState = {
   cards: IWordsItem[];
@@ -14,6 +16,7 @@ export type TextBookState = {
   increment: boolean,
   decrement: boolean,
   isLoad: boolean,
+  switchHardWords: boolean,
 }
 
 const initialState: TextBookState = {
@@ -25,12 +28,17 @@ const initialState: TextBookState = {
   increment: false,
   decrement: false,
   isLoad: false,
+  switchHardWords: JSON.parse(getValueLocalStorage('SwitchHardWords')!) || false,
 };
 
 const textBookSlice = createSlice({
   name: 'textBookS',
   initialState,
   reducers: {
+    toggleHardWords(state, action) {
+      setValueLocalStorage('SwitchHardWords', action.payload);
+      state.switchHardWords = action.payload;
+    },
     resetLoad: (state) => {
       state.isLoad = false;
     },
@@ -87,7 +95,7 @@ const textBookSlice = createSlice({
 
       .addCase(getHardWords.fulfilled, (state, action) => {
         state.hardWords = action.payload;
-        console.log('fulfilled');
+        console.log('hard fulfilled', action.payload);
       })
 
       .addCase(getHardWords.rejected, (state, action) => {
@@ -98,5 +106,6 @@ const textBookSlice = createSlice({
 
 export const {
   setGroup, setPage, setPageButtons, setIncrement, setDecrement, resetLoad, clearHardWords,
+  toggleHardWords,
 } = textBookSlice.actions;
 export default textBookSlice.reducer;

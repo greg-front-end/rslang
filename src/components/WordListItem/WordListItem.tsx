@@ -19,7 +19,7 @@ interface IWordsItemProps {
 
 type State = string;
 
-export const setDifficultOrLearnedStyle = (options: State) => {
+const setDifficultOrLearnedStyle = (options: State) => {
   switch (options) {
     case 'hard': return styles.red;
     case 'easy': return styles.green;
@@ -28,15 +28,21 @@ export const setDifficultOrLearnedStyle = (options: State) => {
 };
 
 export const WordListItem = ({ item }: IWordsItemProps) => {
-  console.log(item);
-  // const difficultState = useAppSelector((state) => state.wordOption.difficultState);
-  const [options, setOptions] = useState(item.userWord);
+  const dif = item.userWord ? item.userWord.difficulty : '';
+  const [difficulty, setdifficulty] = useState(dif);
+  console.log(item.userWord);
 
   const isLogged = isUserLogIn();
 
-  const borderColor = isLogged && options
-    ? setDifficultOrLearnedStyle(options.difficulty)
+  let borderColor = isLogged
+    ? setDifficultOrLearnedStyle(difficulty)
     : styles.transparent;
+
+  useEffect(() => {
+    borderColor = isLogged
+      ? setDifficultOrLearnedStyle(difficulty)
+      : styles.transparent;
+  }, []);
 
   return (
     <div className={`frame ${styles.card__frame} ${borderColor}`}>
@@ -58,7 +64,7 @@ export const WordListItem = ({ item }: IWordsItemProps) => {
           translate={item.textExampleTranslate}
           audioPath={item.audioExample}
         />
-        {isLogged && <LoggedBlock item={item} setOptions={setOptions} />}
+        {isLogged && <LoggedBlock item={item} setOptions={setdifficulty} />}
       </div>
     </div>
   );

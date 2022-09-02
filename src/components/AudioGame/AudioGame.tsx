@@ -15,6 +15,7 @@ export const AudioGame = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const cards = useAppSelector((state) => state.textBook.cards);
+  console.log('картс', cards);
   useEffect(() => {
     if (cards.length) {
       dispatch(setInitState(setStartGameState(cards)));

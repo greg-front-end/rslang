@@ -2,5 +2,6 @@ export type UserState = {
   UserId: 'UserId',
   UserName: 'UserName',
   Token: 'Token',
-  LoginStatus: 'LoginStatus'
+  LoginStatus: 'LoginStatus',
+  SwitchHardWords: 'SwitchHardWords',
 }
