@@ -1,11 +1,13 @@
 import React from 'react';
 
+import { getAgregatedCard } from '../../api/getAggregatedCard';
 import { getCard } from '../../api/getCard';
 import {
   setDecrement, setIncrement, setPage, setPageButtons,
 } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { isUserLogIn } from '../../utils/isUserLogIn';
 import { levels } from '../LevelButtons/LevelButtons';
 
 import style from './Pagination.module.css';
@@ -54,7 +56,8 @@ export const PageButton: React.FC<PageButton> = ({ el, index }) => {
 
       dispatch(setPage(num));
       localStorage.setItem('page', JSON.stringify(num));
-      dispatch(getCard());
+      isUserLogIn() ? dispatch(getAgregatedCard()) : dispatch(getCard());
+      //  dispatch(getCard());
       dispatch(setDecrement(false));
       dispatch(setIncrement(false));
     }
