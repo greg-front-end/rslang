@@ -3,6 +3,7 @@ import React from 'react';
 import { getAgregatedCard } from '../../api/getAggregatedCard';
 import { getCard } from '../../api/getCard';
 import {
+  clearHardWords,
   setDecrement, setIncrement, setPage, setPageButtons,
 } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
@@ -57,9 +58,10 @@ export const PageButton: React.FC<PageButton> = ({ el, index }) => {
       dispatch(setPage(num));
       localStorage.setItem('page', JSON.stringify(num));
       isUserLogIn() ? dispatch(getAgregatedCard()) : dispatch(getCard());
-      //  dispatch(getCard());
+      // dispatch(getCard());
       dispatch(setDecrement(false));
       dispatch(setIncrement(false));
+      // dispatch(clearHardWords());
     }
   }
 

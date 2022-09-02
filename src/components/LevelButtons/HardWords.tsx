@@ -9,8 +9,6 @@ import style from './LevelButtons.module.css';
 export const HardWords: React.FC = () => {
   const dispatch = useAppDispatch();
   function handle() {
-    console.log('handle');
-
     dispatch(getHardWords());
   }
 
