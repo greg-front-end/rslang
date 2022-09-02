@@ -13,4 +13,6 @@ export interface IWordsItem {
   wordTranslate: string;
   textMeaningTranslate: string;
   textExampleTranslate: string;
+  difficulty: string
+  optional: string
 }
