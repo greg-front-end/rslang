@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import { addRightAnswer, resetTimer, stopTimer } from '../../../../features/audioChallengeSlice';
+import {
+  addRightAnswer, resetTimer, setNextWord, stopTimer,
+} from '../../../../features/audioChallengeSlice';
 import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
 import { createBtnsArray } from '../../utils/createBtnsArray';
@@ -18,7 +20,7 @@ export const GameBtns = () => {
 
   const currentWord = useAppSelector((state) => state.audioChallenge.currentWord);
   const words = useAppSelector((state) => state.audioChallenge.words);
-  const isTimerStop = useAppSelector((state) => state.audioChallenge.timerStop);
+  const nextWord = useAppSelector((state) => state.audioChallenge.nextWord);
   const finish = useAppSelector((state) => state.audioChallenge.finish);
 
   const [isHide, setIsHide] = useState(Array(4).fill(true));
@@ -50,25 +52,22 @@ export const GameBtns = () => {
       setIsHide(Array(4).fill(true));
       dispatch(stopTimer(false));
       dispatch(resetTimer());
-      document.body.style.pointerEvents = 'auto';
     }
   }, [currentWord]);
 
   useEffect(() => {
-    if (isTimerStop) {
+    if (nextWord) {
       setIsHide(showAnswers(rightId));
     }
-  }, [isTimerStop]);
+  }, [nextWord]);
 
   const getAnswer = (id: number) => {
-    document.body.style.pointerEvents = 'none';
+    // document.body.style.pointerEvents = 'none';
     if (id === rightId) {
       dispatch(addRightAnswer(currentWord));
     }
     setIsHide(showAnswers(id));
-    setTimeout(() => {
-      dispatch(stopTimer(true));
-    }, 1000);
+    dispatch(setNextWord(true));
   };
 
   const defineID = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

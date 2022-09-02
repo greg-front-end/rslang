@@ -8,14 +8,14 @@ import styles from './WordImage.module.css';
 
 export const WordImage = () => {
   const item = useAppSelector((state) => state.audioChallenge.currentWord);
-  const isStop = useAppSelector((state) => state.audioChallenge.timerStop);
+  const nextWord = useAppSelector((state) => state.audioChallenge.nextWord);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    if (isStop) {
+    if (nextWord) {
       setShow(true);
     }
-  }, [isStop]);
+  }, [nextWord]);
 
   useEffect(() => {
     setShow(false);

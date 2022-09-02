@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { stopTimer } from '../../../../../features/audioChallengeSlice';
+import { setNextWord, stopTimer } from '../../../../../features/audioChallengeSlice';
 import { useAppDispatch } from '../../../../../hooks/useAppDispatch';
 
 import styles from './ShowAnswerBtn.module.css';
@@ -9,8 +9,7 @@ export const ShowAnswerBtn = () => {
   const dispatch = useAppDispatch();
 
   const stop = () => {
-    document.body.style.pointerEvents = 'none';
-    dispatch(stopTimer(true));
+    setTimeout(() => dispatch(setNextWord(true)), 300);
   };
   return (
     <button

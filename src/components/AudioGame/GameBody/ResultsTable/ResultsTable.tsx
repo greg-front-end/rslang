@@ -17,7 +17,7 @@ export const ResultsTable = () => {
 
   const newGame = () => {
     dispatch(setInitState(setStartGameState(words)));
-    setTimeout(() => dispatch(finishGame(false)), 1000);
+    dispatch(finishGame(false));
   };
   console.log(result);
 

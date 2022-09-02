@@ -24,28 +24,5 @@
   padding: 20px;
   display: flex;
   column-gap: 50px;
-}
-
-.table {
-  display: grid;
-  grid-template-columns: repeat(3, (0.2fr 2fr 2fr));
-  column-gap: 20px;
-  row-gap: 10px;
-  height: max-content;
-}
-
-.section__title {
-  color: var(--color-green);
-}
-
-.title {
-  grid-column : span 3;
-}
-
-.title__wrong {
-  color: var(--color-red);
-}
-
-.title__right {
-  color: var(--color-green);
+  width: max-content;
 }

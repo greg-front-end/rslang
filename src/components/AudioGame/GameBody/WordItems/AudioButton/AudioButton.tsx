@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 
+import { useAppSelector } from '../../../../../hooks/useAppSelector';
 import { ReactComponent as AudioIcon } from '../../../img/audio-btn.svg';
 
 import styles from './AudioButton.module.css';
@@ -10,6 +11,7 @@ interface IWordsItemProps {
 
 export const AudioButton = ({ path }: IWordsItemProps) => {
   const audio = new Audio(path);
+  const currentWord = useAppSelector((state) => state.audioChallenge.currentWord);
 
   const playAudio = () => {
     audio.currentTime = 0;
@@ -18,7 +20,7 @@ export const AudioButton = ({ path }: IWordsItemProps) => {
 
   useEffect(() => {
     playAudio();
-  });
+  }, [currentWord]);
 
   return (
     <button

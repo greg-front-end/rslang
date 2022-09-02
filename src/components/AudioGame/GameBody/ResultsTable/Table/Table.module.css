@@ -1,9 +1,9 @@
 .table {
   display: grid;
-  grid-template-columns: repeat(3, (0.2fr 2fr 2fr));
   column-gap: 20px;
   row-gap: 10px;
   height: max-content;
+  width: 50%;
 }
 
 .section__title {
