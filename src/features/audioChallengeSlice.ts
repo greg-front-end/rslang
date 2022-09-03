@@ -11,6 +11,7 @@ interface IState {
   timerStop: boolean;
   finish: boolean;
   nextWord: boolean;
+  inRow: IWordsItem[];
 }
 
 interface IInitState {
@@ -31,12 +32,18 @@ const initialState: IState = {
   timerStop: false,
   finish: false,
   nextWord: false,
+  inRow: [],
 };
 
 const audioChallengeSlice = createSlice({
   name: 'audioChallenge',
   initialState,
   reducers: {
+    setInRow(state, action) {
+      if (action.payload.length > state.inRow.length) {
+        state.inRow = action.payload;
+      }
+    },
     setNextWord(state, action: PayloadAction<boolean>) {
       state.nextWord = action.payload;
     },
