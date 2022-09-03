@@ -5,4 +5,5 @@ export type UserState = {
   LoginStatus: 'LoginStatus',
   page: 'page',
   group: 'group'
+  SwitchHardWords: 'SwitchHardWords'
 }

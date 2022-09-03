@@ -56,8 +56,8 @@ export const PageButton: React.FC<PageButton> = ({ el, index }) => {
       }
 
       dispatch(setPage(num));
-      setValueLocalStorage('page', num);
-      isUserLogIn() ? dispatch(getAgregatedCard()) : dispatch(getCard());
+      // setValueLocalStorage('page', num);
+      // isUserLogIn() ? dispatch(getAgregatedCard()) : dispatch(getCard());
       dispatch(setDecrement(false));
       dispatch(setIncrement(false));
     }

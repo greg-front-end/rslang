@@ -18,6 +18,7 @@ export type TextBookState = {
   increment: boolean,
   decrement: boolean,
   isLoad: boolean,
+  switchHardWords:string
 }
 
 const initialState: TextBookState = {
@@ -30,6 +31,7 @@ const initialState: TextBookState = {
   increment: false,
   decrement: false,
   isLoad: false,
+  switchHardWords: JSON.parse(getValueLocalStorage('SwitchHardWords')!) || false,
 };
 
 const textBookSlice = createSlice({
@@ -63,6 +65,10 @@ const textBookSlice = createSlice({
     clearHardWords: (state) => {
       state.hardWords = [];
       console.log('clearHardWords');
+    },
+    toggleHardWords(state, action) {
+      setValueLocalStorage('SwitchHardWords', action.payload);
+      state.switchHardWords = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -116,6 +122,6 @@ const textBookSlice = createSlice({
 
 export const {
   setGroup, setPage, setPageButtons, setIncrement, setDecrement,
-  resetLoad, setSprintWords, clearHardWords,
+  resetLoad, setSprintWords, clearHardWords, toggleHardWords,
 } = textBookSlice.actions;
 export default textBookSlice.reducer;
