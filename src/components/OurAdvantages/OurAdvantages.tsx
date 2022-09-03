@@ -47,7 +47,7 @@ export const OurAdvantages = () => (
             </li>
             <li className={style.advant_item}>
               <span>
-                <GameControllerIcon />
+                <GameControllerIcon fill="#2DBFAC" />
               </span>
               {' '}
               For learning words and reinforcing memorization, the application has 2 games:
@@ -56,7 +56,7 @@ export const OurAdvantages = () => (
             </li>
             <li className={style.advant_item}>
               <span>
-                <DictionaryIcon />
+                <DictionaryIcon fill="#2DBFAC" />
               </span>
               {' '}
               The electronic textbook consists of six sections.
