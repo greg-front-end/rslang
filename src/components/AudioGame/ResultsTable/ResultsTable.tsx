@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { finishGame, setInitState } from '../../../../features/audioChallengeSlice';
-import { useAppDispatch } from '../../../../hooks/useAppDispatch';
-import { useAppSelector } from '../../../../hooks/useAppSelector';
-import { setStartGameState } from '../../utils/setStartGameState';
+import { finishGame, setInitState } from '../../../features/audioChallengeSlice';
+import { useAppDispatch } from '../../../hooks/useAppDispatch';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { setStartGameState } from '../utils/setStartGameState';
 
 import { Table } from './Table/Table';
 
@@ -17,9 +17,8 @@ export const ResultsTable = () => {
 
   const newGame = () => {
     dispatch(setInitState(setStartGameState(words)));
-    setTimeout(() => dispatch(finishGame(false)), 1000);
+    dispatch(finishGame(false));
   };
-  console.log(result);
 
   return (
     <div className={styles.wrapper}>

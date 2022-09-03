@@ -8,16 +8,7 @@ import { getValueLocalStorage } from '../utils/getValueLocalStorage';
 
 import { putWordOption } from './putWordOption';
 
-interface IPostWordOption {
-  id: string;
-  difficulty: string;
-    optional: {
-      rigthTime: number;
-    },
-  wordId: string;
-}
-
-export const postWordOption = createAsyncThunk<IPostWordOption, ICreateWordOptions,
+export const postWordOption = createAsyncThunk<ICreateWordOptions, ICreateWordOptions,
   { rejectValue: string }
 >(
   'hardsLearnedWords/postWordOption',
@@ -35,7 +26,7 @@ export const postWordOption = createAsyncThunk<IPostWordOption, ICreateWordOptio
           'Content-Type': 'application/json',
         },
       });
-      return response.data as IPostWordOption;
+      return response.data as ICreateWordOptions;
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response?.status === 417) {

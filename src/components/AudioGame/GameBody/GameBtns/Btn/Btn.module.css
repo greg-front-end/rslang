@@ -43,6 +43,10 @@
   background: var(--color-white);
 }
 
+.btn_disable {
+  pointer-events: none;
+}
+
 .sign {
   position: relative;
   color: var(--color-red);

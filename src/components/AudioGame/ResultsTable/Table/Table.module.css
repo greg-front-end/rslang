@@ -1,9 +1,11 @@
 .table {
   display: grid;
-  grid-template-columns: repeat(3, (0.2fr 2fr 2fr));
-  column-gap: 20px;
+  grid-template-columns: 0.2fr 1fr 1fr;
+  grid-template-rows: repeat();
+  column-gap: 50px;
   row-gap: 10px;
   height: max-content;
+  flex: 1;
 }
 
 .section__title {
@@ -12,6 +14,8 @@
 
 .title {
   grid-column : span 3;
+  padding-bottom: 10px;
+  border-bottom: 1px var(--color-yellow) solid;
 }
 
 .title__wrong {

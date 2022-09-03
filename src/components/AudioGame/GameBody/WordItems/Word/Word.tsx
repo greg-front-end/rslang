@@ -8,11 +8,11 @@ const firstLetToUpCase = (word: string) => `${word[0].toUpperCase()}${word.slice
 
 export const Word = () => {
   const item = useAppSelector((state) => state.audioChallenge.currentWord);
-  const isStop = useAppSelector((state) => state.audioChallenge.timerStop);
+  const nextWord = useAppSelector((state) => state.audioChallenge.nextWord);
 
   return (
     <span
-      className={isStop ? styles.word : styles.word_hide}
+      className={nextWord ? styles.word : styles.word_hide}
     >
       {firstLetToUpCase(item.word)}
     </span>

@@ -6,6 +6,7 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 
 import { GameBody } from './GameBody/GameBody';
+import { ResultsTable } from './ResultsTable/ResultsTable';
 import { setStartGameState } from './utils/setStartGameState';
 
 import styles from './AudioGame.module.css';
@@ -15,7 +16,7 @@ export const AudioGame = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const cards = useAppSelector((state) => state.textBook.cards);
-  console.log('картс', cards);
+  const finish = useAppSelector((state) => state.audioChallenge.finish);
   useEffect(() => {
     if (cards.length) {
       dispatch(setInitState(setStartGameState(cards)));
@@ -27,8 +28,9 @@ export const AudioGame = () => {
 
   return (
     <div className={styles.wrapper}>
-      {isLoad
-        && <GameBody />}
+      {finish
+        ? <ResultsTable />
+        : isLoad && <GameBody />}
     </div>
   );
 };

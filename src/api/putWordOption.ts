@@ -15,7 +15,7 @@ interface IPostWordOption {
   wordId: string;
 }
 
-export const putWordOption = createAsyncThunk<IPostWordOption, ICreateWordOptions,
+export const putWordOption = createAsyncThunk<ICreateWordOptions, ICreateWordOptions,
   { rejectValue: string }
 >(
   'hardsLearnedWords/putWordOption',

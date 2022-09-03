@@ -10,6 +10,7 @@ interface IState {
   end: number;
   timerStop: boolean;
   finish: boolean;
+  nextWord: boolean;
 }
 
 interface IInitState {
@@ -29,12 +30,16 @@ const initialState: IState = {
   end: 10,
   timerStop: false,
   finish: false,
+  nextWord: false,
 };
 
 const audioChallengeSlice = createSlice({
   name: 'audioChallenge',
   initialState,
   reducers: {
+    setNextWord(state, action: PayloadAction<boolean>) {
+      state.nextWord = action.payload;
+    },
     addRightAnswer(state, action: PayloadAction<IWordsItem>) {
       state.rightWords = [...state.rightWords, action.payload];
     },
@@ -74,6 +79,6 @@ const audioChallengeSlice = createSlice({
 
 export const {
   changeWords, changeCurrentWord, finishGame, addRightAnswer,
-  setInitState, resetTimer, startTimer, stopTimer,
+  setInitState, resetTimer, startTimer, stopTimer, setNextWord,
 } = audioChallengeSlice.actions;
 export default audioChallengeSlice.reducer;

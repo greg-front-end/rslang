@@ -17,6 +17,7 @@ button {
   outline: none;
   cursor: pointer;
   background-color: transparent;
+  user-select: none;
 }
 ul,
 ol,

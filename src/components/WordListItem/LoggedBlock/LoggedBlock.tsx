@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 
 import { getAgregatedCard } from '../../../api/getAggregatedCard';
@@ -16,9 +17,10 @@ import styles from './LoggedBlock.module.css';
 interface ILoggedBlockProps {
   item: IWordsItem;
   setOptions: React.Dispatch<React.SetStateAction<string>>;
+  setDelete: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const LoggedBlock = ({ item, setOptions }: ILoggedBlockProps) => {
+export const LoggedBlock = ({ item, setOptions, setDelete }: ILoggedBlockProps) => {
   const [click, setClick] = useState(false);
   const [lvl, setLvl] = useState('');
   const dispatch = useAppDispatch();
@@ -29,22 +31,26 @@ export const LoggedBlock = ({ item, setOptions }: ILoggedBlockProps) => {
     const options: ICreateWordOptions = {
       difficulty: lvl,
       optional: {
-        rigthTime: 0,
+        right: 0,
+        wrong: 0,
       },
-      // eslint-disable-next-line no-underscore-dangle
       wordId: item._id,
     };
+    // item.userWord
+    // ? {
+    //   ...item.userWord,
+    //   difficulty: lvl,
+    //   wordId: item._id,
+    // }
+    // :
     setOptions(lvl);
     dispatch(postWordOption(options));
   };
 
   const removeFromDifficult = () => {
     const options: ICreateWordOptions = {
+      ...item.userWord,
       difficulty: 'none',
-      optional: {
-        rigthTime: 0,
-      },
-      // eslint-disable-next-line no-underscore-dangle
       wordId: item._id,
     };
     dispatch(putWordOption(options));
@@ -53,6 +59,10 @@ export const LoggedBlock = ({ item, setOptions }: ILoggedBlockProps) => {
   const clickHandler = (e: React.MouseEvent) => {
     if (!toggleHardWords) {
       setLvl(e.currentTarget.id);
+    } else {
+      console.log('click');
+
+      setDelete(true);
     }
     setClick(true);
   };
@@ -72,7 +82,7 @@ export const LoggedBlock = ({ item, setOptions }: ILoggedBlockProps) => {
 
   return (
     <div className={styles.wrapper}>
-      <Statistic />
+      <Statistic item={item} />
       <div className={styles.btns__wrapper}>
         {!toggleHardWords && (
           <>
@@ -94,7 +104,6 @@ export const LoggedBlock = ({ item, setOptions }: ILoggedBlockProps) => {
             </button>
           </>
         )}
-
         {toggleHardWords && (
           <button
             type="button"

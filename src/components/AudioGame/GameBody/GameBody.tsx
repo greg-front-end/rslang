@@ -4,27 +4,21 @@ import { useAppSelector } from '../../../hooks/useAppSelector';
 
 import { Counter } from './Counter/Counter';
 import { GameBtns } from './GameBtns/GameBtns';
+import { NextBtn } from './GameBtns/NextBtn/NextBtn';
 import { ShowAnswerBtn } from './GameBtns/ShowAnswerBtn/ShowAnswerBtn';
-import { ResultsTable } from './ResultsTable/ResultsTable';
 import { WordItems } from './WordItems/WordItems';
 
 import styles from './GameBody.module.css';
 
 export const GameBody = () => {
-  const finish = useAppSelector((state) => state.audioChallenge.finish);
-
+  const nextWord = useAppSelector((state) => state.audioChallenge.nextWord);
   return (
     <div className={styles.wrapper}>
-      {finish
-        ? <ResultsTable />
-        : (
-          <>
-            <Counter />
-            <WordItems />
-            <GameBtns />
-            <ShowAnswerBtn />
-          </>
-        )}
+      <WordItems />
+      <GameBtns />
+      {nextWord
+        ? <NextBtn />
+        : <ShowAnswerBtn />}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-.btn_show_res {
+.btn_next {
   transition: 0.3s;
   font-size: 16px;
   font-weight: 700;
@@ -11,12 +11,13 @@
   margin-top: 90px;
   color: #79B496;
   width: 160px;
+  text-align: center;
 }
 
-.btn_show_res:active {
+.btn_next:active {
   transform: scale(0.95);
 }
 
-.btn_show_res:hover {
+.btn_next:hover {
   color: #7de0ad;
 }

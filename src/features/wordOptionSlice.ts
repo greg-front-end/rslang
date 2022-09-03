@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { postWordOption } from '../api/postWordOption';
 import { putWordOption } from '../api/putWordOption';
+import { ICreateWordOptions, IWordOptional } from '../types/ICreateWordOptions';
 
 interface wordOptionState {
   id: string;
@@ -17,25 +18,14 @@ const initialState: wordOptionState = {
   error: '',
   successfulUpdate: '',
   difficultState: {
-    id: '',
     wordId: '',
     difficulty: '',
     optional: {
-      rigthTime: 0,
+      right: 0,
+      wrong: 0,
     },
   },
 };
-
-interface IOptional {
-  rigthTime: number;
-}
-
-export interface ICreateWordOptions {
-  wordId: string;
-  difficulty: string;
-  optional: IOptional;
-  id: string;
-}
 
 const wordOptionSlice = createSlice({
   name: 'hardsLearnedWords',
