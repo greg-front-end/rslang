@@ -12,13 +12,11 @@ import { HeaderLogOut } from '../Header/HeaderLogOut/HeaderLogOut';
 export const Layout = () => {
   const isActiveSideBar = useAppSelector((state) => state.sideBar.isActiveSideBar);
   const isUserLoggined = useLogOutAfterTokenExp();
-  let activeClass = 'main_wrapper_log_out';
+  let activeClass = '';
   if (isActiveSideBar && isUserLogIn()) {
     activeClass = 'main_wrapper_log_in header_active';
   } else if (isUserLogIn()) {
     activeClass = 'main_wrapper_log_in';
-  } else {
-    activeClass = 'main_wrapper_log_out';
   }
   return (
     <div className={activeClass}>
