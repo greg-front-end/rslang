@@ -6,15 +6,6 @@ import { ApiPath } from '../types/ApiPath';
 import { ICreateWordOptions } from '../types/ICreateWordOptions';
 import { getValueLocalStorage } from '../utils/getValueLocalStorage';
 
-interface IPostWordOption {
-  id: string;
-  difficulty: string;
-    optional: {
-      rigthTime: number;
-    },
-  wordId: string;
-}
-
 export const putWordOption = createAsyncThunk<ICreateWordOptions, ICreateWordOptions,
   { rejectValue: string }
 >(
