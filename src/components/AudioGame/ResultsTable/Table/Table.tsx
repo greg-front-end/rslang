@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IWordsItem } from '../../../../../types/IWordsItem';
+import { IWordsItem } from '../../../../types/IWordsItem';
 
 import styles from './Table.module.css';
 

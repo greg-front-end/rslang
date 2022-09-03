@@ -6,7 +6,7 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 
 import { GameBody } from './GameBody/GameBody';
-import { ResultsTable } from './GameBody/ResultsTable/ResultsTable';
+import { ResultsTable } from './ResultsTable/ResultsTable';
 import { setStartGameState } from './utils/setStartGameState';
 
 import styles from './AudioGame.module.css';

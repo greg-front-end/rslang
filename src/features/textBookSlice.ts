@@ -88,10 +88,12 @@ const textBookSlice = createSlice({
       })
       .addCase(getAgregatedCard.pending, (state, action) => {
         console.log('pending');
+        state.loadStatus = 'pending';
       })
 
       .addCase(getAgregatedCard.fulfilled, (state, action) => {
         state.cards = action.payload;
+        state.loadStatus = 'fulfilled';
       })
 
       .addCase(getAgregatedCard.rejected, (state, action) => {
