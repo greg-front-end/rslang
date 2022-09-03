@@ -1,4 +1,5 @@
 import { IWordsItem } from '../../types/IWordsItem';
+import { isUserLogIn } from '../../utils/isUserLogIn';
 
 export const randomWords = (cards: IWordsItem[]) => {
   const arrTrue = Array(10).fill(true);
@@ -11,6 +12,8 @@ export const randomWords = (cards: IWordsItem[]) => {
   const sprintWords = cards
     .map((el, index) => (
       {
+        // eslint-disable-next-line no-underscore-dangle
+        id: isUserLogIn() ? el._id : el.id,
         word: el.word,
         translate: el.wordTranslate,
         random: arrRandomBoolean[index] ? el.wordTranslate : random[index].wordTranslate,
