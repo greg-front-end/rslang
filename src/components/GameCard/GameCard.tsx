@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { getCard } from '../../api/getCard';
-import { resetLoad, setGroup, setPage } from '../../features/textBookSlice';
+import { setGroup, setPage } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { getRandomNum } from '../AudioGame/utils/getRandomNum';
@@ -23,7 +23,12 @@ export const GameCard = ({
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [startLoading, setStartLoading] = useState(false);
-  const isLoad = useAppSelector((state) => state.textBook.isLoad);
+  const isLoad = useAppSelector((state) => state.textBook.loadStatus);
+  console.log('gemrCard', isLoad);
+
+  // useEffect(() => {
+  //   dispatch(resetLoad());
+  // }, []);
 
   const redirect = () => {
     dispatch(setGroup(+option.current.value));
@@ -38,10 +43,10 @@ export const GameCard = ({
   }, [startLoading]);
 
   useEffect(() => {
-    if (startLoading) {
-      dispatch(resetLoad());
-      setStartLoading(false);
+    console.log('gc useEf isLoad', isLoad);
+    if (startLoading && isLoad === 'fulfilled') {
       navigate(path);
+      setStartLoading(false);
     }
   }, [isLoad]);
 

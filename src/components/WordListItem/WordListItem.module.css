@@ -1,8 +1,7 @@
 .card__frame {
   display: flex;
   width: 100%;
-  max-width: 795px;
-  margin: 0 auto;
+  max-width: 950px;
   overflow: hidden;
   color: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 4px 4px 8px rgba(152, 118, 248, 0.2);
@@ -13,14 +12,17 @@
 
 .transparent {
   border-color: transparent;
+  fill: none;
 }
 
 .red {
   border-color: var(--color-red);
+  fill: var(--color-red);
 }
 
 .green {
   border-color: var(--color-green);
+  fill: var(--color-green);
 }
 
 .img__wrapper {
@@ -43,4 +45,9 @@
   flex-direction: column;
   padding: 26px 26px 20px 16px;
   justify-content: center;
+}
+
+.flag {
+  position: absolute;
+  right: 80px;
 }

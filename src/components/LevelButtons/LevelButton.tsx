@@ -24,6 +24,7 @@ export const LevelButton: React.FC<Level> = ({ level, name, group }) => {
     // setValueLocalStorage('group', num);
     // isUserLogIn() ? dispatch(getAgregatedCard()) : dispatch(getCard());
     dispatch(clearHardWords());
+    dispatch(toggleHardWords(false));
   }
 
   return (

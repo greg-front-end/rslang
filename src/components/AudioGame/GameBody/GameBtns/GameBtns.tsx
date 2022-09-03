@@ -76,17 +76,21 @@ export const GameBtns = () => {
     getAnswer(id);
   };
 
-  const defineBtn = (e: KeyboardEvent) => {
+  const defineBtn = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const id = +e.key - 1;
     if (BTNS_ID.includes(id)) {
       getAnswer(id);
     }
   };
 
-  document.onkeydown = defineBtn;
+  // document.onkeydown = defineBtn;
 
   return (
-    <div className={styles.wrapper}>
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+    <div
+      className={styles.wrapper}
+      onKeyDown={defineBtn}
+    >
       {words.length && btns.map((btn, i) => (
         <Btn
           btn={btn}
@@ -95,6 +99,7 @@ export const GameBtns = () => {
           getAnswer={defineID}
           isHide={isHide}
           setId={setId}
+          key={Date.now() + Math.random()}
         />
       ))}
     </div>

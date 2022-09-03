@@ -17,8 +17,8 @@ export type TextBookState = {
   pageButtons: number[],
   increment: boolean,
   decrement: boolean,
-  isLoad: boolean,
-  switchHardWords:string
+  loadStatus: string,
+  switchHardWords: boolean,
 }
 
 const initialState: TextBookState = {
@@ -30,7 +30,7 @@ const initialState: TextBookState = {
   pageButtons: [0, 1, 2, 3, 4, 5, 6],
   increment: false,
   decrement: false,
-  isLoad: false,
+  loadStatus: '',
   switchHardWords: JSON.parse(getValueLocalStorage('SwitchHardWords')!) || false,
 };
 
@@ -38,8 +38,9 @@ const textBookSlice = createSlice({
   name: 'textBookS',
   initialState,
   reducers: {
-    resetLoad: (state) => {
-      state.isLoad = false;
+    toggleHardWords(state, action) {
+      setValueLocalStorage('SwitchHardWords', action.payload);
+      state.switchHardWords = action.payload;
     },
     setSprintWords: (state, action: PayloadAction<SprintWord[]>) => {
       state.sprintWords = action.payload;
@@ -75,13 +76,15 @@ const textBookSlice = createSlice({
     builder
       .addCase(getCard.pending, (state, action) => {
         console.log('pending');
+        state.loadStatus = 'pending';
       })
 
       .addCase(getCard.fulfilled, (state, action) => {
         console.log(action.payload);
 
         state.cards = action.payload;
-        state.isLoad = true;
+        console.log('getCard fulfilled');
+        state.loadStatus = 'fulfilled';
       })
 
       .addCase(getCard.rejected, (state, action) => {
@@ -92,13 +95,7 @@ const textBookSlice = createSlice({
       })
 
       .addCase(getAgregatedCard.fulfilled, (state, action) => {
-        console.log(action.payload);
-        state.isLoad = true;
         state.cards = action.payload;
-        //   return {
-        //     ...state,
-        //     cards: action.payload,
-        //   };
       })
 
       .addCase(getAgregatedCard.rejected, (state, action) => {
@@ -107,11 +104,13 @@ const textBookSlice = createSlice({
 
       .addCase(getHardWords.pending, (state, action) => {
         console.log('pending');
+        state.loadStatus = 'pending';
       })
 
       .addCase(getHardWords.fulfilled, (state, action) => {
         state.hardWords = action.payload;
-        console.log('fulfilled');
+        state.loadStatus = 'fulfilled';
+        console.log('hard fulfilled', action.payload);
       })
 
       .addCase(getHardWords.rejected, (state, action) => {
@@ -122,6 +121,6 @@ const textBookSlice = createSlice({
 
 export const {
   setGroup, setPage, setPageButtons, setIncrement, setDecrement,
-  resetLoad, setSprintWords, clearHardWords, toggleHardWords,
+  setSprintWords, clearHardWords, toggleHardWords,
 } = textBookSlice.actions;
 export default textBookSlice.reducer;

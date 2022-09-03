@@ -1,5 +1,13 @@
 import React, { useEffect } from 'react';
 
+<<<<<<< HEAD
+import { useAppSelector } from '../../hooks/useAppSelector';
+
+export const Sprint = () => {
+  const cards = useAppSelector((state) => state.textBook.cards);
+  console.log('sprint', cards);
+  return (<h1>Sprint</h1>);
+=======
 import { getAgregatedCard } from '../../api/getAggregatedCard';
 import { getCard } from '../../api/getCard';
 import { setGroup, setPage, setSprintWords } from '../../features/textBookSlice';
@@ -43,4 +51,5 @@ export const Sprint = () => {
     </div>
 
   );
+>>>>>>> 61b5c5c9fbd9ea48f26a02ab85d6f7e1c62215e2
 };
