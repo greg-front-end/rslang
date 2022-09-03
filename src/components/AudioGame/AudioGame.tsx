@@ -6,7 +6,7 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 
 import { GameBody } from './GameBody/GameBody';
-import { ResultsTable } from './ResultsTable/ResultsTable';
+import { Results } from './Results/Results';
 import { setStartGameState } from './utils/setStartGameState';
 
 import styles from './AudioGame.module.css';
@@ -29,7 +29,7 @@ export const AudioGame = () => {
   return (
     <div className={styles.wrapper}>
       {finish
-        ? <ResultsTable />
+        ? (<Results />)
         : isLoad && <GameBody />}
     </div>
   );

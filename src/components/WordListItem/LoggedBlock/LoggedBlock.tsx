@@ -28,21 +28,20 @@ export const LoggedBlock = ({ item, setOptions, setDelete }: ILoggedBlockProps) 
   const toggleHardWords = useAppSelector((state) => state.textBook.switchHardWords);
 
   const addOptions = () => {
-    const options: ICreateWordOptions = {
-      difficulty: lvl,
-      optional: {
-        right: 0,
-        wrong: 0,
-      },
-      wordId: item._id,
-    };
-    // item.userWord
-    // ? {
-    //   ...item.userWord,
-    //   difficulty: lvl,
-    //   wordId: item._id,
-    // }
-    // :
+    const options: ICreateWordOptions = item.userWord
+      ? {
+        ...item.userWord,
+        difficulty: lvl,
+        wordId: item._id,
+      }
+      : {
+        difficulty: lvl,
+        optional: {
+          right: 0,
+          wrong: 0,
+        },
+        wordId: item._id,
+      };
     setOptions(lvl);
     dispatch(postWordOption(options));
   };

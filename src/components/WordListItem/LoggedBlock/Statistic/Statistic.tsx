@@ -13,7 +13,7 @@ export const Statistic = ({ item }: IStatisticProps) => {
   let right: number;
   let wrong: number;
   if (item.userWord) {
-    if (item.userWord.optional.right) {
+    if (Object.hasOwn(item.userWord.optional, 'right')) {
       right = item.userWord.optional.right;
       wrong = item.userWord.optional.wrong;
     } else {
