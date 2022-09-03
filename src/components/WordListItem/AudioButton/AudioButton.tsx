@@ -1,8 +1,8 @@
-import React from 'react';
+/* eslint-disable no-param-reassign */
+import React, { useContext } from 'react';
 
 import { URL } from '../../../constants/URL';
-import { stopAudio } from '../../../features/audioSlice';
-import { useAppDispatch } from '../../../hooks/useAppDispatch';
+import { TextBookCont } from '../../TextBookContext/TextBookContext';
 
 import styles from './AudioButton.module.css';
 
@@ -14,12 +14,18 @@ interface IWordsItemProps {
 }
 
 export const AudioButton = ({ path, Icon }: IWordsItemProps) => {
+  const { audio: prevAudio, setAudio } = useContext(TextBookCont);
   const getAudioUrl = () => `${URL}${path}`;
   const audio = new Audio(getAudioUrl());
-  const dispatch = useAppDispatch();
+
+  const stopAudio = (pAudio: HTMLAudioElement) => {
+    pAudio.pause();
+    pAudio.currentTime = 0;
+  };
 
   const playAudio = () => {
-    dispatch(stopAudio(audio));
+    stopAudio(prevAudio);
+    setAudio(audio);
     audio.play();
   };
 
