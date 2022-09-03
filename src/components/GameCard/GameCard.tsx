@@ -27,11 +27,6 @@ export const GameCard = ({
   const navigate = useNavigate();
   const [startLoading, setStartLoading] = useState(false);
   const isLoad = useAppSelector((state) => state.textBook.loadStatus);
-  console.log('gemrCard', isLoad);
-
-  // useEffect(() => {
-  //   dispatch(resetLoad());
-  // }, []);
 
   const redirect = () => {
     dispatch(setGroup(+option.current.value));

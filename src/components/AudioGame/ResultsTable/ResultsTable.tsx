@@ -19,7 +19,6 @@ export const ResultsTable = () => {
     dispatch(setInitState(setStartGameState(words)));
     dispatch(finishGame(false));
   };
-  console.log(result);
 
   return (
     <div className={styles.wrapper}>

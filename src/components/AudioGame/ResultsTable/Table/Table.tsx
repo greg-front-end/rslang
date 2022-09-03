@@ -1,6 +1,8 @@
 import React from 'react';
 
+import { AppDispatch } from '../../../../store/store';
 import { IWordsItem } from '../../../../types/IWordsItem';
+import { Word } from '../../GameBody/WordItems/Word/Word';
 
 import styles from './Table.module.css';
 
@@ -8,6 +10,16 @@ interface ITableProps {
   words: IWordsItem[];
   isRight: boolean;
 }
+
+// const wordStatistic = (word: IWordsItem) => {
+//   if (word.userWord) {
+//     if(word.userWord.optional)
+//   }
+// };
+
+// const sendGameStatistic = (dispatch: AppDispatch, arr: IWordsItem[]) => {
+//   arr.forEach((word) => )
+// };
 
 export const Table = ({ words, isRight }: ITableProps) => (
   <div className={`${styles.table}`}>
