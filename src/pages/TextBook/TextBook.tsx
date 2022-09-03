@@ -21,19 +21,6 @@ export const TextBook: React.FC = () => {
   const hardWords = useAppSelector((state) => state.textBook.hardWords);
   const page = useAppSelector((state) => state.textBook.page);
   const group = useAppSelector((state) => state.textBook.group);
-<<<<<<< HEAD
-  const toggleHardWords = useAppSelector((state) => state.textBook.switchHardWords);
-  const toggleDispatchWords = () => (toggleHardWords
-    ? dispatch(getHardWords())
-    : dispatch(getAgregatedCard()));
-  useEffect(() => {
-    dispatch(setPage(Number(localStorage.getItem('page'))));
-    dispatch(setGroup(Number(localStorage.getItem('group'))));
-    isUserLogIn() ? toggleDispatchWords() : dispatch(getCard());
-    // dispatch(getCard());
-  }, [toggleHardWords, group]);
-=======
->>>>>>> 61b5c5c9fbd9ea48f26a02ab85d6f7e1c62215e2
 
   const toggleHardWords = useAppSelector((state) => state.textBook.switchHardWords);
   const toggleDispatchWords = () => (toggleHardWords
