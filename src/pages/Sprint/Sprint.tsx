@@ -20,14 +20,15 @@ export const Sprint = () => {
   return (
     <div className="container">
       <h1 className="title">Sprint</h1>
-      {sprintWords.map((el) => (
+
+      {sprintWords[0] && (
         <GameCard
-          word={el.word}
-          translate={el.translate}
-          random={el.random}
+          word={sprintWords[0].word}
+          translate={sprintWords[0].translate}
+          random={sprintWords[0].random}
         />
-      ))}
-      {/* <GameCard /> */}
+      )}
+
     </div>
 
   );

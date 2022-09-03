@@ -4,7 +4,7 @@ import { ReactComponent as ArrowDownIcon } from '../../assets/svg/arrow_down_ico
 import { ReactComponent as ArrowUpIcon } from '../../assets/svg/arrow_up_icon.svg';
 import { ReactComponent as LabelIcon } from '../../assets/svg/card_game_label.svg';
 import { ReactComponent as CorrectIcon } from '../../assets/svg/correct_indicator_icon.svg';
-import { removeSprintWord } from '../../features/textBookSlice';
+import { removeSprintWord, setIndicators } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 
@@ -22,8 +22,22 @@ type SprintCard = {
 export const GameCard: React.FC<SprintCard> = ({ word, translate, random }) => {
   const dispatch = useAppDispatch();
   const indicators = useAppSelector((state) => state.textBook.indicators);
+  const isCurrect = translate === random;
 
   function determine(str: string) {
+    if ((isCurrect && str === 'correct') || (!isCurrect && str === 'wrong')) {
+      const index = indicators.findIndex((el) => el === false);
+      const arr = [...indicators];
+      arr[index] = true;
+      dispatch(setIndicators(arr));
+      console.log(index);
+
+      console.log('true');
+    } else {
+      console.log('false');
+      dispatch(setIndicators([false, false, false]));
+    }
+
     console.log(str);
     dispatch(removeSprintWord(word));
   }
@@ -43,7 +57,7 @@ export const GameCard: React.FC<SprintCard> = ({ word, translate, random }) => {
           <ArrowDownIcon />
           <ArrowUpIcon />
         </div>
-        <Translate translate={translate} />
+        <Translate random={random} />
       </div>
       <div className={style.btn_wrapper}>
         <button

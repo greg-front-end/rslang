@@ -126,6 +126,6 @@ const textBookSlice = createSlice({
 
 export const {
   setGroup, setPage, setPageButtons, setIncrement, setDecrement,
-  setSprintWords, clearHardWords, toggleHardWords, removeSprintWord,
+  setSprintWords, clearHardWords, toggleHardWords, removeSprintWord, setIndicators,
 } = textBookSlice.actions;
 export default textBookSlice.reducer;
