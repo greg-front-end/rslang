@@ -4,32 +4,32 @@ import { ReactComponent as ArrowDownIcon } from '../../assets/svg/arrow_down_ico
 import { ReactComponent as ArrowUpIcon } from '../../assets/svg/arrow_up_icon.svg';
 import { ReactComponent as LabelIcon } from '../../assets/svg/card_game_label.svg';
 import { ReactComponent as CorrectIcon } from '../../assets/svg/correct_indicator_icon.svg';
-import { removeSprintWord, setIndicators } from '../../features/textBookSlice';
+import { removeSprintWord, setIndicators } from '../../features/sprintSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { SprintCard } from '../../types/Sprint';
 
 import { Translate } from './Translate';
 import { Word } from './Word';
 
 import style from './GameCard.module.css';
 
-type SprintCard = {
-  word: string,
-  translate: string,
-  random: string
-}
-
 export const GameCard: React.FC<SprintCard> = ({ word, translate, random }) => {
   const dispatch = useAppDispatch();
-  const indicators = useAppSelector((state) => state.textBook.indicators);
+  const indicators = useAppSelector((state) => state.sprint.indicators);
   const isCurrect = translate === random;
 
   function determine(str: string) {
     if ((isCurrect && str === 'correct') || (!isCurrect && str === 'wrong')) {
       const index = indicators.findIndex((el) => el === false);
-      const arr = [...indicators];
-      arr[index] = true;
-      dispatch(setIndicators(arr));
+      if (index === -1) {
+        dispatch(setIndicators([false, false, false]));
+      } else {
+        const arr = [...indicators];
+        arr[index] = true;
+        dispatch(setIndicators(arr));
+      }
+
       console.log(index);
 
       console.log('true');
