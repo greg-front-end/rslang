@@ -38,10 +38,6 @@ const textBookSlice = createSlice({
   name: 'textBookS',
   initialState,
   reducers: {
-    toggleHardWords(state, action) {
-      setValueLocalStorage('SwitchHardWords', action.payload);
-      state.switchHardWords = action.payload;
-    },
     setSprintWords: (state, action: PayloadAction<SprintWord[]>) => {
       state.sprintWords = action.payload;
     },
