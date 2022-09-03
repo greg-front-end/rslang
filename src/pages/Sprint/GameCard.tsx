@@ -11,7 +11,7 @@ import { Word } from './Word';
 import style from './GameCard.module.css';
 
 export const GameCard = () => {
-  const indicators: boolean[] = [true, false, true];
+  const indicators: boolean[] = [false, false, true];
 
   return (
     <div className={style.wrapper}>

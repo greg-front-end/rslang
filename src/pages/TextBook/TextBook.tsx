@@ -15,15 +15,9 @@ import { isUserLogIn } from '../../utils/isUserLogIn';
 import style from './TextBook.module.css';
 
 export const TextBook: React.FC = () => {
-  const dispatch = useAppDispatch();
   const cards = useAppSelector((state) => state.textBook.cards);
   const hardWords = useAppSelector((state) => state.textBook.hardWords);
   const group = useAppSelector((state) => state.textBook.group);
-  useEffect(() => {
-    dispatch(setPage(Number(getValueLocalStorage('page'))));
-    dispatch(setGroup(Number(getValueLocalStorage('group'))));
-    isUserLogIn() ? dispatch(getAgregatedCard()) : dispatch(getCard());
-  }, [dispatch]);
 
   return (
     <div className={isUserLogIn() ? 'container_login' : 'container'}>

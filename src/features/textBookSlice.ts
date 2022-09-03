@@ -5,6 +5,8 @@ import { getCard } from '../api/getCard';
 import { getHardWords } from '../api/getHardWords';
 import { IWordsItem } from '../types/IWordsItem';
 import { SprintWord } from '../types/SprintWord';
+import { getValueLocalStorage } from '../utils/getValueLocalStorage';
+import { setValueLocalStorage } from '../utils/setValueLocalStorage';
 
 export type TextBookState = {
   cards: IWordsItem[];
@@ -22,8 +24,8 @@ const initialState: TextBookState = {
   cards: [],
   sprintWords: [],
   hardWords: [],
-  group: 0,
-  page: 0,
+  group: Number(getValueLocalStorage('group')) || 0,
+  page: Number(getValueLocalStorage('page')) || 0,
   pageButtons: [0, 1, 2, 3, 4, 5, 6],
   increment: false,
   decrement: false,
@@ -42,9 +44,11 @@ const textBookSlice = createSlice({
     },
 
     setGroup: (state, action: PayloadAction<number>) => {
+      setValueLocalStorage('group', action.payload);
       state.group = action.payload;
     },
     setPage: (state, action: PayloadAction<number>) => {
+      setValueLocalStorage('page', action.payload);
       state.page = action.payload;
     },
     setPageButtons: (state, action: PayloadAction<number[]>) => {
@@ -68,6 +72,8 @@ const textBookSlice = createSlice({
       })
 
       .addCase(getCard.fulfilled, (state, action) => {
+        console.log(action.payload);
+
         state.cards = action.payload;
         state.isLoad = true;
       })
@@ -80,8 +86,13 @@ const textBookSlice = createSlice({
       })
 
       .addCase(getAgregatedCard.fulfilled, (state, action) => {
-        state.cards = action.payload;
+        console.log(action.payload);
         state.isLoad = true;
+        state.cards = action.payload;
+        //   return {
+        //     ...state,
+        //     cards: action.payload,
+        //   };
       })
 
       .addCase(getAgregatedCard.rejected, (state, action) => {
@@ -104,6 +115,7 @@ const textBookSlice = createSlice({
 });
 
 export const {
-  setGroup, setPage, setPageButtons, setIncrement, setDecrement, resetLoad, setSprintWords,
+  setGroup, setPage, setPageButtons, setIncrement, setDecrement,
+  resetLoad, setSprintWords, clearHardWords,
 } = textBookSlice.actions;
 export default textBookSlice.reducer;
