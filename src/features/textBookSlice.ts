@@ -3,29 +3,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getAgregatedCard } from '../api/getAggregatedCard';
 import { getCard } from '../api/getCard';
 import { getHardWords } from '../api/getHardWords';
-import { IWordsItem } from '../types/IWordsItem';
-import { SprintWord } from '../types/SprintWord';
+import { TextBookState } from '../types/TextBook';
 import { getValueLocalStorage } from '../utils/getValueLocalStorage';
 import { setValueLocalStorage } from '../utils/setValueLocalStorage';
 
-export type TextBookState = {
-  cards: IWordsItem[];
-  hardWords: IWordsItem[],
-  sprintWords: SprintWord[],
-  indicators: boolean[]
-  group: number,
-  page: number,
-  pageButtons: number[],
-  increment: boolean,
-  decrement: boolean,
-  loadStatus: string,
-  switchHardWords: boolean,
-}
-
 const initialState: TextBookState = {
   cards: [],
-  sprintWords: [],
-  indicators: [false, false, false],
   hardWords: [],
   group: Number(getValueLocalStorage('group')) || 0,
   page: Number(getValueLocalStorage('page')) || 0,
@@ -40,17 +23,6 @@ const textBookSlice = createSlice({
   name: 'textBookS',
   initialState,
   reducers: {
-    setSprintWords: (state, action: PayloadAction<SprintWord[]>) => {
-      state.sprintWords = action.payload;
-    },
-
-    setIndicators: (state, action: PayloadAction<boolean[]>) => {
-      state.indicators = action.payload;
-    },
-    removeSprintWord: (state, action: PayloadAction<string>) => {
-      state.sprintWords = state.sprintWords.filter((el) => el.word !== action.payload);
-    },
-
     setGroup: (state, action: PayloadAction<number>) => {
       setValueLocalStorage('group', action.payload);
       state.group = action.payload;
@@ -128,6 +100,6 @@ const textBookSlice = createSlice({
 
 export const {
   setGroup, setPage, setPageButtons, setIncrement, setDecrement,
-  setSprintWords, clearHardWords, toggleHardWords, removeSprintWord, setIndicators,
+  clearHardWords, toggleHardWords,
 } = textBookSlice.actions;
 export default textBookSlice.reducer;

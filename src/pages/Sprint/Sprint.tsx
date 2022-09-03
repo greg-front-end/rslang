@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { setSprintWords } from '../../features/textBookSlice';
+import { setSprintWords } from '../../features/sprintSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 
@@ -10,7 +10,7 @@ import { randomWords } from './RandomWords';
 export const Sprint = () => {
   const dispatch = useAppDispatch();
   const cards = useAppSelector((state) => state.textBook.cards);
-  const sprintWords = useAppSelector((state) => state.textBook.sprintWords);
+  const sprintWords = useAppSelector((state) => state.sprint.sprintWords);
   console.log('sprintWords: ', sprintWords);
 
   useEffect(() => {
