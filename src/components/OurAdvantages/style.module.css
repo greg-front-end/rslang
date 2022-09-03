@@ -1,7 +1,7 @@
 .advant {
   background: linear-gradient(243.42deg, #2B2F48 0%, rgba(51, 62, 91, 0.83) 96.92%);
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
 }
 .wrapper {
   display: flex;
@@ -36,4 +36,15 @@
   left: -100px;
   background-color: var(--color-light-green);
   border-top-right-radius: var(--border-radius);
+}
+@media (max-width: 1024px) {
+  .man_left {
+    position: absolute;
+    z-index: -1;
+  }
+}
+@media (max-width: 520px) {
+  .advant_item {
+    flex-direction: column;
+  }
 }

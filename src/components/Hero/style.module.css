@@ -1,6 +1,7 @@
 .hero {
   background: linear-gradient(296.82deg, #2B2F48 0%, rgba(51, 62, 91, 0.83) 100%);
   padding-top: var(--header-height);
+  min-height: 100vh;
 }
 .wrapper {
   position: relative;
