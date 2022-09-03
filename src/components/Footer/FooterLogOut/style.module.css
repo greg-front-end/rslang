@@ -6,6 +6,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--pd30);
+  padding: var(--pd20);
 }
 .rocket_img {
   max-width: 280px;
@@ -36,4 +38,24 @@
   justify-content: center;
   gap: var(--pd20);
   height: 76px;
+}
+@media (max-width: 1023px) {
+  .rocket_img img {
+    max-width: 220px;
+  }
+}
+@media (max-width: 768px) { 
+  .footer_nav,
+  .team {
+    width: 100%;
+  }
+  .wrapper {
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .copyright {
+    padding-inline: var(--pd10);
+    font-size: 12px;
+  }
 }
