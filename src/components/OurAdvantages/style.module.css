@@ -37,10 +37,16 @@
   background-color: var(--color-light-green);
   border-top-right-radius: var(--border-radius);
 }
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .man_left {
     position: absolute;
     z-index: -1;
+  }
+}
+@media (max-width: 768px) {
+  .bookmark_left {
+    left: 90%;
+    width: 30px;
   }
 }
 @media (max-width: 520px) {
