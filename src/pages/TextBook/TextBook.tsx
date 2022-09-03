@@ -7,7 +7,7 @@ import { LevelButtons, levels } from '../../components/LevelButtons/LevelButtons
 import { Pagination } from '../../components/Pagination/Pagination';
 import { QuickStartGame } from '../../components/QuickStartGame/QuickStartGame';
 import { WordListItem } from '../../components/WordListItem/WordListItem';
-import { resetLoad, setGroup, setPage } from '../../features/textBookSlice';
+import { setGroup, setPage } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { isUserLogIn } from '../../utils/isUserLogIn';
@@ -20,7 +20,6 @@ export const TextBook: React.FC = () => {
   const hardWords = useAppSelector((state) => state.textBook.hardWords);
   const group = useAppSelector((state) => state.textBook.group);
   const toggleHardWords = useAppSelector((state) => state.textBook.switchHardWords);
-  console.log(toggleHardWords);
   const toggleDispatchWords = () => (toggleHardWords
     ? dispatch(getHardWords())
     : dispatch(getAgregatedCard()));
@@ -28,10 +27,8 @@ export const TextBook: React.FC = () => {
     dispatch(setPage(Number(localStorage.getItem('page'))));
     dispatch(setGroup(Number(localStorage.getItem('group'))));
     isUserLogIn() ? toggleDispatchWords() : dispatch(getCard());
-    dispatch(resetLoad());
-    console.log('switch');
     // dispatch(getCard());
-  }, [toggleHardWords]);
+  }, [toggleHardWords, group]);
 
   return (
     <div className={isUserLogIn() ? 'container_login' : 'container'}>

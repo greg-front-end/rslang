@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { getAgregatedCard } from '../../../api/getAggregatedCard';
+import { getHardWords } from '../../../api/getHardWords';
 import { postWordOption } from '../../../api/postWordOption';
+import { putWordOption } from '../../../api/putWordOption';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { ICreateWordOptions } from '../../../types/ICreateWordOptions';
@@ -17,12 +19,13 @@ interface ILoggedBlockProps {
 }
 
 export const LoggedBlock = ({ item, setOptions }: ILoggedBlockProps) => {
+  const [click, setClick] = useState(false);
+  const [lvl, setLvl] = useState('');
   const dispatch = useAppDispatch();
+  const successfulUpdate = useAppSelector((state) => state.wordOption.successfulUpdate);
   const toggleHardWords = useAppSelector((state) => state.textBook.switchHardWords);
 
-  const addOptions = (e: React.MouseEvent) => {
-    const lvl = e.currentTarget.id;
-    // console.log(lvl);
+  const addOptions = () => {
     const options: ICreateWordOptions = {
       difficulty: lvl,
       optional: {
@@ -32,9 +35,40 @@ export const LoggedBlock = ({ item, setOptions }: ILoggedBlockProps) => {
       wordId: item._id,
     };
     setOptions(lvl);
-    dispatch(getAgregatedCard());
     dispatch(postWordOption(options));
   };
+
+  const removeFromDifficult = () => {
+    const options: ICreateWordOptions = {
+      difficulty: 'none',
+      optional: {
+        rigthTime: 0,
+      },
+      // eslint-disable-next-line no-underscore-dangle
+      wordId: item._id,
+    };
+    dispatch(putWordOption(options));
+  };
+
+  const clickHandler = (e: React.MouseEvent) => {
+    if (!toggleHardWords) {
+      setLvl(e.currentTarget.id);
+    }
+    setClick(true);
+  };
+
+  useEffect(() => {
+    if (click) {
+      toggleHardWords ? removeFromDifficult() : addOptions();
+    }
+  }, [click]);
+
+  useEffect(() => {
+    if (click && successfulUpdate === 'fulfilled') {
+      toggleHardWords ? dispatch(getHardWords()) : dispatch(getAgregatedCard());
+      setClick(false);
+    }
+  }, [successfulUpdate]);
 
   return (
     <div className={styles.wrapper}>
@@ -45,7 +79,7 @@ export const LoggedBlock = ({ item, setOptions }: ILoggedBlockProps) => {
             <button
               type="button"
               className={`btn ${styles.red}`}
-              onClick={addOptions}
+              onClick={clickHandler}
               id="hard"
             >
               Difficult
@@ -53,7 +87,7 @@ export const LoggedBlock = ({ item, setOptions }: ILoggedBlockProps) => {
             <button
               type="button"
               className={`btn ${styles.green}`}
-              onClick={addOptions}
+              onClick={clickHandler}
               id="easy"
             >
               Learned
@@ -65,8 +99,7 @@ export const LoggedBlock = ({ item, setOptions }: ILoggedBlockProps) => {
           <button
             type="button"
             className={`btn ${styles.yellow}`}
-            onClick={addOptions}
-            id="easy"
+            onClick={clickHandler}
           >
             Remove
           </button>

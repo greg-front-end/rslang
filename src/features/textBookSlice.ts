@@ -15,7 +15,7 @@ export type TextBookState = {
   pageButtons: number[],
   increment: boolean,
   decrement: boolean,
-  isLoad: boolean,
+  loadStatus: string,
   switchHardWords: boolean,
 }
 
@@ -27,7 +27,7 @@ const initialState: TextBookState = {
   pageButtons: [0, 1, 2, 3, 4, 5, 6],
   increment: false,
   decrement: false,
-  isLoad: false,
+  loadStatus: '',
   switchHardWords: JSON.parse(getValueLocalStorage('SwitchHardWords')!) || false,
 };
 
@@ -38,10 +38,6 @@ const textBookSlice = createSlice({
     toggleHardWords(state, action) {
       setValueLocalStorage('SwitchHardWords', action.payload);
       state.switchHardWords = action.payload;
-    },
-    resetLoad: (state) => {
-      state.isLoad = false;
-      console.log(state.isLoad);
     },
     setGroup: (state, action: PayloadAction<number>) => {
       state.group = action.payload;
@@ -67,12 +63,13 @@ const textBookSlice = createSlice({
     builder
       .addCase(getCard.pending, (state, action) => {
         console.log('pending');
+        state.loadStatus = 'pending';
       })
 
       .addCase(getCard.fulfilled, (state, action) => {
         state.cards = action.payload;
-        state.isLoad = true;
-        console.log('ppppppp');
+        console.log('getCard fulfilled');
+        state.loadStatus = 'fulfilled';
       })
 
       .addCase(getCard.rejected, (state, action) => {
@@ -84,7 +81,6 @@ const textBookSlice = createSlice({
 
       .addCase(getAgregatedCard.fulfilled, (state, action) => {
         state.cards = action.payload;
-        state.isLoad = true;
       })
 
       .addCase(getAgregatedCard.rejected, (state, action) => {
@@ -93,10 +89,12 @@ const textBookSlice = createSlice({
 
       .addCase(getHardWords.pending, (state, action) => {
         console.log('pending');
+        state.loadStatus = 'pending';
       })
 
       .addCase(getHardWords.fulfilled, (state, action) => {
         state.hardWords = action.payload;
+        state.loadStatus = 'fulfilled';
         console.log('hard fulfilled', action.payload);
       })
 
@@ -107,7 +105,7 @@ const textBookSlice = createSlice({
 });
 
 export const {
-  setGroup, setPage, setPageButtons, setIncrement, setDecrement, resetLoad, clearHardWords,
+  setGroup, setPage, setPageButtons, setIncrement, setDecrement, clearHardWords,
   toggleHardWords,
 } = textBookSlice.actions;
 export default textBookSlice.reducer;

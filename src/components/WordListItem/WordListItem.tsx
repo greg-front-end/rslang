@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import { getAgregatedCard } from '../../api/getAggregatedCard';
 import { getWordOption, IPostWordOption } from '../../api/getWordOption';
 import { URL } from '../../constants/URL';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
@@ -29,19 +30,19 @@ const setDifficultOrLearnedStyle = (options: State) => {
 
 export const WordListItem = ({ item }: IWordsItemProps) => {
   const dif = item.userWord ? item.userWord.difficulty : '';
+  const cards = useAppSelector((state) => state.textBook.cards);
+  const hardWords = useAppSelector((state) => state.textBook.hardWords);
   const [difficulty, setdifficulty] = useState(dif);
 
   const isLogged = isUserLogIn();
 
-  let borderColor = isLogged
+  const borderColor = isLogged
     ? setDifficultOrLearnedStyle(difficulty)
     : styles.transparent;
 
   useEffect(() => {
-    borderColor = isLogged
-      ? setDifficultOrLearnedStyle(difficulty)
-      : styles.transparent;
-  }, []);
+    setdifficulty(dif);
+  }, [cards, hardWords]);
 
   return (
     <div className={`frame ${styles.card__frame} ${borderColor}`}>
