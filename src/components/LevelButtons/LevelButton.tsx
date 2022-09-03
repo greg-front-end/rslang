@@ -4,8 +4,8 @@ import { getAgregatedCard } from '../../api/getAggregatedCard';
 import { getCard } from '../../api/getCard';
 import { clearHardWords, setGroup, toggleHardWords } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { useAppSelector } from '../../hooks/useAppSelector';
 import { isUserLogIn } from '../../utils/isUserLogIn';
+import { setValueLocalStorage } from '../../utils/setValueLocalStorage';
 
 import style from './LevelButtons.module.css';
 
@@ -20,7 +20,8 @@ export const LevelButton: React.FC<Level> = ({ level, name, group }) => {
 
   function changeGroup(num: number) {
     dispatch(setGroup(num));
-    localStorage.setItem('group', JSON.stringify(num));
+    dispatch(toggleHardWords(false));
+    // setValueLocalStorage('group', num);
     // isUserLogIn() ? dispatch(getAgregatedCard()) : dispatch(getCard());
     dispatch(clearHardWords());
     dispatch(toggleHardWords(false));

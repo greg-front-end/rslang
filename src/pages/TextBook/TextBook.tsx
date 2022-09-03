@@ -10,6 +10,7 @@ import { WordListItem } from '../../components/WordListItem/WordListItem';
 import { setGroup, setPage } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { getValueLocalStorage } from '../../utils/getValueLocalStorage';
 import { isUserLogIn } from '../../utils/isUserLogIn';
 
 import style from './TextBook.module.css';
@@ -18,7 +19,9 @@ export const TextBook: React.FC = () => {
   const dispatch = useAppDispatch();
   const cards = useAppSelector((state) => state.textBook.cards);
   const hardWords = useAppSelector((state) => state.textBook.hardWords);
+  const page = useAppSelector((state) => state.textBook.page);
   const group = useAppSelector((state) => state.textBook.group);
+<<<<<<< HEAD
   const toggleHardWords = useAppSelector((state) => state.textBook.switchHardWords);
   const toggleDispatchWords = () => (toggleHardWords
     ? dispatch(getHardWords())
@@ -29,12 +32,22 @@ export const TextBook: React.FC = () => {
     isUserLogIn() ? toggleDispatchWords() : dispatch(getCard());
     // dispatch(getCard());
   }, [toggleHardWords, group]);
+=======
+>>>>>>> 61b5c5c9fbd9ea48f26a02ab85d6f7e1c62215e2
 
+  const toggleHardWords = useAppSelector((state) => state.textBook.switchHardWords);
+  const toggleDispatchWords = () => (toggleHardWords
+    ? dispatch(getHardWords())
+    : dispatch(getAgregatedCard()));
+
+  useEffect(() => {
+    isUserLogIn() ? toggleDispatchWords() : dispatch(getCard());
+  }, [page, group, toggleHardWords]);
   return (
     <div className={isUserLogIn() ? 'container_login' : 'container'}>
       <div className={style.wrapper}>
         <h2 className={`title ${levels[group].level}`}>{`${levels[group].level} ${levels[group].name}`}</h2>
-        {!hardWords.length && <Pagination />}
+        {!toggleHardWords && <Pagination />}
         <LevelButtons />
         <div className={style.wrapper_QuickStartGame}>
           <QuickStartGame />

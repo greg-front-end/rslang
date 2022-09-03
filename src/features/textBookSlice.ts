@@ -4,12 +4,14 @@ import { getAgregatedCard } from '../api/getAggregatedCard';
 import { getCard } from '../api/getCard';
 import { getHardWords } from '../api/getHardWords';
 import { IWordsItem } from '../types/IWordsItem';
+import { SprintWord } from '../types/SprintWord';
 import { getValueLocalStorage } from '../utils/getValueLocalStorage';
 import { setValueLocalStorage } from '../utils/setValueLocalStorage';
 
 export type TextBookState = {
   cards: IWordsItem[];
   hardWords: IWordsItem[],
+  sprintWords: SprintWord[],
   group: number,
   page: number,
   pageButtons: number[],
@@ -21,9 +23,10 @@ export type TextBookState = {
 
 const initialState: TextBookState = {
   cards: [],
+  sprintWords: [],
   hardWords: [],
-  group: 0,
-  page: 0,
+  group: Number(getValueLocalStorage('group')) || 0,
+  page: Number(getValueLocalStorage('page')) || 0,
   pageButtons: [0, 1, 2, 3, 4, 5, 6],
   increment: false,
   decrement: false,
@@ -39,10 +42,16 @@ const textBookSlice = createSlice({
       setValueLocalStorage('SwitchHardWords', action.payload);
       state.switchHardWords = action.payload;
     },
+    setSprintWords: (state, action: PayloadAction<SprintWord[]>) => {
+      state.sprintWords = action.payload;
+    },
+
     setGroup: (state, action: PayloadAction<number>) => {
+      setValueLocalStorage('group', action.payload);
       state.group = action.payload;
     },
     setPage: (state, action: PayloadAction<number>) => {
+      setValueLocalStorage('page', action.payload);
       state.page = action.payload;
     },
     setPageButtons: (state, action: PayloadAction<number[]>) => {
@@ -58,6 +67,10 @@ const textBookSlice = createSlice({
       state.hardWords = [];
       console.log('clearHardWords');
     },
+    toggleHardWords(state, action) {
+      setValueLocalStorage('SwitchHardWords', action.payload);
+      state.switchHardWords = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -67,6 +80,8 @@ const textBookSlice = createSlice({
       })
 
       .addCase(getCard.fulfilled, (state, action) => {
+        console.log(action.payload);
+
         state.cards = action.payload;
         console.log('getCard fulfilled');
         state.loadStatus = 'fulfilled';
@@ -105,7 +120,7 @@ const textBookSlice = createSlice({
 });
 
 export const {
-  setGroup, setPage, setPageButtons, setIncrement, setDecrement, clearHardWords,
-  toggleHardWords,
+  setGroup, setPage, setPageButtons, setIncrement, setDecrement,
+  setSprintWords, clearHardWords, toggleHardWords,
 } = textBookSlice.actions;
 export default textBookSlice.reducer;
