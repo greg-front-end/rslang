@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(296.82deg, #2B2F48 0%, rgba(51, 62, 91, 0.83) 100%);
 }
 .auth_wrapper {
@@ -20,11 +20,19 @@
   gap: var(--pd20);
   margin-right: 50px;
 }
-@media (min-width: 1200px) {
-  .auth_wrapper {
-    background-image: url('../../assets/img/signin/signin-desktop-bg.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+.auth {
+  background-image: url('../../assets/img/signin/signin-desktop-bg.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
+}
+@media (max-width: 768px) {
+  .auth {
+    background-size: auto;
+    background-image: url('../../assets/img/signin/signin_mobile_bg.png');
+    background-position: right bottom;
+  }
+  .form {
+    margin-inline: auto;
   }
 }
