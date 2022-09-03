@@ -24,11 +24,30 @@
 }
 
 .right {
-  padding-bottom: 9px;
   color: var(--color-green);
 }
 
 .wrong {
   color: var(--color-red);
-  padding-bottom: 18px;
+}
+
+.table {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: repeat();
+  gap: 9px;
+  height: max-content;
+  align-items: center;
+}
+
+.points {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 13px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.line {
+  width: 40px;
 }
