@@ -1,8 +1,6 @@
-export interface IOptional {
-  [key: string]: string | number;
-}
+import { IWordOptional } from './ICreateWordOptions';
 
 export interface IUserWord {
   difficulty: string;
-  optional: IOptional;
+  optional: IWordOptional;
 }

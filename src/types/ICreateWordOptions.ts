@@ -1,9 +1,10 @@
-interface IOptional {
-  rigthTime: number;
+export interface IWordOptional {
+  right: number;
+  wrong: number;
 }
 
 export interface ICreateWordOptions {
   wordId: string;
   difficulty: string;
-  optional: IOptional;
+  optional: IWordOptional;
 }

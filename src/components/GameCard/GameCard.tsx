@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { getAgregatedCard } from '../../api/getAggregatedCard';
 import { getCard } from '../../api/getCard';
 import { setGroup, setPage } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { isUserLogIn } from '../../utils/isUserLogIn';
 import { getRandomNum } from '../AudioGame/utils/getRandomNum';
 
 import styles from './GameCard.module.css';
@@ -19,16 +21,12 @@ interface IGameCardProps {
 export const GameCard = ({
   bgImg, img, title, path,
 }: IGameCardProps) => {
+  const isLogged = isUserLogIn();
   const option = useRef(document.createElement('select'));
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [startLoading, setStartLoading] = useState(false);
   const isLoad = useAppSelector((state) => state.textBook.loadStatus);
-  console.log('gemrCard', isLoad);
-
-  // useEffect(() => {
-  //   dispatch(resetLoad());
-  // }, []);
 
   const redirect = () => {
     dispatch(setGroup(+option.current.value));
@@ -38,7 +36,7 @@ export const GameCard = ({
 
   useEffect(() => {
     if (startLoading) {
-      dispatch(getCard());
+      isLogged ? dispatch(getAgregatedCard()) : dispatch(getCard());
     }
   }, [startLoading]);
 

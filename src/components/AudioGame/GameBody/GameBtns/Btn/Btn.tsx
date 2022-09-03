@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { useAppSelector } from '../../../../../hooks/useAppSelector';
 import { IWordsItem } from '../../../../../types/IWordsItem';
 
 import styles from './Btn.module.css';
@@ -16,6 +17,7 @@ interface IBtnProps {
 export const Btn = ({
   btn, currentWord, getAnswer, setId, isHide, i,
 }: IBtnProps) => {
+  const nextWord = useAppSelector((state) => state.audioChallenge.nextWord);
   const compair = (word: string) => word === currentWord.wordTranslate;
 
   const rightOrWrong = (word: string) => (compair(word) ? '✔' : '✘');
@@ -33,7 +35,7 @@ export const Btn = ({
   return (
     <button
       type="button"
-      className={`${styles.btn}`}
+      className={`${styles.btn} ${nextWord ? styles.btn_disable : undefined}`}
       key={Math.random()}
       onClick={(e) => getAnswer(e)}
       id={setId(i, btn)}
