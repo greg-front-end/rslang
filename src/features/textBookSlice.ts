@@ -4,40 +4,50 @@ import { getAgregatedCard } from '../api/getAggregatedCard';
 import { getCard } from '../api/getCard';
 import { getHardWords } from '../api/getHardWords';
 import { IWordsItem } from '../types/IWordsItem';
+import { SprintWord } from '../types/SprintWord';
+import { getValueLocalStorage } from '../utils/getValueLocalStorage';
+import { setValueLocalStorage } from '../utils/setValueLocalStorage';
 
 export type TextBookState = {
   cards: IWordsItem[];
   hardWords: IWordsItem[],
+  sprintWords: SprintWord[],
   group: number,
   page: number,
   pageButtons: number[],
   increment: boolean,
   decrement: boolean,
-  isLoad: boolean,
+  loadStatus: string,
+  switchHardWords: boolean,
 }
 
 const initialState: TextBookState = {
   cards: [],
+  sprintWords: [],
   hardWords: [],
-  group: 0,
-  page: 0,
+  group: Number(getValueLocalStorage('group')) || 0,
+  page: Number(getValueLocalStorage('page')) || 0,
   pageButtons: [0, 1, 2, 3, 4, 5, 6],
   increment: false,
   decrement: false,
-  isLoad: false,
+  loadStatus: '',
+  switchHardWords: JSON.parse(getValueLocalStorage('SwitchHardWords')!) || false,
 };
 
 const textBookSlice = createSlice({
   name: 'textBookS',
   initialState,
   reducers: {
-    resetLoad: (state) => {
-      state.isLoad = false;
+    setSprintWords: (state, action: PayloadAction<SprintWord[]>) => {
+      state.sprintWords = action.payload;
     },
+
     setGroup: (state, action: PayloadAction<number>) => {
+      setValueLocalStorage('group', action.payload);
       state.group = action.payload;
     },
     setPage: (state, action: PayloadAction<number>) => {
+      setValueLocalStorage('page', action.payload);
       state.page = action.payload;
     },
     setPageButtons: (state, action: PayloadAction<number[]>) => {
@@ -49,17 +59,28 @@ const textBookSlice = createSlice({
     setDecrement: (state, action: PayloadAction<boolean>) => {
       state.decrement = action.payload;
     },
+    clearHardWords: (state) => {
+      state.hardWords = [];
+      console.log('clearHardWords');
+    },
+    toggleHardWords(state, action) {
+      setValueLocalStorage('SwitchHardWords', action.payload);
+      state.switchHardWords = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(getCard.pending, (state, action) => {
         console.log('pending');
+        state.loadStatus = 'pending';
       })
 
       .addCase(getCard.fulfilled, (state, action) => {
         console.log(action.payload);
+
         state.cards = action.payload;
-        state.isLoad = true;
+        console.log('getCard fulfilled');
+        state.loadStatus = 'fulfilled';
       })
 
       .addCase(getCard.rejected, (state, action) => {
@@ -70,9 +91,7 @@ const textBookSlice = createSlice({
       })
 
       .addCase(getAgregatedCard.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.cards = action.payload;
-        state.isLoad = true;
       })
 
       .addCase(getAgregatedCard.rejected, (state, action) => {
@@ -81,11 +100,13 @@ const textBookSlice = createSlice({
 
       .addCase(getHardWords.pending, (state, action) => {
         console.log('pending');
+        state.loadStatus = 'pending';
       })
 
       .addCase(getHardWords.fulfilled, (state, action) => {
         state.hardWords = action.payload;
-        console.log('fulfilled');
+        state.loadStatus = 'fulfilled';
+        console.log('hard fulfilled', action.payload);
       })
 
       .addCase(getHardWords.rejected, (state, action) => {
@@ -95,6 +116,7 @@ const textBookSlice = createSlice({
 });
 
 export const {
-  setGroup, setPage, setPageButtons, setIncrement, setDecrement, resetLoad,
+  setGroup, setPage, setPageButtons, setIncrement, setDecrement,
+  setSprintWords, clearHardWords, toggleHardWords,
 } = textBookSlice.actions;
 export default textBookSlice.reducer;

@@ -100,6 +100,7 @@ export const GameBtns = () => {
           getAnswer={defineID}
           isHide={isHide}
           setId={setId}
+          key={Date.now() + Math.random()}
         />
       ))}
     </div>

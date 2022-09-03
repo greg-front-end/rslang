@@ -10,7 +10,6 @@ import { loginUser } from '../../api/loginUser';
 import { ReactComponent as EmailICon } from '../../assets/svg/auth/email.svg';
 import { ReactComponent as KeyIcon } from '../../assets/svg/auth/key.svg';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { useAppSelector } from '../../hooks/useAppSelector';
 import { ICreateUser } from '../../types/ICreateUser';
 
 import style from './style.module.css';
@@ -21,8 +20,6 @@ export const LogIn = () => {
   });
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const userState = useAppSelector((state) => state.auth);
-
   const handleInutChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
     setFormState({
       ...formState,
@@ -32,25 +29,22 @@ export const LogIn = () => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    const { email, password } = formState;
-    if (email && password) {
-      const formBody: Omit<ICreateUser, 'name'> = {
-        email,
-        password,
-      };
-      dispatch(loginUser(formBody));
-      setFormState({
-        email: '',
-        password: '',
-      });
-    }
+    (async () => {
+      const { email, password } = formState;
+      if (email && password) {
+        const formBody: Omit<ICreateUser, 'name'> = {
+          email,
+          password,
+        };
+        await dispatch(loginUser(formBody));
+        navigate('/');
+        setFormState({
+          email: '',
+          password: '',
+        });
+      }
+    })();
   };
-
-  useEffect(() => {
-    if (userState.token) {
-      navigate('/');
-    }
-  }, [navigate, userState.token]);
   return (
     <div className={style.login}>
       <div className="container">

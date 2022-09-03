@@ -7,6 +7,7 @@ interface wordOptionState {
   id: string;
   error: string,
   wordId: string;
+  successfulUpdate: string;
   difficultState: ICreateWordOptions;
 }
 
@@ -14,6 +15,7 @@ const initialState: wordOptionState = {
   id: '',
   wordId: '',
   error: '',
+  successfulUpdate: '',
   difficultState: {
     id: '',
     wordId: '',
@@ -41,26 +43,31 @@ const wordOptionSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(postWordOption.pending, () => {
+      .addCase(postWordOption.pending, (state) => {
         console.log('pending');
+        state.successfulUpdate = 'pending';
       })
 
       .addCase(postWordOption.fulfilled, (state, action) => {
         console.log('post', action.payload);
         state.difficultState = action.payload;
+        state.successfulUpdate = 'fulfilled';
       })
 
       .addCase(postWordOption.rejected, (state, action) => {
         console.log(action.payload);
       })
 
-      .addCase(putWordOption.pending, () => {
+      .addCase(putWordOption.pending, (state) => {
         console.log('pending');
+        state.successfulUpdate = 'pending';
       })
 
       .addCase(putWordOption.fulfilled, (state, action) => {
         console.log('put', action.payload);
+
         state.difficultState = action.payload;
+        state.successfulUpdate = 'fulfilled';
       })
 
       .addCase(putWordOption.rejected, (state, action) => {
@@ -69,5 +76,5 @@ const wordOptionSlice = createSlice({
   },
 });
 
-// export const {} = textBookSlice.actions;
+// export const {  } = wordOptionSlice.actions;
 export default wordOptionSlice.reducer;

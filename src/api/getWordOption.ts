@@ -1,18 +1,15 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { URL } from '../constants/URL';
 import { ApiPath } from '../types/ApiPath';
-import { ICreateWordOptions } from '../types/ICreateWordOptions';
 import { getValueLocalStorage } from '../utils/getValueLocalStorage';
-
-import { putWordOption } from './putWordOption';
 
 export interface IPostWordOption {
   id: string;
   difficulty: string;
     optional: {
-      rigthTime: number;
+      rigth: number;
+      wrong: number;
     },
   wordId: string;
 }

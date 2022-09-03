@@ -23,6 +23,6 @@ export const getHardWords = createAsyncThunk<IWordsItem[], undefined, { rejectVa
         },
       },
     );
-    return res.data;
+    return res.data[0].paginatedResults;
   },
 );

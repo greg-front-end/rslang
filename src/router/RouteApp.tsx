@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { Layout } from '../components/Layout/Layout';
 import { LogIn } from '../components/LogIn/LogIn';
 import { SignIn } from '../components/SignIn/SignIn';
-import { useAppSelector } from '../hooks/useAppSelector';
+import { useLogOutAfterTokenExp } from '../hooks/useLogOutAfterTokenExp';
 import { About } from '../pages/About/About';
 import { AudioCall } from '../pages/AudioCall/AudioCall';
 import { Games } from '../pages/Games/Games';
@@ -12,30 +12,31 @@ import { Main } from '../pages/Main/Main';
 import { Sprint } from '../pages/Sprint/Sprint';
 import { Statistics } from '../pages/Statistics/Statistics';
 import { TextBook } from '../pages/TextBook/TextBook';
-import { isUserLogIn } from '../utils/isUserLogIn';
 
 export const RouteApp = () => {
-  const userAuthState = useAppSelector((state) => state.auth);
-  const [isUserLoggined, setIsUserLoggined] = useState(false);
-
-  useEffect(() => {
-    if (userAuthState.token) {
-      setIsUserLoggined(isUserLogIn());
-    }
-    if (!userAuthState.token) {
-      setIsUserLoggined(isUserLogIn());
-    }
-  }, [userAuthState.token]);
+  const isUserLoggined = useLogOutAfterTokenExp();
   return (
     <Routes>
       <Route
         path="/"
         element={<Layout />}
       >
-        <Route
-          index
-          element={isUserLoggined ? <Statistics /> : <Main />}
-        />
+        {
+          isUserLoggined
+
+            ? (
+              <Route
+                index
+                element={<Statistics />}
+              />
+            )
+            : (
+              <Route
+                index
+                element={<Main />}
+              />
+            )
+        }
         <Route
           path="textbook"
           element={<TextBook />}
