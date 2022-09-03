@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import {
-  changeCurrentWord, finishGame, setNextWord, stopTimer,
+  changeCurrentWord, finishGame, setNextWord,
 } from '../../../../../features/audioChallengeSlice';
 import { useAppDispatch } from '../../../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../../../hooks/useAppSelector';
@@ -22,6 +22,22 @@ export const NextBtn = () => {
       dispatch(setNextWord(false));
     }, 300);
   };
+
+  const defineBtn = (e: KeyboardEvent) => {
+    if (e.code === 'Space') {
+      e.preventDefault();
+      next();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('keydown', defineBtn);
+
+    return () => {
+      document.removeEventListener('keydown', defineBtn);
+    };
+  }, []);
+
   return (
     <button
       type="button"

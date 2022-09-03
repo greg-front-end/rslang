@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import {
-  addRightAnswer, resetTimer, setNextWord, stopTimer,
+  addRightAnswer, setInRow, setNextWord,
 } from '../../../../features/audioChallengeSlice';
 import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
@@ -17,55 +17,47 @@ const BTNS_ID = [0, 1, 2, 3];
 
 export const GameBtns = () => {
   const dispatch = useAppDispatch();
-
+  const [rowCounter, setRowCounter] = useState(0);
   const currentWord = useAppSelector((state) => state.audioChallenge.currentWord);
   const words = useAppSelector((state) => state.audioChallenge.words);
   const nextWord = useAppSelector((state) => state.audioChallenge.nextWord);
   const finish = useAppSelector((state) => state.audioChallenge.finish);
+  if (finish) {
+    dispatch(setInRow(rowCounter));
+  }
 
   const [isHide, setIsHide] = useState(Array(4).fill(true));
   const [btns, setBtns] = useState<string[]>([]);
 
-  let rightId: number;
+  const [rightId, setRightId] = useState(-1);
 
   const compair = (word: string) => word === currentWord.wordTranslate;
 
   const setId = (id: number, word: string) => {
     if (compair(word)) {
-      rightId = id;
+      setRightId(id);
     }
     return id.toString();
   };
 
   const showAnswers = (id: number) => {
+    if (id === rightId) {
+      console.log('right');
+
+      dispatch(addRightAnswer(currentWord));
+      setRowCounter((state) => state + 1);
+    } else {
+      console.log('wrong');
+      dispatch(setInRow(rowCounter));
+      setRowCounter(0);
+    }
     const newState = [...isHide];
     newState[id] = false;
     newState[rightId] = false;
     return newState;
   };
 
-  useEffect(() => {
-    if (!finish) {
-      if (words.length) {
-        setBtns(createBtnsArray(BTNS_COUNT, words, currentWord));
-      }
-      setIsHide(Array(4).fill(true));
-      dispatch(stopTimer(false));
-      dispatch(resetTimer());
-    }
-  }, [currentWord]);
-
-  useEffect(() => {
-    if (nextWord) {
-      setIsHide(showAnswers(rightId));
-    }
-  }, [nextWord]);
-
   const getAnswer = (id: number) => {
-    // document.body.style.pointerEvents = 'none';
-    if (id === rightId) {
-      dispatch(addRightAnswer(currentWord));
-    }
     setIsHide(showAnswers(id));
     dispatch(setNextWord(true));
   };
@@ -81,6 +73,23 @@ export const GameBtns = () => {
       getAnswer(id);
     }
   };
+
+  useEffect(() => {
+    if (!finish) {
+      if (words.length) {
+        const gBtns = createBtnsArray(BTNS_COUNT, words, currentWord);
+        setRightId(gBtns.reduce((acc, el, i) => (compair(el) ? i : acc), 0));
+        setBtns(gBtns);
+      }
+      setIsHide(Array(4).fill(true));
+    }
+  }, [currentWord]);
+
+  useEffect(() => {
+    if (nextWord) {
+      setIsHide(showAnswers(rightId));
+    }
+  }, [nextWord]);
 
   useEffect(() => {
     document.addEventListener('keydown', defineBtn);

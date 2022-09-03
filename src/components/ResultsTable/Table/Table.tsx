@@ -22,8 +22,8 @@ export const Table = ({ words, isRight }: ITableProps) => (
       ? words.map((el, i) => (
         <>
           <div className={styles.counter} key={Date.now()}>{i + 1}</div>
-          <div key={Date.now()}>{el.word}</div>
-          <div key={Date.now()}>{el.wordTranslate}</div>
+          <div key={Date.now() + Math.random()}>{el.word}</div>
+          <div key={Date.now() + Math.random()}>{el.wordTranslate}</div>
         </>
       ))
       : <div>none</div>}
