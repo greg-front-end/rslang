@@ -16,12 +16,14 @@ export const Table = ({ words, isRight }: ITableProps) => (
     >
       {isRight ? 'Right' : 'Wrong'}
     </h4>
-    {words.map((el, i) => (
-      <>
-        <div className={styles.counter}>{i + 1}</div>
-        <div>{el.word}</div>
-        <div>{el.wordTranslate}</div>
-      </>
-    ))}
+    {words.length
+      ? words.map((el, i) => (
+        <>
+          <div className={styles.counter} key={Date.now()}>{i + 1}</div>
+          <div key={Date.now()}>{el.word}</div>
+          <div key={Date.now()}>{el.wordTranslate}</div>
+        </>
+      ))
+      : <div>none</div>}
   </div>
 );

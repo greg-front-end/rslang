@@ -1,9 +1,11 @@
 .table {
   display: grid;
+  grid-template-columns: 0.2fr 1fr 1fr;
+  grid-template-rows: repeat();
   column-gap: 20px;
   row-gap: 10px;
   height: max-content;
-  width: 50%;
+  flex: 1;
 }
 
 .section__title {
