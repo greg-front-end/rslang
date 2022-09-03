@@ -12,6 +12,7 @@ export type TextBookState = {
   cards: IWordsItem[];
   hardWords: IWordsItem[],
   sprintWords: SprintWord[],
+  indicators: boolean[]
   group: number,
   page: number,
   pageButtons: number[],
@@ -24,6 +25,7 @@ export type TextBookState = {
 const initialState: TextBookState = {
   cards: [],
   sprintWords: [],
+  indicators: [false, false, false],
   hardWords: [],
   group: Number(getValueLocalStorage('group')) || 0,
   page: Number(getValueLocalStorage('page')) || 0,
@@ -40,6 +42,13 @@ const textBookSlice = createSlice({
   reducers: {
     setSprintWords: (state, action: PayloadAction<SprintWord[]>) => {
       state.sprintWords = action.payload;
+    },
+
+    setIndicators: (state, action: PayloadAction<boolean[]>) => {
+      state.indicators = action.payload;
+    },
+    removeSprintWord: (state, action: PayloadAction<string>) => {
+      state.sprintWords = state.sprintWords.filter((el) => el.word !== action.payload);
     },
 
     setGroup: (state, action: PayloadAction<number>) => {
@@ -117,6 +126,6 @@ const textBookSlice = createSlice({
 
 export const {
   setGroup, setPage, setPageButtons, setIncrement, setDecrement,
-  setSprintWords, clearHardWords, toggleHardWords,
+  setSprintWords, clearHardWords, toggleHardWords, removeSprintWord,
 } = textBookSlice.actions;
 export default textBookSlice.reducer;

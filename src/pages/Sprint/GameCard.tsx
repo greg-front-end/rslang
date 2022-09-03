@@ -4,14 +4,29 @@ import { ReactComponent as ArrowDownIcon } from '../../assets/svg/arrow_down_ico
 import { ReactComponent as ArrowUpIcon } from '../../assets/svg/arrow_up_icon.svg';
 import { ReactComponent as LabelIcon } from '../../assets/svg/card_game_label.svg';
 import { ReactComponent as CorrectIcon } from '../../assets/svg/correct_indicator_icon.svg';
+import { removeSprintWord } from '../../features/textBookSlice';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 import { Translate } from './Translate';
 import { Word } from './Word';
 
 import style from './GameCard.module.css';
 
-export const GameCard = () => {
-  const indicators: boolean[] = [false, false, true];
+type SprintCard = {
+  word: string,
+  translate: string,
+  random: string
+}
+
+export const GameCard: React.FC<SprintCard> = ({ word, translate, random }) => {
+  const dispatch = useAppDispatch();
+  const indicators = useAppSelector((state) => state.textBook.indicators);
+
+  function determine(str: string) {
+    console.log(str);
+    dispatch(removeSprintWord(word));
+  }
 
   return (
     <div className={style.wrapper}>
@@ -23,23 +38,23 @@ export const GameCard = () => {
         <LabelIcon />
       </div>
       <div className={style.words_arrows_wrapper}>
-        <Word />
+        <Word word={word} />
         <div>
           <ArrowDownIcon />
           <ArrowUpIcon />
         </div>
-        <Translate />
+        <Translate translate={translate} />
       </div>
       <div className={style.btn_wrapper}>
         <button
-          onClick={() => console.log('correct')}
+          onClick={() => determine('correct')}
           className={`btn ${style.btn_correct}`}
           type="button"
         >
           Correct
         </button>
         <button
-          onClick={() => console.log('wrong')}
+          onClick={() => determine('wrong')}
           className={` btn ${style.btn_wrong}`}
           type="button"
         >
