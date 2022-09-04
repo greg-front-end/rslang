@@ -14,6 +14,8 @@ export const initialState: IInitialState = {
     learnedWords: 0,
     optional: {
       [dateKeyGenerator()]: {
+        learnedWords: 0,
+        learnedWordsToday: 0,
         audioCall: {
           inRow: 0,
           words: 0,

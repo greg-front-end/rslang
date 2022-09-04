@@ -14,6 +14,8 @@ const obj: StatisticsState = {
   learnedWords: 0,
   optional: {
     [KEY]: {
+      learnedWords: 0,
+      learnedWordsToday: 0,
       audioCall: {
         inRow: 0,
         words: 0,
@@ -38,6 +40,8 @@ export const getGameStatistic = ({ statistic, newGameStatistic, game }: IGetGame
         [KEY]: {
           ...statistic.optional[KEY],
           [gameKey]: newGameStatistic,
+          learnedWords: statistic.learnedWords + newGameStatistic.words,
+          learnedWordsToday: statistic.optional[KEY].learnedWordsToday + newGameStatistic.words,
         },
       },
     };
@@ -49,6 +53,8 @@ export const getGameStatistic = ({ statistic, newGameStatistic, game }: IGetGame
       [KEY]: {
         ...obj.optional[KEY],
         [gameKey]: newGameStatistic,
+        learnedWords: statistic.learnedWords + newGameStatistic.words,
+        learnedWordsToday: newGameStatistic.words,
       },
     },
   };

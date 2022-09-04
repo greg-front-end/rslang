@@ -96,9 +96,9 @@ export const Sprint = () => {
           random={sprintWords[0].random}
         />
       ) : <span />}
-      {/* {!timer || !sprintWords.length
+      {!timer || !sprintWords.length
         ? (<ResultsTable right={currectWords} wrong={wrongWords} />)
-        : <span />} */}
+        : <span />}
     </div>
   );
 };
