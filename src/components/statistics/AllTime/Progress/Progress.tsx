@@ -2,18 +2,21 @@ import React, { FC } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 
+import { useAppSelector } from '../../../../hooks/useAppSelector';
+import { getProgressGraphInfo } from '../../utils/getProgressGraphInfo';
+import { getYesterdayKey } from '../../utils/getYesterdayKey';
+
 import style from '../style.module.css';
 
 Chart.register(...registerables);
 export const Progress: FC = () => {
-  const labels = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-  ];
+  const statistic = useAppSelector((state) => state.statistic.statistic);
+
+  const labels = [getYesterdayKey(), ...Object.keys(statistic.optional)];
+
+  const words = getProgressGraphInfo(statistic);
+
+  const max = Math.max(...words) * 1.5;
 
   const data = {
     labels,
@@ -21,7 +24,7 @@ export const Progress: FC = () => {
       label: 'Progress',
       backgroundColor: '#F1EC83',
       borderColor: 'rgb(255, 99, 132)',
-      data: [10, 25, 2, 25, 50, 45, 50, 73],
+      data: [0, ...words, max],
       tension: 0.4,
       borderWidth: 2,
     }],

@@ -12,6 +12,8 @@ export type GameStatistics = {
 }
 
 export interface IStatisticsState {
+  learnedWords: number,
+  learnedWordsToday: number,
   audioCall: GameStatistics,
   sprint: GameStatistics
 }
