@@ -13,8 +13,8 @@ export const levels: Level[] = [
   { level: 'A2', name: 'Pre-Intermediate', group: 1 },
   { level: 'B1', name: 'Intermediate', group: 2 },
   { level: 'B2', name: 'Upper-Intermediate', group: 3 },
-  { level: 'C1', name: 'Upper-Intermediate', group: 4 },
-  { level: 'C2', name: 'Upper-Intermediate', group: 5 },
+  { level: 'C1', name: 'Advanced', group: 4 },
+  { level: 'C2', name: 'Proficient', group: 5 },
 ];
 
 export const LevelButtons: React.FC = () => (

@@ -35,7 +35,13 @@ export const TextBook: React.FC = () => {
     <TextBookContext value={{ audio, setAudio }}>
       <div className={isUserLogIn() ? 'container_login' : 'container'}>
         <div className={style.wrapper}>
-          <h2 className={`title ${levels[group].level}`}>{`${levels[group].level} ${levels[group].name}`}</h2>
+          <h2 className={!toggleHardWords ? `title ${levels[group].level}` : 'title hard_group'}>
+            {
+              !toggleHardWords
+                ? `${levels[group].level} ${levels[group].name}`
+                : 'Hard words'
+            }
+          </h2>
           {!toggleHardWords && <Pagination />}
           <LevelButtons />
           <div className={style.wrapper_QuickStartGame}>
