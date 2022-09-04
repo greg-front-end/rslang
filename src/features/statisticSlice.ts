@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { getUserStatistic } from '../api/getUserStatistic';
 import { putUserStatistic } from '../api/putUserStatistic';
 import { StatisticsState } from '../types/Statistic';
 
@@ -21,12 +22,32 @@ const statisticSlice = createSlice({
   name: 'statistic',
   initialState,
   reducers: {},
-  // extraReducers: (builder) => {
-  //   builder
-  //     .addCase(putUserStatistic.fulfilled, (state, action) => {
+  extraReducers: (builder) => {
+    builder
+      .addCase(putUserStatistic.pending, (state, action) => {
+        console.log('pending');
+      })
 
-  //     });
-  // },
+      .addCase(putUserStatistic.fulfilled, (state, action) => {
+        console.log('fulfilled');
+      })
+
+      .addCase(putUserStatistic.rejected, (state, action) => {
+        console.log('rejected');
+      })
+
+      .addCase(getUserStatistic.pending, (state, action) => {
+        console.log('pending');
+      })
+
+      .addCase(getUserStatistic.fulfilled, (state, action) => {
+        console.log('fulfilled');
+      })
+
+      .addCase(getUserStatistic.rejected, (state, action) => {
+        console.log('rejected');
+      });
+  },
 });
 
 export default statisticSlice.reducer;
