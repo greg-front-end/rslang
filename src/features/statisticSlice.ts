@@ -23,8 +23,16 @@ const statisticSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(putUserStatistic.pending, (state, action) => {
+        console.log('pending');
+      })
+
       .addCase(putUserStatistic.fulfilled, (state, action) => {
-        console.log('putUserStatistic', action.payload);
+        console.log('fulfilled');
+      })
+
+      .addCase(putUserStatistic.rejected, (state, action) => {
+        console.log('rejected');
       });
   },
 });
