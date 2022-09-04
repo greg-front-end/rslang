@@ -1,0 +1,48 @@
+.games {
+  min-height: 100vh;
+  display: flex;
+  margin-bottom: var(--pd50);
+  align-items: center;
+}
+.games_login {
+  margin-top: var(--pd30);
+  position: relative;
+}
+.games_bg_decor {
+  position: absolute;
+  right: 200px;
+  bottom: 0;
+  width: 500px;
+  height: 460px;
+  background: url('../../assets/img/games/games_bg.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 0 0;
+  z-index: -1;
+}
+.games_cards {
+  display: flex;
+  gap: var(--pd30);
+}
+.title_login {
+  margin-bottom: 0;
+}
+.games_cards_login {
+  display: flex;
+  gap: var(--pd30);
+  max-width: 1260px;
+  padding-top: var(--pd90);
+}
+.title {
+  margin-bottom: var(--pd90);
+}
+
+@media (max-width: 1024px) {
+  .games_cards {
+    flex-wrap: wrap;
+  }
+  .games_cards_login {
+    flex-direction: column;
+    justify-content: center;
+  }
+}

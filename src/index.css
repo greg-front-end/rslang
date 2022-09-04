@@ -74,7 +74,7 @@ body {
 }
 
 .title {
-  font-size: 32px;
+  font-size: clamp(24px, 5vw, 32px);
   color: var(--color-yellow);
   text-shadow: 30px 12px 4px var(--color-blue);
   position: relative;
@@ -94,12 +94,12 @@ body {
   top: 0px;
   left: -10px;
   width: 2px;
-  height: 60px;
+  height: clamp(50px, 5vw, 60px);
 
 }
 .title::after {
   bottom: -10px;
-  left: -30px;
+  left: clamp(-20px, 5vw, -40px);
   width: 120%;
   height: 2px;
 }
@@ -185,8 +185,9 @@ body {
 
 
 @media (min-width: 480px) {
-  .container {
-    padding-inline: var(--pd20);
+  .form_input,
+  .form_btn {
+    width: 320px;
   }
 }
 
@@ -195,14 +196,9 @@ body {
     padding-inline: var(--pd30);
   }
 }
-
-@media (min-width: 480px) {
+@media (min-width: 1440px) {
   .container {
     padding-inline: var(--pd90);
-  }
-  .form_input,
-  .form_btn {
-    width: 320px;
   }
 }
 
