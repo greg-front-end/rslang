@@ -1,4 +1,5 @@
 import React from 'react';
+import { nanoid } from '@reduxjs/toolkit';
 
 import { useAppSelector } from '../../../../../hooks/useAppSelector';
 import { IWordsItem } from '../../../../../types/IWordsItem';
@@ -10,12 +11,11 @@ interface IBtnProps {
   currentWord: IWordsItem;
   getAnswer: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   isHide: boolean[];
-  setId: (id: number, word: string) => string;
   i: number;
 }
 
 export const Btn = ({
-  btn, currentWord, getAnswer, setId, isHide, i,
+  btn, currentWord, getAnswer, isHide, i,
 }: IBtnProps) => {
   const nextWord = useAppSelector((state) => state.audioChallenge.nextWord);
   const compair = (word: string) => word === currentWord.wordTranslate;
@@ -36,9 +36,9 @@ export const Btn = ({
     <button
       type="button"
       className={`${styles.btn} ${nextWord ? styles.btn_disable : undefined}`}
-      key={Math.random()}
+      key={nanoid()}
       onClick={(e) => getAnswer(e)}
-      id={setId(i, btn)}
+      id={i.toString()}
       style={isHide[i] ? undefined : btnStyle}
     >
       <span
