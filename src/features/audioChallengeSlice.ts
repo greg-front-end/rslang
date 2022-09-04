@@ -25,7 +25,7 @@ interface IChangeWordState {
 const initialState: IState = {
   words: [],
   rightWords: [],
-  currentIndex: 10,
+  currentIndex: 0,
   currentWord: {} as IWordsItem,
   finish: false,
   nextWord: false,

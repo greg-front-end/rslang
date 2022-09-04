@@ -40,7 +40,8 @@ const statisticSlice = createSlice({
       })
 
       .addCase(putUserStatistic.fulfilled, (state, action) => {
-        console.log('fulfilled');
+        console.log('putUserStatistic fulfilled');
+        state.statistic = action.payload;
       })
 
       .addCase(putUserStatistic.rejected, (state, action) => {
@@ -52,6 +53,7 @@ const statisticSlice = createSlice({
       })
 
       .addCase(getUserStatistic.fulfilled, (state, action) => {
+        console.log('getUserStatistic fulfilled');
         state.statistic = action.payload;
       })
 
