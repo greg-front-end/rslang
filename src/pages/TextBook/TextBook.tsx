@@ -21,6 +21,8 @@ export const TextBook: React.FC = () => {
   const [audio, setAudio] = useState(new Audio());
   const dispatch = useAppDispatch();
   const cards = useAppSelector((state) => state.textBook.cards);
+  console.log(cards);
+
   const hardWords = useAppSelector((state) => state.textBook.hardWords);
   const page = useAppSelector((state) => state.textBook.page);
   const group = useAppSelector((state) => state.textBook.group);
@@ -28,13 +30,23 @@ export const TextBook: React.FC = () => {
   const toggleHardWords = useAppSelector((state) => state.textBook.switchHardWords);
   const toggleDispatchWords = () => (toggleHardWords
     ? dispatch(getHardWords())
-    : dispatch(getAgregatedCard()));
+    : dispatch(getAgregatedCard())
+  );
 
   useEffect(() => {
     dispatch(setPage(Number(getValueLocalStorage('page'))));
     dispatch(setGroup(Number(getValueLocalStorage('group'))));
+
     isUserLogIn() ? toggleDispatchWords() : dispatch(getCard());
   }, [page, group, toggleHardWords]);
+
+  useEffect(() => {
+    if (cards.length) {
+      const easyWords = cards.filter((el) => el.userWord.difficulty === 'easy');
+      const easyPage = easyWords.length === cards.length;
+      console.log('easyPage', easyPage);
+    }
+  }, [cards]);
 
   return (
     <TextBookContext value={{ audio, setAudio }}>

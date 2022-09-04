@@ -12,12 +12,12 @@ import { App } from './App';
 
 import './index.css';
 
-if (isUserLogIn()) {
-  store.dispatch(getAgregatedCard());
-  store.dispatch(getUserStatistic());
-} else {
-  store.dispatch(getCard());
-}
+// if (isUserLogIn()) {
+//   store.dispatch(getAgregatedCard());
+//   store.dispatch(getUserStatistic());
+// } else {
+//   store.dispatch(getCard());
+// }
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
