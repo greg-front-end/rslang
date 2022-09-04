@@ -14,7 +14,8 @@ export type SprintState = {
   currectWords: IWordsItem[],
   wrongWords: IWordsItem[],
   timer: number,
-  timerBeforeGame:number
+  timerBeforeGame: number,
+  inRow:number
 }
 
 export type SprintCard = {
