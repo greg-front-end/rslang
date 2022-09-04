@@ -2,6 +2,7 @@ import React from 'react';
 
 import { clearHardWords, setGroup, toggleHardWords } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { setValueLocalStorage } from '../../utils/setValueLocalStorage';
 
 import style from './LevelButtons.module.css';
 
@@ -15,6 +16,7 @@ export const LevelButton: React.FC<Level> = ({ level, name, group }) => {
   const dispatch = useAppDispatch();
 
   function changeGroup(num: number) {
+    setValueLocalStorage('group', num);
     dispatch(setGroup(num));
     dispatch(toggleHardWords(false));
     dispatch(clearHardWords());
