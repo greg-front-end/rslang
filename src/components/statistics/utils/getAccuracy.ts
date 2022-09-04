@@ -4,10 +4,9 @@ import { dateKeyGenerator } from '../../../utils/dateKeyGenerator';
 
 const KEY = dateKeyGenerator();
 
-export const getAccuracy = (statistic: StatisticsState, gemeKey: GamesName) => {
-  const gKey = gemeKey as GamesName;
+export const getAccuracy = (statistic: StatisticsState, gameKey: GamesName) => {
   if (statistic.optional[KEY]) {
-    return statistic.optional[KEY][gKey].inAccuracy;
+    return statistic.optional[KEY][gameKey].inAccuracy;
   }
   return 0;
 };
