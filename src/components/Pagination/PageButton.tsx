@@ -5,6 +5,7 @@ import {
 } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { setValueLocalStorage } from '../../utils/setValueLocalStorage';
 import { levels } from '../LevelButtons/LevelButtons';
 
 import style from './Pagination.module.css';
@@ -50,7 +51,7 @@ export const PageButton: React.FC<PageButton> = ({ el, index }) => {
       if (num === 0) {
         dispatch(setPageButtons([0, 1, 2, 3, 4, 5, 29]));
       }
-
+      setValueLocalStorage('page', num);
       dispatch(setPage(num));
       dispatch(setDecrement(false));
       dispatch(setIncrement(false));
