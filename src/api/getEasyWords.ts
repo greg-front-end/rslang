@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -14,7 +15,9 @@ export const getEasyWords = createAsyncThunk<IWordsItem[], undefined, { rejectVa
       `${URL}users/${id}/aggregatedWords`,
       {
         params: {
-          filter: { 'userWord.difficulty': 'easy' },
+          group: 0,
+          page: 0,
+          filter: { '$or': [{ '$or': [{ 'userWord.difficulty': 'hard' }, { 'userWord.difficulty': 'none' }] }, { userWord: null }] },
         },
         headers: {
           Authorization: `Bearer ${token}`,
@@ -23,6 +26,7 @@ export const getEasyWords = createAsyncThunk<IWordsItem[], undefined, { rejectVa
         },
       },
     );
+    console.log(res.data);
     return res.data;
   },
 );
