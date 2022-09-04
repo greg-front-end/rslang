@@ -10,4 +10,5 @@ export type TextBookState = {
   decrement: boolean,
   loadStatus: string,
   switchHardWords: boolean,
+  easyWordsCount: 0,
 }

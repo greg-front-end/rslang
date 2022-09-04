@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 
+import { getEasyWords } from '../../api/getEasyWords';
 import { postWordOption } from '../../api/postWordOption';
 import { putUserStatistic } from '../../api/putUserStatistic';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
@@ -29,8 +30,8 @@ export const ResultsTable = ({
   const dispatch = useAppDispatch();
   const statistic = useAppSelector((state) => state.statistic.statistic);
 
+  dispatch(getEasyWords());
   const rightWordStatistics = right.map((word) => wordStatisticRight(word));
-  console.log(rightWordStatistics);
   const wrongWordStatistics = wrong.map((word) => wordStatisticWrong(word));
   const words = rightWordStatistics.filter(({ isNew }) => isNew).length
     + wrongWordStatistics.filter(({ isNew }) => isNew).length;

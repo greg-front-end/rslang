@@ -6,7 +6,6 @@ export const wordStatisticRight = (word: IWordsItem) => {
   let obj: ICreateWordOptions;
   let isNew = true;
   if (word.userWord) {
-    console.log(word.userWord, word.word);
     if (Object.hasOwn(word.userWord.optional, 'right')) {
       obj = {
         difficulty: word.userWord.difficulty,
@@ -16,7 +15,6 @@ export const wordStatisticRight = (word: IWordsItem) => {
         },
         wordId: word._id,
       };
-      console.log(obj.optional);
       if (word.userWord.optional.right || word.userWord.optional.wrong) {
         isNew = false;
       }

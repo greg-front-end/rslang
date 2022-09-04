@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { getAgregatedCard } from '../api/getAggregatedCard';
 import { getCard } from '../api/getCard';
+import { getEasyWords } from '../api/getEasyWords';
 import { getHardWords } from '../api/getHardWords';
 import { TextBookState } from '../types/TextBook';
 import { getValueLocalStorage } from '../utils/getValueLocalStorage';
@@ -17,6 +18,7 @@ const initialState: TextBookState = {
   decrement: false,
   loadStatus: '',
   switchHardWords: JSON.parse(getValueLocalStorage('SwitchHardWords')!) || false,
+  easyWordsCount: 0,
 };
 
 const textBookSlice = createSlice({
@@ -24,11 +26,9 @@ const textBookSlice = createSlice({
   initialState,
   reducers: {
     setGroup: (state, action: PayloadAction<number>) => {
-      setValueLocalStorage('group', action.payload);
       state.group = action.payload;
     },
     setPage: (state, action: PayloadAction<number>) => {
-      setValueLocalStorage('page', action.payload);
       state.page = action.payload;
     },
     setPageButtons: (state, action: PayloadAction<number[]>) => {
@@ -93,6 +93,20 @@ const textBookSlice = createSlice({
       })
 
       .addCase(getHardWords.rejected, (state, action) => {
+        // console.log('rejected');
+      })
+
+      .addCase(getEasyWords.pending, (state, action) => {
+        // console.log('pending');
+        state.loadStatus = 'pending';
+      })
+
+      .addCase(getEasyWords.fulfilled, (state, action) => {
+        state.loadStatus = 'getEasyWords fulfilled';
+        // console.log('Easy fulfilled', action.payload);
+      })
+
+      .addCase(getEasyWords.rejected, (state, action) => {
         // console.log('rejected');
       });
   },
