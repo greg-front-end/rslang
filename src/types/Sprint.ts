@@ -1,4 +1,7 @@
+import { IWordsItem } from './IWordsItem';
+
 export type SprintWord = {
+  id:string,
   word: string,
   translate: string,
   random: string
@@ -6,10 +9,15 @@ export type SprintWord = {
 
 export type SprintState = {
   sprintWords: SprintWord[],
-  indicators: boolean[]
+  indicators: boolean[],
+  currectWrongWords: string[],
+  currectWords: IWordsItem[],
+  wrongWords: IWordsItem[],
+  timer:number
 }
 
 export type SprintCard = {
+  id:string,
   word: string,
   translate: string,
   random: string

@@ -6,7 +6,7 @@ import { RootState } from '../store/store';
 import { GameStatistics, StatisticsState } from '../types/Statistic';
 import { getValueLocalStorage } from '../utils/getValueLocalStorage';
 
-export const putUserStatistic = createAsyncThunk<StatisticsState, GameStatistics,
+export const putUserStatistic = createAsyncThunk<StatisticsState, StatisticsState,
   { rejectValue: string }>(
     'statistic/putUserStatistic',
     async (obj, { rejectWithValue }) => {
@@ -15,9 +15,9 @@ export const putUserStatistic = createAsyncThunk<StatisticsState, GameStatistics
       const token = JSON.parse(lsDataToken);
       try {
         const response = await axios.put(
-          `${URL}/users/${id}/statistics`,
+          `${URL}users/${id}/statistics`,
           {
-            obj,
+            ...obj,
           },
 
           {
