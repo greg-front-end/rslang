@@ -52,23 +52,23 @@ const textBookSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getCard.pending, (state, action) => {
-        console.log('pending');
+        // console.log('pending');
         state.loadStatus = 'pending';
       })
 
       .addCase(getCard.fulfilled, (state, action) => {
-        console.log(action.payload);
+        // console.log(action.payload);
 
         state.cards = action.payload;
-        console.log('getCard fulfilled');
+        // console.log('getCard fulfilled');
         state.loadStatus = 'fulfilled';
       })
 
       .addCase(getCard.rejected, (state, action) => {
-        console.log('rejected');
+        // console.log('rejected');
       })
       .addCase(getAgregatedCard.pending, (state, action) => {
-        console.log('pending');
+        // console.log('pending');
         state.loadStatus = 'pending';
       })
 
@@ -78,22 +78,22 @@ const textBookSlice = createSlice({
       })
 
       .addCase(getAgregatedCard.rejected, (state, action) => {
-        console.log('rejected');
+        // console.log('rejected');
       })
 
       .addCase(getHardWords.pending, (state, action) => {
-        console.log('pending');
+        // console.log('pending');
         state.loadStatus = 'pending';
       })
 
       .addCase(getHardWords.fulfilled, (state, action) => {
         state.hardWords = action.payload;
         state.loadStatus = 'fulfilled';
-        console.log('hard fulfilled', action.payload);
+        // console.log('hard fulfilled', action.payload);
       })
 
       .addCase(getHardWords.rejected, (state, action) => {
-        console.log('rejected');
+        // console.log('rejected');
       });
   },
 });

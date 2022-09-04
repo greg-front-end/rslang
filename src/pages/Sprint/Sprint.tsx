@@ -1,19 +1,17 @@
 import React, { useEffect } from 'react';
 
-import { getUserStatistic } from '../../api/getUserStatistic';
-import { putUserStatistic } from '../../api/putUserStatistic';
 import { ResultsTable } from '../../components/ResultsTable/ResultsTable';
-import { GamesStatisticsTable } from '../../components/statistics/GamesStatisticsTable/GamesStatisticsTable';
 import { Timer } from '../../components/Timer/Timer';
 import {
+  clearCurrectWrongWords,
   clearCurrentWords, clearWrongWords, decrementTimer,
   decrementTimerBeforeGame,
-  setCurrentWords, setSprintWords, setTimer, setTimerBeforeGame,
+  setInRow,
+  setSprintWords, setTimer, setTimerBeforeGame,
 } from '../../features/sprintSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import { StatisticsState } from '../../types/Statistic';
-import { isUserLogIn } from '../../utils/isUserLogIn';
+import { GamesName } from '../../types/GamesName';
 
 import { GameCard } from './GameCard';
 import { inRowCounter } from './inRowCounter';
@@ -30,38 +28,22 @@ export const Sprint = () => {
   const wrongWords = useAppSelector((state) => state.sprint.wrongWords);
   const timer = useAppSelector((state) => state.sprint.timer);
   const timerBeforeGame = useAppSelector((state) => state.sprint.timerBeforeGame);
-
-  const hh: StatisticsState = {
-    learnedWords: 15,
-    optional: {
-      ggg: {
-        audioCall: {
-          inRow: 10,
-          words: 10,
-          inAccuracy: 10,
-        },
-        sprint: {
-          inRow: 10,
-          words: 10,
-          inAccuracy: 0,
-        },
-      },
-    },
-  };
+  const inRow = useAppSelector((state) => state.sprint.inRow);
 
   useEffect(() => {
     dispatch(setTimerBeforeGame(4));
     dispatch(setTimer(10));
+    dispatch(clearCurrectWrongWords());
     dispatch(clearCurrentWords());
     dispatch(clearWrongWords());
     dispatch(setSprintWords(randomWords(cards)));
   }, [cards]);
 
-  // useEffect(() => {
-  //   if (sprintWords.length === 0) {
-  //     const inRow = inRowCounter(currectWrongWords);
-  //   }
-  // }, [sprintWords]);
+  useEffect(() => {
+    if (sprintWords.length === 0 || !timer) {
+      dispatch(setInRow(inRowCounter(currectWrongWords)));
+    }
+  }, [sprintWords, timer]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -97,7 +79,14 @@ export const Sprint = () => {
         />
       ) : <span />}
       {!timer || !sprintWords.length
-        ? (<ResultsTable right={currectWords} wrong={wrongWords} />)
+        ? (
+          <ResultsTable
+            right={currectWords}
+            wrong={wrongWords}
+            inRow={inRow}
+            game={GamesName.Sprint}
+          />
+        )
         : <span />}
     </div>
   );

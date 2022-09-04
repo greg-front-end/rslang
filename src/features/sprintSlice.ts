@@ -11,12 +11,18 @@ const initialState: SprintState = {
   wrongWords: [],
   timer: 10,
   timerBeforeGame: 4,
+  inRow: 0,
 };
 
 const sprintSlice = createSlice({
   name: 'sprint',
   initialState,
   reducers: {
+    setInRow: (state, action: PayloadAction<number>) => {
+      console.log('setInRow', action.payload);
+
+      state.inRow = action.payload;
+    },
     setTimer: (state, action: PayloadAction<number>) => {
       state.timer = action.payload;
     },
@@ -34,8 +40,11 @@ const sprintSlice = createSlice({
       state.sprintWords = state.sprintWords.filter((el) => el.word !== action.payload);
     },
 
-    setInRow: (state, action: PayloadAction<string>) => {
+    setCurrectWrongWords: (state, action: PayloadAction<string>) => {
       state.currectWrongWords = [...state.currectWrongWords, action.payload];
+    },
+    clearCurrectWrongWords: (state) => {
+      state.currectWrongWords = [];
     },
     setCurrentWords: (state, action: PayloadAction<IWordsItem>) => {
       state.currectWords = [...state.currectWords, action.payload];
@@ -61,8 +70,8 @@ const sprintSlice = createSlice({
 export const {
   setSprintWords, removeSprintWord, setIndicators,
   setTimer, decrementTimerBeforeGame, setInRow,
-  setCurrentWords, setWrongWords, decrementTimer,
-  clearCurrentWords, clearWrongWords, setTimerBeforeGame,
+  setCurrentWords, setWrongWords, decrementTimer, clearCurrectWrongWords,
+  clearCurrentWords, clearWrongWords, setTimerBeforeGame, setCurrectWrongWords,
 } = sprintSlice.actions;
 
 export default sprintSlice.reducer;

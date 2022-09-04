@@ -6,7 +6,7 @@ import { ReactComponent as ArrowUpIcon } from '../../assets/svg/arrow_up_icon.sv
 import { ReactComponent as LabelIcon } from '../../assets/svg/card_game_label.svg';
 import { ReactComponent as CorrectIcon } from '../../assets/svg/correct_indicator_icon.svg';
 import {
-  removeSprintWord, setCurrentWords, setIndicators, setInRow, setWrongWords,
+  removeSprintWord, setCurrectWrongWords, setCurrentWords, setIndicators, setInRow, setWrongWords,
 } from '../../features/sprintSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
@@ -30,10 +30,6 @@ export const GameCard: React.FC<SprintCard> = ({
     // eslint-disable-next-line no-underscore-dangle
     const card = cards.find((el) => (isUserLogIn() ? el._id === id : el.id === id));
 
-    console.log('cardsss', cards);
-    console.log(card);
-    console.log(id);
-
     if ((isCurrect && str === 'correct') || (!isCurrect && str === 'wrong')) {
       const index = indicators.findIndex((el) => el === false);
       if (index === -1) {
@@ -43,13 +39,11 @@ export const GameCard: React.FC<SprintCard> = ({
         arr[index] = true;
         dispatch(setIndicators(arr));
       }
-      dispatch(setInRow('1'));
+      dispatch(setCurrectWrongWords('1'));
       if (card) dispatch(setCurrentWords(card));
-      console.log('true');
     } else {
-      console.log('false');
       dispatch(setIndicators([false, false, false]));
-      dispatch(setInRow('0'));
+      dispatch(setCurrectWrongWords('0'));
       if (card) dispatch(setWrongWords(card));
     }
 
