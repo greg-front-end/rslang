@@ -21,7 +21,7 @@ const sprintSlice = createSlice({
       state.timer = action.payload;
     },
     setTimerBeforeGame: (state, action: PayloadAction<number>) => {
-      if (state.timerBeforeGame > 0) state.timerBeforeGame = action.payload;
+      state.timerBeforeGame = action.payload;
     },
     setSprintWords: (state, action: PayloadAction<SprintWord[]>) => {
       state.sprintWords = action.payload;
