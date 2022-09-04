@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(296.82deg, #2B2F48 0%, rgba(51, 62, 91, 0.83) 100%);
 }
 .login_wrapper {
@@ -30,11 +30,22 @@
 .form_label_password {
   margin-left: 60px;
 }
-@media (min-width: 1200px) {
-  .login_wrapper {
-    background-image: url('../../assets/img/login/login-bg.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+.login {
+  background-image: url('../../assets/img/login/login-bg.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
+}
+@media (max-width: 768px) {
+  .login {
+    background-size: auto;
+    background-image: url('../../assets/img/login/login_mobile-bg.png');
+  }
+  .form {
+    width: 100%;
+  }
+  .form_label_password,
+  .form_label_email {
+    margin-left: 0px;
   }
 }
