@@ -1,6 +1,8 @@
 /* eslint-disable no-underscore-dangle */
-import { ICreateWordOptions } from '../../../types/ICreateWordOptions';
+import { DifLvls, ICreateWordOptions } from '../../../types/ICreateWordOptions';
 import { IWordsItem } from '../../../types/IWordsItem';
+
+const defineDifficulty = (n: number) => (n + 1 >= 3 ? DifLvls.Easy : DifLvls.None);
 
 export const wordStatisticRight = (word: IWordsItem) => {
   let obj: ICreateWordOptions;
@@ -8,10 +10,11 @@ export const wordStatisticRight = (word: IWordsItem) => {
   if (word.userWord) {
     if (Object.hasOwn(word.userWord.optional, 'right')) {
       obj = {
-        difficulty: word.userWord.difficulty,
+        difficulty: defineDifficulty(word.userWord.optional.rightInRow),
         optional: {
           right: word.userWord.optional.right + 1,
           wrong: word.userWord.optional.wrong,
+          rightInRow: word.userWord.optional.rightInRow + 1,
         },
         wordId: word._id,
       };
@@ -24,6 +27,7 @@ export const wordStatisticRight = (word: IWordsItem) => {
         optional: {
           right: 1,
           wrong: 0,
+          rightInRow: 1,
         },
         wordId: word._id,
       };
@@ -34,6 +38,7 @@ export const wordStatisticRight = (word: IWordsItem) => {
       optional: {
         right: 1,
         wrong: 0,
+        rightInRow: 1,
       },
       wordId: word._id,
     };

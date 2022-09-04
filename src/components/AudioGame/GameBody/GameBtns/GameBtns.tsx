@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { nanoid } from '@reduxjs/toolkit';
 
 import {
   addRightAnswer, changeCounter, setInRow, setNextWord,
@@ -100,7 +101,7 @@ export const GameBtns = () => {
           i={i}
           getAnswer={defineID}
           isHide={isHide}
-          key={Date.now() + Math.random()}
+          key={nanoid()}
         />
       ))}
     </div>

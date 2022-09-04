@@ -23,6 +23,7 @@ const initialState: wordOptionState = {
     optional: {
       right: 0,
       wrong: 0,
+      rightInRow: 0,
     },
   },
 };

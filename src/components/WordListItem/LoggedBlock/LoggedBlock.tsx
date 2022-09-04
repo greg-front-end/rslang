@@ -39,6 +39,7 @@ export const LoggedBlock = ({ item, setOptions, setDelete }: ILoggedBlockProps) 
         optional: {
           right: 0,
           wrong: 0,
+          rightInRow: 0,
         },
         wordId: item._id,
       };

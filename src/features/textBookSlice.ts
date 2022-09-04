@@ -4,6 +4,7 @@ import { getAgregatedCard } from '../api/getAggregatedCard';
 import { getCard } from '../api/getCard';
 import { getEasyWords } from '../api/getEasyWords';
 import { getHardWords } from '../api/getHardWords';
+import { LoadStatus } from '../types/LoadStatus';
 import { TextBookState } from '../types/TextBook';
 import { getValueLocalStorage } from '../utils/getValueLocalStorage';
 import { setValueLocalStorage } from '../utils/setValueLocalStorage';
@@ -83,12 +84,12 @@ const textBookSlice = createSlice({
 
       .addCase(getHardWords.pending, (state, action) => {
         // console.log('pending');
-        state.loadStatus = 'pending';
+        state.loadStatus = LoadStatus.pending;
       })
 
       .addCase(getHardWords.fulfilled, (state, action) => {
         state.hardWords = action.payload;
-        state.loadStatus = 'fulfilled';
+        state.loadStatus = LoadStatus.fulfilled;
         // console.log('hard fulfilled', action.payload);
       })
 
@@ -98,12 +99,12 @@ const textBookSlice = createSlice({
 
       .addCase(getEasyWords.pending, (state, action) => {
         // console.log('pending');
-        state.loadStatus = 'pending';
+        state.loadStatus = LoadStatus.pending;
       })
 
       .addCase(getEasyWords.fulfilled, (state, action) => {
-        state.loadStatus = 'getEasyWords fulfilled';
-        // console.log('Easy fulfilled', action.payload);
+        state.loadStatus = LoadStatus.fulfilled;
+        state.easyWordsCount = action.payload;
       })
 
       .addCase(getEasyWords.rejected, (state, action) => {
