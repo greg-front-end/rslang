@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { nanoid } from '@reduxjs/toolkit';
 
 import { getAgregatedCard } from '../../api/getAggregatedCard';
 import { getCard } from '../../api/getCard';
@@ -8,10 +9,8 @@ import { Pagination } from '../../components/Pagination/Pagination';
 import { QuickStartGame } from '../../components/QuickStartGame/QuickStartGame';
 import { TextBookContext } from '../../components/TextBookContext/TextBookContext';
 import { WordListItem } from '../../components/WordListItem/WordListItem';
-import { setGroup, setPage } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import { getValueLocalStorage } from '../../utils/getValueLocalStorage';
 import { isUserLogIn } from '../../utils/isUserLogIn';
 
 import style from './TextBook.module.css';
@@ -43,7 +42,7 @@ export const TextBook: React.FC = () => {
             <QuickStartGame />
           </div>
           {(toggleHardWords ? hardWords : cards)
-            .map((item) => (<WordListItem key={item.id} item={item} />))}
+            .map((item) => (<WordListItem key={nanoid()} item={item} />))}
         </div>
       </div>
     </TextBookContext>

@@ -6,7 +6,9 @@ import { ResultsTable } from '../../components/ResultsTable/ResultsTable';
 import { GamesStatisticsTable } from '../../components/statistics/GamesStatisticsTable/GamesStatisticsTable';
 import { Timer } from '../../components/Timer/Timer';
 import {
-  clearCurrentWords, clearWrongWords, decrementTimer, setCurrentWords, setSprintWords, setTimer,
+  clearCurrentWords, clearWrongWords, decrementTimer,
+  decrementTimerBeforeGame,
+  setCurrentWords, setSprintWords, setTimer, setTimerBeforeGame,
 } from '../../features/sprintSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
@@ -27,6 +29,7 @@ export const Sprint = () => {
   const currectWords = useAppSelector((state) => state.sprint.currectWords);
   const wrongWords = useAppSelector((state) => state.sprint.wrongWords);
   const timer = useAppSelector((state) => state.sprint.timer);
+  const timerBeforeGame = useAppSelector((state) => state.sprint.timerBeforeGame);
 
   const hh: StatisticsState = {
     learnedWords: 15,
@@ -47,38 +50,45 @@ export const Sprint = () => {
   };
 
   useEffect(() => {
+    dispatch(setTimerBeforeGame(4));
     dispatch(setTimer(10));
     dispatch(clearCurrentWords());
     dispatch(clearWrongWords());
     dispatch(setSprintWords(randomWords(cards)));
   }, [cards]);
 
-  useEffect(() => {
-    if (sprintWords.length === 0) {
-      const inRow = inRowCounter(currectWrongWords);
-    }
-  }, [sprintWords]);
+  // useEffect(() => {
+  //   if (sprintWords.length === 0) {
+  //     const inRow = inRowCounter(currectWrongWords);
+  //   }
+  // }, [sprintWords]);
 
   useEffect(() => {
     setTimeout(() => {
-      if (timer > 0) {
+      if (timer > 0 && timerBeforeGame < 1 && sprintWords.length) {
         dispatch(decrementTimer(1));
-      } else {
-        dispatch(putUserStatistic(hh));
-        dispatch(getUserStatistic());
       }
     }, 1000);
-  }, [timer]);
+  }, [timer, timerBeforeGame]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (timerBeforeGame > 0) {
+        dispatch(decrementTimerBeforeGame(1));
+      }
+    }, 1000);
+  }, [timerBeforeGame]);
 
   return (
     <div className="container">
       <h1 className="title">Sprint</h1>
-      {timer ? (
-        <div className={style.wrapper_timer}>
-          <Timer timer={timer} timerTime={10} />
-        </div>
-      ) : <span />}
-      {timer && sprintWords[0] ? (
+      {timerBeforeGame
+        ? <div className={style.wrapper_timer}><Timer timer={timerBeforeGame} timerTime={4} /></div>
+        : <span />}
+      {!timerBeforeGame && timer && sprintWords.length
+        ? (<div className={style.wrapper_timer}><Timer timer={timer} timerTime={10} /></div>)
+        : <span />}
+      {!timerBeforeGame && timer && sprintWords[0] ? (
         <GameCard
           id={sprintWords[0].id}
           word={sprintWords[0].word}
@@ -86,10 +96,9 @@ export const Sprint = () => {
           random={sprintWords[0].random}
         />
       ) : <span />}
-      {/* {timer === 0 && (
-        <ResultsTable right={currectWords} wrong={wrongWords} />
-      )} */}
+      {!timer || !sprintWords.length
+        ? (<ResultsTable right={currectWords} wrong={wrongWords} />)
+        : <span />}
     </div>
-
   );
 };
