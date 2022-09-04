@@ -1,6 +1,15 @@
 .wrapper {
   display: flex;
-  column-gap: 20px;
+  gap: 20px;
+  justify-content: center;
   counter-reset: buttons;
   color: var(--color-darkblue);
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    flex-wrap: wrap;
+    margin-inline: auto;
+    max-width: 70%;
+  }
 }
