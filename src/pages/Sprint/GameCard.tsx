@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 
 import { ReactComponent as ArrowDownIcon } from '../../assets/svg/arrow_down_icon.svg';
@@ -49,6 +49,19 @@ export const GameCard: React.FC<SprintCard> = ({
 
     dispatch(removeSprintWord(word));
   }
+
+  const defineBtn = (e: KeyboardEvent) => {
+    if (e.key === '1') {
+      determine('correct');
+    }
+    if (e.key === '2') {
+      determine('wrong');
+    }
+  };
+  document.addEventListener('keydown', defineBtn);
+  useEffect(() => () => {
+    document.removeEventListener('keydown', defineBtn);
+  });
 
   return (
     <div className={style.wrapper}>
