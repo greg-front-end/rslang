@@ -3,6 +3,7 @@ import React from 'react';
 import { finishGame, setInitState } from '../../../features/audioChallengeSlice';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
+import { GamesName } from '../../../types/GamesName';
 import { ResultsTable } from '../../ResultsTable/ResultsTable';
 import { setStartGameState } from '../utils/setStartGameState';
 
@@ -14,7 +15,6 @@ export const Results = () => {
   const result = useAppSelector((state) => state.audioChallenge.rightWords);
   const wrongAnswers = words.filter((word) => !result.includes(word));
   const row = useAppSelector((state) => state.audioChallenge.inRow);
-  console.log('row in result', row);
 
   const newGame = () => {
     dispatch(setInitState(setStartGameState(words)));
@@ -23,7 +23,7 @@ export const Results = () => {
 
   return (
     <div className={styles.wrapper}>
-      <ResultsTable right={result} wrong={wrongAnswers} />
+      <ResultsTable right={result} wrong={wrongAnswers} inRow={row} game={GamesName.Audio} />
       <button
         type="button"
         className={`btn ${styles.btn_newGame}`}

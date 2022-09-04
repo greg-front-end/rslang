@@ -3,20 +3,31 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getUserStatistic } from '../api/getUserStatistic';
 import { putUserStatistic } from '../api/putUserStatistic';
 import { StatisticsState } from '../types/Statistic';
+import { dateKeyGenerator } from '../utils/dateKeyGenerator';
 
-export const initialState: StatisticsState = {
-  learnedWords: 0,
-  optional: {
+interface IInitialState {
+  statistic: StatisticsState
+}
 
+export const initialState: IInitialState = {
+  statistic: {
+    learnedWords: 0,
+    optional: {
+      [dateKeyGenerator()]: {
+        audioCall: {
+          inRow: 0,
+          words: 0,
+          inAccuracy: 0,
+        },
+        sprint: {
+          inRow: 0,
+          words: 0,
+          inAccuracy: 0,
+        },
+      },
+    },
   },
 };
-
-const date = new Date();
-const day = date.getDate();
-const month = date.getMonth() + 1; // getMonth() returns month from 0 to 11
-const year = date.getFullYear();
-
-const key = `${day}/${month}/${year}`;
 
 const statisticSlice = createSlice({
   name: 'statistic',
@@ -41,7 +52,7 @@ const statisticSlice = createSlice({
       })
 
       .addCase(getUserStatistic.fulfilled, (state, action) => {
-        console.log('fulfilled');
+        state.statistic = action.payload;
       })
 
       .addCase(getUserStatistic.rejected, (state, action) => {

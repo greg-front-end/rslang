@@ -86,9 +86,9 @@ export const Sprint = () => {
           random={sprintWords[0].random}
         />
       ) : <span />}
-      {timer === 0 && (
+      {/* {timer === 0 && (
         <ResultsTable right={currectWords} wrong={wrongWords} />
-      )}
+      )} */}
     </div>
 
   );
