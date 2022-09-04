@@ -71,11 +71,6 @@ export const GameBtns = () => {
   document.addEventListener('keydown', defineBtn);
 
   useEffect(() => {
-    console.log('ue row', rowCounter);
-    // dispatch(setInRow(rowCounter));
-  }, [finish]);
-
-  useEffect(() => {
     if (!finish) {
       if (words.length) {
         const gBtns = createBtnsArray(BTNS_COUNT, words, currentWord);
