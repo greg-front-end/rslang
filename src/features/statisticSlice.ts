@@ -21,12 +21,12 @@ const statisticSlice = createSlice({
   name: 'statistic',
   initialState,
   reducers: {},
-  // extraReducers: (builder) => {
-  //   builder
-  //     .addCase(putUserStatistic.fulfilled, (state, action) => {
-
-  //     });
-  // },
+  extraReducers: (builder) => {
+    builder
+      .addCase(putUserStatistic.fulfilled, (state, action) => {
+        console.log('putUserStatistic', action.payload);
+      });
+  },
 });
 
 export default statisticSlice.reducer;

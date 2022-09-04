@@ -1,4 +1,5 @@
 import React from 'react';
+import { nanoid } from '@reduxjs/toolkit';
 
 import { ReactComponent as ArrowDownIcon } from '../../assets/svg/arrow_down_icon.svg';
 import { ReactComponent as ArrowUpIcon } from '../../assets/svg/arrow_up_icon.svg';
@@ -58,7 +59,7 @@ export const GameCard: React.FC<SprintCard> = ({
   return (
     <div className={style.wrapper}>
       <div className={style.indicatiors_wrapper}>
-        {indicators.map((el) => (el ? <CorrectIcon fill="#C6AD4A" /> : <CorrectIcon />))}
+        {indicators.map((el) => (el ? <CorrectIcon key={nanoid()} fill="#C6AD4A" /> : <CorrectIcon key={nanoid()} />))}
       </div>
       <div className={style.description}>
         <span>Correct answers in row</span>
