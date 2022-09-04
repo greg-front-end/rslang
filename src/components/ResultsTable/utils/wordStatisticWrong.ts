@@ -6,7 +6,7 @@ export const wordStatisticWrong = (word: IWordsItem) => {
   let obj: ICreateWordOptions;
   let isNew = true;
   if (word.userWord) {
-    if (word.userWord.optional.right) {
+    if (Object.hasOwn(word.userWord.optional, 'right')) {
       obj = {
         difficulty: word.userWord.difficulty,
         optional: {
@@ -18,9 +18,19 @@ export const wordStatisticWrong = (word: IWordsItem) => {
       if (word.userWord.optional.right || word.userWord.optional.wrong) {
         isNew = false;
       }
+    } else {
+      obj = {
+        difficulty: word.userWord.difficulty,
+        optional: {
+          right: 0,
+          wrong: 1,
+        },
+        wordId: word._id,
+      };
     }
+  } else {
     obj = {
-      difficulty: word.userWord.difficulty,
+      difficulty: 'none',
       optional: {
         right: 0,
         wrong: 1,
@@ -28,13 +38,5 @@ export const wordStatisticWrong = (word: IWordsItem) => {
       wordId: word._id,
     };
   }
-  obj = {
-    difficulty: 'none',
-    optional: {
-      right: 0,
-      wrong: 1,
-    },
-    wordId: word._id,
-  };
   return { obj, isNew };
 };

@@ -30,7 +30,8 @@ export const ResultsTable = ({
   const statistic = useAppSelector((state) => state.statistic.statistic);
 
   const rightWordStatistics = right.map((word) => wordStatisticRight(word));
-  const wrongWordStatistics = right.map((word) => wordStatisticWrong(word));
+  console.log(rightWordStatistics);
+  const wrongWordStatistics = wrong.map((word) => wordStatisticWrong(word));
   const words = rightWordStatistics.filter(({ isNew }) => isNew).length
     + wrongWordStatistics.filter(({ isNew }) => isNew).length;
   const sendWordsStatistic = () => {
