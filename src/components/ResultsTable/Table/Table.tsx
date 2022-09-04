@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 
 import { AppDispatch } from '../../../store/store';
@@ -21,11 +21,11 @@ export const Table = ({ words, isRight }: ITableProps) => (
     </h4>
     {words.length
       ? words.map((el, i) => (
-        <div key={nanoid()}>
+        <Fragment key={nanoid()}>
           <div className={styles.counter}>{i + 1}</div>
           <div>{el.word}</div>
           <div>{el.wordTranslate}</div>
-        </div>
+        </Fragment>
       ))
       : <div>none</div>}
   </div>

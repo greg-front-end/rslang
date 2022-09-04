@@ -5,9 +5,7 @@ const KEY = dateKeyGenerator();
 
 export const getLearnedWords = (statistic: StatisticsState) => {
   if (statistic.optional[KEY]) {
-    const gameSt = statistic.optional[KEY];
-    const generalAccuracy = gameSt.audioCall.words + gameSt.sprint.words;
-    return generalAccuracy;
+    return statistic.optional[KEY].learnedWordsToday;
   }
   return 0;
 };
