@@ -9,8 +9,10 @@ import { Pagination } from '../../components/Pagination/Pagination';
 import { QuickStartGame } from '../../components/QuickStartGame/QuickStartGame';
 import { TextBookContext } from '../../components/TextBookContext/TextBookContext';
 import { WordListItem } from '../../components/WordListItem/WordListItem';
+import { setGroup, setPage } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { getValueLocalStorage } from '../../utils/getValueLocalStorage';
 import { isUserLogIn } from '../../utils/isUserLogIn';
 
 import style from './TextBook.module.css';
@@ -29,8 +31,11 @@ export const TextBook: React.FC = () => {
     : dispatch(getAgregatedCard()));
 
   useEffect(() => {
+    dispatch(setPage(Number(getValueLocalStorage('page'))));
+    dispatch(setGroup(Number(getValueLocalStorage('group'))));
     isUserLogIn() ? toggleDispatchWords() : dispatch(getCard());
   }, [page, group, toggleHardWords]);
+
   return (
     <TextBookContext value={{ audio, setAudio }}>
       <div className={isUserLogIn() ? 'container_login' : 'container'}>
