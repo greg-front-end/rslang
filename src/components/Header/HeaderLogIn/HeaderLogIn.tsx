@@ -56,10 +56,10 @@ export const HeaderLogIn = () => {
           </NavLink>
         </nav>
         <div className={style.auth_wrapper}>
-          <button type="button" className={`${style.settings_btn} ${style.auth_btn}`}>
+          <NavLink to="settings" className={`${style.settings_btn} ${style.auth_btn}`}>
             <SettiningsIcon />
             { isActiveSideBar && <span>Settings</span>}
-          </button>
+          </NavLink>
           <button
             type="button"
             className={`${style.settings_btn} ${style.auth_btn}`}
