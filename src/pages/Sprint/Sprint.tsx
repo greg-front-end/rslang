@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 
+import { getUserStatistic } from '../../api/getUserStatistic';
 import { putUserStatistic } from '../../api/putUserStatistic';
 import { ResultsTable } from '../../components/ResultsTable/ResultsTable';
 import { GamesStatisticsTable } from '../../components/statistics/GamesStatisticsTable/GamesStatisticsTable';
@@ -64,6 +65,7 @@ export const Sprint = () => {
         dispatch(decrementTimer(1));
       } else {
         dispatch(putUserStatistic(hh));
+        dispatch(getUserStatistic());
       }
     }, 1000);
   }, [timer]);
