@@ -14,7 +14,7 @@ export const Results = () => {
   const result = useAppSelector((state) => state.audioChallenge.rightWords);
   const wrongAnswers = words.filter((word) => !result.includes(word));
   const row = useAppSelector((state) => state.audioChallenge.inRow);
-  console.log(row);
+  console.log('row in result', row);
 
   const newGame = () => {
     dispatch(setInitState(setStartGameState(words)));

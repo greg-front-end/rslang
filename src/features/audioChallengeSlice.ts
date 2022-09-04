@@ -10,6 +10,7 @@ interface IState {
   finish: boolean;
   nextWord: boolean;
   inRow: number;
+  rowCounter: number;
 }
 
 interface IInitState {
@@ -24,19 +25,22 @@ interface IChangeWordState {
 const initialState: IState = {
   words: [],
   rightWords: [],
-  currentIndex: 0,
+  currentIndex: 10,
   currentWord: {} as IWordsItem,
   finish: false,
   nextWord: false,
   inRow: 0,
+  rowCounter: 0,
 };
 
 const audioChallengeSlice = createSlice({
   name: 'audioChallenge',
   initialState,
   reducers: {
+    changeCounter(state, action) {
+      state.rowCounter = action.payload;
+    },
     setInRow(state, action) {
-      console.log('row in slice', action.payload);
       if (action.payload > state.inRow) {
         state.inRow = action.payload;
       }
@@ -55,6 +59,7 @@ const audioChallengeSlice = createSlice({
       state.currentWord = action.payload.currentWord;
       state.currentIndex = initialState.currentIndex;
       state.rightWords = [];
+      state.finish = false;
     },
     changeWords(state, action: PayloadAction<IWordsItem[]>) {
       state.words = action.payload;
@@ -68,6 +73,6 @@ const audioChallengeSlice = createSlice({
 
 export const {
   changeWords, changeCurrentWord, finishGame, addRightAnswer,
-  setInitState, setNextWord, setInRow,
+  setInitState, setNextWord, setInRow, changeCounter,
 } = audioChallengeSlice.actions;
 export default audioChallengeSlice.reducer;

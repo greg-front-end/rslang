@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { nanoid } from '@reduxjs/toolkit';
 
 import { postWordOption } from '../../api/postWordOption';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
@@ -34,10 +35,12 @@ export const ResultsTable = ({ right, wrong }: IResultsTableProps) => {
         <Table
           words={right}
           isRight
+          key={nanoid()}
         />
         <Table
           words={wrong}
           isRight={false}
+          key={nanoid()}
         />
       </div>
     </div>
