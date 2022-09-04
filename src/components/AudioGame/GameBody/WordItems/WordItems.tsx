@@ -12,8 +12,6 @@ import styles from './WordItems.module.css';
 export const WordItems = () => {
   const item = useAppSelector((state) => state.audioChallenge.currentWord);
 
-  console.log('word items rr');
-
   return (
     <div className={styles.pre_wrapper}>
       {Object.keys(item).length && (

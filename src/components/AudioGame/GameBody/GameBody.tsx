@@ -2,7 +2,6 @@ import React from 'react';
 
 import { useAppSelector } from '../../../hooks/useAppSelector';
 
-import { Counter } from './Counter/Counter';
 import { GameBtns } from './GameBtns/GameBtns';
 import { NextBtn } from './GameBtns/NextBtn/NextBtn';
 import { ShowAnswerBtn } from './GameBtns/ShowAnswerBtn/ShowAnswerBtn';

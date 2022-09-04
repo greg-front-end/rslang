@@ -41,7 +41,6 @@ export const GameCard = ({
   }, [startLoading]);
 
   useEffect(() => {
-    console.log('gc useEf isLoad', isLoad);
     if (startLoading && isLoad === 'fulfilled') {
       navigate(path);
       setStartLoading(false);

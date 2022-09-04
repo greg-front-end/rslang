@@ -34,12 +34,10 @@ const wordOptionSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(postWordOption.pending, (state) => {
-        console.log('pending');
         state.successfulUpdate = 'pending';
       })
 
       .addCase(postWordOption.fulfilled, (state, action) => {
-        console.log('post', action.payload);
         state.difficultState = action.payload;
         state.successfulUpdate = 'fulfilled';
       })
@@ -54,8 +52,6 @@ const wordOptionSlice = createSlice({
       })
 
       .addCase(putWordOption.fulfilled, (state, action) => {
-        console.log('put', action.payload);
-
         state.difficultState = action.payload;
         state.successfulUpdate = 'fulfilled';
       })

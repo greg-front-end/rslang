@@ -1,4 +1,5 @@
 import React from 'react';
+import { nanoid } from '@reduxjs/toolkit';
 
 import { AppDispatch } from '../../../store/store';
 import { IWordsItem } from '../../../types/IWordsItem';
@@ -20,11 +21,11 @@ export const Table = ({ words, isRight }: ITableProps) => (
     </h4>
     {words.length
       ? words.map((el, i) => (
-        <>
-          <div className={styles.counter} key={Date.now()}>{i + 1}</div>
-          <div key={Date.now()}>{el.word}</div>
-          <div key={Date.now()}>{el.wordTranslate}</div>
-        </>
+        <div key={nanoid()}>
+          <div className={styles.counter}>{i + 1}</div>
+          <div>{el.word}</div>
+          <div>{el.wordTranslate}</div>
+        </div>
       ))
       : <div>none</div>}
   </div>
