@@ -10,6 +10,7 @@ import style from './style.module.css';
 export const QuickStartGame: FC = () => {
   const { isEasy } = useContext(TextBookCont);
   const location = useLocation();
+  setValueLocalStorage('currentPage', location.pathname);
 
   return (
 

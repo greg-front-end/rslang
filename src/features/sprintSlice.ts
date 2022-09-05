@@ -1,9 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { getAgregatedCardSprint } from '../api/getAggregatedCardSprint';
+import { getCardSprint } from '../api/getCardSprint';
 import { IWordsItem } from '../types/IWordsItem';
+import { LoadStatus } from '../types/LoadStatus';
 import { SprintState, SprintWord } from '../types/Sprint';
 
 const initialState: SprintState = {
+  buffer: [],
   sprintWords: [],
   indicators: [false, false, false],
   currectWrongWords: [],
@@ -12,6 +16,7 @@ const initialState: SprintState = {
   timer: 10,
   timerBeforeGame: 4,
   inRow: 0,
+  loadStatus: '',
 };
 
 const sprintSlice = createSlice({
@@ -28,7 +33,7 @@ const sprintSlice = createSlice({
       state.timerBeforeGame = action.payload;
     },
     setSprintWords: (state, action: PayloadAction<SprintWord[]>) => {
-      state.sprintWords = action.payload;
+      state.sprintWords = [...state.sprintWords, ...action.payload];
     },
 
     setIndicators: (state, action: PayloadAction<boolean[]>) => {
@@ -50,6 +55,9 @@ const sprintSlice = createSlice({
     clearCurrentWords: (state) => {
       state.currectWords = [];
     },
+    clearSprintWords: (state) => {
+      state.sprintWords = [];
+    },
     setWrongWords: (state, action: PayloadAction<IWordsItem>) => {
       state.wrongWords = [...state.wrongWords, action.payload];
     },
@@ -62,12 +70,42 @@ const sprintSlice = createSlice({
     decrementTimerBeforeGame: (state, action: PayloadAction<number>) => {
       if (state.timer > 0) state.timerBeforeGame -= action.payload;
     },
+    clearLoadStatus: (state) => {
+      state.loadStatus = '';
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getCardSprint.pending, (state, action) => {
+        state.loadStatus = LoadStatus.pending;
+      })
+
+      .addCase(getCardSprint.fulfilled, (state, action) => {
+        state.buffer = action.payload;
+        state.loadStatus = LoadStatus.fulfilled;
+      })
+
+      .addCase(getCardSprint.rejected, (state, action) => {
+        console.log('rejected');
+      })
+      .addCase(getAgregatedCardSprint.pending, (state, action) => {
+        state.loadStatus = LoadStatus.pending;
+      })
+
+      .addCase(getAgregatedCardSprint.fulfilled, (state, action) => {
+        state.buffer = action.payload;
+        state.loadStatus = LoadStatus.fulfilled;
+      })
+
+      .addCase(getAgregatedCardSprint.rejected, (state, action) => {
+        console.log('rejected');
+      });
   },
 });
 
 export const {
-  setSprintWords, removeSprintWord, setIndicators,
-  setTimer, decrementTimerBeforeGame, setInRow,
+  setSprintWords, removeSprintWord, setIndicators, clearSprintWords,
+  setTimer, decrementTimerBeforeGame, setInRow, clearLoadStatus,
   setCurrentWords, setWrongWords, decrementTimer, clearCurrectWrongWords,
   clearCurrentWords, clearWrongWords, setTimerBeforeGame, setCurrectWrongWords,
 } = sprintSlice.actions;
