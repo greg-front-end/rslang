@@ -98,7 +98,7 @@ const sprintSlice = createSlice({
       })
 
       .addCase(getAgregatedCardSprint.rejected, (state, action) => {
-        console.log('rejected');
+        // console.log('rejected');
       });
   },
 });
