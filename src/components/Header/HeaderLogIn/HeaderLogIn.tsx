@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { ReactComponent as TextBookIcon } from '../../../assets/svg/dictionary.svg';
 import { ReactComponent as GameControllerIcon } from '../../../assets/svg/game-controller.svg';
@@ -18,7 +18,9 @@ export const HeaderLogIn = () => {
   const activeLink = ({ isActive }: { isActive: boolean }) => (isActive ? `${style.link} ${style.active}` : style.link);
   const isActiveSideBar = useAppSelector((state) => state.sideBar.isActiveSideBar);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const handleLogOut = () => {
+    navigate('/log-in');
     dispatch(logOutUser());
   };
   return (
