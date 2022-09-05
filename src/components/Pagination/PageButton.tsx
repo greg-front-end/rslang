@@ -58,7 +58,6 @@ export const PageButton: React.FC<PageButton> = ({ el, index }) => {
       dispatch(setIncrement(false));
     }
   }
-  console.log(isEasy);
 
   return (
     <div>

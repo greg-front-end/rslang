@@ -12,6 +12,7 @@ import {
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { GamesName } from '../../types/GamesName';
+import { getValueLocalStorage } from '../../utils/getValueLocalStorage';
 
 import { GameCard } from './GameCard';
 import { inRowCounter } from './inRowCounter';
@@ -20,6 +21,7 @@ import { randomWords } from './RandomWords';
 import style from './Sprint.module.css';
 
 export const Sprint = () => {
+  const previousPage = JSON.parse(getValueLocalStorage('currentPage') as string);
   const dispatch = useAppDispatch();
   const cards = useAppSelector((state) => state.textBook.cards);
   const sprintWords = useAppSelector((state) => state.sprint.sprintWords);
@@ -36,12 +38,22 @@ export const Sprint = () => {
     dispatch(clearCurrectWrongWords());
     dispatch(clearCurrentWords());
     dispatch(clearWrongWords());
-    dispatch(setSprintWords(randomWords(cards)));
+    if (previousPage === '/textbook') {
+      const removeEasy = cards
+        .filter((el) => (el.userWord ? el.userWord.difficulty !== 'easy' : 0));
+      dispatch(setSprintWords(randomWords(removeEasy)));
+    } else {
+      dispatch(setSprintWords(randomWords(cards)));
+    }
   }, [cards]);
 
   useEffect(() => {
     if (sprintWords.length === 0 || !timer) {
       dispatch(setInRow(inRowCounter(currectWrongWords)));
+    }
+
+    if (sprintWords.length === 1) {
+      console.log('if (sprintWords.length === 1) ');
     }
   }, [sprintWords, timer]);
 

@@ -19,8 +19,6 @@ const sprintSlice = createSlice({
   initialState,
   reducers: {
     setInRow: (state, action: PayloadAction<number>) => {
-      console.log('setInRow', action.payload);
-
       state.inRow = action.payload;
     },
     setTimer: (state, action: PayloadAction<number>) => {
