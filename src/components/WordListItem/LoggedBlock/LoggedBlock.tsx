@@ -9,6 +9,7 @@ import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { ICreateWordOptions } from '../../../types/ICreateWordOptions';
 import { IWordsItem } from '../../../types/IWordsItem';
+import { LoadStatus } from '../../../types/LoadStatus';
 
 import { Statistic } from './Statistic/Statistic';
 
@@ -45,9 +46,11 @@ export const LoggedBlock = ({ item, setOptions, setDelete }: ILoggedBlockProps) 
       };
     setOptions(lvl);
     dispatch(postWordOption(options));
+    setClick(false);
   };
 
   const removeFromDifficult = () => {
+    setClick(true);
     const options: ICreateWordOptions = {
       ...item.userWord,
       difficulty: 'none',
@@ -57,13 +60,7 @@ export const LoggedBlock = ({ item, setOptions, setDelete }: ILoggedBlockProps) 
   };
 
   const clickHandler = (e: React.MouseEvent) => {
-    if (!toggleHardWords) {
-      setLvl(e.currentTarget.id);
-    } else {
-      console.log('click');
-
-      setDelete(true);
-    }
+    setLvl(e.currentTarget.id);
     setClick(true);
   };
 
@@ -73,9 +70,16 @@ export const LoggedBlock = ({ item, setOptions, setDelete }: ILoggedBlockProps) 
     }
   }, [click]);
 
+  // useEffect(() => {
+  //   if (click && successfulUpdate === 'fulfilled') {
+  //     toggleHardWords ? dispatch(getHardWords()) : dispatch(getAgregatedCard());
+  //     setClick(false);
+  //   }
+  // }, [successfulUpdate]);
+
   useEffect(() => {
-    if (click && successfulUpdate === 'fulfilled') {
-      toggleHardWords ? dispatch(getHardWords()) : dispatch(getAgregatedCard());
+    if (click && successfulUpdate === LoadStatus.fulfilled && toggleHardWords) {
+      dispatch(getHardWords());
       setClick(false);
     }
   }, [successfulUpdate]);
