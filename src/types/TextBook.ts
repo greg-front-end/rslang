@@ -12,3 +12,8 @@ export type TextBookState = {
   switchHardWords: boolean,
   easyWordsCount: number,
 }
+
+export type CardDifChange = {
+  id: string,
+  difficulty: string
+}
