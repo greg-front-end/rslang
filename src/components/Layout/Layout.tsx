@@ -16,20 +16,20 @@ export const Layout = () => {
   const isGamePage = () => gamesPage.includes(location.pathname);
   const isUserLoggined = useLogOutAfterTokenExp();
   let activeClass = '';
-  if (isActiveSideBar && !isUserLogIn()) {
+  if (isActiveSideBar && isUserLogIn()) {
     activeClass = 'main_wrapper_log_in header_active';
-  } else if (!isUserLogIn()) {
+  } else if (isUserLogIn()) {
     activeClass = 'main_wrapper_log_in';
   }
   return (
     <div className={activeClass}>
-      {!isUserLoggined ? <HeaderLogIn /> : <HeaderLogOut />}
+      {isUserLoggined ? <HeaderLogIn /> : <HeaderLogOut />}
       <main>
         <Outlet />
       </main>
       {
         !isGamePage()
-        && (!isUserLoggined ? <FooterLogIn /> : <FooterLogOut />)
+        && (isUserLoggined ? <FooterLogIn /> : <FooterLogOut />)
       }
     </div>
   );
