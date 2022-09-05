@@ -63,3 +63,8 @@
     padding: var(--pd30) 0;
   }
 }
+@media (min-width: 1440px) {
+  .footer {
+    max-width: 1270px;
+  }
+}
