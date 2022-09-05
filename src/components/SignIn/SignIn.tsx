@@ -4,6 +4,7 @@ import React, {
 import { useNavigate } from 'react-router-dom';
 
 import { loginUser } from '../../api/loginUser';
+import { IUserSettings, putUserSettings } from '../../api/putUserSettings';
 import { registerUser } from '../../api/registerUser';
 import { ReactComponent as EmailICon } from '../../assets/svg/auth/email.svg';
 import { ReactComponent as KeyIcon } from '../../assets/svg/auth/key.svg';
@@ -12,9 +13,13 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { ICreateUser } from '../../types/ICreateUser';
 
+import { LoadAvatar } from './LoadAvatar/LoadAvatar';
+import { saveAvatar } from './LoadAvatar/saveAvatar';
+
 import style from './style.module.css';
 
 export const SignIn = () => {
+  const [img, setImg] = useState('');
   const [formState, setFormState] = useState<ICreateUser>({
     name: '', email: '', password: '',
   });
@@ -40,6 +45,7 @@ export const SignIn = () => {
       };
       await dispatch(registerUser(formBody));
       await dispatch(loginUser({ email: formBody.email, password: formBody.password }));
+      saveAvatar(img);
       setFormState({
         name: '',
         email: '',
@@ -58,6 +64,7 @@ export const SignIn = () => {
     <div className={style.auth}>
       <div className="container">
         <div className={style.auth_wrapper}>
+          <LoadAvatar img={img} setImg={setImg} />
           <form className={style.form} onSubmit={handleSubmit}>
             <label className="form_label" htmlFor="name">
               <UserIcon className="form_input_icon" />

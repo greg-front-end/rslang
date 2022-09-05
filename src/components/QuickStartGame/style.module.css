@@ -17,3 +17,9 @@
 .link h4 {
   font-size: 14px;
 }
+
+.easy{
+  pointer-events: none;
+  opacity: 0.4;
+  text-decoration: line-through;
+}

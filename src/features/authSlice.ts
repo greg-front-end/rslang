@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getNewToken } from '../api/getNewToken';
 import { loadUser } from '../api/loadUser';
 import { loginUser } from '../api/loginUser';
+import { putUserSettings } from '../api/putUserSettings';
 import { registerUser } from '../api/registerUser';
 import { IAuthState } from '../types/IAuthState';
 import { ResponseStatus } from '../types/ResponseStatus';

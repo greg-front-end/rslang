@@ -4,7 +4,8 @@
   line-height: 36px;
   letter-spacing: 0em;
   text-align: left;
-  padding: 0 113px 0 33px;
+  width: 300px;
+  text-align: center;
 }
 
 .word_hide {
@@ -13,6 +14,6 @@
   line-height: 36px;
   letter-spacing: 0em;
   text-align: left;
-  padding: 0 113px 0 33px;
+  width: 300px;
   color: transparent;
 }

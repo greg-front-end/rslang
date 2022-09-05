@@ -2,7 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { getAgregatedCard } from '../api/getAggregatedCard';
 import { getCard } from '../api/getCard';
+import { getEasyWords } from '../api/getEasyWords';
 import { getHardWords } from '../api/getHardWords';
+import { LoadStatus } from '../types/LoadStatus';
 import { TextBookState } from '../types/TextBook';
 import { getValueLocalStorage } from '../utils/getValueLocalStorage';
 import { setValueLocalStorage } from '../utils/setValueLocalStorage';
@@ -17,6 +19,7 @@ const initialState: TextBookState = {
   decrement: false,
   loadStatus: '',
   switchHardWords: JSON.parse(getValueLocalStorage('SwitchHardWords')!) || false,
+  easyWordsCount: 0,
 };
 
 const textBookSlice = createSlice({
@@ -24,11 +27,9 @@ const textBookSlice = createSlice({
   initialState,
   reducers: {
     setGroup: (state, action: PayloadAction<number>) => {
-      setValueLocalStorage('group', action.payload);
       state.group = action.payload;
     },
     setPage: (state, action: PayloadAction<number>) => {
-      setValueLocalStorage('page', action.payload);
       state.page = action.payload;
     },
     setPageButtons: (state, action: PayloadAction<number[]>) => {
@@ -69,12 +70,12 @@ const textBookSlice = createSlice({
       })
       .addCase(getAgregatedCard.pending, (state, action) => {
         // console.log('pending');
-        state.loadStatus = 'pending';
+        state.loadStatus = LoadStatus.pending;
       })
 
       .addCase(getAgregatedCard.fulfilled, (state, action) => {
         state.cards = action.payload;
-        state.loadStatus = 'fulfilled';
+        state.loadStatus = LoadStatus.fulfilled;
       })
 
       .addCase(getAgregatedCard.rejected, (state, action) => {
@@ -83,16 +84,30 @@ const textBookSlice = createSlice({
 
       .addCase(getHardWords.pending, (state, action) => {
         // console.log('pending');
-        state.loadStatus = 'pending';
+        state.loadStatus = LoadStatus.pending;
       })
 
       .addCase(getHardWords.fulfilled, (state, action) => {
         state.hardWords = action.payload;
-        state.loadStatus = 'fulfilled';
+        state.loadStatus = LoadStatus.fulfilled;
         // console.log('hard fulfilled', action.payload);
       })
 
       .addCase(getHardWords.rejected, (state, action) => {
+        // console.log('rejected');
+      })
+
+      .addCase(getEasyWords.pending, (state, action) => {
+        // console.log('pending');
+        state.loadStatus = LoadStatus.pending;
+      })
+
+      .addCase(getEasyWords.fulfilled, (state, action) => {
+        state.loadStatus = LoadStatus.fulfilled;
+        state.easyWordsCount = action.payload;
+      })
+
+      .addCase(getEasyWords.rejected, (state, action) => {
         // console.log('rejected');
       });
   },

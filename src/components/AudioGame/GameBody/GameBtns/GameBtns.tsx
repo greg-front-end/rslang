@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { nanoid } from '@reduxjs/toolkit';
 
 import {
   addRightAnswer, changeCounter, setInRow, setNextWord,
@@ -71,11 +72,6 @@ export const GameBtns = () => {
   document.addEventListener('keydown', defineBtn);
 
   useEffect(() => {
-    console.log('ue row', rowCounter);
-    // dispatch(setInRow(rowCounter));
-  }, [finish]);
-
-  useEffect(() => {
     if (!finish) {
       if (words.length) {
         const gBtns = createBtnsArray(BTNS_COUNT, words, currentWord);
@@ -105,7 +101,7 @@ export const GameBtns = () => {
           i={i}
           getAnswer={defineID}
           isHide={isHide}
-          key={Date.now() + Math.random()}
+          key={nanoid()}
         />
       ))}
     </div>
