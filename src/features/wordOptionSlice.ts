@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { postWordOption } from '../api/postWordOption';
 import { putWordOption } from '../api/putWordOption';
 import { ICreateWordOptions, IWordOptional } from '../types/ICreateWordOptions';
+import { LoadStatus } from '../types/LoadStatus';
 
 interface wordOptionState {
   id: string;
@@ -35,12 +36,12 @@ const wordOptionSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(postWordOption.pending, (state) => {
-        state.successfulUpdate = 'pending';
+        state.successfulUpdate = LoadStatus.pending;
       })
 
       .addCase(postWordOption.fulfilled, (state, action) => {
         state.difficultState = action.payload;
-        state.successfulUpdate = 'fulfilled';
+        state.successfulUpdate = LoadStatus.fulfilled;
       })
 
       .addCase(postWordOption.rejected, (state, action) => {
@@ -49,12 +50,12 @@ const wordOptionSlice = createSlice({
 
       .addCase(putWordOption.pending, (state) => {
         console.log('pending');
-        state.successfulUpdate = 'pending';
+        state.successfulUpdate = LoadStatus.pending;
       })
 
       .addCase(putWordOption.fulfilled, (state, action) => {
         state.difficultState = action.payload;
-        state.successfulUpdate = 'fulfilled';
+        state.successfulUpdate = LoadStatus.fulfilled;
       })
 
       .addCase(putWordOption.rejected, (state, action) => {

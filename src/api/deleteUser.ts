@@ -6,15 +6,15 @@ import { ApiPath } from '../types/ApiPath';
 import { ICreateUserResponse } from '../types/ICreateUserResponse';
 import { getValueLocalStorage } from '../utils/getValueLocalStorage';
 
-export const loadUser = createAsyncThunk<ICreateUserResponse, undefined,
+export const deleteUser = createAsyncThunk<ICreateUserResponse, undefined,
   { rejectValue: string }
 >(
-  'auth/loadUser',
+  'auth/deleteUser',
   async (_, { rejectWithValue }) => {
     try {
       const token = JSON.parse(getValueLocalStorage('Token') as string);
       const id = JSON.parse(getValueLocalStorage('UserId') as string);
-      const response = await axios.get(`${URL}${ApiPath.Users}/${id}`, {
+      const response = await axios.delete(`${URL}${ApiPath.Users}/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           Accept: 'application/json',

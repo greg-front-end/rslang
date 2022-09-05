@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { deleteUser } from '../api/deleteUser';
 import { getNewToken } from '../api/getNewToken';
 import { loadUser } from '../api/loadUser';
 import { loginUser } from '../api/loginUser';
 import { putUserSettings } from '../api/putUserSettings';
 import { registerUser } from '../api/registerUser';
 import { IAuthState } from '../types/IAuthState';
+import { LoadStatus } from '../types/LoadStatus';
 import { ResponseStatus } from '../types/ResponseStatus';
 import { getValueLocalStorage } from '../utils/getValueLocalStorage';
 import { removeValueLocalStorage } from '../utils/removeValueLocalStorage';
@@ -21,6 +23,7 @@ const initialState: IAuthState = {
   loginStatus: '',
   loginError: '',
   userLoaded: false,
+  loadStatus: LoadStatus.rejected,
 };
 
 const authSlice = createSlice({
@@ -159,6 +162,35 @@ const authSlice = createSlice({
           };
         },
       );
+    builder
+      .addCase(loadUser.pending, (state) => {
+        console.log('pending');
+        state.loadStatus = LoadStatus.pending;
+      })
+
+      .addCase(loadUser.fulfilled, (state, action) => {
+        state.name = action.payload.name;
+        state.email = action.payload.email;
+        state.loadStatus = LoadStatus.fulfilled;
+      })
+
+      .addCase(loadUser.rejected, (state, action) => {
+        console.log(action.payload);
+      });
+
+    builder
+      .addCase(deleteUser.pending, (state) => {
+        console.log('pending');
+        state.loadStatus = LoadStatus.pending;
+      })
+
+      .addCase(deleteUser.fulfilled, (state, action) => {
+        console.log('deleteUser', action.payload);
+      })
+
+      .addCase(deleteUser.rejected, (state, action) => {
+        console.log(action.payload);
+      });
   },
 });
 

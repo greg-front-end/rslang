@@ -9,12 +9,12 @@ import { registerUser } from '../../api/registerUser';
 import { ReactComponent as EmailICon } from '../../assets/svg/auth/email.svg';
 import { ReactComponent as KeyIcon } from '../../assets/svg/auth/key.svg';
 import { ReactComponent as UserIcon } from '../../assets/svg/auth/user.svg';
+import { setAvatar } from '../../features/settingsSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { ICreateUser } from '../../types/ICreateUser';
 
 import { LoadAvatar } from './LoadAvatar/LoadAvatar';
-import { saveAvatar } from './LoadAvatar/saveAvatar';
 
 import style from './style.module.css';
 
@@ -45,7 +45,7 @@ export const SignIn = () => {
       };
       await dispatch(registerUser(formBody));
       await dispatch(loginUser({ email: formBody.email, password: formBody.password }));
-      saveAvatar(img);
+      await dispatch(setAvatar(img));
       setFormState({
         name: '',
         email: '',
