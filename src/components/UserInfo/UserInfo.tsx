@@ -5,8 +5,8 @@ import { getAvatarKey } from '../SignIn/LoadAvatar/saveAvatar';
 
 import style from './style.module.css';
 
-const img = localStorage.getItem(getAvatarKey())
-  ? JSON.parse(localStorage.getItem(getAvatarKey()) as string)
+const img = localStorage.getItem('avatar')
+  ? JSON.parse(localStorage.getItem('avatar') as string)
   : UserImg;
 
 export const UserInfo: FC = () => (
