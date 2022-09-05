@@ -39,9 +39,9 @@ export const Sprint = () => {
   const page = useAppSelector((state) => state.textBook.page);
   const buffer = useAppSelector((state) => state.sprint.buffer);
   const loadStatus = useAppSelector((state) => state.sprint.loadStatus);
-  const count = [];
 
   useEffect(() => {
+    console.log('useEffect');
     dispatch(clearSprintWords());
     dispatch(setTimerBeforeGame(4));
     dispatch(setTimer(10));
@@ -61,8 +61,7 @@ export const Sprint = () => {
   }, []);
 
   useEffect(() => {
-    if (loadStatus === LoadStatus.fulfilled && !count.length) {
-      count.push(1);
+    if (loadStatus === LoadStatus.fulfilled) {
       if (previousPage === '/textbook') {
         const removeEasy = buffer
           .filter((el) => (el.userWord ? el.userWord.difficulty !== 'easy' : 0));
