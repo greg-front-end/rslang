@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { getAgregatedCard } from '../../api/getAggregatedCard';
 import { getUserStatistic } from '../../api/getUserStatistic';

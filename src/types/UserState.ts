@@ -6,4 +6,5 @@ export type UserState = {
   page: 'page',
   group: 'group'
   SwitchHardWords: 'SwitchHardWords'
+  avatar: 'avatar'
 }
