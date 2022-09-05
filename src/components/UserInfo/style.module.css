@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: end;
   gap: var(--pd10);
-  width: 230px;
+  width: 240px;
   height: 150px;
   border-radius: var(--border-radius);
   background-color: var(--color-blue);
@@ -36,9 +36,8 @@
 .user_img img {
   object-fit: cover;
 }
-
-/* .plug {
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-} */
+@media (max-width: 1199px) {
+  .user {
+    width: 300px;
+  }
+}

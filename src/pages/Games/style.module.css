@@ -2,7 +2,7 @@
   min-height: 100vh;
   display: flex;
   margin-bottom: var(--pd50);
-  align-items: center;
+  padding-top: 150px;
 }
 .games_login {
   margin-top: var(--pd30);
@@ -10,10 +10,10 @@
 }
 .games_bg_decor {
   position: absolute;
-  right: 200px;
+  right: -50px;
   bottom: 0;
-  width: 500px;
-  height: 460px;
+  width: 450px;
+  height: 420px;
   background: url('../../assets/img/games/games_bg.png');
   background-repeat: no-repeat;
   background-size: contain;
@@ -36,13 +36,26 @@
 .title {
   margin-bottom: var(--pd90);
 }
-
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .games_cards {
     flex-wrap: wrap;
   }
   .games_cards_login {
-    flex-direction: column;
+    padding-top: 0;
+  }
+}
+@media (max-width: 1300px) {
+  .games_cards {
     justify-content: center;
+  }
+}
+@media (max-width: 800px) {
+  .games_cards_login {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 0;
+  }
+  .title {
+    margin-left: var(--pd30);
   }
 }

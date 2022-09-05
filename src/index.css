@@ -44,6 +44,7 @@
 .main_wrapper_log_in {
   position: relative;
   padding-inline: var(--pd10);
+  overflow: visible;
   left: 0px;
 }
 :is(:not(.main_wrapper_log_in)) .container {
@@ -214,6 +215,9 @@ body {
 @media (min-width: 1440px) {
   .container {
     padding-inline: var(--pd90);
+  }
+  .main_wrapper_log_in {
+    max-width: 1270px;
   }
 }
 

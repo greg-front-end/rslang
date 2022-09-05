@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
+import { getAgregatedCard } from '../../api/getAggregatedCard';
+import { getCard } from '../../api/getCard';
 import { ResultsTable } from '../../components/ResultsTable/ResultsTable';
 import { Timer } from '../../components/Timer/Timer';
 import {
@@ -9,9 +12,13 @@ import {
   setInRow,
   setSprintWords, setTimer, setTimerBeforeGame,
 } from '../../features/sprintSlice';
+import { setPage } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { GamesName } from '../../types/GamesName';
+import { LoadStatus } from '../../types/LoadStatus';
+import { getValueLocalStorage } from '../../utils/getValueLocalStorage';
+import { isUserLogIn } from '../../utils/isUserLogIn';
 
 import { GameCard } from './GameCard';
 import { inRowCounter } from './inRowCounter';
@@ -20,6 +27,7 @@ import { randomWords } from './RandomWords';
 import style from './Sprint.module.css';
 
 export const Sprint = () => {
+  const previousPage = JSON.parse(getValueLocalStorage('currentPage') as string);
   const dispatch = useAppDispatch();
   const cards = useAppSelector((state) => state.textBook.cards);
   const sprintWords = useAppSelector((state) => state.sprint.sprintWords);
@@ -29,6 +37,8 @@ export const Sprint = () => {
   const timer = useAppSelector((state) => state.sprint.timer);
   const timerBeforeGame = useAppSelector((state) => state.sprint.timerBeforeGame);
   const inRow = useAppSelector((state) => state.sprint.inRow);
+  const page = useAppSelector((state) => state.textBook.page);
+  const loadStatus = useAppSelector((state) => state.textBook.loadStatus);
 
   useEffect(() => {
     dispatch(setTimerBeforeGame(4));
@@ -36,12 +46,31 @@ export const Sprint = () => {
     dispatch(clearCurrectWrongWords());
     dispatch(clearCurrentWords());
     dispatch(clearWrongWords());
-    dispatch(setSprintWords(randomWords(cards)));
-  }, [cards]);
+    if (previousPage === '/textbook') {
+      const removeEasy = cards
+        .filter((el) => (el.userWord ? el.userWord.difficulty !== 'easy' : 0));
+      dispatch(setSprintWords(randomWords(removeEasy)));
+    } else {
+      dispatch(setSprintWords(randomWords(cards)));
+    }
+  }, []);
 
   useEffect(() => {
     if (sprintWords.length === 0 || !timer) {
       dispatch(setInRow(inRowCounter(currectWrongWords)));
+    }
+
+    if (sprintWords.length === 1) {
+      if (page >= 1) {
+        dispatch(setPage(page - 1));
+      }
+
+      isUserLogIn() ? dispatch(getAgregatedCard()) : dispatch(getCard());
+    }
+
+    if ((!sprintWords.length || sprintWords.length === 1) && loadStatus === LoadStatus.fulfilled) {
+      console.log('if (!sprintWords.length && loadStatus === LoadStatus.fulfilled)');
+      dispatch(setSprintWords(randomWords(cards)));
     }
   }, [sprintWords, timer]);
 

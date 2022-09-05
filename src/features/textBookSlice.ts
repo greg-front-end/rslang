@@ -4,8 +4,9 @@ import { getAgregatedCard } from '../api/getAggregatedCard';
 import { getCard } from '../api/getCard';
 import { getEasyWords } from '../api/getEasyWords';
 import { getHardWords } from '../api/getHardWords';
+import { IWordsItem } from '../types/IWordsItem';
 import { LoadStatus } from '../types/LoadStatus';
-import { TextBookState } from '../types/TextBook';
+import { CardDifChange, TextBookState } from '../types/TextBook';
 import { getValueLocalStorage } from '../utils/getValueLocalStorage';
 import { setValueLocalStorage } from '../utils/setValueLocalStorage';
 
@@ -22,10 +23,35 @@ const initialState: TextBookState = {
   easyWordsCount: 0,
 };
 
+const fillElement = (el: IWordsItem, diff: string) => {
+  const word = el;
+  if (Object.hasOwn(word, 'userWord')) {
+    word.userWord.difficulty = diff;
+  } else {
+    word.userWord = {
+      difficulty: diff,
+      optional: {
+        right: 0,
+        wrong: 0,
+        rightInRow: 0,
+      },
+    };
+  }
+  return word;
+};
+
 const textBookSlice = createSlice({
   name: 'textBookS',
   initialState,
   reducers: {
+
+    filterCard: (state, action: PayloadAction<CardDifChange>) => {
+      // eslint-disable-next-line no-underscore-dangle
+      const index = state.cards.findIndex((el) => el._id === action.payload.id);
+      state.cards = state.cards
+        .map((el, i) => (i === index ? fillElement(el, action.payload.difficulty) : el));
+    },
+
     setGroup: (state, action: PayloadAction<number>) => {
       state.group = action.payload;
     },
@@ -43,7 +69,6 @@ const textBookSlice = createSlice({
     },
     clearHardWords: (state) => {
       state.hardWords = [];
-      console.log('clearHardWords');
     },
     toggleHardWords(state, action) {
       setValueLocalStorage('SwitchHardWords', action.payload);
@@ -53,16 +78,12 @@ const textBookSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getCard.pending, (state, action) => {
-        // console.log('pending');
-        state.loadStatus = 'pending';
+        state.loadStatus = LoadStatus.pending;
       })
 
       .addCase(getCard.fulfilled, (state, action) => {
-        // console.log(action.payload);
-
         state.cards = action.payload;
-        // console.log('getCard fulfilled');
-        state.loadStatus = 'fulfilled';
+        state.loadStatus = LoadStatus.fulfilled;
       })
 
       .addCase(getCard.rejected, (state, action) => {
@@ -115,6 +136,6 @@ const textBookSlice = createSlice({
 
 export const {
   setGroup, setPage, setPageButtons, setIncrement, setDecrement,
-  clearHardWords, toggleHardWords,
+  clearHardWords, toggleHardWords, filterCard,
 } = textBookSlice.actions;
 export default textBookSlice.reducer;

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { getHardWords } from '../../../api/getHardWords';
 import { postWordOption } from '../../../api/postWordOption';
 import { putWordOption } from '../../../api/putWordOption';
+import { filterCard } from '../../../features/textBookSlice';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { ICreateWordOptions } from '../../../types/ICreateWordOptions';
@@ -42,8 +43,11 @@ export const LoggedBlock = ({ item, setOptions }: ILoggedBlockProps) => {
         },
         wordId: item._id,
       };
-    setOptions(lvl);
     dispatch(postWordOption(options));
+    dispatch(filterCard({
+      id: item._id,
+      difficulty: lvl,
+    }));
     setClick(false);
   };
 
