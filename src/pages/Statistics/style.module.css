@@ -1,12 +1,12 @@
 .statistics_wrapper {
   display: flex;
-  gap: var(--pd30);
-  max-width: 800px;
+  gap: var(--pd40);
+  max-width: 1200px;
   position: relative;
 }
 .user {
   position: absolute;
-  right: -250px;
+  right: 0px;
 }
 .title_wrapper {
   display: flex;
@@ -24,7 +24,7 @@
   flex-direction: column;
   justify-content: space-between;
   gap: var(--pd20);
-  max-width: 220px;
+  width: 260px;
 }
 .game_wrapper {
   display: flex;
@@ -33,4 +33,64 @@
   background-color: var(--color-blue);
   border-radius: var(--border-radius);
   padding: var(--pd10) var(--pd20);
+}
+@media (max-width: 1439px) {
+  .statistics_wrapper {
+    max-width: 900px;
+    flex-wrap: wrap;
+  }
+  .user {
+    right: -240px;
+  }
+}
+@media (max-width: 1320px) {
+  .statistics_wrapper {
+    max-width: 800px;
+    flex-wrap: wrap;
+  }
+  .user {
+    right: -40px;
+  }
+}
+@media (max-width: 1200px) {
+  .statistics_wrapper {
+    max-width: 800px;
+    flex-wrap: wrap;
+    gap: var(--pd20);
+  }
+  .user {
+    right: -60px;
+  }
+}
+@media (max-width: 1024px) {
+  .statistics_wrapper {
+    max-width: 400px;
+    flex-wrap: wrap;
+    gap: var(--pd20);
+  }
+  .user {
+    right: -190px;
+  }
+}
+@media (max-width: 768px) {
+  .statistics_wrapper {
+    max-width: 560px;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--pd20);
+    margin-inline: auto;
+  }
+  .game_wrapper,
+  .words_module {
+    width: 100%;
+    max-width: 560px;
+  }
+  .title_wrapper {
+    justify-content: end;
+  }
+  .user {
+    top: var(--pd90);
+    right: 50%;
+    transform: translateX(50%);
+  }
 }
