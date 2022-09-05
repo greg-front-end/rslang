@@ -6,6 +6,7 @@
   margin-right: 50px;
   column-gap: 9px;
   align-items: flex-end;
+  position: relative;
 }
 
 .img__wrapper {
@@ -25,9 +26,6 @@
   cursor: pointer;
   width: 212px;
   height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .img {
@@ -40,4 +38,29 @@
 
 .plug {
   height: 50px;
+}
+
+.upload_avatar {
+  width: max-content;
+}
+
+.loader_wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 50%;
+  z-index: 3;
+  background-color: var(--color-blue);
+  border-radius: 5px;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.avatar_section {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  width: max-content;
 }
