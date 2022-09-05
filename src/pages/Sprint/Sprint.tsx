@@ -41,7 +41,6 @@ export const Sprint = () => {
   const loadStatus = useAppSelector((state) => state.sprint.loadStatus);
 
   useEffect(() => {
-    console.log('useEffect');
     dispatch(clearSprintWords());
     dispatch(setTimerBeforeGame(4));
     dispatch(setTimer(10));
@@ -65,7 +64,6 @@ export const Sprint = () => {
       if (previousPage === '/textbook') {
         const removeEasy = buffer
           .filter((el) => (el.userWord ? el.userWord.difficulty !== 'easy' : 0));
-        console.log('(loadStatus === LoadStatus.fulfilled)');
         dispatch(setSprintWords(randomWords(removeEasy)));
       } else {
         dispatch(setSprintWords(randomWords(buffer)));

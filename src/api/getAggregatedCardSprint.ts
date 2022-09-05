@@ -8,7 +8,7 @@ import { getValueLocalStorage } from '../utils/getValueLocalStorage';
 
 export const getAgregatedCardSprint = createAsyncThunk<IWordsItem[],
   number, { rejectValue: string }>(
-    'textBookS/getAggregatedCard',
+    'sprint/getAggregatedCardSprint',
     async (num, { rejectWithValue, getState }) => {
       const state: RootState = <RootState>getState();
       const id = JSON.parse(getValueLocalStorage('UserId') as string);
