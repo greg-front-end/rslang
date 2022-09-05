@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 
-import { getAgregatedCard } from '../../../api/getAggregatedCard';
 import { getHardWords } from '../../../api/getHardWords';
 import { postWordOption } from '../../../api/postWordOption';
 import { putWordOption } from '../../../api/putWordOption';
@@ -18,10 +17,9 @@ import styles from './LoggedBlock.module.css';
 interface ILoggedBlockProps {
   item: IWordsItem;
   setOptions: React.Dispatch<React.SetStateAction<string>>;
-  setDelete: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const LoggedBlock = ({ item, setOptions, setDelete }: ILoggedBlockProps) => {
+export const LoggedBlock = ({ item, setOptions }: ILoggedBlockProps) => {
   const [click, setClick] = useState(false);
   const [lvl, setLvl] = useState('');
   const dispatch = useAppDispatch();

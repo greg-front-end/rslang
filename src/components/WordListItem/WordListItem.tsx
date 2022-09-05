@@ -30,7 +30,6 @@ export const WordListItem = ({ item }: IWordsItemProps) => {
   const cards = useAppSelector((state) => state.textBook.cards);
   const hardWords = useAppSelector((state) => state.textBook.hardWords);
   const [difficulty, setDifficulty] = useState(dif);
-  const [deleteCard, setDeleteCard] = useState(false);
 
   const isLogged = isUserLogIn();
 
@@ -66,7 +65,6 @@ export const WordListItem = ({ item }: IWordsItemProps) => {
           <LoggedBlock
             item={item}
             setOptions={setDifficulty}
-            setDelete={setDeleteCard}
           />
         )}
       </div>
