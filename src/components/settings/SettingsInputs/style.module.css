@@ -1,17 +1,63 @@
 .label {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   align-items: center;
+  height: 50px;
 }
 
 .btn {
-  padding: 10px 20px;
-  width: 190px;
   color: var(--color-white);
+  height: 50px;
+  width: 62px;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .field_name {
   display: block;
   padding-left: 50px;
-  width: 184px;
+  width: 230px;
+}
+
+.name_block {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+}
+.name {
+  font-size: 30px;
+  font-weight: 700;
+  width: max-content;
+  padding: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+@media (max-width: 500px) {
+  .line {
+    display: none;
+  }
+  .field_name {
+    padding-left: 50px;
+    width: max-content;
+  }
+  .name {
+    font-size: 30px;
+    font-weight: 700;
+    width: max-content;
+    padding: 0;
+  }
+  .btn {
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%);
+  }
+  .input {
+    width: 200px !important;
+  }
 }

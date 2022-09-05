@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { deleteUser } from '../../api/deleteUser';
 import { loadUser } from '../../api/loadUser';
-import Img from '../../assets/img/settings/img.svg';
+import Img from '../../assets/svg/settings/img.svg';
 import { AvatarSettings } from '../../components/settings/AvatarSettings/AvatarSettings';
 import { SettingsInputs } from '../../components/settings/SettingsInputs/SettingsInputs';
 import { logOutUser } from '../../features/authSlice';

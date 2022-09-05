@@ -17,6 +17,7 @@
   padding: 50px;
   display: flex;
   column-gap: 50px;
+  justify-content: space-between;
   position: relative;
 }
 
@@ -53,7 +54,6 @@
 }
 
 .btn_delete {
-  width: 50%;
   align-self: flex-end;
 }
 
@@ -72,8 +72,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: flex-end;
   width: 100%;
   row-gap: 20px;
+  position: relative;
+  width: max-content;
 }
 
 .pic {
@@ -81,4 +84,33 @@
   bottom: calc(100% - 40px);
   left: 50%;
   transform: translate(-50%);
+}
+
+@media (max-width: 1024px) {
+  .card {
+    flex-direction: column-reverse;
+    align-items: center;
+    row-gap: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 30px 10px;
+  }
+  .wrapper {
+  margin-top: 100px;
+  padding: 0 10px;
+  position: relative;
+
+  }
+  .wrapper_bottom {
+    padding-top: 300px;
+  }
+}
+
+@media (max-width: 500px) {
+ .userInfo_wrapper {
+    align-items: center;
+  }
 }
