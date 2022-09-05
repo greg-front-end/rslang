@@ -44,7 +44,8 @@
 }
 .main_wrapper_log_in {
   position: relative;
-  left: 150px;
+  padding-inline: var(--pd10);
+  left: 0px;
 }
 :is(:not(.main_wrapper_log_in)) .container {
   max-width: 1440px;
@@ -191,9 +192,13 @@ body {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .container {
     padding-inline: var(--pd30);
+  }
+  .main_wrapper_log_in {
+    left: 150px;
+    padding-inline: 0;
   }
 }
 @media (min-width: 1440px) {

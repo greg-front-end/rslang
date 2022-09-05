@@ -3,6 +3,7 @@ import React, { createContext, useState } from 'react';
 interface IValueProps {
   audio: HTMLAudioElement;
   setAudio: React.Dispatch<React.SetStateAction<HTMLAudioElement>>;
+  isEasy: boolean
 }
 
 interface ITextBookContextProps {
