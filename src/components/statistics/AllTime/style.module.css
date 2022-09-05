@@ -1,11 +1,11 @@
 .all_time {
   margin: var(--pd30) 0;
-  max-width: 800px;
+  max-width: 1200px;
   position: relative;
 }
 .quick_start_game {
   position: absolute;
-  right: -250px;
+  right: 0px;
   top: 0px;
 }
 .title_date_wrapper {
@@ -33,7 +33,7 @@
 }
 .d3_wrapper {
   display: flex;
-  gap: var(--pd30);
+  gap: var(--pd40);
   margin: var(--pd20) 0;
 }
 .d3_learned_words,
@@ -42,7 +42,7 @@
   justify-content: center;
   align-items: center;
   height: 234px;
-  width: 380px;;
+  width: 413px;;
   background-color: var(--color-blue);
   border-radius: var(--border-radius);
 }

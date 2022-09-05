@@ -23,7 +23,7 @@ export const RouteApp = () => {
         element={<Layout />}
       >
         {
-          isUserLoggined
+          !isUserLoggined
 
             ? (
               <Route
@@ -56,7 +56,7 @@ export const RouteApp = () => {
         />
         <Route
           path="about"
-          element={isUserLoggined ? <About /> : <Main />}
+          element={!isUserLoggined ? <About /> : <Main />}
         />
         <Route
           path="log-in"
