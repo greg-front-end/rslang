@@ -1,0 +1,76 @@
+.wrapper {
+  margin-top: var(--pd30);
+  position: relative;
+}
+
+.wrapper_bottom {
+  display: flex;
+  align-items: center;
+  display: flex;
+  max-width: 1260px;
+  padding-top: var(--pd90);
+}
+
+.card {
+  width: 100%;
+  max-width: 950px;
+  padding: 50px;
+  display: flex;
+  column-gap: 50px;
+}
+
+.avatar_wrapper {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+  background-color: var(--color-bright-yellow);
+}
+
+.avatar {
+  height: 100%;
+}
+
+.upload_avatar {
+  position: relative;
+  width: max-content;
+}
+
+.loader_wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn {
+  padding: 20px 30px;
+  color: var(--color-bright-yellow);
+}
+
+.btn_delete {
+  width: 50%;
+  align-self: flex-end;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.avatar_section {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  width: max-content;
+}
+
+.userInfo_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  row-gap: 20px;
+}
