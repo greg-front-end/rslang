@@ -4,7 +4,7 @@
   justify-content: center;
   gap: var(--pd10);
   background-color: var(--color-blue);
-  padding: var(--pd10) var(--pd20);
+  padding: var(--pd20) var(--pd20) var(--pd10);
   border-radius: var(--border-radius);
 }
 .title {
@@ -42,4 +42,10 @@
   font-weight: 700;
   font-size: 48px;
   color: var(--color-bright-yellow);
+}
+@media (max-width: 768px) {
+  .accuracy {
+    margin-top: 280px;
+    justify-content: space-evenly;
+  }
 }
