@@ -70,12 +70,12 @@ const textBookSlice = createSlice({
       })
       .addCase(getAgregatedCard.pending, (state, action) => {
         // console.log('pending');
-        state.loadStatus = 'pending';
+        state.loadStatus = LoadStatus.pending;
       })
 
       .addCase(getAgregatedCard.fulfilled, (state, action) => {
         state.cards = action.payload;
-        state.loadStatus = 'fulfilled';
+        state.loadStatus = LoadStatus.fulfilled;
       })
 
       .addCase(getAgregatedCard.rejected, (state, action) => {

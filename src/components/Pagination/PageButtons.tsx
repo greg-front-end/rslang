@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 
 import { useAppSelector } from '../../hooks/useAppSelector';
@@ -12,9 +12,11 @@ export const PageButtons: React.FC = () => {
 
   return (
     <div className={style.pageButtonsContainer}>
-      {pageButtons.map((el, index) => (
-        <PageButton key={nanoid()} el={el} index={index} />
-      ))}
+      {
+        pageButtons.map((el, index) => (
+          <PageButton key={nanoid()} el={el} index={index} />
+        ))
+      }
     </div>
 
   );
