@@ -39,7 +39,6 @@ export const Sprint = () => {
   const page = useAppSelector((state) => state.textBook.page);
   const buffer = useAppSelector((state) => state.sprint.buffer);
   const loadStatus = useAppSelector((state) => state.sprint.loadStatus);
-  const count = [];
 
   useEffect(() => {
     dispatch(clearSprintWords());
@@ -61,12 +60,10 @@ export const Sprint = () => {
   }, []);
 
   useEffect(() => {
-    if (loadStatus === LoadStatus.fulfilled && !count.length) {
-      count.push(1);
+    if (loadStatus === LoadStatus.fulfilled) {
       if (previousPage === '/textbook') {
         const removeEasy = buffer
           .filter((el) => (el.userWord ? el.userWord.difficulty !== 'easy' : 0));
-        console.log('(loadStatus === LoadStatus.fulfilled)');
         dispatch(setSprintWords(randomWords(removeEasy)));
       } else {
         dispatch(setSprintWords(randomWords(buffer)));

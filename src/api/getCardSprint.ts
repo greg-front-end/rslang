@@ -6,7 +6,7 @@ import { RootState } from '../store/store';
 import { IWordsItem } from '../types/IWordsItem';
 
 export const getCardSprint = createAsyncThunk<IWordsItem[], number, { rejectValue: string }>(
-  'textBookS/getCard',
+  'sprint/getCardSprint',
   async (num, { rejectWithValue, getState }) => {
     const state: RootState = <RootState>getState();
     const res = await axios.get(
