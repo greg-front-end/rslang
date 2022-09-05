@@ -15,10 +15,11 @@ interface IWordsItemProps {
 
 export const Word = ({ item }: IWordsItemProps) => {
   const group = useAppSelector((state) => state.textBook.group);
+  const hard = useAppSelector((state) => state.textBook.switchHardWords);
   return (
     <div className={styles.title__wrapper}>
       <div>
-        <h4 className={`${styles.title} ${getColor(group)}`}>
+        <h4 className={`${styles.title} ${getColor(hard ? -1 : group)}`}>
           {item.word}
           <span className={styles.transcription}>{item.transcription}</span>
         </h4>
