@@ -5,6 +5,7 @@ export const getColor = (group: number) => {
     case 2: return 'B1';
     case 3: return 'B2';
     case 4: return 'C1';
-    default: return 'C2';
+    case 5: return 'C2';
+    default: return 'hard_group';
   }
 };
