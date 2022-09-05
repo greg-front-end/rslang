@@ -6,6 +6,7 @@ import { loadUser } from '../api/loadUser';
 import { loginUser } from '../api/loginUser';
 import { putUserSettings } from '../api/putUserSettings';
 import { registerUser } from '../api/registerUser';
+import { updateUser } from '../api/updateUser';
 import { IAuthState } from '../types/IAuthState';
 import { LoadStatus } from '../types/LoadStatus';
 import { ResponseStatus } from '../types/ResponseStatus';
@@ -190,6 +191,21 @@ const authSlice = createSlice({
 
       .addCase(deleteUser.rejected, (state, action) => {
         console.log(action.payload);
+      });
+
+    builder
+      .addCase(updateUser.pending, (state) => {
+        console.log('pending');
+        state.loadStatus = LoadStatus.pending;
+      })
+
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.email = action.payload.email;
+        state.loadStatus = LoadStatus.fulfilled;
+      })
+
+      .addCase(updateUser.rejected, (state, action) => {
+        console.log('rejected');
       });
   },
 });

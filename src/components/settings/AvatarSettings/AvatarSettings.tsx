@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Avatar from 'react-avatar-edit';
 
-import Plug from '../../assets/svg/avatar-plug.svg';
-import { getAvatar, setAvatar } from '../../features/settingsSlice';
-import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { useAppSelector } from '../../hooks/useAppSelector';
+import Plug from '../../../assets/svg/avatar-plug.svg';
+import { getAvatar, setAvatar } from '../../../features/settingsSlice';
+import { useAppDispatch } from '../../../hooks/useAppDispatch';
+import { useAppSelector } from '../../../hooks/useAppSelector';
 
 import style from './style.module.css';
 
