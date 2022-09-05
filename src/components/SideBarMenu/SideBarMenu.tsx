@@ -16,7 +16,7 @@ export const SideBarMenu = () => {
   };
   return (
     <button
-      className={isUserLogIn() ? style.menu_btn : style.menu_btn_log_out}
+      className={!isUserLogIn() ? style.menu_btn : style.menu_btn_log_out}
       type="button"
       onClick={handleMenu}
     >
