@@ -1,3 +1,5 @@
+import { LoadStatus } from './LoadStatus';
+
 export interface IAuthState {
   token: string | null;
   name: string;
@@ -8,4 +10,5 @@ export interface IAuthState {
   loginStatus: string,
   loginError: string,
   userLoaded: boolean;
+  loadStatus: LoadStatus;
 }

@@ -7,7 +7,9 @@ import { ICreateWordOptions } from '../types/ICreateWordOptions';
 import { getValueLocalStorage } from '../utils/getValueLocalStorage';
 
 interface IUserSettingsOptional {
-  avatar: string;
+  [key: string]: {
+    avatar: string;
+  }
 }
 
 export interface IUserSettings {
@@ -18,7 +20,7 @@ export interface IUserSettings {
 export const putUserSettings = createAsyncThunk<string, IUserSettings,
   { rejectValue: string }
 >(
-  'auth/putUserSettings',
+  'settingsSlice/putUserSettings',
   async (data, { rejectWithValue }) => {
     try {
       const lsDataToken = getValueLocalStorage('Token')!;

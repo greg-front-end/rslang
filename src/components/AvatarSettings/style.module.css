@@ -1,0 +1,42 @@
+.avatar_wrapper {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+  background-color: var(--color-bright-yellow);
+}
+
+.avatar {
+  height: 100%;
+}
+
+.upload_avatar {
+  position: relative;
+  width: max-content;
+}
+
+.loader_wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn {
+  padding: 20px 30px;
+  color: var(--color-bright-yellow);
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.avatar_section {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  width: max-content;
+}

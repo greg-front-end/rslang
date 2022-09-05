@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import audioChallengeSlice from '../features/audioChallengeSlice';
 import authSlice from '../features/authSlice';
+import settingsSlice from '../features/settingsSlice';
 import sideBarSlice from '../features/sideBarSlice';
 import sprintSlice from '../features/sprintSlice';
 import statisticSlice from '../features/statisticSlice';
@@ -17,6 +18,7 @@ export const store = configureStore({
     wordOption: wordOptionSlice,
     statistic: statisticSlice,
     sprint: sprintSlice,
+    settings: settingsSlice,
   },
 });
 
