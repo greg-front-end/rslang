@@ -6,6 +6,7 @@
   position: fixed;
   display: flex;
   justify-content: center;
+  z-index: 999;
   left: 0;
 }
 .header_active {
@@ -18,12 +19,24 @@
   left: 0;
   transition: var(--transitionAll3sec);
 }
+@media (max-width: 768px) {
+  .header {
+    left: -100%;
+  }
+  .header_active {
+    left: 0;
+  }
+}
 .wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-content: start;
   height: 100vh;
+}
+.sidebar_btn {
+  position: fixed;
+  left: 30px
 }
 .nav,
 .nav_active {
