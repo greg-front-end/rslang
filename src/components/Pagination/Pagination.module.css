@@ -41,9 +41,8 @@
 }
 
 .easy {
-    border: 3px solid rgb(187, 187, 187);
+    border: 3px solid #ffffff;
     border-radius: 50%;
     background-color: var(--color-green);
+    color: #ffffff;
 }
-
-
