@@ -1,4 +1,6 @@
-*{box-sizing: border-box;}
+* {
+    box-sizing: border-box;
+}
 
 .wrapper {
     position: sticky;
@@ -14,29 +16,36 @@
     margin-bottom: 44px;
 }
 
-.log_out{
-margin: 0 auto;
+.log_out {
+    margin: 0 auto;
 }
 
-.btn_pagination{
-     width: 40px;
+.btn_pagination {
+    width: 40px;
     height: 40px;
 }
 
-.btn_incr_decr{
+.btn_incr_decr {
     cursor: pointer;
-     width: 30px;
+    width: 30px;
     height: 30px;
 }
 
-
-
-.pageButtonsContainer{
+.pageButtonsContainer {
     display: flex;
     gap: 20px;
 }
 
-.active{
+.active {
     box-shadow: -2px -2px 20px rgba(255, 255, 255, 0.7), 16.736px 16.736px 37.656px rgba(54, 59, 87, 0.2), inset 2.092px 2.092px 2.092px rgba(38, 49, 105, 0.05), inset -2.092px -2.092px 8.368px rgba(83, 92, 136, 0.12) !important;
+}
+
+.easy {
+    background-color: var(--color-green);
+}
+
+.easy::before {
+    content: '';
+    background-color: var(--color-darkblue)
 }
 

@@ -12,6 +12,7 @@ import { WordListItem } from '../../components/WordListItem/WordListItem';
 import { setGroup, setPage } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { LoadStatus } from '../../types/LoadStatus';
 import { getValueLocalStorage } from '../../utils/getValueLocalStorage';
 import { isUserLogIn } from '../../utils/isUserLogIn';
 
@@ -19,10 +20,10 @@ import style from './TextBook.module.css';
 
 export const TextBook: React.FC = () => {
   const [audio, setAudio] = useState(new Audio());
+  const [isEasy, setIsEasy] = useState(false);
   const dispatch = useAppDispatch();
   const cards = useAppSelector((state) => state.textBook.cards);
-  console.log(cards);
-
+  const loadStatus = useAppSelector((state) => state.textBook.loadStatus);
   const hardWords = useAppSelector((state) => state.textBook.hardWords);
   const page = useAppSelector((state) => state.textBook.page);
   const group = useAppSelector((state) => state.textBook.group);
@@ -41,15 +42,16 @@ export const TextBook: React.FC = () => {
   }, [page, group, toggleHardWords]);
 
   useEffect(() => {
-    if (cards.length) {
-      const easyWords = cards.filter((el) => el.userWord.difficulty === 'easy');
-      const easyPage = easyWords.length === cards.length;
-      console.log('easyPage', easyPage);
+    if (loadStatus === LoadStatus.fulfilled) {
+      const easyWords = cards
+        .filter((el) => (el.userWord ? el.userWord.difficulty === 'easy' : 0));
+      const easy = easyWords.length === cards.length;
+      setIsEasy(easy);
     }
-  }, [cards]);
+  }, [loadStatus]);
 
   return (
-    <TextBookContext value={{ audio, setAudio }}>
+    <TextBookContext value={{ audio, setAudio, isEasy }}>
       <div className={isUserLogIn() ? 'container_login' : 'container'}>
         <div className={style.wrapper}>
           <h2 className={!toggleHardWords ? `title ${levels[group].level}` : 'title hard_group'}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import {
   setDecrement, setIncrement, setPage, setPageButtons,
@@ -7,6 +7,7 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { setValueLocalStorage } from '../../utils/setValueLocalStorage';
 import { levels } from '../LevelButtons/LevelButtons';
+import { TextBookCont } from '../TextBookContext/TextBookContext';
 
 import style from './Pagination.module.css';
 
@@ -20,7 +21,7 @@ export const PageButton: React.FC<PageButton> = ({ el, index }) => {
   const pageButtons = useAppSelector((state) => state.textBook.pageButtons);
   const increment = useAppSelector((state) => state.textBook.increment);
   const decrement = useAppSelector((state) => state.textBook.decrement);
-
+  const { isEasy } = useContext(TextBookCont);
   const group = useAppSelector((state) => state.textBook.group);
   let numPage: number | string = el + 1;
 
@@ -57,13 +58,16 @@ export const PageButton: React.FC<PageButton> = ({ el, index }) => {
       dispatch(setIncrement(false));
     }
   }
+  console.log(isEasy);
 
   return (
     <div>
       <button
         onClick={() => (typeof numPage === 'number' ? changePage(numPage - 1) : changePage('...'))}
         type="button"
-        className={page === el ? `btn ${style.active} ${style.btn_pagination} ${levels[group].level}` : `btn ${style.btn_pagination} ${levels[group].level}`}
+        className={page === el
+          ? ` ${style.active} ${isEasy ? style.easy : ''} ${style.btn_pagination} ${levels[group].level}`
+          : `btn ${style.btn_pagination} ${levels[group].level}`}
       >
         {numPage}
       </button>
