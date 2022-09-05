@@ -1,12 +1,28 @@
 .pre_wrapper {
-  width: max-content;
   align-self: flex-end;
-  padding-bottom: 106px;
 }
 
 .wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: max-content;
+  gap: var(--pd20);
+}
+@media (max-width: 768px) {
+  .pre_wrapper {
+    align-self: flex-start;
+  }
+  .wrapper,
+  .wrapper span,
+  .pre_wrapper,
+  .pre_wrapper span {
+    width: 100%;
+  }
+  .wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .wrapper button {
+    align-self: flex-end;
+  }
 }

@@ -1,8 +1,14 @@
 .wrapper {
-  padding-left: 109px;
   display: flex;
   flex-direction: column;
-  width: max-content;
-  padding-top: 26px;
-  padding-bottom: 188px;
+  gap: var(--pd90);
+  justify-content: center;
+  max-width: 768px;
+  padding: var(--pd30) 0;
+}
+@media (max-width: 768px) {
+  .wrapper {
+    padding-left: 0;
+    gap: var(--pd50);
+  }
 }
