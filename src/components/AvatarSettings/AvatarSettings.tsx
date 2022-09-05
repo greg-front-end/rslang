@@ -35,8 +35,8 @@ export const AvatarSettings = () => {
       <div className={`${style.upload_avatar}`}>
         <div className={`${style.loader_wrapper} ${showUpload}`}>
           <Avatar
-            width={200}
-            height={200}
+            width={300}
+            height={300}
             onClose={close}
             onCrop={crop}
           />

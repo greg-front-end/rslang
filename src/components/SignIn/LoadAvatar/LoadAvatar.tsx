@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import Avatar from 'react-avatar-edit';
 import { useDispatch } from 'react-redux';
 
 import Plug from '../../../assets/svg/avatar-plug.svg';
@@ -12,37 +13,47 @@ interface ILoadAvatarProps {
 
 export const LoadAvatar = ({ img, setImg }: ILoadAvatarProps) => {
   const [isImg, setIsImg] = useState(false);
+  const [showUpload, setShowUpload] = useState(style.hide);
+  const imgCooser = useRef(null);
 
-  const fileReader = new FileReader();
-  fileReader.onloadend = () => {
-    setImg(fileReader.result as string);
+  const crop = (path: string) => {
+    setImg(path);
     setIsImg(true);
   };
 
-  const loadHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const file = e.target.files[0];
-      fileReader.readAsDataURL(file);
+  const show = () => {
+    if (showUpload) {
+      setShowUpload('');
+    } else {
+      setShowUpload(style.hide);
     }
   };
+
+  const close = () => setShowUpload(style.hide);
+
   return (
     <div className={style.wrapper}>
-      <div className={style.img__wrapper}>
-        <img src={isImg ? img : Plug} alt="avatar" className={isImg ? style.img : style.plug} />
+      <div className={`${style.upload_avatar}`}>
+        <div className={`${style.loader_wrapper} ${showUpload}`}>
+          <Avatar
+            width={300}
+            height={300}
+            onClose={close}
+            onCrop={crop}
+            ref={imgCooser}
+          />
+        </div>
+        <div className={`${style.img__wrapper}`}>
+          <img src={isImg ? img : Plug} alt="avatar" className={isImg ? style.img : style.plug} />
+        </div>
       </div>
-      <label
-        htmlFor="img-loader"
+      <button
+        type="button"
         className={`form_btn ${style.btn}`}
+        onClick={show}
       >
-        <span>Choose avatar</span>
-        <input
-          type="file"
-          name="myImage"
-          id="img-loader"
-          className={style.input}
-          onChange={loadHandler}
-        />
-      </label>
+        Choose avatar
+      </button>
     </div>
   );
 };
