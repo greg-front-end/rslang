@@ -66,7 +66,7 @@ export const PageButton: React.FC<PageButton> = ({ el, index }) => {
         onClick={() => (typeof numPage === 'number' ? changePage(numPage - 1) : changePage('...'))}
         type="button"
         className={page === el
-          ? ` ${style.active} ${isEasy ? style.easy : ''} ${style.btn_pagination} ${levels[group].level}`
+          ? `${isEasy ? '' : 'btn'} ${style.active} ${isEasy ? style.easy : ''} ${style.btn_pagination} ${levels[group].level}`
           : `btn ${style.btn_pagination} ${levels[group].level}`}
       >
         {numPage}

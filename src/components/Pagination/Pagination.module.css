@@ -41,11 +41,9 @@
 }
 
 .easy {
+    border: 3px solid rgb(187, 187, 187);
+    border-radius: 50%;
     background-color: var(--color-green);
 }
 
-.easy::before {
-    content: '';
-    background-color: var(--color-darkblue)
-}
 
