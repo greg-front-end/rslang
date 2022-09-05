@@ -1,0 +1,25 @@
+.quick_start_game {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pd20);
+}
+.title {
+  font-size: 24px;
+  color: var(--color-secondary);
+  font-weight: 600;
+}
+.link {
+  color: inherit;
+  background-color: var(--color-blue);
+  border-radius: var(--border-radius);
+  padding: var(--pd10) var(--pd20);
+}
+.link h4 {
+  font-size: 14px;
+}
+
+.easy{
+  pointer-events: none;
+  opacity: 0.4;
+  text-decoration: line-through;
+}
