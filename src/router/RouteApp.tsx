@@ -12,6 +12,7 @@ import { Main } from '../pages/Main/Main';
 import { Sprint } from '../pages/Sprint/Sprint';
 import { Statistics } from '../pages/Statistics/Statistics';
 import { TextBook } from '../pages/TextBook/TextBook';
+import { UserSettings } from '../pages/UserSettings/UserSettings';
 
 export const RouteApp = () => {
   const isUserLoggined = useLogOutAfterTokenExp();
@@ -64,6 +65,10 @@ export const RouteApp = () => {
         <Route
           path="register"
           element={<SignIn />}
+        />
+        <Route
+          path="settings"
+          element={<UserSettings />}
         />
       </Route>
     </Routes>
