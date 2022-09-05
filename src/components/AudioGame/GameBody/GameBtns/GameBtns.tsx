@@ -14,6 +14,8 @@ import styles from './GameBtns.module.css';
 
 const BTNS_COUNT = 4;
 
+const WORDS_QUANTITY = 20;
+
 const BTNS_ID = [0, 1, 2, 3];
 
 export const GameBtns = () => {
@@ -21,6 +23,7 @@ export const GameBtns = () => {
   const currentWord = useAppSelector((state) => state.audioChallenge.currentWord);
   const rowCounter = useAppSelector((state) => state.audioChallenge.rowCounter);
   const words = useAppSelector((state) => state.audioChallenge.words);
+  const noEasyWords = useAppSelector((state) => state.textBook.noEasyWords);
   const nextWord = useAppSelector((state) => state.audioChallenge.nextWord);
   const finish = useAppSelector((state) => state.audioChallenge.finish);
 
@@ -74,7 +77,9 @@ export const GameBtns = () => {
   useEffect(() => {
     if (!finish) {
       if (words.length) {
-        const gBtns = createBtnsArray(BTNS_COUNT, words, currentWord);
+        const gBtns = words.length < WORDS_QUANTITY
+          ? createBtnsArray(BTNS_COUNT, noEasyWords, currentWord)
+          : createBtnsArray(BTNS_COUNT, words, currentWord);
         setRightId(gBtns.reduce((acc, el, i) => (compair(el) ? i : acc), 0));
         setBtns(gBtns);
       }

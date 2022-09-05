@@ -11,6 +11,7 @@ export type TextBookState = {
   loadStatus: string,
   switchHardWords: boolean,
   easyWordsCount: number,
+  noEasyWords: IWordsItem[],
 }
 
 export type CardDifChange = {
