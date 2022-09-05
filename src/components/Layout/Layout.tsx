@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { useLogOutAfterTokenExp } from '../../hooks/useLogOutAfterTokenExp';
@@ -11,6 +11,9 @@ import { HeaderLogOut } from '../Header/HeaderLogOut/HeaderLogOut';
 
 export const Layout = () => {
   const isActiveSideBar = useAppSelector((state) => state.sideBar.isActiveSideBar);
+  const location = useLocation();
+  const gamesPage = ['/games/audiocall', '/games/sprint'];
+  const isGamePage = () => gamesPage.includes(location.pathname);
   const isUserLoggined = useLogOutAfterTokenExp();
   let activeClass = '';
   if (isActiveSideBar && isUserLogIn()) {
@@ -24,7 +27,10 @@ export const Layout = () => {
       <main>
         <Outlet />
       </main>
-      {isUserLoggined ? <FooterLogIn /> : <FooterLogOut />}
+      {
+        !isGamePage()
+        && (isUserLoggined ? <FooterLogIn /> : <FooterLogOut />)
+      }
     </div>
   );
 };

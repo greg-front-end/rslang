@@ -27,10 +27,18 @@ export const AudioGame = () => {
   }, []);
 
   return (
-    <div className={styles.wrapper}>
-      {finish
-        ? (<Results />)
-        : isLoad && <GameBody />}
+    <div className={styles.challenge}>
+      <div className={styles.wrapper}>
+        <div className="container">
+          <h2 className={`${styles.title} title`}>Audio challenge</h2>
+          {finish
+            ? (<Results />)
+            : isLoad && <GameBody />}
+        </div>
+      </div>
+      <div className={styles.audio_bg} />
+      <span className={styles.pause_decor} />
+      <span className={styles.play_decor} />
     </div>
   );
 };
