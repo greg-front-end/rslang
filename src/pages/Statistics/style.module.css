@@ -34,7 +34,7 @@
   border-radius: var(--border-radius);
   padding: var(--pd10) var(--pd20);
 }
-@media (max-width: 1366px) {
+@media (max-width: 1439px) {
   .statistics_wrapper {
     max-width: 900px;
     flex-wrap: wrap;
@@ -43,13 +43,23 @@
     right: -240px;
   }
 }
-@media (max-width: 1200px) {
+@media (max-width: 1320px) {
   .statistics_wrapper {
     max-width: 800px;
     flex-wrap: wrap;
   }
   .user {
     right: -40px;
+  }
+}
+@media (max-width: 1200px) {
+  .statistics_wrapper {
+    max-width: 800px;
+    flex-wrap: wrap;
+    gap: var(--pd20);
+  }
+  .user {
+    right: -60px;
   }
 }
 @media (max-width: 1024px) {
@@ -64,7 +74,7 @@
 }
 @media (max-width: 768px) {
   .statistics_wrapper {
-    max-width: 300px;
+    max-width: 560px;
     justify-content: center;
     flex-wrap: wrap;
     gap: var(--pd20);
@@ -72,13 +82,15 @@
   }
   .game_wrapper,
   .words_module {
-    width: 300px;
+    width: 100%;
+    max-width: 560px;
   }
   .title_wrapper {
     justify-content: end;
   }
   .user {
     top: var(--pd90);
-    right: 0px;
+    right: 50%;
+    transform: translateX(50%);
   }
 }

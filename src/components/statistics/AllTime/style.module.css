@@ -55,3 +55,57 @@
   width: 300px;
   border-radius: var(--border-radius);
 }
+
+@media (max-width: 1439px) {
+  .d3_learned_words,
+  .d3_progress {
+    /* max-width: 360px; */
+  }
+  .quick_start_game {
+    right: -80px;
+  }
+}
+@media (max-width: 1320px) {
+  .d3_wrapper {
+    flex-wrap: wrap;
+  }
+  .d3_learned_words,
+  .d3_progress {
+    max-width: 540px;
+    width: 540px;
+  }
+  .quick_start_game {
+    right: 60px;
+  }
+}
+@media (max-width: 1024px) {
+  .d3_wrapper {
+    flex-wrap: wrap;
+  }
+  .d3_learned_words,
+  .d3_progress {
+    max-width: 580px;
+    width: 100%;
+  }
+  .all_time {
+    margin-bottom: 240px;
+  }
+  .quick_start_game {
+    top: -230px;
+  }
+}
+@media (max-width: 768px) {
+  .d3_wrapper {
+    justify-content: center;
+  }
+  .title_date_wrapper {
+    max-width: 560px;
+    margin-inline: auto;
+  }
+  .quick_start_game {
+    width: 100%;
+    top: 590px;
+    left: 0;
+    margin: 0 auto;
+  }
+}
