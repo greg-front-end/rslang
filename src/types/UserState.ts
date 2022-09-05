@@ -4,7 +4,8 @@ export type UserState = {
   Token: 'Token',
   LoginStatus: 'LoginStatus',
   page: 'page',
-  group: 'group'
-  SwitchHardWords: 'SwitchHardWords'
-  avatar: 'avatar'
+  group: 'group',
+  SwitchHardWords: 'SwitchHardWords',
+  avatar: 'avatar',
+  currentPage:'currentPage'
 }

@@ -48,7 +48,7 @@ export const TextBook: React.FC = () => {
       const easy = easyWords.length === cards.length;
       setIsEasy(easy);
     }
-  }, [loadStatus]);
+  }, [loadStatus, cards]);
 
   return (
     <TextBookContext value={{ audio, setAudio, isEasy }}>
