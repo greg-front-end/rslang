@@ -6,8 +6,13 @@ import { RootState } from '../store/store';
 import { IWordsItem } from '../types/IWordsItem';
 import { getValueLocalStorage } from '../utils/getValueLocalStorage';
 
+interface IGetNoEasyWords {
+  page: number;
+  quantity: number;
+}
+
 export const getNoEasyWords = createAsyncThunk<
-  IWordsItem[], number, { rejectValue: string }>(
+  IWordsItem[], IGetNoEasyWords, { rejectValue: string }>(
     'textBookS/getNoEasyWords',
     async (n, { rejectWithValue, getState }) => {
       const state: RootState = <RootState>getState();
@@ -18,8 +23,8 @@ export const getNoEasyWords = createAsyncThunk<
         {
           params: {
             group: state.textBook.group,
-            page: state.textBook.page,
-            wordsPerPage: n,
+            page: n.page,
+            wordsPerPage: n.quantity,
             filter: { $or: [{ $or: [{ 'userWord.difficulty': 'hard' }, { 'userWord.difficulty': 'none' }] }, { userWord: null }] },
           },
           headers: {

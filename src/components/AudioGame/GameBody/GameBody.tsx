@@ -11,6 +11,7 @@ import styles from './GameBody.module.css';
 
 export const GameBody = () => {
   const nextWord = useAppSelector((state) => state.audioChallenge.nextWord);
+  console.log('second');
   return (
     <div className={styles.wrapper}>
       <WordItems />

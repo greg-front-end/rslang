@@ -46,7 +46,9 @@ const textBookSlice = createSlice({
   name: 'textBookS',
   initialState,
   reducers: {
-
+    setCardsArray: (state, action) => {
+      state.cards = action.payload;
+    },
     filterCard: (state, action: PayloadAction<CardDifChange>) => {
       // eslint-disable-next-line no-underscore-dangle
       const index = state.cards.findIndex((el) => el._id === action.payload.id);
@@ -153,6 +155,6 @@ const textBookSlice = createSlice({
 
 export const {
   setGroup, setPage, setPageButtons, setIncrement, setDecrement,
-  clearHardWords, toggleHardWords, filterCard,
+  clearHardWords, toggleHardWords, filterCard, setCardsArray,
 } = textBookSlice.actions;
 export default textBookSlice.reducer;
