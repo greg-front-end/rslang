@@ -1,0 +1,34 @@
+.wrapper {
+  margin-top: var(--pd30);
+  position: relative;
+  height: 100%;
+}
+
+.wrapper_bottom {
+  display: flex;
+  align-items: center;
+  display: flex;
+  max-width: 1260px;
+  padding-top: var(--pd90);
+}
+
+.card {
+  width: 100%;
+  max-width: 950px;
+  padding: 50px;
+}
+
+.avatar_wrapper {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+  background-color: var(--color-bright-yellow);
+}
+
+.avatar {
+  height: 100%;
+}
