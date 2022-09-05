@@ -44,6 +44,9 @@ export const PageButton: React.FC<PageButton> = ({ el, index }) => {
 
   const dispatch = useAppDispatch();
   function changePage(num: number | string) {
+    if (num === page) {
+      return;
+    }
     if (typeof num === 'number') {
       if (num === 29) {
         dispatch(setPageButtons([0, 24, 25, 26, 27, 28, 29]));
@@ -58,7 +61,6 @@ export const PageButton: React.FC<PageButton> = ({ el, index }) => {
       dispatch(setIncrement(false));
     }
   }
-
   return (
     <div>
       <button

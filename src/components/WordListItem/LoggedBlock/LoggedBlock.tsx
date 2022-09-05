@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 
-import { getAgregatedCard } from '../../../api/getAggregatedCard';
 import { getHardWords } from '../../../api/getHardWords';
 import { postWordOption } from '../../../api/postWordOption';
 import { putWordOption } from '../../../api/putWordOption';
@@ -9,6 +8,7 @@ import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { ICreateWordOptions } from '../../../types/ICreateWordOptions';
 import { IWordsItem } from '../../../types/IWordsItem';
+import { LoadStatus } from '../../../types/LoadStatus';
 
 import { Statistic } from './Statistic/Statistic';
 
@@ -17,10 +17,9 @@ import styles from './LoggedBlock.module.css';
 interface ILoggedBlockProps {
   item: IWordsItem;
   setOptions: React.Dispatch<React.SetStateAction<string>>;
-  setDelete: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const LoggedBlock = ({ item, setOptions, setDelete }: ILoggedBlockProps) => {
+export const LoggedBlock = ({ item, setOptions }: ILoggedBlockProps) => {
   const [click, setClick] = useState(false);
   const [lvl, setLvl] = useState('');
   const dispatch = useAppDispatch();
@@ -45,9 +44,11 @@ export const LoggedBlock = ({ item, setOptions, setDelete }: ILoggedBlockProps) 
       };
     setOptions(lvl);
     dispatch(postWordOption(options));
+    setClick(false);
   };
 
   const removeFromDifficult = () => {
+    setClick(true);
     const options: ICreateWordOptions = {
       ...item.userWord,
       difficulty: 'none',
@@ -57,13 +58,7 @@ export const LoggedBlock = ({ item, setOptions, setDelete }: ILoggedBlockProps) 
   };
 
   const clickHandler = (e: React.MouseEvent) => {
-    if (!toggleHardWords) {
-      setLvl(e.currentTarget.id);
-    } else {
-      console.log('click');
-
-      setDelete(true);
-    }
+    setLvl(e.currentTarget.id);
     setClick(true);
   };
 
@@ -73,9 +68,16 @@ export const LoggedBlock = ({ item, setOptions, setDelete }: ILoggedBlockProps) 
     }
   }, [click]);
 
+  // useEffect(() => {
+  //   if (click && successfulUpdate === 'fulfilled') {
+  //     toggleHardWords ? dispatch(getHardWords()) : dispatch(getAgregatedCard());
+  //     setClick(false);
+  //   }
+  // }, [successfulUpdate]);
+
   useEffect(() => {
-    if (click && successfulUpdate === 'fulfilled') {
-      toggleHardWords ? dispatch(getHardWords()) : dispatch(getAgregatedCard());
+    if (click && successfulUpdate === LoadStatus.fulfilled && toggleHardWords) {
+      dispatch(getHardWords());
       setClick(false);
     }
   }, [successfulUpdate]);
