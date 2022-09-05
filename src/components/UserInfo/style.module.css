@@ -19,7 +19,7 @@
   color: var(--color-secondary);
 }
 .user_img,
-.user_img img {
+.img {
   width: 130px;
   height: 130px;
   border-radius: 50%;
@@ -31,7 +31,14 @@
   transform: translateX(-50%);
   border: 5px solid var(--color-blue);
   border-radius: 50%;
+  background-color: var(--color-blue);
 }
 .user_img img {
   object-fit: cover;
 }
+
+/* .plug {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+} */

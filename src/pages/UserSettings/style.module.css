@@ -1,7 +1,6 @@
 .wrapper {
   margin-top: var(--pd30);
   position: relative;
-  height: 100%;
 }
 
 .wrapper_bottom {
@@ -16,6 +15,8 @@
   width: 100%;
   max-width: 950px;
   padding: 50px;
+  display: flex;
+  column-gap: 50px;
 }
 
 .avatar_wrapper {
@@ -50,6 +51,11 @@
   color: var(--color-bright-yellow);
 }
 
+.btn_delete {
+  width: 50%;
+  align-self: flex-end;
+}
+
 .hide {
   visibility: hidden;
 }
@@ -59,4 +65,12 @@
   flex-direction: column;
   row-gap: 20px;
   width: max-content;
+}
+
+.userInfo_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  row-gap: 20px;
 }

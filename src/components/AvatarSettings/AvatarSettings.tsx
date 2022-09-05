@@ -1,48 +1,49 @@
 import React, { useState } from 'react';
 import Avatar from 'react-avatar-edit';
 
+import Plug from '../../assets/svg/avatar-plug.svg';
+import { getAvatar, setAvatar } from '../../features/settingsSlice';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
+
 import style from './style.module.css';
 
-const setToLclstorage = (img: string) => localStorage.setItem('avatar', JSON.stringify(img));
-const getFromLclstorage = () => (localStorage.getItem('avatar')
-  ? JSON.parse(localStorage.getItem('avatar') as string)
-  : '');
-
 export const AvatarSettings = () => {
-  const isImg = getFromLclstorage();
-  const [avatar, setAvatar] = useState(isImg ? getFromLclstorage() : '');
-  const [showUpload, setShowUpload] = useState(style.hide);
-  JSON.parse(localStorage.getItem('avatar') as string);
+  const dispatch = useAppDispatch();
+  dispatch(getAvatar());
+  const avatar = useAppSelector((state) => state.settings.avatar) || Plug;
+  const [showUpload, setShowUpload] = useState(true);
 
-  const crop = (img: string) => {
-    setAvatar(img);
-    setToLclstorage(avatar);
+  const crop = (path: string) => {
+    dispatch(setAvatar(path));
   };
 
   const show = () => {
     if (showUpload) {
-      setShowUpload('');
-      setToLclstorage(avatar);
+      setShowUpload(false);
     } else {
-      setShowUpload(style.hide);
+      setShowUpload(true);
     }
   };
 
-  const close = () => setShowUpload(style.hide);
+  const close = () => {
+    setShowUpload(true);
+  };
 
   return (
     <div className={style.avatar_section}>
       <div className={`${style.upload_avatar}`}>
-        <div className={`${style.loader_wrapper} ${showUpload}`}>
+        <div className={`${style.loader_wrapper} ${showUpload && style.hide}`}>
           <Avatar
-            width={300}
-            height={300}
+            width={200}
+            height={200}
             onClose={close}
             onCrop={crop}
+            imageWidth={400}
           />
         </div>
         <div className={`${style.avatar_wrapper}`}>
-          <img src={isImg ? avatar : ''} alt="avatar" className={style.avatar} />
+          <img src={avatar} alt="avatar" className={avatar ? style.avatar : style.plug} />
         </div>
       </div>
       <button
@@ -50,7 +51,7 @@ export const AvatarSettings = () => {
         className={`btn ${style.btn}`}
         onClick={show}
       >
-        Choose
+        Change
       </button>
     </div>
   );
