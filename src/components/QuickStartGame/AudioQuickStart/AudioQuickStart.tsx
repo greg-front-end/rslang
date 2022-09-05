@@ -1,8 +1,12 @@
-import React, { FC, useContext, useState } from 'react';
+import React, {
+  FC, useContext, useEffect, useState,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { getNoEasyWords } from '../../../api/getNoEasyWords';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
+import { LoadStatus } from '../../../types/LoadStatus';
 import { isUserLogIn } from '../../../utils/isUserLogIn';
 import { Titlehallenge } from '../../TitleGames/Titlehallenge';
 
@@ -29,21 +33,16 @@ export const AudioQuickStart = ({ isEasy }: IAudioQuickStartProps) => {
     setSelectedOption(value);
     setsSelectDropDown(false);
   };
-  const redirect = () => {
-    dispatch(setGroup(selectedOption));
-    dispatch(setPage(getRandomNum(30)));
-    setStartLoading(true);
-  };
+  const noEasyWords = useAppSelector((state) => state.textBook.noEasyWords);
+  console.log(noEasyWords);
 
   useEffect(() => {
-    if (startLoading) {
-      isLogged ? dispatch(getAgregatedCard()) : dispatch(getCard());
-    }
+    dispatch(getNoEasyWords(40));
   }, [startLoading]);
 
   useEffect(() => {
-    if (startLoading && isLoad === 'fulfilled') {
-      navigate(path);
+    if (startLoading && isLoad === LoadStatus.fulfilled) {
+      navigate('/games/audiocall');
       setStartLoading(false);
     }
   }, [isLoad]);
@@ -51,7 +50,7 @@ export const AudioQuickStart = ({ isEasy }: IAudioQuickStartProps) => {
   return (
     <button
       type="button"
-      // onClick={() => setValueLocalStorage('currentPage', location.pathname)}
+      onClick={() => setStartLoading(true)}
       className={`${style.link} ${isEasy ? style.easy : ''}`}
     >
       <Titlehallenge text="Audio Challenge" icon="audio" />

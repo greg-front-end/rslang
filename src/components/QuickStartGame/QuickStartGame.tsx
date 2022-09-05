@@ -5,6 +5,8 @@ import { setValueLocalStorage } from '../../utils/setValueLocalStorage';
 import { TextBookCont } from '../TextBookContext/TextBookContext';
 import { Titlehallenge } from '../TitleGames/Titlehallenge';
 
+import { AudioQuickStart } from './AudioQuickStart/AudioQuickStart';
+
 import style from './style.module.css';
 
 export const QuickStartGame: FC = () => {
@@ -16,13 +18,14 @@ export const QuickStartGame: FC = () => {
 
     <div className={style.quick_start_game}>
       <h4 className={style.title}>Quick start games</h4>
-      <NavLink
+      {/* <NavLink
         to="/games/audiocall"
         onClick={() => setValueLocalStorage('currentPage', location.pathname)}
         className={`${style.link} ${isEasy ? style.easy : ''}`}
       >
         <Titlehallenge text="Audio Challenge" icon="audio" />
-      </NavLink>
+      </NavLink> */}
+      <AudioQuickStart isEasy={isEasy} />
       <NavLink
         to="/games/sprint"
         onClick={() => setValueLocalStorage('currentPage', location.pathname)}

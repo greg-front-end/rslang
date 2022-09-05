@@ -4,6 +4,7 @@ import { getAgregatedCard } from '../api/getAggregatedCard';
 import { getCard } from '../api/getCard';
 import { getEasyWords } from '../api/getEasyWords';
 import { getHardWords } from '../api/getHardWords';
+import { getNoEasyWords } from '../api/getNoEasyWords';
 import { IWordsItem } from '../types/IWordsItem';
 import { LoadStatus } from '../types/LoadStatus';
 import { CardDifChange, TextBookState } from '../types/TextBook';
@@ -21,6 +22,7 @@ const initialState: TextBookState = {
   loadStatus: '',
   switchHardWords: JSON.parse(getValueLocalStorage('SwitchHardWords')!) || false,
   easyWordsCount: 0,
+  noEasyWords: [],
 };
 
 const fillElement = (el: IWordsItem, diff: string) => {
@@ -129,6 +131,21 @@ const textBookSlice = createSlice({
       })
 
       .addCase(getEasyWords.rejected, (state, action) => {
+        // console.log('rejected');
+      });
+
+    builder
+      .addCase(getNoEasyWords.pending, (state, action) => {
+        // console.log('pending');
+        state.loadStatus = LoadStatus.pending;
+      })
+
+      .addCase(getNoEasyWords.fulfilled, (state, action) => {
+        state.loadStatus = LoadStatus.fulfilled;
+        state.noEasyWords = action.payload;
+      })
+
+      .addCase(getNoEasyWords.rejected, (state, action) => {
         // console.log('rejected');
       });
   },

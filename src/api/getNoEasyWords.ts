@@ -6,9 +6,9 @@ import { RootState } from '../store/store';
 import { IWordsItem } from '../types/IWordsItem';
 import { getValueLocalStorage } from '../utils/getValueLocalStorage';
 
-export const getWordsWithoutEasy = createAsyncThunk<
+export const getNoEasyWords = createAsyncThunk<
   IWordsItem[], number, { rejectValue: string }>(
-    'textBookS/getHardWords',
+    'textBookS/getNoEasyWords',
     async (n, { rejectWithValue, getState }) => {
       const state: RootState = <RootState>getState();
       const id = JSON.parse(getValueLocalStorage('UserId') as string);
