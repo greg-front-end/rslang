@@ -1,0 +1,17 @@
+.label {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn {
+  padding: 10px 20px;
+  width: 190px;
+  color: var(--color-white);
+}
+
+.field_name {
+  display: block;
+  padding-left: 50px;
+  width: 184px;
+}
