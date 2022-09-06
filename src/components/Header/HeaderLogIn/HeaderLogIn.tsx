@@ -25,7 +25,6 @@ export const HeaderLogIn = () => {
       dispatch(toggleSideBar(!isActiveSideBar));
     }
   };
-  console.log(isActiveSideBar);
   const handleLogOut = () => {
     navigate('/log-in');
     dispatch(logOutUser());

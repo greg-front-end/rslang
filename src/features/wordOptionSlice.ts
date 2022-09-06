@@ -44,22 +44,13 @@ const wordOptionSlice = createSlice({
         state.successfulUpdate = LoadStatus.fulfilled;
       })
 
-      .addCase(postWordOption.rejected, (state, action) => {
-        console.log(action.payload);
-      })
-
       .addCase(putWordOption.pending, (state) => {
-        console.log('pending');
         state.successfulUpdate = LoadStatus.pending;
       })
 
       .addCase(putWordOption.fulfilled, (state, action) => {
         state.difficultState = action.payload;
         state.successfulUpdate = LoadStatus.fulfilled;
-      })
-
-      .addCase(putWordOption.rejected, (state, action) => {
-        console.log(action.payload);
       });
   },
 });

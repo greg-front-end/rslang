@@ -31,8 +31,6 @@ export const TextBook: React.FC = () => {
   const [isActiveLvlSettingBtn, setIsActiveLvlSettingBtn] = useState(false);
   const [isActiveLvlSettingMenu, setIsActiveLvlSettingMenu] = useState(false);
   const toggleHardWords = useAppSelector((state) => state.textBook.switchHardWords);
-  console.log(isActiveLvlSettingBtn);
-  console.log(isActiveLvlSettingMenu);
   const toggleDispatchWords = () => (toggleHardWords
     ? dispatch(getHardWords())
     : dispatch(getAgregatedCard())

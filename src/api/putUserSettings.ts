@@ -34,7 +34,6 @@ export const putUserSettings = createAsyncThunk<string, IUserSettings,
           'Content-Type': 'application/json',
         },
       });
-      console.log(response.data);
       return response.data.optional.avatar;
     } catch (error) {
       if (axios.isAxiosError(error)) {

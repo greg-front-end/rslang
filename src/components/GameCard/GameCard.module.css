@@ -95,6 +95,8 @@
   position: relative;
   z-index: 2;
   padding-left: 8px;
+  width: 100%;
+  display: block;
 }
 .options_text_letter::after {
   content: '';

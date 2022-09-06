@@ -37,29 +37,12 @@ const statisticSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(putUserStatistic.pending, (state, action) => {
-        // console.log('pending');
-      })
-
       .addCase(putUserStatistic.fulfilled, (state, action) => {
         state.statistic = action.payload;
       })
 
-      .addCase(putUserStatistic.rejected, (state, action) => {
-        // console.log('rejected');
-      })
-
-      .addCase(getUserStatistic.pending, (state, action) => {
-        // console.log('pending');
-      })
-
       .addCase(getUserStatistic.fulfilled, (state, action) => {
-        // console.log('getUserStatistic fulfilled');
         state.statistic = action.payload;
-      })
-
-      .addCase(getUserStatistic.rejected, (state, action) => {
-        // console.log('rejected');
       });
   },
 });

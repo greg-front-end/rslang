@@ -27,22 +27,21 @@ export const OurTeam = () => (
               <span className={style.avatar}>
                 <img src={GregImg} alt="Greg developer" />
               </span>
-              Learn English with us absolutely free
+              Greg Martinos. Teamlead. Design, layout, UI, authorization,
+              registration, api, backend manipulation, routing, teammates support.
             </li>
             <li className={style.team_item}>
               <span className={style.avatar}>
                 <img src={LilithImg} alt="Lilith developer" />
               </span>
-              All the progress of training can be viewed in statistics,
-              where data for the current day,
+              Lilith Primary. Word cards, audio-challenge, settings, statistics.
 
             </li>
             <li className={style.team_item}>
               <span className={style.avatar}>
                 <img src={MaikleImg} alt="Maikle developer" />
               </span>
-              For learning words and reinforcing memorization, the application has 2 games:
-              Sprint, Audio Chalenge, which will help you to
+              Maikl Shetinin. Words book, sprint, api.
             </li>
           </ul>
         </div>

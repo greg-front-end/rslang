@@ -27,7 +27,6 @@ export const updateUser = createAsyncThunk<IUpdateUser, IUpdateUser,
           'Content-Type': 'application/json',
         },
       });
-      console.log(response.data);
       return response.data.optional.avatar;
     } catch (error) {
       if (axios.isAxiosError(error)) {
