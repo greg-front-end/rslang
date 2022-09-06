@@ -6,6 +6,7 @@ import { nanoid } from '@reduxjs/toolkit';
 import { getAgregatedCard } from '../../api/getAggregatedCard';
 import { getCard } from '../../api/getCard';
 import { ReactComponent as ArrowDownIcon } from '../../assets/svg/arrow-left.svg';
+import { setIsLoad } from '../../features/sprintSlice';
 import { setGroup, setPage } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';

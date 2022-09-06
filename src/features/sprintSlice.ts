@@ -7,6 +7,7 @@ import { LoadStatus } from '../types/LoadStatus';
 import { SprintState, SprintWord } from '../types/Sprint';
 
 const initialState: SprintState = {
+  isLoad: false,
   buffer: [],
   sprintWords: [],
   indicators: [false, false, false],
@@ -23,6 +24,10 @@ const sprintSlice = createSlice({
   name: 'sprint',
   initialState,
   reducers: {
+    setIsLoad: (state, action: PayloadAction<boolean>) => {
+      state.isLoad = action.payload;
+      console.log('setIsLoad', action.payload);
+    },
     setInRow: (state, action: PayloadAction<number>) => {
       state.inRow = action.payload;
     },
@@ -108,6 +113,7 @@ export const {
   setTimer, decrementTimerBeforeGame, setInRow, clearLoadStatus,
   setCurrentWords, setWrongWords, decrementTimer, clearCurrectWrongWords,
   clearCurrentWords, clearWrongWords, setTimerBeforeGame, setCurrectWrongWords,
+  setIsLoad,
 } = sprintSlice.actions;
 
 export default sprintSlice.reducer;

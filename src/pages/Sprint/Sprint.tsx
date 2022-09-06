@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { getAgregatedCardSprint } from '../../api/getAggregatedCardSprint';
 import { getCardSprint } from '../../api/getCardSprint';
@@ -29,6 +30,7 @@ import { randomWords } from './RandomWords';
 import style from './Sprint.module.css';
 
 export const Sprint = () => {
+  const navigate = useNavigate();
   const previousPage = JSON.parse(getValueLocalStorage('currentPage') as string);
   const dispatch = useAppDispatch();
   const cards = useAppSelector((state) => state.textBook.cards);
