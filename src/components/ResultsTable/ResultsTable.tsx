@@ -81,7 +81,7 @@ export const ResultsTable = ({
               {inAccuracy}
               %
             </span>
-            <Diagram value={inAccuracy} />
+            <Diagram value={inAccuracy} r={40} />
             <span className={style.accuracy}>accuracy</span>
           </div>
           <div className={style.results_wrapper}>

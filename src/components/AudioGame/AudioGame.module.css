@@ -49,6 +49,24 @@
 .title {
   margin: var(--pd30) 0 var(--pd50);
 }
+
+.visible {
+  transition: 0.3s;
+  transform: scale(1);
+}
+
+.hidden {
+  transition: 0.3s;
+  transform: scale(0);
+}
+
+.results_wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 @media (max-width: 1366px) {
   .audio_bg {
     opacity: 0.4;

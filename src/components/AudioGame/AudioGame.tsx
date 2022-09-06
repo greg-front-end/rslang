@@ -31,9 +31,10 @@ export const AudioGame = () => {
       <div className={styles.wrapper}>
         <div className="container">
           <h2 className={`${styles.title} title`}>Audio challenge</h2>
-          {finish
-            ? (<Results />)
-            : isLoad && <GameBody />}
+          <div className={`${finish ? styles.visible : styles.hidden} ${styles.results_wrapper}`}>
+            <Results />
+          </div>
+          {!finish && <GameBody />}
         </div>
       </div>
       <div className={styles.audio_bg} />
