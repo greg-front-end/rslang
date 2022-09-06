@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { postWordOption } from '../../api/postWordOption';
 import { putUserStatistic } from '../../api/putUserStatistic';
 import titleImg from '../../assets/svg/statistics/games/resimg.svg';
+import bgImg from '../../assets/svg/statistics/games/win.svg';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { GamesName } from '../../types/GamesName';
@@ -67,6 +68,9 @@ export const ResultsTable = ({
   return (
     <div className={style.wrapper}>
       <div className={`frame ${style.frame}`}>
+        <div className={style.bg_img}>
+          <img src={bgImg} alt="win" />
+        </div>
         <div className={style.title_wrapper}>
           <img src={titleImg} alt="A+" />
           <h3 className={style.title}>Result</h3>
