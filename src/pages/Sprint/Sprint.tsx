@@ -50,7 +50,7 @@ export const Sprint = () => {
     dispatch(setIndicators([false, false, false]));
     dispatch(clearSprintWords());
     dispatch(setTimerBeforeGame(4));
-    dispatch(setTimer(10000000));
+    dispatch(setTimer(10));
     dispatch(clearCurrectWrongWords());
     dispatch(clearCurrentWords());
     dispatch(clearWrongWords());
@@ -59,10 +59,14 @@ export const Sprint = () => {
       const removeEasy = cards
         .filter((el) => (el.userWord ? el.userWord.difficulty !== 'easy' : 0));
       dispatch(setSprintWords(randomWords(removeEasy)));
-      dispatch(getAgregatedCardSprint(page - 1));
+      if (page >= 1) {
+        dispatch(getAgregatedCardSprint(page - 1));
+      }
     } else {
       dispatch(setSprintWords(randomWords(cards)));
-      dispatch(getCardSprint(page - 1));
+      if (page >= 1) {
+        dispatch(getCardSprint(page - 1));
+      }
     }
   }, []);
 
@@ -105,7 +109,7 @@ export const Sprint = () => {
         <div className={isUserLogIn() ? `${style.wrapper} ${style.wrapper_login}` : `${style.wrapper} ${style.wrapper_logout}`}>
           <div className={isUserLogIn() ? `${style.sprint_img} ${style.sprint_img_login}` : `${style.sprint_img} ${style.sprint_img_logout}`}>
             <img src={SprintersImg} alt="Sprinters" />
-            {timerBeforeGame
+            {timerBeforeGame && sprintWords.length
               ? (
                 <div className={style.wrapper_timer}>
                   <Timer timer={timerBeforeGame} timerTime={4} />

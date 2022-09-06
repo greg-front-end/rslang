@@ -96,6 +96,8 @@ const authSlice = createSlice({
         setValueLocalStorage('Token', payload.token);
         setValueLocalStorage('UserId', payload.userId);
         setValueLocalStorage('LoginStatus', ResponseStatus.Authorized);
+        setValueLocalStorage('page', 1);
+        setValueLocalStorage('group', 0);
         return {
           ...state,
           token: payload.token,
