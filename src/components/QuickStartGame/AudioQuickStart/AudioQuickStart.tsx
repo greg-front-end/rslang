@@ -19,7 +19,7 @@ interface IAudioQuickStartProps {
   isEasy: boolean;
 }
 
-const filterArray = (words: IWordsItem[], page: number) => words.filter((el) => el.page <= page);
+const filterArray = (words: IWordsItem[]) => words.filter((el) => !el.userWord || el.userWord.difficulty !== 'easy');
 
 export const AudioQuickStart = ({ isEasy }: IAudioQuickStartProps) => {
   const navigate = useNavigate();
@@ -65,9 +65,10 @@ export const AudioQuickStart = ({ isEasy }: IAudioQuickStartProps) => {
   }, [startLoading]);
 
   useEffect(() => {
+    // debugger;
     if (checkArray && isLoad === LoadStatus.fulfilled) {
       setCheckArray(false);
-      setArr((state) => [...state, ...filterArray(words, curPage)]);
+      setArr((state) => [...state, ...filterArray(words)]);
       if (arr.length < 20 && page !== 0) {
         setNewPage(page - 1);
         setStartLoading(true);
