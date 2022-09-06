@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 
-import RightSound from '../../../../assets/audio/audioGame/match.wav';
-import WrongSound from '../../../../assets/audio/audioGame/wrong.wav';
+// import RightSound from '../../../../assets/audio/audioGame/match.wav';
+// import WrongSound from '../../../../assets/audio/audioGame/wrong.wav';
 import {
   addRightAnswer, changeCounter, setInRow, setNextWord,
 } from '../../../../features/audioChallengeSlice';
