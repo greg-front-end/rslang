@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 
-// import RightSound from '../../../../assets/audio/audioGame/match.wav';
-// import WrongSound from '../../../../assets/audio/audioGame/wrong.wav';
+import audioMatch from '../../../../assets/audio/audioGame/match.wav';
+import audioFail from '../../../../assets/audio/audioGame/wrong.wav';
 import {
   addRightAnswer, changeCounter, setInRow, setNextWord,
 } from '../../../../features/audioChallengeSlice';
@@ -21,6 +21,10 @@ const WORDS_QUANTITY = 20;
 const BTNS_ID = [0, 1, 2, 3];
 
 export const GameBtns = () => {
+  const match = new Audio(audioMatch);
+  const fail = new Audio(audioFail);
+  match.volume = 0.2;
+
   const dispatch = useAppDispatch();
   const currentWord = useAppSelector((state) => state.audioChallenge.currentWord);
   const rowCounter = useAppSelector((state) => state.audioChallenge.rowCounter);
@@ -40,9 +44,11 @@ export const GameBtns = () => {
     if (id === rightId) {
       dispatch(addRightAnswer(currentWord));
       dispatch(changeCounter(rowCounter + 1));
+      match.play();
     } else {
       dispatch(setInRow(rowCounter));
       dispatch(changeCounter(0));
+      fail.play();
     }
   };
 
