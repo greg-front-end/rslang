@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 
 import { getAgregatedCardSprint } from '../../api/getAggregatedCardSprint';
 import { getCardSprint } from '../../api/getCardSprint';
+import ReadyToStartImg from '../../assets/img/games/sprint/ready_start.png';
+import SprintersImg from '../../assets/img/games/sprint/sprinters.png';
 import { ResultsTable } from '../../components/ResultsTable/ResultsTable';
 import { Timer } from '../../components/Timer/Timer';
 import {
@@ -45,7 +47,7 @@ export const Sprint = () => {
     dispatch(setIndicators([false, false, false]));
     dispatch(clearSprintWords());
     dispatch(setTimerBeforeGame(4));
-    dispatch(setTimer(10));
+    dispatch(setTimer(10000000));
     dispatch(clearCurrectWrongWords());
     dispatch(clearCurrentWords());
     dispatch(clearWrongWords());
@@ -94,32 +96,48 @@ export const Sprint = () => {
   }, [timerBeforeGame]);
 
   return (
-    <div className="container">
-      <h1 className="title">Sprint</h1>
-      {timerBeforeGame
-        ? <div className={style.wrapper_timer}><Timer timer={timerBeforeGame} timerTime={4} /></div>
-        : <span />}
-      {!timerBeforeGame && timer && sprintWords.length
-        ? (<div className={style.wrapper_timer}><Timer timer={timer} timerTime={10} /></div>)
-        : <span />}
-      {!timerBeforeGame && timer && sprintWords[0] ? (
-        <GameCard
-          id={sprintWords[0].id}
-          word={sprintWords[0].word}
-          translate={sprintWords[0].translate}
-          random={sprintWords[0].random}
-        />
-      ) : <span />}
-      {!timer || !sprintWords.length
-        ? (
-          <ResultsTable
-            right={currectWords}
-            wrong={wrongWords}
-            inRow={inRow}
-            game={GamesName.Sprint}
-          />
-        )
-        : <span />}
+    <div className={isUserLogIn() ? `${style.sprint} ${style.sprint_login}` : `${style.sprint} ${style.sprint_logout}`}>
+      <div className={isUserLogIn() ? '' : 'container'}>
+        <h1 className={`${style.title} title`}>Sprint</h1>
+        <div className={isUserLogIn() ? `${style.wrapper} ${style.wrapper_login}` : `${style.wrapper} ${style.wrapper_logout}`}>
+          <div className={isUserLogIn() ? `${style.sprint_img} ${style.sprint_img_login}` : `${style.sprint_img} ${style.sprint_img_logout}`}>
+            <img src={SprintersImg} alt="Sprinters" />
+            {timerBeforeGame
+              ? (
+                <div className={style.wrapper_timer}>
+                  <Timer timer={timerBeforeGame} timerTime={4} />
+                </div>
+              )
+              : <span />}
+            {!timerBeforeGame && timer && sprintWords.length
+              ? (<div className={style.wrapper_timer}><Timer timer={timer} timerTime={10} /></div>)
+              : <span />}
+          </div>
+          <div className={isUserLogIn() ? `${style.ready_img} ${style.ready_img_login}` : `${style.ready_img} ${style.ready_img_logout}`}>
+            <img src={ReadyToStartImg} alt="Ready to start" />
+          </div>
+          <div className={isUserLogIn() ? `${style.question_wrapper} ${style.question_wrapper_login}` : `${style.question_wrapper} ${style.question_wrapper_logout}`}>
+            {!timerBeforeGame && timer && sprintWords[0] ? (
+              <GameCard
+                id={sprintWords[0].id}
+                word={sprintWords[0].word}
+                translate={sprintWords[0].translate}
+                random={sprintWords[0].random}
+              />
+            ) : <span />}
+            {!timer || !sprintWords.length
+              ? (
+                <ResultsTable
+                  right={currectWords}
+                  wrong={wrongWords}
+                  inRow={inRow}
+                  game={GamesName.Sprint}
+                />
+              )
+              : <span />}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
