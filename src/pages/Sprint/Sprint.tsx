@@ -49,7 +49,7 @@ export const Sprint = () => {
     dispatch(setIndicators([false, false, false]));
     dispatch(clearSprintWords());
     dispatch(setTimerBeforeGame(4));
-    dispatch(setTimer(10000000));
+    dispatch(setTimer(10));
     dispatch(clearCurrectWrongWords());
     dispatch(clearCurrentWords());
     dispatch(clearWrongWords());
