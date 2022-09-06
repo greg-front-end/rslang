@@ -23,6 +23,8 @@ interface ILevelButtonsProps {
   isActiveLvlSettingMenu: boolean
 }
 
+const asideStylesLogIn = () => (isUserLogIn() ? `${style.aside_wrapper}` : `${style.aside_wrapper} ${style.aside_wrapper_logput}`);
+
 export const LevelButtons: React.FC<ILevelButtonsProps> = (
   {
     closeLvlSettingMenu,
@@ -32,7 +34,7 @@ export const LevelButtons: React.FC<ILevelButtonsProps> = (
   const toggleHardWords = useAppSelector((state) => state.textBook.switchHardWords);
   return (
     <div className={style.wrapper}>
-      <div className={isActiveLvlSettingMenu ? `${style.aside_wrapper} ${style.aside_wrapper_active}` : style.aside_wrapper}>
+      <div className={isActiveLvlSettingMenu ? `${asideStylesLogIn()} ${style.aside_wrapper_active}` : asideStylesLogIn()}>
         <h2 className={style.title}>Level</h2>
         {levels.map((el) => (
           <LevelButton

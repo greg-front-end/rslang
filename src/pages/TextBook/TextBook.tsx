@@ -73,11 +73,11 @@ export const TextBook: React.FC = () => {
   return (
     <TextBookContext value={{ audio, setAudio, isEasy }}>
       <div className={isUserLogIn() ? '' : 'container'}>
-        <div className={style.wrapper}>
+        <div className={isUserLogIn() ? style.wrapper : `${style.wrapper} ${style.wrapper_logout}`}>
           {isActiveLvlSettingBtn && (
             <button
               type="button"
-              className={style.level_setting_btn}
+              className={isUserLogIn() ? style.level_setting_btn : `${style.level_setting_btn} ${style.level_setting_btn_log_out}`}
               onClick={handleActiveLvlSettingMenu}
             >
               <LvlSettingIcon />

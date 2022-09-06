@@ -13,6 +13,9 @@
     transition: var(--transitionAll3sec);
     z-index: -1;
 }
+.aside_wrapper_logput{ 
+    top: 140px !important;
+}
 
 .title {
     width: 81px;
