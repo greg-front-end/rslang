@@ -22,6 +22,7 @@ import style from './GameCard.module.css';
 export const GameCard: React.FC<SprintCard> = ({
   word, translate, random, id,
 }) => {
+  const wrongAudio = new Audio('../../assets/audio/wrong_audio.wav');
   const dispatch = useAppDispatch();
   const cards = useAppSelector((state) => state.textBook.cards);
   const buffer = useAppSelector((state) => state.sprint.buffer);
@@ -29,6 +30,7 @@ export const GameCard: React.FC<SprintCard> = ({
   const isCurrect = translate === random;
 
   function determine(str: string) {
+    wrongAudio.play();
     // eslint-disable-next-line no-underscore-dangle
     const card = cards.find((el) => (isUserLogIn() ? el._id === id : el.id === id));
     // eslint-disable-next-line no-underscore-dangle
