@@ -167,7 +167,6 @@ const authSlice = createSlice({
       );
     builder
       .addCase(loadUser.pending, (state) => {
-        console.log('pending');
         state.loadStatus = LoadStatus.pending;
       })
 
@@ -175,39 +174,20 @@ const authSlice = createSlice({
         state.name = action.payload.name;
         state.email = action.payload.email;
         state.loadStatus = LoadStatus.fulfilled;
-      })
-
-      .addCase(loadUser.rejected, (state, action) => {
-        console.log(action.payload);
       });
-
     builder
       .addCase(deleteUser.pending, (state) => {
-        console.log('pending');
         state.loadStatus = LoadStatus.pending;
-      })
-
-      .addCase(deleteUser.fulfilled, (state, action) => {
-        console.log('deleteUser', action.payload);
-      })
-
-      .addCase(deleteUser.rejected, (state, action) => {
-        console.log(action.payload);
       });
 
     builder
       .addCase(updateUser.pending, (state) => {
-        console.log('pending');
         state.loadStatus = LoadStatus.pending;
       })
 
       .addCase(updateUser.fulfilled, (state, action) => {
         state.email = action.payload.email;
         state.loadStatus = LoadStatus.fulfilled;
-      })
-
-      .addCase(updateUser.rejected, (state, action) => {
-        console.log('rejected');
       });
   },
 });

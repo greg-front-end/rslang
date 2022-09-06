@@ -93,12 +93,7 @@ const textBookSlice = createSlice({
         state.cards = action.payload;
         state.loadStatus = LoadStatus.fulfilled;
       })
-
-      .addCase(getCard.rejected, (state, action) => {
-        // console.log('rejected');
-      })
       .addCase(getAgregatedCard.pending, (state, action) => {
-        // console.log('pending');
         state.loadStatus = LoadStatus.pending;
       })
 
@@ -107,52 +102,32 @@ const textBookSlice = createSlice({
         state.loadStatus = LoadStatus.fulfilled;
       })
 
-      .addCase(getAgregatedCard.rejected, (state, action) => {
-        // console.log('rejected');
-      })
-
       .addCase(getHardWords.pending, (state, action) => {
-        // console.log('pending');
         state.loadStatus = LoadStatus.pending;
       })
 
       .addCase(getHardWords.fulfilled, (state, action) => {
         state.hardWords = action.payload;
         state.loadStatus = LoadStatus.fulfilled;
-        // console.log('hard fulfilled', action.payload);
-      })
-
-      .addCase(getHardWords.rejected, (state, action) => {
-        // console.log('rejected');
       })
 
       .addCase(getEasyWords.pending, (state, action) => {
-        // console.log('pending');
         state.loadStatus = LoadStatus.pending;
       })
 
       .addCase(getEasyWords.fulfilled, (state, action) => {
         state.loadStatus = LoadStatus.fulfilled;
         state.easyWordsCount = action.payload;
-      })
-
-      .addCase(getEasyWords.rejected, (state, action) => {
-        // console.log('rejected');
       });
 
     builder
       .addCase(getNoEasyWords.pending, (state, action) => {
-        // console.log('pending');
         state.loadStatus = LoadStatus.pending;
       })
 
       .addCase(getNoEasyWords.fulfilled, (state, action) => {
         state.loadStatus = LoadStatus.fulfilled;
         state.noEasyWords = action.payload;
-      })
-
-      .addCase(getNoEasyWords.rejected, (state, action) => {
-        // console.log('rejected');
       });
   },
 });

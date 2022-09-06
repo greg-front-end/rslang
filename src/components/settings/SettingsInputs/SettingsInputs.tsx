@@ -49,10 +49,6 @@ export const SettingsInputs = () => {
     }
   };
 
-  useEffect(() => {
-    console.log('update');
-  }, [userMail]);
-
   return (
     <>
       <div className={`${style.name_block}`}>

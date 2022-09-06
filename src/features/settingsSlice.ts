@@ -39,10 +39,6 @@ const settingsSlice = createSlice({
       .addCase(putUserSettings.fulfilled, (state, action) => {
         state.avatar = action.payload;
         state.loadStatus = LoadStatus.fulfilled;
-      })
-
-      .addCase(putUserSettings.rejected, (state, action) => {
-        console.log(action.payload);
       });
   },
 });

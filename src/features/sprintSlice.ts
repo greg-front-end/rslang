@@ -26,7 +26,6 @@ const sprintSlice = createSlice({
   reducers: {
     setIsLoad: (state, action: PayloadAction<boolean>) => {
       state.isLoad = action.payload;
-      console.log('setIsLoad', action.payload);
     },
     setInRow: (state, action: PayloadAction<number>) => {
       state.inRow = action.payload;
@@ -89,10 +88,6 @@ const sprintSlice = createSlice({
         state.buffer = action.payload;
         state.loadStatus = LoadStatus.fulfilled;
       })
-
-      .addCase(getCardSprint.rejected, (state, action) => {
-        console.log('rejected');
-      })
       .addCase(getAgregatedCardSprint.pending, (state, action) => {
         state.loadStatus = LoadStatus.pending;
       })
@@ -100,10 +95,6 @@ const sprintSlice = createSlice({
       .addCase(getAgregatedCardSprint.fulfilled, (state, action) => {
         state.buffer = action.payload;
         state.loadStatus = LoadStatus.fulfilled;
-      })
-
-      .addCase(getAgregatedCardSprint.rejected, (state, action) => {
-        // console.log('rejected');
       });
   },
 });
