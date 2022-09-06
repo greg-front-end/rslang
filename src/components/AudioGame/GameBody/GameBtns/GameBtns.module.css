@@ -6,10 +6,10 @@
   color: var(--color-darkblue);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .wrapper {
     flex-wrap: wrap;
     margin-inline: auto;
-    max-width: 70%;
+    max-width: 100%;
   }
 }

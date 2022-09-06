@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { setInitState } from '../../features/audioChallengeSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { isUserLogIn } from '../../utils/isUserLogIn';
 
 import { GameBody } from './GameBody/GameBody';
 import { Results } from './Results/Results';
@@ -27,10 +28,10 @@ export const AudioGame = () => {
   }, []);
 
   return (
-    <div className={styles.challenge}>
+    <div className={isUserLogIn() ? `${styles.challenge} ${styles.challenge_login}` : `${styles.challenge} ${styles.challenge_logout}`}>
       <div className={styles.wrapper}>
         <div className="container">
-          <h2 className={`${styles.title} title`}>Audio challenge</h2>
+          <h2 className={isUserLogIn() ? `${styles.title} title` : `${styles.title} ${styles.title_logout} title`}>Audio challenge</h2>
           {finish
             ? (<Results />)
             : isLoad && <GameBody />}
