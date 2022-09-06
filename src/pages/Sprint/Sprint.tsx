@@ -47,7 +47,6 @@ export const Sprint = () => {
   const loadStatus = useAppSelector((state) => state.sprint.loadStatus);
 
   useEffect(() => {
-    debugger;
     dispatch(setIndicators([false, false, false]));
     dispatch(clearSprintWords());
     dispatch(setTimerBeforeGame(4));

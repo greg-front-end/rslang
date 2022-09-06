@@ -29,7 +29,6 @@ export const Counts = ({
   const statistic = useAppSelector((state) => state.statistic.statistic);
   const learned = useAppSelector((state) => state.textBook.easyWordsCount);
   const [loadTrigger, setLoadTrigger] = useState(false);
-  const finish = useAppSelector((state) => state.audioChallenge.finish);
 
   const rightWordStatistics = right.map((word) => wordStatisticRight(word));
   const wrongWordStatistics = wrong.map((word) => wordStatisticWrong(word));
@@ -58,10 +57,8 @@ export const Counts = ({
   };
 
   useEffect(() => {
-    if (finish) {
-      loadPrevStatistic();
-    }
-  }, [finish]);
+    loadPrevStatistic();
+  }, []);
 
   useEffect(() => {
     if (loadTrigger) {

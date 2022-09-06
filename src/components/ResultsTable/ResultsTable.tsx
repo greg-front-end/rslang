@@ -25,7 +25,6 @@ export const ResultsTable = ({
   const inAccuracy = (right.length + wrong.length) === 0
     ? 0
     : Math.round((right.length * 100) / (right.length + wrong.length));
-  const finish = useAppSelector((state) => state.audioChallenge.finish);
   return (
     <div className={style.wrapper}>
       {isUserLogIn()
