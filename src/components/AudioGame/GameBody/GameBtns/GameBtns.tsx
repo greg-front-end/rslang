@@ -80,6 +80,10 @@ export const GameBtns = () => {
     }
   };
 
+  useEffect(() => {
+    dispatch(changeCounter(0));
+  }, []);
+
   document.addEventListener('keydown', defineBtn);
 
   useEffect(() => {

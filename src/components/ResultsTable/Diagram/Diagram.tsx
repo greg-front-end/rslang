@@ -6,14 +6,13 @@ import styles from './Diagram.module.css';
 
 interface ITimerProps {
   value: number,
+  r: number,
 }
 
-const COUNTER_RADIUS = 40;
-
-const calcSFL = () => COUNTER_RADIUS * 2 * Math.PI;
-
-export const Diagram = ({ value }: ITimerProps) => {
+export const Diagram = ({ value, r }: ITimerProps) => {
+  const calcSFL = () => r * 2 * Math.PI;
   const calcProgress = () => (calcSFL() / 100) * (100 - value);
+  const width = r * 2 + 20;
 
   const style = {
     strokeDashoffset: calcProgress(),
@@ -21,9 +20,9 @@ export const Diagram = ({ value }: ITimerProps) => {
 
   return (
     <div className={styles.wrapper}>
-      <svg width="100" height="100" className={styles.timer}>
-        <circle r={COUNTER_RADIUS} cx="50" cy="50" className={styles.track} />
-        <circle r={COUNTER_RADIUS} cx="50" cy="50" className={styles.progress} style={style} />
+      <svg width={width} height={width} className={styles.timer}>
+        <circle r={r} cx={width / 2} cy={width / 2} className={styles.track} />
+        <circle r={r} cx={width / 2} cy={width / 2} className={styles.progress} style={style} />
       </svg>
       <img src={target} alt="target" className={styles.img} />
     </div>
