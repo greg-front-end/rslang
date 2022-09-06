@@ -64,7 +64,7 @@ export const TextBook: React.FC = () => {
           {!toggleHardWords && <Pagination />}
           <LevelButtons />
           <div className={style.wrapper_QuickStartGame}>
-            <QuickStartGame />
+            {!toggleHardWords && <QuickStartGame />}
           </div>
           {(toggleHardWords ? hardWords : cards)
             .map((item) => (<WordListItem key={nanoid()} item={item} />))}

@@ -10,6 +10,7 @@ import {
 } from '../../features/sprintSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { IWordsItem } from '../../types/IWordsItem';
 import { SprintCard } from '../../types/Sprint';
 import { isUserLogIn } from '../../utils/isUserLogIn';
 
