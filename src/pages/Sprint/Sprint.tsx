@@ -9,6 +9,7 @@ import {
   clearCurrectWrongWords,
   clearCurrentWords, clearLoadStatus, clearSprintWords, clearWrongWords, decrementTimer,
   decrementTimerBeforeGame,
+  setIndicators,
   setInRow,
   setSprintWords, setTimer, setTimerBeforeGame,
 } from '../../features/sprintSlice';
@@ -41,6 +42,7 @@ export const Sprint = () => {
   const loadStatus = useAppSelector((state) => state.sprint.loadStatus);
 
   useEffect(() => {
+    dispatch(setIndicators([false, false, false]));
     dispatch(clearSprintWords());
     dispatch(setTimerBeforeGame(4));
     dispatch(setTimer(10));

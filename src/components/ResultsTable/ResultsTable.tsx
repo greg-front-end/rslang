@@ -29,7 +29,7 @@ export const ResultsTable = ({
   const dispatch = useAppDispatch();
   const statistic = useAppSelector((state) => state.statistic.statistic);
   const loadStatus = useAppSelector((state) => state.textBook.loadStatus);
-  // const easyWordCount = useAppSelector((state) => state.textBook.easyWordsCount);
+  const learned = useAppSelector((state) => state.textBook.easyWordsCount);
 
   const rightWordStatistics = right.map((word) => wordStatisticRight(word));
   const wrongWordStatistics = wrong.map((word) => wordStatisticWrong(word));
@@ -42,7 +42,9 @@ export const ResultsTable = ({
 
   const newGameStatistic: GameStatistics = { inRow, words, inAccuracy };
 
-  const statisticObject = getGameStatistic({ statistic, newGameStatistic, game });
+  const statisticObject = getGameStatistic({
+    statistic, newGameStatistic, game, learned,
+  });
 
   const sendGameStatistic = () => {
     dispatch(putUserStatistic(statisticObject));
