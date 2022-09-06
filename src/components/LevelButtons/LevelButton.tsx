@@ -10,10 +10,14 @@ import style from './LevelButtons.module.css';
 export type Level = {
   level: string,
   name: string,
-  group: number
+  group: number,
+  // eslint-disable-next-line react/require-default-props
+  closeLvlSettingMenu?: () => void;
 }
 
-export const LevelButton: React.FC<Level> = ({ level, name, group }) => {
+export const LevelButton: React.FC<Level> = ({
+  level, name, group, closeLvlSettingMenu,
+}) => {
   const dispatch = useAppDispatch();
   const groupNum = useAppSelector((state) => state.textBook.group);
   function changeGroup(num: number) {
@@ -31,7 +35,10 @@ export const LevelButton: React.FC<Level> = ({ level, name, group }) => {
   return (
     <div>
       <button
-        onClick={() => changeGroup(group)}
+        onClick={() => {
+          changeGroup(group);
+          closeLvlSettingMenu!();
+        }}
         className={`${style.btn} ${level}`}
         type="button"
       >

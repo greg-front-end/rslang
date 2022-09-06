@@ -247,3 +247,19 @@ body {
 .hard_group{
 color: var(--color-red);
 }
+
+.delete {
+  animation: delete 0.3s ease-in forwards;
+}
+
+@keyframes delete {
+  100% {
+    transform: translateX(-70%);
+  }
+  50% {
+    transform: translateX(-35%);
+  }
+  0% {
+    transform: translateX(100%);
+  }
+}

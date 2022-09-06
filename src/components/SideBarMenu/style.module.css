@@ -8,6 +8,18 @@
   position: fixed;
   top: 30px;
 }
+.menu_btn::after {
+  content: '';
+  position: absolute;
+  width: 54px;
+  height: 54px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-blue);
+  z-index: -1;
+  border-radius: var(--border-radius)
+}
 .menu_btn svg {
   width: 32px;
   height: 32px;
