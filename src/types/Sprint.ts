@@ -8,6 +8,7 @@ export type SprintWord = {
 }
 
 export type SprintState = {
+  isLoad:boolean,
   buffer: IWordsItem[],
   sprintWords: SprintWord[],
   indicators: boolean[],
