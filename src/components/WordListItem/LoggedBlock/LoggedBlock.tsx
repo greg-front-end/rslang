@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { getHardWords } from '../../../api/getHardWords';
 import { postWordOption } from '../../../api/postWordOption';
 import { putWordOption } from '../../../api/putWordOption';
-import { filterCard } from '../../../features/textBookSlice';
+import { deleteFromHardWords, filterCard } from '../../../features/textBookSlice';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { ICreateWordOptions } from '../../../types/ICreateWordOptions';
@@ -59,6 +59,11 @@ export const LoggedBlock = ({ item, setOptions }: ILoggedBlockProps) => {
       wordId: item._id,
     };
     dispatch(putWordOption(options));
+    dispatch(filterCard({
+      id: item._id,
+      difficulty: 'none',
+    }));
+    dispatch(deleteFromHardWords(item._id));
   };
 
   const clickHandler = (e: React.MouseEvent) => {
@@ -72,16 +77,9 @@ export const LoggedBlock = ({ item, setOptions }: ILoggedBlockProps) => {
     }
   }, [click]);
 
-  // useEffect(() => {
-  //   if (click && successfulUpdate === 'fulfilled') {
-  //     toggleHardWords ? dispatch(getHardWords()) : dispatch(getAgregatedCard());
-  //     setClick(false);
-  //   }
-  // }, [successfulUpdate]);
-
   useEffect(() => {
     if (click && successfulUpdate === LoadStatus.fulfilled && toggleHardWords) {
-      dispatch(getHardWords());
+      // dispatch(getHardWords());
       setClick(false);
     }
   }, [successfulUpdate]);
