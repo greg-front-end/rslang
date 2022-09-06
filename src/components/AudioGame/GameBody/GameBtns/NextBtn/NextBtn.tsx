@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 
+import audio from '../../../../../assets/audio/audioGame/finish.wav';
 import {
   changeCurrentWord, finishGame, setInRow, setNextWord,
 } from '../../../../../features/audioChallengeSlice';
@@ -10,6 +11,7 @@ import { changeWord } from '../../../utils/changeWord';
 import styles from './NextBtn.module.css';
 
 export const NextBtn = () => {
+  const finishAudio = new Audio(audio);
   const dispatch = useAppDispatch();
   const words = useAppSelector((state) => state.audioChallenge.words);
   const index = useAppSelector((state) => state.audioChallenge.currentIndex);
@@ -20,6 +22,7 @@ export const NextBtn = () => {
       if (words.length === index + 1) {
         dispatch(finishGame(true));
         dispatch(setInRow(rowCounter));
+        finishAudio.play();
       } else {
         dispatch(changeCurrentWord(changeWord(words, index)));
       }
