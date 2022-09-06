@@ -1,15 +1,66 @@
 .wrapper {
     display: flex;
     flex-direction: column;
-    gap: 40px;
-    width: 1050px;
+    gap: 20px;
+    max-width: 1270px;
     text-align: left;
+    margin: var(--pd30) 0;
+    position: relative;
 }
-
-.wrapper_QuickStartGame {
-    position: fixed;
-    z-index: 5;
-    right: 50px;
-    top: 520px;
-
+@media (max-width: 1439px) {
+  .wrapper {
+    max-width: 900px;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 1320px) {
+  .statistics_wrapper {
+    max-width: 800px;
+    flex-wrap: wrap;
+  }
+  .user {
+    right: -40px;
+  }
+}
+@media (max-width: 1200px) {
+  .statistics_wrapper {
+    max-width: 800px;
+    flex-wrap: wrap;
+    gap: var(--pd20);
+  }
+  .user {
+    right: -60px;
+  }
+}
+@media (max-width: 1024px) {
+  .statistics_wrapper {
+    max-width: 400px;
+    flex-wrap: wrap;
+    gap: var(--pd20);
+  }
+  .user {
+    right: -190px;
+  }
+}
+@media (max-width: 768px) {
+  .statistics_wrapper {
+    max-width: 560px;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--pd20);
+    margin-inline: auto;
+  }
+  .game_wrapper,
+  .words_module {
+    width: 100%;
+    max-width: 560px;
+  }
+  .title_wrapper {
+    justify-content: end;
+  }
+  .user {
+    top: var(--pd90);
+    right: 50%;
+    transform: translateX(50%);
+  }
 }

@@ -1,7 +1,9 @@
 import React from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 
+import { useAppSelector } from '../../hooks/useAppSelector';
 import { isUserLogIn } from '../../utils/isUserLogIn';
+import { QuickStartGame } from '../QuickStartGame/QuickStartGame';
 
 import { HardWords } from './HardWords';
 import { Level, LevelButton } from './LevelButton';
@@ -17,17 +19,25 @@ export const levels: Level[] = [
   { level: 'C2', name: 'Proficient', group: 5 },
 ];
 
-export const LevelButtons: React.FC = () => (
-  <div className={style.wrapper}>
-    <h2 className={style.title}>Level</h2>
-    {levels.map((el) => (
-      <LevelButton
-        key={nanoid()}
-        level={el.level}
-        name={el.name}
-        group={el.group}
-      />
-    ))}
-    {isUserLogIn() && <HardWords />}
-  </div>
-);
+export const LevelButtons: React.FC = () => {
+  const toggleHardWords = useAppSelector((state) => state.textBook.switchHardWords);
+  return (
+    <div className={style.wrapper}>
+      <div className={style.aside_wrapper}>
+        <h2 className={style.title}>Level</h2>
+        {levels.map((el) => (
+          <LevelButton
+            key={nanoid()}
+            level={el.level}
+            name={el.name}
+            group={el.group}
+          />
+        ))}
+        {isUserLogIn() && <HardWords />}
+        <div className={style.wrapper_QuickStartGame}>
+          {!toggleHardWords && <QuickStartGame />}
+        </div>
+      </div>
+    </div>
+  );
+};

@@ -52,7 +52,7 @@ export const TextBook: React.FC = () => {
 
   return (
     <TextBookContext value={{ audio, setAudio, isEasy }}>
-      <div className={isUserLogIn() ? 'container_login' : 'container'}>
+      <div className={isUserLogIn() ? '' : 'container'}>
         <div className={style.wrapper}>
           <h2 className={!toggleHardWords ? `title ${levels[group].level}` : 'title hard_group'}>
             {
@@ -63,9 +63,6 @@ export const TextBook: React.FC = () => {
           </h2>
           {!toggleHardWords && <Pagination />}
           <LevelButtons />
-          <div className={style.wrapper_QuickStartGame}>
-            {!toggleHardWords && <QuickStartGame />}
-          </div>
           {(toggleHardWords ? hardWords : cards)
             .map((item) => (<WordListItem key={nanoid()} item={item} />))}
         </div>
