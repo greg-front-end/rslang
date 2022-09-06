@@ -4,6 +4,7 @@ import { nanoid } from '@reduxjs/toolkit';
 import { getAgregatedCard } from '../../api/getAggregatedCard';
 import { getCard } from '../../api/getCard';
 import { getHardWords } from '../../api/getHardWords';
+import { ReactComponent as LvlSettingIcon } from '../../assets/svg/lvl_settings.svg';
 import { LevelButtons, levels } from '../../components/LevelButtons/LevelButtons';
 import { Pagination } from '../../components/Pagination/Pagination';
 import { QuickStartGame } from '../../components/QuickStartGame/QuickStartGame';
@@ -27,14 +28,33 @@ export const TextBook: React.FC = () => {
   const hardWords = useAppSelector((state) => state.textBook.hardWords);
   const page = useAppSelector((state) => state.textBook.page);
   const group = useAppSelector((state) => state.textBook.group);
-
+  const [isActiveLvlSettingBtn, setIsActiveLvlSettingBtn] = useState(false);
+  const [isActiveLvlSettingMenu, setIsActiveLvlSettingMenu] = useState(false);
   const toggleHardWords = useAppSelector((state) => state.textBook.switchHardWords);
+  console.log(isActiveLvlSettingBtn);
+  console.log(isActiveLvlSettingMenu);
   const toggleDispatchWords = () => (toggleHardWords
     ? dispatch(getHardWords())
     : dispatch(getAgregatedCard())
   );
 
+  const handleActiveLvlSettingMenu = () => {
+    setIsActiveLvlSettingMenu(!isActiveLvlSettingMenu);
+  };
+  const closeLvlSettingMenu = () => {
+    setIsActiveLvlSettingMenu(false);
+  };
+  const showLvlSettingBtn = () => {
+    if (window.innerWidth <= 1100) {
+      setIsActiveLvlSettingBtn(true);
+    } else {
+      setIsActiveLvlSettingBtn(false);
+    }
+  };
+  window.addEventListener('resize', showLvlSettingBtn);
+
   useEffect(() => {
+    showLvlSettingBtn();
     dispatch(setPage(Number(getValueLocalStorage('page'))));
     dispatch(setGroup(Number(getValueLocalStorage('group'))));
 
@@ -52,9 +72,18 @@ export const TextBook: React.FC = () => {
 
   return (
     <TextBookContext value={{ audio, setAudio, isEasy }}>
-      <div className={isUserLogIn() ? 'container_login' : 'container'}>
-        <div className={style.wrapper}>
-          <h2 className={!toggleHardWords ? `title ${levels[group].level}` : 'title hard_group'}>
+      <div className={isUserLogIn() ? '' : 'container'}>
+        <div className={isUserLogIn() ? style.wrapper : `${style.wrapper} ${style.wrapper_logout}`}>
+          {isActiveLvlSettingBtn && (
+            <button
+              type="button"
+              className={isUserLogIn() ? style.level_setting_btn : `${style.level_setting_btn} ${style.level_setting_btn_log_out}`}
+              onClick={handleActiveLvlSettingMenu}
+            >
+              <LvlSettingIcon />
+            </button>
+          )}
+          <h2 className={!toggleHardWords ? `title ${levels[group].level} ${style.title}` : `title hard_group ${style.title}`}>
             {
               !toggleHardWords
                 ? `${levels[group].level} ${levels[group].name}`
@@ -62,10 +91,10 @@ export const TextBook: React.FC = () => {
             }
           </h2>
           {!toggleHardWords && <Pagination />}
-          <LevelButtons />
-          <div className={style.wrapper_QuickStartGame}>
-            {!toggleHardWords && <QuickStartGame />}
-          </div>
+          <LevelButtons
+            closeLvlSettingMenu={closeLvlSettingMenu}
+            isActiveLvlSettingMenu={isActiveLvlSettingMenu}
+          />
           {(toggleHardWords ? hardWords : cards)
             .map((item) => (<WordListItem key={nanoid()} item={item} />))}
         </div>
