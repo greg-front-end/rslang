@@ -52,19 +52,18 @@
 
 .visible {
   transition: 0.3s;
-  transform: scale(1);
+  transform: scale(1) translate(-50%, -50%);
 }
 
 .hidden {
   transition: 0.3s;
-  transform: scale(0);
+  transform: scale(0) translate(-50%, -50%);
 }
 
 .results_wrapper {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
 }
 
 @media (max-width: 1366px) {

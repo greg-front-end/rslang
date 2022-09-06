@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
+import { getEasyWords } from '../../api/getEasyWords';
+import { getUserStatistic } from '../../api/getUserStatistic';
 import { postWordOption } from '../../api/postWordOption';
 import { putUserStatistic } from '../../api/putUserStatistic';
 import titleImg from '../../assets/svg/statistics/games/resimg.svg';
@@ -30,8 +32,10 @@ export const ResultsTable = ({
 }: IResultsTableProps) => {
   const dispatch = useAppDispatch();
   const statistic = useAppSelector((state) => state.statistic.statistic);
-  const loadStatus = useAppSelector((state) => state.textBook.loadStatus);
+  // const loadStatus = useAppSelector((state) => state.textBook.loadStatus);
   const learned = useAppSelector((state) => state.textBook.easyWordsCount);
+  const [loadTrigger, setLoadTrigger] = useState(false);
+  const finish = useAppSelector((state) => state.audioChallenge.finish);
 
   const rightWordStatistics = right.map((word) => wordStatisticRight(word));
   const wrongWordStatistics = wrong.map((word) => wordStatisticWrong(word));
@@ -48,8 +52,8 @@ export const ResultsTable = ({
     statistic, newGameStatistic, game, learned,
   });
 
-  const sendGameStatistic = () => {
-    dispatch(putUserStatistic(statisticObject));
+  const sendGameStatistic = async () => {
+    await dispatch(putUserStatistic(statisticObject));
   };
 
   const sendWordsStatistic = () => {
@@ -57,13 +61,24 @@ export const ResultsTable = ({
     wrongWordStatistics.forEach(({ obj }) => dispatch(postWordOption(obj)));
   };
 
+  const loadPrevStatistic = async () => {
+    await dispatch(getUserStatistic());
+    await dispatch(getEasyWords());
+    setLoadTrigger(true);
+  };
+
   useEffect(() => {
-    console.log('useEffect ResultsTable 2');
-    if (loadStatus === LoadStatus.fulfilled) {
+    if (finish) {
+      loadPrevStatistic();
+    }
+  }, [finish]);
+
+  useEffect(() => {
+    if (loadTrigger) {
       sendWordsStatistic();
       sendGameStatistic();
     }
-  }, []);
+  }, [loadTrigger]);
 
   return (
     <div className={style.wrapper}>
