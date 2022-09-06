@@ -9,7 +9,11 @@ import { AudioQuickStart } from './AudioQuickStart/AudioQuickStart';
 
 import style from './style.module.css';
 
-export const QuickStartGame: FC = () => {
+interface IQuickStartGame {
+  // eslint-disable-next-line react/require-default-props
+  closeLvlSettingMenu?: () => void
+}
+export const QuickStartGame: FC<IQuickStartGame> = ({ closeLvlSettingMenu }) => {
   const { isEasy } = useContext(TextBookCont);
   const location = useLocation();
   setValueLocalStorage('currentPage', location.pathname);
@@ -28,7 +32,10 @@ export const QuickStartGame: FC = () => {
       <AudioQuickStart isEasy={isEasy} />
       <NavLink
         to="/games/sprint"
-        onClick={() => setValueLocalStorage('currentPage', location.pathname)}
+        onClick={() => {
+          setValueLocalStorage('currentPage', location.pathname);
+          closeLvlSettingMenu!();
+        }}
         className={`${style.link} ${isEasy ? style.easy : ''}`}
       >
         <Titlehallenge text="Sprint" icon="sprint" />

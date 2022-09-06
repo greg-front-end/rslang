@@ -10,6 +10,8 @@
     right: 50px;
     top: 30px;
     gap: 10px;
+    transition: var(--transitionAll3sec);
+    z-index: -1;
 }
 
 .title {
@@ -52,4 +54,20 @@
 
 .wrapper_QuickStartGame {
     margin-top: var(--pd30);
+}
+@media (max-width: 1100px) {
+
+    .aside_wrapper {
+        right: -120%;
+        z-index: 99;
+        background-color: var(--color-blue);
+        overflow: scroll;
+        height: 100vh;
+        padding: 130px 20px;
+        top: 0;
+        border-top-left-radius: var(--border-radius);
+    }
+    .aside_wrapper_active {
+        right: 0;
+    }
 }

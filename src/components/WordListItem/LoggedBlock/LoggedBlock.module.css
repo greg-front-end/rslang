@@ -30,3 +30,16 @@
 .yellow {
   color: var(--color-yellow);
 }
+@media (max-width: 1024px) {
+  .wrapper {
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: var(--pd20);
+    padding: var(--p20) 0;
+  }
+  .btns__wrapper {
+    align-self: end;
+    column-gap: 10px;
+  }
+}

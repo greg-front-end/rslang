@@ -18,12 +18,21 @@ export const levels: Level[] = [
   { level: 'C1', name: 'Advanced', group: 4 },
   { level: 'C2', name: 'Proficient', group: 5 },
 ];
+interface ILevelButtonsProps {
+  closeLvlSettingMenu: () => void
+  isActiveLvlSettingMenu: boolean
+}
 
-export const LevelButtons: React.FC = () => {
+export const LevelButtons: React.FC<ILevelButtonsProps> = (
+  {
+    closeLvlSettingMenu,
+    isActiveLvlSettingMenu,
+  },
+) => {
   const toggleHardWords = useAppSelector((state) => state.textBook.switchHardWords);
   return (
     <div className={style.wrapper}>
-      <div className={style.aside_wrapper}>
+      <div className={isActiveLvlSettingMenu ? `${style.aside_wrapper} ${style.aside_wrapper_active}` : style.aside_wrapper}>
         <h2 className={style.title}>Level</h2>
         {levels.map((el) => (
           <LevelButton
@@ -31,11 +40,12 @@ export const LevelButtons: React.FC = () => {
             level={el.level}
             name={el.name}
             group={el.group}
+            closeLvlSettingMenu={closeLvlSettingMenu}
           />
         ))}
-        {isUserLogIn() && <HardWords />}
+        {isUserLogIn() && <HardWords closeLvlSettingMenu={closeLvlSettingMenu} />}
         <div className={style.wrapper_QuickStartGame}>
-          {!toggleHardWords && <QuickStartGame />}
+          {!toggleHardWords && <QuickStartGame closeLvlSettingMenu={closeLvlSettingMenu} />}
         </div>
       </div>
     </div>

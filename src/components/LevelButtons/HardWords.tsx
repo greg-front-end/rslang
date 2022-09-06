@@ -7,7 +7,10 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 
 import style from './LevelButtons.module.css';
 
-export const HardWords: React.FC = () => {
+interface IHardWordsProps {
+  closeLvlSettingMenu: () => void
+}
+export const HardWords: React.FC<IHardWordsProps> = ({ closeLvlSettingMenu }) => {
   const dispatch = useAppDispatch();
   function handle() {
     dispatch(getHardWords());
@@ -17,7 +20,10 @@ export const HardWords: React.FC = () => {
   return (
     <div>
       <button
-        onClick={() => handle()}
+        onClick={() => {
+          handle();
+          closeLvlSettingMenu();
+        }}
         className={`${style.btn} hard_group`}
         type="button"
       >
