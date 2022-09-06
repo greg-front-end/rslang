@@ -8,6 +8,7 @@
 
 .wrapper_QuickStartGame {
     position: fixed;
+    z-index: 5;
     right: 50px;
     top: 520px;
 

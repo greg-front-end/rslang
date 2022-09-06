@@ -16,6 +16,7 @@ export const AudioButton = ({ path }: IWordsItemProps) => {
   const playAudio = () => {
     audio.currentTime = 0;
     audio.play();
+    console.log('third play audio');
   };
 
   useEffect(() => {

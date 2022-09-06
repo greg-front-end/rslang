@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { getAgregatedCard } from '../../api/getAggregatedCard';
-import { getCard } from '../../api/getCard';
+import { getAgregatedCardSprint } from '../../api/getAggregatedCardSprint';
+import { getCardSprint } from '../../api/getCardSprint';
 import { ResultsTable } from '../../components/ResultsTable/ResultsTable';
 import { Timer } from '../../components/Timer/Timer';
 import {
   clearCurrectWrongWords,
-  clearCurrentWords, clearWrongWords, decrementTimer,
+  clearCurrentWords, clearLoadStatus, clearSprintWords, clearWrongWords, decrementTimer,
   decrementTimerBeforeGame,
+  setIndicators,
   setInRow,
   setSprintWords, setTimer, setTimerBeforeGame,
 } from '../../features/sprintSlice';
-import { setPage } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { GamesName } from '../../types/GamesName';
@@ -38,43 +38,46 @@ export const Sprint = () => {
   const timerBeforeGame = useAppSelector((state) => state.sprint.timerBeforeGame);
   const inRow = useAppSelector((state) => state.sprint.inRow);
   const page = useAppSelector((state) => state.textBook.page);
-  const loadStatus = useAppSelector((state) => state.textBook.loadStatus);
+  const buffer = useAppSelector((state) => state.sprint.buffer);
+  const loadStatus = useAppSelector((state) => state.sprint.loadStatus);
 
   useEffect(() => {
+    dispatch(setIndicators([false, false, false]));
+    dispatch(clearSprintWords());
     dispatch(setTimerBeforeGame(4));
     dispatch(setTimer(10));
     dispatch(clearCurrectWrongWords());
     dispatch(clearCurrentWords());
     dispatch(clearWrongWords());
+    dispatch(clearLoadStatus());
     if (previousPage === '/textbook') {
       const removeEasy = cards
         .filter((el) => (el.userWord ? el.userWord.difficulty !== 'easy' : 0));
       dispatch(setSprintWords(randomWords(removeEasy)));
+      dispatch(getAgregatedCardSprint(page - 1));
     } else {
       dispatch(setSprintWords(randomWords(cards)));
+      dispatch(getCardSprint(page - 1));
     }
   }, []);
+
+  useEffect(() => {
+    if (loadStatus === LoadStatus.fulfilled) {
+      if (previousPage === '/textbook') {
+        const removeEasy = buffer
+          .filter((el) => (el.userWord ? el.userWord.difficulty !== 'easy' : 0));
+        dispatch(setSprintWords(randomWords(removeEasy)));
+      } else {
+        dispatch(setSprintWords(randomWords(buffer)));
+      }
+    }
+  }, [loadStatus]);
 
   useEffect(() => {
     if (sprintWords.length === 0 || !timer) {
       dispatch(setInRow(inRowCounter(currectWrongWords)));
     }
 
-    if (sprintWords.length === 1) {
-      if (page >= 1) {
-        dispatch(setPage(page - 1));
-      }
-
-      isUserLogIn() ? dispatch(getAgregatedCard()) : dispatch(getCard());
-    }
-
-    if ((!sprintWords.length || sprintWords.length === 1) && loadStatus === LoadStatus.fulfilled) {
-      console.log('if (!sprintWords.length && loadStatus === LoadStatus.fulfilled)');
-      dispatch(setSprintWords(randomWords(cards)));
-    }
-  }, [sprintWords, timer]);
-
-  useEffect(() => {
     setTimeout(() => {
       if (timer > 0 && timerBeforeGame < 1 && sprintWords.length) {
         dispatch(decrementTimer(1));

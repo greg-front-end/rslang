@@ -10,6 +10,7 @@ import {
 } from '../../features/sprintSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { IWordsItem } from '../../types/IWordsItem';
 import { SprintCard } from '../../types/Sprint';
 import { isUserLogIn } from '../../utils/isUserLogIn';
 
@@ -23,12 +24,15 @@ export const GameCard: React.FC<SprintCard> = ({
 }) => {
   const dispatch = useAppDispatch();
   const cards = useAppSelector((state) => state.textBook.cards);
+  const buffer = useAppSelector((state) => state.sprint.buffer);
   const indicators = useAppSelector((state) => state.sprint.indicators);
   const isCurrect = translate === random;
 
   function determine(str: string) {
     // eslint-disable-next-line no-underscore-dangle
     const card = cards.find((el) => (isUserLogIn() ? el._id === id : el.id === id));
+    // eslint-disable-next-line no-underscore-dangle
+    const cardBuffer = buffer.find((el) => (isUserLogIn() ? el._id === id : el.id === id));
 
     if ((isCurrect && str === 'correct') || (!isCurrect && str === 'wrong')) {
       const index = indicators.findIndex((el) => el === false);
@@ -41,10 +45,12 @@ export const GameCard: React.FC<SprintCard> = ({
       }
       dispatch(setCurrectWrongWords('1'));
       if (card) dispatch(setCurrentWords(card));
+      if (cardBuffer) dispatch(setCurrentWords(cardBuffer));
     } else {
       dispatch(setIndicators([false, false, false]));
       dispatch(setCurrectWrongWords('0'));
       if (card) dispatch(setWrongWords(card));
+      if (cardBuffer) dispatch(setWrongWords(cardBuffer));
     }
 
     dispatch(removeSprintWord(word));

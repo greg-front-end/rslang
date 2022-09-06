@@ -5,6 +5,7 @@ import { getAgregatedCard } from '../api/getAggregatedCard';
 import { getCard } from '../api/getCard';
 import { getEasyWords } from '../api/getEasyWords';
 import { getHardWords } from '../api/getHardWords';
+import { getNoEasyWords } from '../api/getNoEasyWords';
 import { IWordsItem } from '../types/IWordsItem';
 import { LoadStatus } from '../types/LoadStatus';
 import { CardDifChange, TextBookState } from '../types/TextBook';
@@ -22,6 +23,7 @@ const initialState: TextBookState = {
   loadStatus: '',
   switchHardWords: JSON.parse(getValueLocalStorage('SwitchHardWords')!) || false,
   easyWordsCount: 0,
+  noEasyWords: [],
 };
 
 const fillElement = (el: IWordsItem, diff: string) => {
@@ -45,7 +47,9 @@ const textBookSlice = createSlice({
   name: 'textBookS',
   initialState,
   reducers: {
-
+    setCardsArray: (state, action) => {
+      state.cards = action.payload;
+    },
     filterCard: (state, action: PayloadAction<CardDifChange>) => {
       const index = state.cards.findIndex((el) => el._id === action.payload.id);
       state.cards = state.cards
@@ -135,11 +139,26 @@ const textBookSlice = createSlice({
       .addCase(getEasyWords.rejected, (state, action) => {
         // console.log('rejected');
       });
+
+    builder
+      .addCase(getNoEasyWords.pending, (state, action) => {
+        // console.log('pending');
+        state.loadStatus = LoadStatus.pending;
+      })
+
+      .addCase(getNoEasyWords.fulfilled, (state, action) => {
+        state.loadStatus = LoadStatus.fulfilled;
+        state.noEasyWords = action.payload;
+      })
+
+      .addCase(getNoEasyWords.rejected, (state, action) => {
+        // console.log('rejected');
+      });
   },
 });
 
 export const {
   setGroup, setPage, setPageButtons, setIncrement, setDecrement,
-  clearHardWords, toggleHardWords, filterCard, deleteFromHardWords,
+  clearHardWords, toggleHardWords, filterCard, deleteFromHardWords, setCardsArray,
 } = textBookSlice.actions;
 export default textBookSlice.reducer;

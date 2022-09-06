@@ -1,11 +1,11 @@
 .all_time {
   margin: var(--pd30) 0;
-  max-width: 800px;
+  max-width: 1200px;
   position: relative;
 }
 .quick_start_game {
   position: absolute;
-  right: -250px;
+  right: 0px;
   top: 0px;
 }
 .title_date_wrapper {
@@ -33,7 +33,7 @@
 }
 .d3_wrapper {
   display: flex;
-  gap: var(--pd30);
+  gap: var(--pd40);
   margin: var(--pd20) 0;
 }
 .d3_learned_words,
@@ -42,7 +42,7 @@
   justify-content: center;
   align-items: center;
   height: 234px;
-  width: 380px;;
+  width: 413px;;
   background-color: var(--color-blue);
   border-radius: var(--border-radius);
 }
@@ -54,4 +54,58 @@
 .d3_progress canvas{
   width: 300px;
   border-radius: var(--border-radius);
+}
+
+@media (max-width: 1439px) {
+  .d3_learned_words,
+  .d3_progress {
+    /* max-width: 360px; */
+  }
+  .quick_start_game {
+    right: -80px;
+  }
+}
+@media (max-width: 1320px) {
+  .d3_wrapper {
+    flex-wrap: wrap;
+  }
+  .d3_learned_words,
+  .d3_progress {
+    max-width: 540px;
+    width: 540px;
+  }
+  .quick_start_game {
+    right: 60px;
+  }
+}
+@media (max-width: 1024px) {
+  .d3_wrapper {
+    flex-wrap: wrap;
+  }
+  .d3_learned_words,
+  .d3_progress {
+    max-width: 580px;
+    width: 100%;
+  }
+  .all_time {
+    margin-bottom: 240px;
+  }
+  .quick_start_game {
+    top: -230px;
+  }
+}
+@media (max-width: 768px) {
+  .d3_wrapper {
+    justify-content: center;
+  }
+  .title_date_wrapper {
+    max-width: 560px;
+    margin-inline: auto;
+  }
+  .quick_start_game {
+    width: 100%;
+    top: 590px;
+    left: 0;
+    margin: 0 auto;
+  }
 }
