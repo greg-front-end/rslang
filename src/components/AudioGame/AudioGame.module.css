@@ -1,12 +1,13 @@
-.challenge {
-  overflow: hidden;
+.challenge_login {
+  padding: 30px 0;
+}
+.challenge_logout {
+  margin: 160px auto 50px;
 }
 .wrapper{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100vh;
-  margin: 0 auto;
   width: 100%;
   max-width: 1440px;
   position: relative;
@@ -45,6 +46,7 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center bottom;
+  z-index: -1;
 }
 .title {
   margin: var(--pd30) 0 var(--pd50);
@@ -99,5 +101,13 @@
   .pause_decor {
     bottom: 650px;
     left: 0;
+  }
+}
+@media (max-width: 1024px) {
+  .challenge_logout {
+    margin: 100px auto 50px;
+  }
+  .title {
+    margin-left: 30px;
   }
 }
