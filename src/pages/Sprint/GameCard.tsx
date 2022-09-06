@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 
+import cur from '../../assets/audio/current_audio.wav';
+import wr from '../../assets/audio/wrong_audio.wav';
 import { ReactComponent as ArrowDownIcon } from '../../assets/svg/arrow_down_icon.svg';
 import { ReactComponent as ArrowUpIcon } from '../../assets/svg/arrow_up_icon.svg';
 import { ReactComponent as LabelIcon } from '../../assets/svg/card_game_label.svg';
@@ -22,7 +24,8 @@ import style from './GameCard.module.css';
 export const GameCard: React.FC<SprintCard> = ({
   word, translate, random, id,
 }) => {
-  const wrongAudio = new Audio('../../assets/audio/wrong_audio.wav');
+  const wrongAudio = new Audio(wr);
+  const currentAudio = new Audio(cur);
   const dispatch = useAppDispatch();
   const cards = useAppSelector((state) => state.textBook.cards);
   const buffer = useAppSelector((state) => state.sprint.buffer);
@@ -30,7 +33,6 @@ export const GameCard: React.FC<SprintCard> = ({
   const isCurrect = translate === random;
 
   function determine(str: string) {
-    wrongAudio.play();
     // eslint-disable-next-line no-underscore-dangle
     const card = cards.find((el) => (isUserLogIn() ? el._id === id : el.id === id));
     // eslint-disable-next-line no-underscore-dangle
@@ -46,11 +48,13 @@ export const GameCard: React.FC<SprintCard> = ({
         dispatch(setIndicators(arr));
       }
       dispatch(setCurrectWrongWords('1'));
+      currentAudio.play();
       if (card) dispatch(setCurrentWords(card));
       if (cardBuffer) dispatch(setCurrentWords(cardBuffer));
     } else {
       dispatch(setIndicators([false, false, false]));
       dispatch(setCurrectWrongWords('0'));
+      wrongAudio.play();
       if (card) dispatch(setWrongWords(card));
       if (cardBuffer) dispatch(setWrongWords(cardBuffer));
     }
