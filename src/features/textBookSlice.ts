@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { getAgregatedCard } from '../api/getAggregatedCard';
@@ -46,10 +47,13 @@ const textBookSlice = createSlice({
   reducers: {
 
     filterCard: (state, action: PayloadAction<CardDifChange>) => {
-      // eslint-disable-next-line no-underscore-dangle
       const index = state.cards.findIndex((el) => el._id === action.payload.id);
       state.cards = state.cards
         .map((el, i) => (i === index ? fillElement(el, action.payload.difficulty) : el));
+    },
+
+    deleteFromHardWords: (state, action: PayloadAction<string>) => {
+      state.hardWords = state.hardWords.filter((el) => el._id !== action.payload);
     },
 
     setGroup: (state, action: PayloadAction<number>) => {
@@ -136,6 +140,6 @@ const textBookSlice = createSlice({
 
 export const {
   setGroup, setPage, setPageButtons, setIncrement, setDecrement,
-  clearHardWords, toggleHardWords, filterCard,
+  clearHardWords, toggleHardWords, filterCard, deleteFromHardWords,
 } = textBookSlice.actions;
 export default textBookSlice.reducer;
