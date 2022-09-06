@@ -6,6 +6,7 @@ interface IGetGameStatistic {
   statistic: StatisticsState,
   newGameStatistic: GameStatistics,
   game: GamesName,
+  learned: number,
 }
 
 const KEY = dateKeyGenerator();
@@ -30,31 +31,33 @@ const obj: StatisticsState = {
   },
 };
 
-export const getGameStatistic = ({ statistic, newGameStatistic, game }: IGetGameStatistic) => {
+export const getGameStatistic = ({
+  statistic, newGameStatistic, game, learned,
+}: IGetGameStatistic) => {
   const gameKey = game as keyof IStatisticsState;
   if (statistic.optional[KEY]) {
     return {
-      learnedWords: statistic.learnedWords + newGameStatistic.words,
+      learnedWords: learned,
       optional: {
         ...statistic.optional,
         [KEY]: {
           ...statistic.optional[KEY],
           [gameKey]: newGameStatistic,
           learnedWords: statistic.learnedWords + newGameStatistic.words,
-          learnedWordsToday: statistic.optional[KEY].learnedWordsToday + newGameStatistic.words,
+          learnedWordsToday: learned,
         },
       },
     };
   }
   return {
-    learnedWords: statistic.learnedWords + newGameStatistic.words,
+    learnedWords: learned,
     optional: {
       ...statistic.optional,
       [KEY]: {
         ...obj.optional[KEY],
         [gameKey]: newGameStatistic,
         learnedWords: statistic.learnedWords + newGameStatistic.words,
-        learnedWordsToday: newGameStatistic.words,
+        learnedWordsToday: learned,
       },
     },
   };

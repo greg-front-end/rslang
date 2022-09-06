@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 
+import audio from '../../../../../assets/audio/audioGame/skip.wav';
 import { setNextWord } from '../../../../../features/audioChallengeSlice';
 import { useAppDispatch } from '../../../../../hooks/useAppDispatch';
 
@@ -7,8 +8,10 @@ import styles from './ShowAnswerBtn.module.css';
 
 export const ShowAnswerBtn = () => {
   const dispatch = useAppDispatch();
+  const skip = new Audio(audio);
 
   const stop = () => {
+    skip.play();
     setTimeout(() => dispatch(setNextWord(true)), 300);
   };
 

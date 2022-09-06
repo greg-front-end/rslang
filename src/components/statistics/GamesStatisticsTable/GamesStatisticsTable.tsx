@@ -22,7 +22,7 @@ export const GamesStatisticsTable: FC<GamesStatisticsTableProps> = ({
     </li>
     <li className={style.state_list_item}>
       <span className={style.state_list_int}>{words}</span>
-      <span className={style.state_list_text}>words</span>
+      <span className={style.state_list_text}>new words</span>
     </li>
   </ul>
 );

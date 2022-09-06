@@ -1,0 +1,28 @@
+.wrapper {
+  position: relative;
+}
+
+.timer{
+  transform: rotate(-90deg) scale(1, -1);
+}
+
+.img {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+}
+
+.track {
+  stroke: var(--color-light-yellow);
+  stroke-width: 10px;
+  fill: none;
+}
+
+.progress {
+  transition: 1s;
+  stroke: var(--color-bright-yellow);
+  stroke-width: 10px;
+  fill: none;
+  stroke-dasharray: 251;
+}

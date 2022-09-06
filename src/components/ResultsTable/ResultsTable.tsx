@@ -1,23 +1,21 @@
 import React, { useEffect } from 'react';
-import { nanoid } from '@reduxjs/toolkit';
 
-import { getEasyWords } from '../../api/getEasyWords';
 import { postWordOption } from '../../api/postWordOption';
 import { putUserStatistic } from '../../api/putUserStatistic';
+import titleImg from '../../assets/svg/statistics/games/resimg.svg';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { GamesName } from '../../types/GamesName';
 import { IWordsItem } from '../../types/IWordsItem';
 import { LoadStatus } from '../../types/LoadStatus';
 import { GameStatistics } from '../../types/Statistic';
-import { isUserLogIn } from '../../utils/isUserLogIn';
 
-import { Table } from './Table/Table';
+import { Diagram } from './Diagram/Diagram';
 import { getGameStatistic } from './utils/getGameStatistic';
 import { wordStatisticRight } from './utils/wordStatisticRigth';
 import { wordStatisticWrong } from './utils/wordStatisticWrong';
 
-import styles from './ResultsTable.module.css';
+import style from './ResultsTable.module.css';
 
 interface IResultsTableProps {
   right: IWordsItem[];
@@ -29,30 +27,31 @@ interface IResultsTableProps {
 export const ResultsTable = ({
   right, wrong, inRow, game,
 }: IResultsTableProps) => {
-  console.log('ResultsTable 1');
   const dispatch = useAppDispatch();
   const statistic = useAppSelector((state) => state.statistic.statistic);
   const loadStatus = useAppSelector((state) => state.textBook.loadStatus);
-  // const easyWordCount = useAppSelector((state) => state.textBook.easyWordsCount);
+  const learned = useAppSelector((state) => state.textBook.easyWordsCount);
 
   const rightWordStatistics = right.map((word) => wordStatisticRight(word));
   const wrongWordStatistics = wrong.map((word) => wordStatisticWrong(word));
   const words = rightWordStatistics.filter(({ isNew }) => isNew).length
     + wrongWordStatistics.filter(({ isNew }) => isNew).length;
 
-  const inAccuracy = Math.round((right.length * 100) / (right.length + wrong.length));
+  const inAccuracy = (right.length + wrong.length) === 0
+    ? 0
+    : Math.round((right.length * 100) / (right.length + wrong.length));
 
   const newGameStatistic: GameStatistics = { inRow, words, inAccuracy };
 
-  const statisticObject = getGameStatistic({ statistic, newGameStatistic, game });
+  const statisticObject = getGameStatistic({
+    statistic, newGameStatistic, game, learned,
+  });
 
   const sendGameStatistic = () => {
-    console.log('sendGameStatistic');
     dispatch(putUserStatistic(statisticObject));
   };
 
   const sendWordsStatistic = () => {
-    console.log('sendGameStatistic');
     rightWordStatistics.forEach(({ obj }) => dispatch(postWordOption(obj)));
     wrongWordStatistics.forEach(({ obj }) => dispatch(postWordOption(obj)));
   };
@@ -60,24 +59,43 @@ export const ResultsTable = ({
   useEffect(() => {
     console.log('useEffect ResultsTable 2');
     if (loadStatus === LoadStatus.fulfilled) {
-      console.log('useEffect ResultsTable 2');
       sendWordsStatistic();
       sendGameStatistic();
     }
   }, []);
 
   return (
-    <div className={styles.wrapper}>
-      <h2 className={`title ${styles.section__title}`}>Results</h2>
-      <div className={`frame ${styles.table__wrapper}`}>
-        <Table
-          words={right}
-          isRight
-        />
-        <Table
-          words={wrong}
-          isRight={false}
-        />
+    <div className={style.wrapper}>
+      <div className={`frame ${style.frame}`}>
+        <div className={style.title_wrapper}>
+          <img src={titleImg} alt="A+" />
+          <h3 className={style.title}>Result</h3>
+        </div>
+        <div className={style.bottom}>
+          <div className={style.diagram_wrapper}>
+            <span className={style.number}>
+              {inAccuracy}
+              %
+            </span>
+            <Diagram value={inAccuracy} />
+            <span className={style.accuracy}>accuracy</span>
+          </div>
+          <div className={style.results_wrapper}>
+            <div className={style.points_wrapper}>
+              <span>in row</span>
+              <span>{inRow}</span>
+            </div>
+            <div className={style.points_wrapper}>
+              <span>right</span>
+              <span>{right.length}</span>
+            </div>
+            <div className={style.points_wrapper}>
+              <span>wrong</span>
+              <span>{wrong.length}</span>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
   );
