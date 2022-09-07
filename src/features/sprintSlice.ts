@@ -24,6 +24,9 @@ const sprintSlice = createSlice({
   name: 'sprint',
   initialState,
   reducers: {
+    clearBuffer: (state) => {
+      state.buffer = [];
+    },
     setIsLoad: (state, action: PayloadAction<boolean>) => {
       state.isLoad = action.payload;
     },
@@ -104,7 +107,7 @@ export const {
   setTimer, decrementTimerBeforeGame, setInRow, clearLoadStatus,
   setCurrentWords, setWrongWords, decrementTimer, clearCurrectWrongWords,
   clearCurrentWords, clearWrongWords, setTimerBeforeGame, setCurrectWrongWords,
-  setIsLoad,
+  setIsLoad, clearBuffer,
 } = sprintSlice.actions;
 
 export default sprintSlice.reducer;
