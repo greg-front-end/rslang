@@ -8,6 +8,7 @@ import { FooterLogIn } from '../Footer/FooterLogIn/FooterLogIn';
 import { FooterLogOut } from '../Footer/FooterLogOut/FooterLogOut';
 import { HeaderLogIn } from '../Header/HeaderLogIn/HeaderLogIn';
 import { HeaderLogOut } from '../Header/HeaderLogOut/HeaderLogOut';
+import { Spinner } from '../Spinner/Spinner';
 
 export const Layout = () => {
   const isActiveSideBar = useAppSelector((state) => state.sideBar.isActiveSideBar);
@@ -25,6 +26,7 @@ export const Layout = () => {
     <div className={activeClass}>
       {isUserLoggined ? <HeaderLogIn /> : <HeaderLogOut />}
       <main>
+        <Spinner />
         <Outlet />
       </main>
       {

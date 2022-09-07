@@ -65,7 +65,6 @@ export const AudioQuickStart = ({ isEasy }: IAudioQuickStartProps) => {
   }, [startLoading]);
 
   useEffect(() => {
-    // debugger;
     if (checkArray && isLoad === LoadStatus.fulfilled) {
       setCheckArray(false);
       setArr((state) => [...state, ...filterArray(words)]);
