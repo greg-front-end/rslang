@@ -32,10 +32,14 @@ export const Counts = ({
 
   const rightWordStatistics = right.map((word) => wordStatisticRight(word));
   const wrongWordStatistics = wrong.map((word) => wordStatisticWrong(word));
+  const learnedWords = rightWordStatistics.filter(({ isLearned }) => isLearned).length;
+  console.log(learnedWords);
   const words = rightWordStatistics.filter(({ isNew }) => isNew).length
     + wrongWordStatistics.filter(({ isNew }) => isNew).length;
 
-  const newGameStatistic: GameStatistics = { inRow, words, inAccuracy };
+  const newGameStatistic: GameStatistics = {
+    inRow, words, inAccuracy, learnedWords,
+  };
 
   const statisticObject = getGameStatistic({
     statistic, newGameStatistic, game, learned,

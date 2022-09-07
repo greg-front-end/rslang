@@ -7,7 +7,7 @@ import { putWordOption } from '../../../api/putWordOption';
 import { deleteFromHardWords, filterCard } from '../../../features/textBookSlice';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
-import { ICreateWordOptions } from '../../../types/ICreateWordOptions';
+import { DifLvls, ICreateWordOptions } from '../../../types/ICreateWordOptions';
 import { IWordsItem } from '../../../types/IWordsItem';
 import { LoadStatus } from '../../../types/LoadStatus';
 
@@ -30,7 +30,10 @@ export const LoggedBlock = ({ item, setOptions }: ILoggedBlockProps) => {
   const addOptions = () => {
     const options: ICreateWordOptions = item.userWord
       ? {
-        ...item.userWord,
+        optional: {
+          ...item.userWord.optional,
+          rightInRow: lvl === 'hard' ? 0 : item.userWord.optional.rightInRow,
+        },
         difficulty: lvl,
         wordId: item._id,
       }
@@ -44,10 +47,7 @@ export const LoggedBlock = ({ item, setOptions }: ILoggedBlockProps) => {
         wordId: item._id,
       };
     dispatch(postWordOption(options));
-    dispatch(filterCard({
-      id: item._id,
-      difficulty: lvl,
-    }));
+    dispatch(filterCard(options));
     setClick(false);
   };
 
@@ -59,10 +59,7 @@ export const LoggedBlock = ({ item, setOptions }: ILoggedBlockProps) => {
       wordId: item._id,
     };
     dispatch(putWordOption(options));
-    dispatch(filterCard({
-      id: item._id,
-      difficulty: 'none',
-    }));
+    dispatch(filterCard(options));
     dispatch(deleteFromHardWords(item._id));
   };
 

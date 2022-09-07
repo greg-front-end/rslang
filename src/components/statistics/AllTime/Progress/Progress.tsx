@@ -21,7 +21,7 @@ export const Progress: FC = () => {
   const data = {
     labels,
     datasets: [{
-      label: 'Progress',
+      label: 'New words',
       backgroundColor: '#F1EC83',
       borderColor: 'rgb(255, 99, 132)',
       data: [0, ...words, max],
@@ -43,7 +43,7 @@ export const Progress: FC = () => {
             },
             title: {
               display: true,
-              text: 'Progress',
+              text: 'New words',
               color: 'white',
               font: {
                 size: 16,

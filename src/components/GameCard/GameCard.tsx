@@ -10,6 +10,7 @@ import { setIsLoad } from '../../features/sprintSlice';
 import { setGroup, setPage } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { getValueLocalStorage } from '../../utils/getValueLocalStorage';
 import { isUserLogIn } from '../../utils/isUserLogIn';
 import { getRandomNum } from '../AudioGame/utils/getRandomNum';
 
@@ -50,7 +51,7 @@ export const GameCard = ({
   };
   const redirect = () => {
     dispatch(setGroup(selectedOption));
-    dispatch(setPage(getRandomNum(30)));
+    dispatch(setPage(+JSON.parse(getValueLocalStorage('page') as string)));
     setStartLoading(true);
   };
 

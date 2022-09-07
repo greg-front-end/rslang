@@ -2,15 +2,25 @@
 import { DifLvls, ICreateWordOptions } from '../../../types/ICreateWordOptions';
 import { IWordsItem } from '../../../types/IWordsItem';
 
-const defineDifficulty = (n: number) => (n + 1 >= 3 ? DifLvls.Easy : DifLvls.None);
+const defineDifficulty = (n: number, word: IWordsItem) => ((n + 1 === 3) || word.userWord.difficulty === 'easy');
 
 export const wordStatisticRight = (word: IWordsItem) => {
   let obj: ICreateWordOptions;
   let isNew = true;
+  let isLearned = false;
+  let hardWord = DifLvls.None;
   if (word.userWord) {
     if (Object.hasOwn(word.userWord.optional, 'right')) {
+      const isEasy = defineDifficulty(word.userWord.optional.rightInRow, word);
+      if (word.userWord.difficulty !== 'easy'
+        && isEasy) {
+        isLearned = true;
+      }
+      if (!isLearned && word.userWord.difficulty === DifLvls.Hard) {
+        hardWord = DifLvls.Hard;
+      }
       obj = {
-        difficulty: defineDifficulty(word.userWord.optional.rightInRow),
+        difficulty: isEasy ? DifLvls.Easy : hardWord,
         optional: {
           right: word.userWord.optional.right + 1,
           wrong: word.userWord.optional.wrong,
@@ -43,5 +53,5 @@ export const wordStatisticRight = (word: IWordsItem) => {
       wordId: word._id,
     };
   }
-  return { obj, isNew };
+  return { obj, isNew, isLearned };
 };
