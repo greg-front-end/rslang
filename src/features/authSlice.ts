@@ -121,6 +121,7 @@ const authSlice = createSlice({
           }
           return {
             ...state,
+            loginError: ResponseStatus.Rejected,
             registerError: action.error as string,
             registerStatus: ResponseStatus.Rejected,
           };

@@ -10,6 +10,7 @@ import { Sprint } from '../../components/statistics/Sprint/Sprint';
 import { WordsLearned } from '../../components/statistics/WordsLearned/WordsLearned';
 import { UserInfo } from '../../components/UserInfo/UserInfo';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 import style from './style.module.css';
 
@@ -18,7 +19,7 @@ export const Statistics = () => {
   useEffect(() => {
     dispatch(getAgregatedCard());
     dispatch(getUserStatistic());
-  });
+  }, []);
   return (
     <div className="container_login">
       <div className={style.title_wrapper}>
