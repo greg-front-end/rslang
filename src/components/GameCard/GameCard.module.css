@@ -82,6 +82,8 @@
   color: black;
   line-height: 160%;
   transition: var(--transitionAll3sec);
+  font-size: 14px;
+  text-align: center;
 }
 .options_active + .options_list_wrapper .options_list {
   visibility: visible;
@@ -92,6 +94,7 @@
 .option_text{
   font-weight: 700;
   font-size: 14px;
+  text-align: center;
   position: relative;
   z-index: 2;
   padding-left: 8px;
