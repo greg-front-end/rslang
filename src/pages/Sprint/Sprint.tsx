@@ -12,11 +12,11 @@ import { Timer } from '../../components/Timer/Timer';
 import {
   clearBuffer,
   clearCurrectWrongWords,
-  clearCurrentWords, clearLoadStatus, clearSprintWords, clearWrongWords, decrementTimer,
+  clearCurrentWords, clearLoadStatus, clearloadStatus,
+  clearSprintWords, clearWrongWords, decrementTimer,
   decrementTimerBeforeGame,
   setIndicators,
   setInRow,
-  setLoadStatus,
   setPageBuffer,
   setSprintWords, setTimer, setTimerBeforeGame,
 } from '../../features/sprintSlice';
@@ -91,7 +91,7 @@ export const Sprint = () => {
 
         if (removeEasy.length) {
           dispatch(setSprintWords(randomWords(removeEasy)));
-          dispatch(setLoadStatus());
+          dispatch(clearloadStatus());
         } else {
           dispatch(getAgregatedCardSprint(pageBuffer - 1));
         }

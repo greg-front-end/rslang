@@ -32,9 +32,11 @@ const sprintSlice = createSlice({
     clearBuffer: (state) => {
       state.buffer = [];
     },
-    setLoadStatus: (state) => {
-      // state.isLoad = action.payload;
-      state.loadStatus = LoadStatus.pending;
+    setIsLoad: (state, action: PayloadAction<boolean>) => {
+      state.isLoad = action.payload;
+    },
+    clearloadStatus: (state) => {
+      state.loadStatus = '';
     },
     setInRow: (state, action: PayloadAction<number>) => {
       state.inRow = action.payload;
@@ -114,7 +116,7 @@ export const {
   setTimer, decrementTimerBeforeGame, setInRow, clearLoadStatus,
   setCurrentWords, setWrongWords, decrementTimer, clearCurrectWrongWords,
   clearCurrentWords, clearWrongWords, setTimerBeforeGame, setCurrectWrongWords,
-  setLoadStatus, clearBuffer,
+  setIsLoad, clearBuffer, clearloadStatus,
 } = sprintSlice.actions;
 
 export default sprintSlice.reducer;
