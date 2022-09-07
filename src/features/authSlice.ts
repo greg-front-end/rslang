@@ -179,6 +179,9 @@ const authSlice = createSlice({
     builder
       .addCase(deleteUser.pending, (state) => {
         state.loadStatus = LoadStatus.pending;
+      })
+      .addCase(deleteUser.fulfilled, (state) => {
+        state.loadStatus = LoadStatus.fulfilled;
       });
 
     builder
