@@ -16,6 +16,7 @@ import {
   decrementTimerBeforeGame,
   setIndicators,
   setInRow,
+  setLoadStatus,
   setPageBuffer,
   setSprintWords, setTimer, setTimerBeforeGame,
 } from '../../features/sprintSlice';
@@ -86,9 +87,11 @@ export const Sprint = () => {
       if (previousPage === '/textbook') {
         const removeEasy = buffer
           .filter((el) => !el.userWord || (el.userWord.difficulty !== 'easy'));
+        console.log('removeEasy', removeEasy);
 
         if (removeEasy.length) {
           dispatch(setSprintWords(randomWords(removeEasy)));
+          dispatch(setLoadStatus());
         } else {
           dispatch(getAgregatedCardSprint(pageBuffer - 1));
         }
