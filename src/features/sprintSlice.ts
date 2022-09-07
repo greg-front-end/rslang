@@ -9,6 +9,7 @@ import { SprintState, SprintWord } from '../types/Sprint';
 const initialState: SprintState = {
   isLoad: false,
   buffer: [],
+  pageBuffer: 0,
   sprintWords: [],
   indicators: [false, false, false],
   currectWrongWords: [],
@@ -24,6 +25,10 @@ const sprintSlice = createSlice({
   name: 'sprint',
   initialState,
   reducers: {
+    setPageBuffer: (state, action) => {
+      state.pageBuffer = action.payload;
+    },
+
     clearBuffer: (state) => {
       state.buffer = [];
     },
@@ -103,6 +108,7 @@ const sprintSlice = createSlice({
 });
 
 export const {
+  setPageBuffer,
   setSprintWords, removeSprintWord, setIndicators, clearSprintWords,
   setTimer, decrementTimerBeforeGame, setInRow, clearLoadStatus,
   setCurrentWords, setWrongWords, decrementTimer, clearCurrectWrongWords,
