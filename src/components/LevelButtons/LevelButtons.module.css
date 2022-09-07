@@ -13,7 +13,7 @@
     transition: var(--transitionAll3sec);
 }
 .aside_wrapper_logput{ 
-    top: 140px !important;
+    top: 120px !important;
 }
 
 .title {
@@ -71,5 +71,11 @@
     }
     .aside_wrapper_active {
         right: 0;
+    }
+}
+@media (max-height: 800px) {
+    .aside_wrapper {
+        height: 500px;
+        overflow: scroll;
     }
 }
