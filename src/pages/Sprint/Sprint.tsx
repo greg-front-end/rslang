@@ -34,7 +34,6 @@ import { randomWords } from './RandomWords';
 import style from './Sprint.module.css';
 
 export const Sprint = () => {
-  const navigate = useNavigate();
   const previousPage = JSON.parse(getValueLocalStorage('currentPage') as string);
   const dispatch = useAppDispatch();
   const cards = useAppSelector((state) => state.textBook.cards);
@@ -74,6 +73,7 @@ export const Sprint = () => {
       if (page >= 1) {
         if (isUserLogIn()) {
           dispatch(getAgregatedCardSprint(page - 1));
+          dispatch(setPageBuffer(page - 1));
         } else {
           dispatch(getCardSprint(page - 1));
           dispatch(setPageBuffer(page - 1));
@@ -81,6 +81,13 @@ export const Sprint = () => {
       }
     }
   }, []);
+
+  useEffect(() => {
+    if (sprintWords.length <= 2 && pageBuffer !== 0) {
+      dispatch(getAgregatedCardSprint(pageBuffer - 1));
+      dispatch(setPageBuffer(pageBuffer - 1));
+    }
+  }, [sprintWords]);
 
   useEffect(() => {
     if (loadStatus === LoadStatus.fulfilled) {
@@ -94,12 +101,14 @@ export const Sprint = () => {
           dispatch(clearloadStatus());
         } else {
           dispatch(getAgregatedCardSprint(pageBuffer - 1));
+          dispatch(setPageBuffer(pageBuffer - 1));
         }
       } else {
         dispatch(setSprintWords(randomWords(buffer)));
+        dispatch(clearloadStatus());
       }
     }
-  }, [loadStatus]);
+  }, [loadStatus, sprintWords]);
 
   useEffect(() => {
     if (sprintWords.length === 0 || !timer) {
