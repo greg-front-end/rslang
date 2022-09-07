@@ -12,7 +12,8 @@ import { Timer } from '../../components/Timer/Timer';
 import {
   clearBuffer,
   clearCurrectWrongWords,
-  clearCurrentWords, clearLoadStatus, clearSprintWords, clearWrongWords, decrementTimer,
+  clearCurrentWords, clearLoadStatus, clearloadStatus,
+  clearSprintWords, clearWrongWords, decrementTimer,
   decrementTimerBeforeGame,
   setIndicators,
   setInRow,
@@ -86,9 +87,11 @@ export const Sprint = () => {
       if (previousPage === '/textbook') {
         const removeEasy = buffer
           .filter((el) => !el.userWord || (el.userWord.difficulty !== 'easy'));
+        console.log('removeEasy', removeEasy);
 
         if (removeEasy.length) {
           dispatch(setSprintWords(randomWords(removeEasy)));
+          dispatch(clearloadStatus());
         } else {
           dispatch(getAgregatedCardSprint(pageBuffer - 1));
         }
