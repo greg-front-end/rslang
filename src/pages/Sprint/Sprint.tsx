@@ -16,6 +16,7 @@ import {
   decrementTimerBeforeGame,
   setIndicators,
   setInRow,
+  setPageBuffer,
   setSprintWords, setTimer, setTimerBeforeGame,
 } from '../../features/sprintSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
@@ -46,13 +47,15 @@ export const Sprint = () => {
   const page = useAppSelector((state) => state.textBook.page);
   const buffer = useAppSelector((state) => state.sprint.buffer);
   const loadStatus = useAppSelector((state) => state.sprint.loadStatus);
+  const pageBuffer = useAppSelector((state) => state.sprint.pageBuffer);
 
   useEffect(() => {
     dispatch(setIndicators([false, false, false]));
+    // dispatch(setPageBuffer(0));
     dispatch(clearSprintWords());
     dispatch(clearBuffer());
     dispatch(setTimerBeforeGame(4));
-    dispatch(setTimer(10));
+    dispatch(setTimer(60));
     dispatch(clearCurrectWrongWords());
     dispatch(clearCurrentWords());
     dispatch(clearWrongWords());
@@ -63,13 +66,17 @@ export const Sprint = () => {
       dispatch(setSprintWords(randomWords(removeEasy)));
       if (page >= 1) {
         dispatch(getAgregatedCardSprint(page - 1));
+        dispatch(setPageBuffer(page - 1));
       }
     } else {
       dispatch(setSprintWords(randomWords(cards)));
       if (page >= 1) {
-        isUserLogIn()
-          ? dispatch(getAgregatedCardSprint(page - 1))
-          : dispatch(getCardSprint(page - 1));
+        if (isUserLogIn()) {
+          dispatch(getAgregatedCardSprint(page - 1));
+        } else {
+          dispatch(getCardSprint(page - 1));
+          dispatch(setPageBuffer(page - 1));
+        }
       }
     }
   }, []);
@@ -78,8 +85,13 @@ export const Sprint = () => {
     if (loadStatus === LoadStatus.fulfilled) {
       if (previousPage === '/textbook') {
         const removeEasy = buffer
-          .filter((el) => !el.userWord || el.userWord.difficulty !== 'easy');
-        dispatch(setSprintWords(randomWords(removeEasy)));
+          .filter((el) => !el.userWord || (el.userWord.difficulty !== 'easy'));
+
+        if (removeEasy.length) {
+          dispatch(setSprintWords(randomWords(removeEasy)));
+        } else {
+          dispatch(getAgregatedCardSprint(pageBuffer - 1));
+        }
       } else {
         dispatch(setSprintWords(randomWords(buffer)));
       }
@@ -121,7 +133,7 @@ export const Sprint = () => {
               )
               : <span />}
             {!timerBeforeGame && timer && sprintWords.length
-              ? (<div className={style.wrapper_timer}><Timer timer={timer} timerTime={10} /></div>)
+              ? (<div className={style.wrapper_timer}><Timer timer={timer} timerTime={60} /></div>)
               : <span />}
           </div>
           <div className={isUserLogIn() ? `${style.ready_img} ${style.ready_img_login}` : `${style.ready_img} ${style.ready_img_logout}`}>
