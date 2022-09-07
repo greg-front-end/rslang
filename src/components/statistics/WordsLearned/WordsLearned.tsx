@@ -1,26 +1,34 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
-import { getEasyWords } from '../../../api/getEasyWords';
-import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
-import { getLearnedWords } from '../utils/getLearnedWords';
+import { dateKeyGenerator } from '../../../utils/dateKeyGenerator';
 
 import style from './style.module.css';
 
-export const WordsLearned: FC = () => {
-  // const words = getLearnedWords(statistic);
-  const dispatch = useAppDispatch();
-  const difState = useAppSelector((state) => state.wordOption.difficultState);
+const KEY = dateKeyGenerator();
 
-  const words = useAppSelector((state) => state.textBook.easyWordsCount);
+export const WordsLearned: FC = () => {
+  const statistic = useAppSelector((state) => state.statistic.statistic);
+  const [words, setWords] = useState(0);
+  const [newWords, setNewWords] = useState(0);
+
   useEffect(() => {
-    dispatch(getEasyWords());
-  }, []);
+    if (statistic.optional[KEY]) {
+      setWords(statistic.optional[KEY].learnedWords);
+      setNewWords(statistic.optional[KEY].newWords);
+    }
+  }, [statistic]);
 
   return (
-    <div className={style.words_learned}>
-      <span className={style.words_learned_value}>{words}</span>
-      <span className={style.words_learned_text}>Words learned</span>
+    <div className={style.wrapper}>
+      <div className={style.words_learned}>
+        <span className={style.words_learned_value}>{words}</span>
+        <span className={style.words_learned_text}>Words learned</span>
+      </div>
+      <div className={style.words_learned}>
+        <span className={style.words_learned_value}>{newWords}</span>
+        <span className={style.words_learned_text}>New words</span>
+      </div>
     </div>
   );
 };

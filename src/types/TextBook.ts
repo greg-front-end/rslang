@@ -1,3 +1,4 @@
+import { IWordOptional } from './ICreateWordOptions';
 import { IWordsItem } from './IWordsItem';
 
 export type TextBookState = {
@@ -16,5 +17,6 @@ export type TextBookState = {
 
 export type CardDifChange = {
   id: string,
-  difficulty: string
+  difficulty: string,
+  optional: IWordOptional,
 }

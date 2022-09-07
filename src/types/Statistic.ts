@@ -8,12 +8,14 @@ export type StatisticsOptional = {
 export type GameStatistics = {
   inRow: number
   words: number
+  learnedWords: number
   inAccuracy: number
 }
 
 export interface IStatisticsState {
   learnedWords: number,
-  learnedWordsToday: number,
+  newWords: number,
+  generalAccuracy: number,
   audioCall: GameStatistics,
   sprint: GameStatistics
 }
