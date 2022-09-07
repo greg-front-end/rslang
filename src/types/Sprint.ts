@@ -10,6 +10,7 @@ export type SprintWord = {
 export type SprintState = {
   isLoad:boolean,
   buffer: IWordsItem[],
+  pageBuffer:number,
   sprintWords: SprintWord[],
   indicators: boolean[],
   currectWrongWords: string[],

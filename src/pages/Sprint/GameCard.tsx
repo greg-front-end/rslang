@@ -63,10 +63,12 @@ export const GameCard: React.FC<SprintCard> = ({
   }
 
   const defineBtn = (e: KeyboardEvent) => {
-    if (e.key === '1') {
+    console.log(e.key);
+
+    if (e.key === 'ArrowLeft') {
       determine('correct');
     }
-    if (e.key === '2') {
+    if (e.key === 'ArrowRight') {
       determine('wrong');
     }
   };
