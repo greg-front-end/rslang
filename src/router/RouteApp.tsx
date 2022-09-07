@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
+import { PageNotFound } from '../components/EmptyVeiw/PageNotFound/PageNotFound';
 import { Layout } from '../components/Layout/Layout';
 import { LogIn } from '../components/LogIn/LogIn';
 import { SignIn } from '../components/SignIn/SignIn';
@@ -69,6 +70,10 @@ export const RouteApp = () => {
         <Route
           path="settings"
           element={<UserSettings />}
+        />
+        <Route
+          path="*"
+          element={<PageNotFound />}
         />
       </Route>
     </Routes>

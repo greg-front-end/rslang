@@ -17,7 +17,7 @@ export const UserInfo: FC = () => {
   useEffect(() => {
     dispatch(loadUser());
     dispatch(getAvatar());
-  });
+  }, []);
   return (
     <div className={style.user}>
       <div className={style.user_img}>
