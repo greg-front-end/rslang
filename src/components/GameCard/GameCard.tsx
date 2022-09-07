@@ -51,7 +51,7 @@ export const GameCard = ({
   };
   const redirect = () => {
     dispatch(setGroup(selectedOption));
-    dispatch(setPage(+JSON.parse(getValueLocalStorage('page') as string)));
+    dispatch(setPage(getRandomNum(30)));
     setStartLoading(true);
   };
 

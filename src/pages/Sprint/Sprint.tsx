@@ -69,14 +69,16 @@ export const Sprint = () => {
         dispatch(setPageBuffer(page - 1));
       }
     } else {
+      const page2 = Math.floor(Math.random() * 20) + 10;
+      console.log(page2);
       dispatch(setSprintWords(randomWords(cards)));
-      if (page >= 1) {
+      if (page2 >= 1) {
         if (isUserLogIn()) {
-          dispatch(getAgregatedCardSprint(page - 1));
-          dispatch(setPageBuffer(page - 1));
+          dispatch(getAgregatedCardSprint(page2 - 1));
+          dispatch(setPageBuffer(page2 - 1));
         } else {
-          dispatch(getCardSprint(page - 1));
-          dispatch(setPageBuffer(page - 1));
+          dispatch(getCardSprint(page2 - 1));
+          dispatch(setPageBuffer(page2 - 1));
         }
       }
     }
