@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { setInitState } from '../../features/audioChallengeSlice';
+import { setInitState, setNextWord, setTextBookWords } from '../../features/audioChallengeSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { getValueLocalStorage } from '../../utils/getValueLocalStorage';
 import { isUserLogIn } from '../../utils/isUserLogIn';
 
 import { GameBody } from './GameBody/GameBody';
@@ -13,19 +14,30 @@ import { setStartGameState } from './utils/setStartGameState';
 import styles from './AudioGame.module.css';
 
 export const AudioGame = () => {
+  const previousPage = JSON.parse(getValueLocalStorage('currentPage') as string);
   const [isLoad, setIsLoad] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const cards = useAppSelector((state) => state.textBook.cards);
+  const textBookCards = useAppSelector((state) => state.audioChallenge.textBookWords);
   const finish = useAppSelector((state) => state.audioChallenge.finish);
+  dispatch(setNextWord(false));
   useEffect(() => {
-    if (cards.length) {
+    if (!cards.length) {
+      navigate('/games');
+    } else if (previousPage !== '/textbook') {
       dispatch(setInitState(setStartGameState(cards)));
       setIsLoad(true);
-    } else {
-      navigate('/games');
     }
   }, []);
+
+  useEffect(() => {
+    if (textBookCards.length) {
+      dispatch(setInitState(setStartGameState(textBookCards)));
+      setIsLoad(true);
+      dispatch(setTextBookWords([]));
+    }
+  }, [textBookCards]);
 
   return (
     <div className={isUserLogIn() ? `${styles.challenge} ${styles.challenge_login}` : `${styles.challenge} ${styles.challenge_logout}`}>
@@ -33,7 +45,7 @@ export const AudioGame = () => {
         <div className="container">
           <h2 className={isUserLogIn() ? `${styles.title} title` : `${styles.title} ${styles.title_logout} title`}>Audio challenge</h2>
           {finish
-            ? (<Results />)
+            ? isLoad && (<Results />)
             : isLoad && <GameBody />}
         </div>
       </div>
