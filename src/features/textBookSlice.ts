@@ -95,6 +95,11 @@ const textBookSlice = createSlice({
         state.cards = action.payload;
         state.loadStatus = LoadStatus.fulfilled;
       })
+
+      .addCase(getCard.rejected, (state, action) => {
+        state.loadStatus = LoadStatus.rejected;
+      })
+
       .addCase(getAgregatedCard.pending, (state, action) => {
         state.loadStatus = LoadStatus.pending;
       })
@@ -102,6 +107,10 @@ const textBookSlice = createSlice({
       .addCase(getAgregatedCard.fulfilled, (state, action) => {
         state.cards = action.payload;
         state.loadStatus = LoadStatus.fulfilled;
+      })
+
+      .addCase(getAgregatedCard.rejected, (state, action) => {
+        state.loadStatus = LoadStatus.rejected;
       })
 
       .addCase(getHardWords.pending, (state, action) => {
@@ -113,6 +122,10 @@ const textBookSlice = createSlice({
         state.loadStatus = LoadStatus.fulfilled;
       })
 
+      .addCase(getHardWords.rejected, (state, action) => {
+        state.loadStatus = LoadStatus.rejected;
+      })
+
       .addCase(getEasyWords.pending, (state, action) => {
         state.loadStatus = LoadStatus.pending;
       })
@@ -120,6 +133,9 @@ const textBookSlice = createSlice({
       .addCase(getEasyWords.fulfilled, (state, action) => {
         state.loadStatus = LoadStatus.fulfilled;
         state.easyWordsCount = action.payload;
+      })
+      .addCase(getEasyWords.rejected, (state, action) => {
+        state.loadStatus = LoadStatus.rejected;
       });
 
     builder
@@ -130,6 +146,10 @@ const textBookSlice = createSlice({
       .addCase(getNoEasyWords.fulfilled, (state, action) => {
         state.loadStatus = LoadStatus.fulfilled;
         state.noEasyWords = action.payload;
+      })
+
+      .addCase(getNoEasyWords.rejected, (state, action) => {
+        state.loadStatus = LoadStatus.rejected;
       });
   },
 });
