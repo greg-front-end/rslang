@@ -10,6 +10,7 @@ import SprintersImg from '../../assets/img/games/sprint/sprinters.png';
 import { ResultsTable } from '../../components/ResultsTable/ResultsTable';
 import { Timer } from '../../components/Timer/Timer';
 import {
+  clearBuffer,
   clearCurrectWrongWords,
   clearCurrentWords, clearLoadStatus, clearSprintWords, clearWrongWords, decrementTimer,
   decrementTimerBeforeGame,
@@ -49,6 +50,7 @@ export const Sprint = () => {
   useEffect(() => {
     dispatch(setIndicators([false, false, false]));
     dispatch(clearSprintWords());
+    dispatch(clearBuffer());
     dispatch(setTimerBeforeGame(4));
     dispatch(setTimer(10));
     dispatch(clearCurrectWrongWords());
@@ -57,7 +59,7 @@ export const Sprint = () => {
     dispatch(clearLoadStatus());
     if (previousPage === '/textbook') {
       const removeEasy = cards
-        .filter((el) => (el.userWord ? el.userWord.difficulty !== 'easy' : 0));
+        .filter((el) => !el.userWord || el.userWord.difficulty !== 'easy');
       dispatch(setSprintWords(randomWords(removeEasy)));
       if (page >= 1) {
         dispatch(getAgregatedCardSprint(page - 1));
@@ -65,7 +67,9 @@ export const Sprint = () => {
     } else {
       dispatch(setSprintWords(randomWords(cards)));
       if (page >= 1) {
-        dispatch(getCardSprint(page - 1));
+        isUserLogIn()
+          ? dispatch(getAgregatedCardSprint(page - 1))
+          : dispatch(getCardSprint(page - 1));
       }
     }
   }, []);
@@ -74,7 +78,7 @@ export const Sprint = () => {
     if (loadStatus === LoadStatus.fulfilled) {
       if (previousPage === '/textbook') {
         const removeEasy = buffer
-          .filter((el) => (el.userWord ? el.userWord.difficulty !== 'easy' : 0));
+          .filter((el) => !el.userWord || el.userWord.difficulty !== 'easy');
         dispatch(setSprintWords(randomWords(removeEasy)));
       } else {
         dispatch(setSprintWords(randomWords(buffer)));
