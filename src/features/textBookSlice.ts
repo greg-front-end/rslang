@@ -6,6 +6,7 @@ import { getCard } from '../api/getCard';
 import { getEasyWords } from '../api/getEasyWords';
 import { getHardWords } from '../api/getHardWords';
 import { getNoEasyWords } from '../api/getNoEasyWords';
+import { ICreateWordOptions, IWordOptional } from '../types/ICreateWordOptions';
 import { IWordsItem } from '../types/IWordsItem';
 import { LoadStatus } from '../types/LoadStatus';
 import { CardDifChange, TextBookState } from '../types/TextBook';
@@ -26,13 +27,14 @@ const initialState: TextBookState = {
   noEasyWords: [],
 };
 
-const fillElement = (el: IWordsItem, diff: string) => {
+const fillElement = (el: IWordsItem, diff: ICreateWordOptions) => {
   const word = el;
   if (Object.hasOwn(word, 'userWord')) {
-    word.userWord.difficulty = diff;
+    word.userWord.difficulty = diff.difficulty;
+    word.userWord.optional = diff.optional;
   } else {
     word.userWord = {
-      difficulty: diff,
+      difficulty: diff.difficulty,
       optional: {
         right: 0,
         wrong: 0,
@@ -50,10 +52,10 @@ const textBookSlice = createSlice({
     setCardsArray: (state, action) => {
       state.cards = action.payload;
     },
-    filterCard: (state, action: PayloadAction<CardDifChange>) => {
-      const index = state.cards.findIndex((el) => el._id === action.payload.id);
+    filterCard: (state, action: PayloadAction<ICreateWordOptions>) => {
+      const index = state.cards.findIndex((el) => el._id === action.payload.wordId);
       state.cards = state.cards
-        .map((el, i) => (i === index ? fillElement(el, action.payload.difficulty) : el));
+        .map((el, i) => (i === index ? fillElement(el, action.payload) : el));
     },
 
     deleteFromHardWords: (state, action: PayloadAction<string>) => {

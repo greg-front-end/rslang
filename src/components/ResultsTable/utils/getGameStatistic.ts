@@ -16,16 +16,19 @@ const obj: StatisticsState = {
   optional: {
     [KEY]: {
       learnedWords: 0,
-      learnedWordsToday: 0,
+      newWords: 0,
+      generalAccuracy: 0,
       audioCall: {
         inRow: 0,
         words: 0,
         inAccuracy: 0,
+        learnedWords: 0,
       },
       sprint: {
         inRow: 0,
         words: 0,
         inAccuracy: 0,
+        learnedWords: 0,
       },
     },
   },
@@ -35,7 +38,7 @@ export const getGameStatistic = ({
   statistic, newGameStatistic, game, learned,
 }: IGetGameStatistic) => {
   const gameKey = game as keyof IStatisticsState;
-  if (statistic.optional[KEY]) {
+  if (Object.hasOwn(statistic.optional, KEY)) {
     return {
       learnedWords: learned,
       optional: {
@@ -43,8 +46,12 @@ export const getGameStatistic = ({
         [KEY]: {
           ...statistic.optional[KEY],
           [gameKey]: newGameStatistic,
-          learnedWords: statistic.learnedWords + newGameStatistic.words,
-          learnedWordsToday: learned,
+          learnedWords: statistic.optional[KEY].learnedWords + newGameStatistic.learnedWords,
+          newWords: statistic.optional[KEY].newWords + newGameStatistic.words,
+          generalAccuracy: statistic.optional[KEY].generalAccuracy === -1
+            ? newGameStatistic.inAccuracy
+            : Math.round((statistic.optional[KEY]
+              .generalAccuracy + newGameStatistic.inAccuracy) / 2),
         },
       },
     };
@@ -56,8 +63,9 @@ export const getGameStatistic = ({
       [KEY]: {
         ...obj.optional[KEY],
         [gameKey]: newGameStatistic,
-        learnedWords: statistic.learnedWords + newGameStatistic.words,
-        learnedWordsToday: learned,
+        learnedWords: newGameStatistic.learnedWords,
+        newWords: newGameStatistic.words,
+        generalAccuracy: newGameStatistic.inAccuracy,
       },
     },
   };

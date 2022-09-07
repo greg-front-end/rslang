@@ -16,3 +16,9 @@
   color: var(--color-secondary);
   font-weight: 600;
 }
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}

@@ -15,16 +15,19 @@ export const initialState: IInitialState = {
     optional: {
       [dateKeyGenerator()]: {
         learnedWords: 0,
-        learnedWordsToday: 0,
+        newWords: 0,
+        generalAccuracy: -1,
         audioCall: {
           inRow: 0,
           words: 0,
           inAccuracy: 0,
+          learnedWords: 0,
         },
         sprint: {
           inRow: 0,
           words: 0,
           inAccuracy: 0,
+          learnedWords: 0,
         },
       },
     },
