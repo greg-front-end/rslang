@@ -64,8 +64,8 @@ export const SignIn = () => {
     <div className={style.auth}>
       <div className="container">
         <div className={style.auth_wrapper}>
-          <LoadAvatar img={img} setImg={setImg} />
           <form className={style.form} onSubmit={handleSubmit}>
+            <LoadAvatar img={img} setImg={setImg} />
             <label className="form_label" htmlFor="name">
               <UserIcon className="form_input_icon" />
               <input
