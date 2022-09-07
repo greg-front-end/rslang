@@ -110,6 +110,12 @@ body {
   background: linear-gradient(135deg, #343A55 0%, #404869 100%);
   opacity: 0.95;
   box-shadow: -12.552px -12.552px 41.84px rgb(85 93 131 / 56%), 16.736px 16.736px 37.656px rgb(34 36 45 / 40%), inset 2.092px 2.092px 2.092px rgb(38 49 105 / 5%), inset -2.092px -2.092px 8.368px rgb(83 92 136 / 12%);
+  transition: 0.3 transform;
+}
+
+.form_btn:active,
+.btn:active {
+  transform: scale(0.99);
 }
 
 .btn::before {
@@ -133,6 +139,8 @@ body {
   height: 50px;
   font-size: 16px;
 }
+
+
 
 .form_input {
   background: #FFFFFF;
@@ -182,6 +190,7 @@ body {
   padding: var(--pd10) var(--pd20);
   color: inherit;
   font-weight: 600;
+  transition: 0.3s transform;
 }
 
 

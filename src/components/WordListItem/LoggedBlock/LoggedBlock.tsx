@@ -18,9 +18,12 @@ import styles from './LoggedBlock.module.css';
 interface ILoggedBlockProps {
   item: IWordsItem;
   setOptions: React.Dispatch<React.SetStateAction<string>>;
+  setDel: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const LoggedBlock = ({ item, setOptions }: ILoggedBlockProps) => {
+export const LoggedBlock = ({
+  item, setOptions, setDel,
+}: ILoggedBlockProps) => {
   const [click, setClick] = useState(false);
   const [lvl, setLvl] = useState('');
   const dispatch = useAppDispatch();
@@ -70,7 +73,12 @@ export const LoggedBlock = ({ item, setOptions }: ILoggedBlockProps) => {
 
   useEffect(() => {
     if (click) {
-      toggleHardWords ? removeFromDifficult() : addOptions();
+      if (toggleHardWords) {
+        removeFromDifficult();
+        setDel(true);
+      } else {
+        addOptions();
+      }
     }
   }, [click]);
 
