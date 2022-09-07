@@ -74,8 +74,10 @@ export const LoggedBlock = ({
   useEffect(() => {
     if (click) {
       if (toggleHardWords) {
-        removeFromDifficult();
         setDel(true);
+        setTimeout(() => {
+          removeFromDifficult();
+        }, 600);
       } else {
         addOptions();
       }
