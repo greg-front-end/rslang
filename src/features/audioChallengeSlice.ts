@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IWordsItem } from '../types/IWordsItem';
 
 interface IState {
+  textBookWords: IWordsItem[];
   words: IWordsItem[];
   rightWords: IWordsItem[];
   currentIndex: number;
@@ -23,6 +24,7 @@ interface IChangeWordState {
 }
 
 const initialState: IState = {
+  textBookWords: [],
   words: [],
   rightWords: [],
   currentIndex: 0,
@@ -37,6 +39,10 @@ const audioChallengeSlice = createSlice({
   name: 'audioChallenge',
   initialState,
   reducers: {
+    setTextBookWords(state, action) {
+      state.textBookWords = action.payload;
+    },
+
     changeCounter(state, action) {
       state.rowCounter = action.payload;
     },
@@ -73,6 +79,6 @@ const audioChallengeSlice = createSlice({
 
 export const {
   changeWords, changeCurrentWord, finishGame, addRightAnswer,
-  setInitState, setNextWord, setInRow, changeCounter,
+  setInitState, setNextWord, setInRow, changeCounter, setTextBookWords,
 } = audioChallengeSlice.actions;
 export default audioChallengeSlice.reducer;
