@@ -10,6 +10,7 @@ import { loginUser } from '../../api/loginUser';
 import { ReactComponent as EmailICon } from '../../assets/svg/auth/email.svg';
 import { ReactComponent as KeyIcon } from '../../assets/svg/auth/key.svg';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
 import { ICreateUser } from '../../types/ICreateUser';
 
 import style from './style.module.css';
@@ -18,6 +19,8 @@ export const LogIn = () => {
   const [formState, setFormState] = useState<Omit<ICreateUser, 'name'>>({
     email: '', password: '',
   });
+  const [showError, setShowError] = useState(false);
+  const userLoaded = useAppSelector((state) => state.auth.userLoaded);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const handleInutChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
@@ -37,14 +40,27 @@ export const LogIn = () => {
           password,
         };
         await dispatch(loginUser(formBody));
-        navigate('/');
         setFormState({
           email: '',
           password: '',
         });
+        if (!userLoaded) {
+          setShowError(true);
+        }
       }
     })();
   };
+  useEffect(() => {
+    if (userLoaded) {
+      navigate('/');
+    }
+  }, [userLoaded]);
+
+  useEffect(() => {
+    if (showError) {
+      setTimeout(() => setShowError(false), 5000);
+    }
+  }, [showError]);
   return (
     <div className={style.login}>
       <div className="container">
@@ -83,6 +99,9 @@ export const LogIn = () => {
               />
             </label>
             <button className={`${style.form_btn} form_btn`} type="submit">Log In</button>
+            <span className={showError ? `${style.show_invalid_from} ${style.invalid_form}` : style.invalid_form}>
+              Incorrect email or password. Please try again
+            </span>
           </form>
         </div>
       </div>

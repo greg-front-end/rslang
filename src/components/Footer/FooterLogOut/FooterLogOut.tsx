@@ -42,7 +42,9 @@ export const FooterLogOut = () => (
     </div>
     <div className={style.copyright}>
       ©2022 RS LANG. RS School
-      <RsLogo />
+      <a href="https://rs.school/js/" target="_blank" rel="noopener noreferrer">
+        <RsLogo />
+      </a>
     </div>
   </footer>
 );

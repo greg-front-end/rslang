@@ -24,23 +24,29 @@ export const OurTeam = () => (
           </h2>
           <ul className={style.team_items}>
             <li className={style.team_item}>
-              <span className={style.avatar}>
-                <img src={GregImg} alt="Greg developer" />
-              </span>
+              <a className={styleLogOut.link} href="https://github.com/greg-front-end" target="_blank" rel="noopener noreferrer">
+                <span className={style.avatar}>
+                  <img src={GregImg} alt="Greg developer" />
+                </span>
+              </a>
               Greg Martinos. Teamlead. Design, layout, UI, authorization,
               registration, api, backend manipulation, routing, teammates support.
             </li>
             <li className={style.team_item}>
-              <span className={style.avatar}>
-                <img src={LilithImg} alt="Lilith developer" />
-              </span>
+              <a className={styleLogOut.link} href="https://github.com/LilithPrimary" target="_blank" rel="noopener noreferrer">
+                <span className={style.avatar}>
+                  <img src={LilithImg} alt="Lilith developer" />
+                </span>
+              </a>
               Lilith Primary. Word cards, audio-challenge, settings, statistics.
 
             </li>
             <li className={style.team_item}>
-              <span className={style.avatar}>
-                <img src={MaikleImg} alt="Maikle developer" />
-              </span>
+              <a className={styleLogOut.link} href="https://github.com/maiklshetinin" target="_blank" rel="noopener noreferrer">
+                <span className={style.avatar}>
+                  <img src={MaikleImg} alt="Maikle developer" />
+                </span>
+              </a>
               Maikl Shetinin. Words book, sprint, api.
             </li>
           </ul>
