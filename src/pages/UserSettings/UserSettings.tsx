@@ -41,12 +41,11 @@ export const UserSettings = () => {
         <div className={`frame ${style.frame}`}>
           <AvatarSettings />
         </div>
-        {/* <img src={Img} alt="bgImg" className={style.img} /> */}
         <div className={`frame ${style.frame}`}>
           <SettingsInputs />
           <button
             type="button"
-            className="form_btn"
+            className={`form_btn ${style.del_btn}`}
             onClick={userDelete}
           >
             Delete user
