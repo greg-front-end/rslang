@@ -40,35 +40,35 @@ export const RouteApp = () => {
             )
         }
         <Route
-          path="textbook"
+          path="/textbook"
           element={<TextBook />}
         />
         <Route
-          path="games"
+          path="/games"
           element={<Games />}
         />
         <Route
-          path="games/sprint"
+          path="/games/sprint"
           element={<Sprint />}
         />
         <Route
-          path="games/audiocall"
+          path="/games/audiocall"
           element={<AudioCall />}
         />
         <Route
-          path="about"
+          path="/about"
           element={isUserLoggined ? <About /> : <Main />}
         />
         <Route
-          path="log-in"
+          path="/log-in"
           element={<LogIn />}
         />
         <Route
-          path="register"
+          path="/register"
           element={<SignIn />}
         />
         <Route
-          path="settings"
+          path="/settings"
           element={<UserSettings />}
         />
         <Route

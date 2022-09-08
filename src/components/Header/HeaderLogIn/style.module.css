@@ -45,6 +45,7 @@
   gap: var(--pd40);
   width: 100%;
   padding-bottom: var(--pd60);
+  margin-top: 60px;
   border-bottom: 2px solid var(--color-secondary);
 }
 .link {
