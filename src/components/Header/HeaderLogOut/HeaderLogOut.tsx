@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { NavHashLink } from 'react-router-hash-link';
 
 import LogoImg from '../../../assets/img/logo/dark/logo-desktop-dark.png';
 import { toggleSideBar } from '../../../features/sideBarSlice';
@@ -55,10 +56,24 @@ export const HeaderLogOut = () => {
             </div>
             )}
           <nav className={isSideBarActive ? `${style.nav} ${style.nav_active}` : style.nav}>
-            <NavLink className={activeLink} onClick={showSideBar} to={{ pathname: '/', hash: 'hero' }}>Home</NavLink>
+            <NavHashLink
+              className={activeLink}
+              onClick={showSideBar}
+              to="/#hero"
+              scroll={(el: any) => el.scrollIntoView({ behavior: 'auto', block: 'start' })}
+            >
+              Home
+            </NavHashLink>
             <NavLink className={activeLink} onClick={showSideBar} to="textbook">TextBook</NavLink>
             <NavLink className={activeLink} onClick={showSideBar} to="games">Play and learn</NavLink>
-            <a className={styleLogOut.link} onClick={showSideBar} href="/#our-team">Our team</a>
+            <NavHashLink
+              className={styleLogOut.link}
+              onClick={showSideBar}
+              to="/#our-team"
+              scroll={(el: any) => el.scrollIntoView({ behavior: 'auto', block: 'start' })}
+            >
+              Our team
+            </NavHashLink>
           </nav>
           <div className={style.auth_wrapper}>
             <NavLink to="log-in" className={`${style.auth_link} btn`}>Log in</NavLink>
