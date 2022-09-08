@@ -4,6 +4,8 @@ import { getEasyWords } from '../../api/getEasyWords';
 import { getUserStatistic } from '../../api/getUserStatistic';
 import { postWordOption } from '../../api/postWordOption';
 import { putUserStatistic } from '../../api/putUserStatistic';
+import { updateWords } from '../../features/audioChallengeSlice';
+import { filterCard } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { GamesName } from '../../types/GamesName';
@@ -32,6 +34,7 @@ export const Counts = ({
 
   const rightWordStatistics = right.map((word) => wordStatisticRight(word));
   const wrongWordStatistics = wrong.map((word) => wordStatisticWrong(word));
+
   const learnedWords = rightWordStatistics.filter(({ isLearned }) => isLearned).length;
   const words = rightWordStatistics.filter(({ isNew }) => isNew).length
     + wrongWordStatistics.filter(({ isNew }) => isNew).length;
@@ -49,8 +52,15 @@ export const Counts = ({
   };
 
   const sendWordsStatistic = () => {
-    rightWordStatistics.forEach(({ obj }) => dispatch(postWordOption(obj)));
-    wrongWordStatistics.forEach(({ obj }) => dispatch(postWordOption(obj)));
+    rightWordStatistics.forEach(({ obj }) => {
+      dispatch(postWordOption(obj));
+      dispatch(updateWords(obj));
+    });
+
+    wrongWordStatistics.forEach(({ obj }) => {
+      dispatch(postWordOption(obj));
+      dispatch(updateWords(obj));
+    });
   };
 
   const loadPrevStatistic = async () => {

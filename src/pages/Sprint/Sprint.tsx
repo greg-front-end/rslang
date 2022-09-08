@@ -70,7 +70,6 @@ export const Sprint = () => {
       }
     } else {
       const page2 = Math.floor(Math.random() * 20) + 10;
-      console.log(page2);
       dispatch(setSprintWords(randomWords(cards)));
       if (page2 >= 1) {
         if (isUserLogIn()) {
@@ -96,7 +95,6 @@ export const Sprint = () => {
       if (previousPage === '/textbook') {
         const removeEasy = buffer
           .filter((el) => !el.userWord || (el.userWord.difficulty !== 'easy'));
-        console.log('removeEasy', removeEasy);
 
         if (removeEasy.length) {
           dispatch(setSprintWords(randomWords(removeEasy)));
