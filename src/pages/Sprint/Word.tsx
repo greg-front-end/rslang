@@ -7,5 +7,5 @@ type Word = {
 }
 
 export const Word: React.FC<Word> = ({ word }) => (
-  <div className={style.word}>{word}</div>
+  <span className={style.word}>{word}</span>
 );
