@@ -45,14 +45,9 @@
     background-color: var(--color-green);
     color: #ffffff;
 }
-@media (max-width: 1200px) {
+@media (max-width: 520px) {
     .wrapper {
         justify-content: start;
-    }
-}
-@media (max-width: 768px) {
-    .wrapper {
-        justify-content: center;
         overflow-y: scroll;
         width: 100%;
     }
