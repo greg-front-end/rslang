@@ -1,16 +1,9 @@
 /* eslint-disable no-debugger */
 import React, {
-  FC, useContext, useEffect, useState,
+  useEffect, useState,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getAgregatedCard } from '../../../api/getAggregatedCard';
-import { getNoEasyWords } from '../../../api/getNoEasyWords';
-import { setCardsArray, setPage } from '../../../features/textBookSlice';
-import { useAppDispatch } from '../../../hooks/useAppDispatch';
-import { useAppSelector } from '../../../hooks/useAppSelector';
-import { IWordsItem } from '../../../types/IWordsItem';
-import { LoadStatus } from '../../../types/LoadStatus';
 import { Titlehallenge } from '../../TitleGames/Titlehallenge';
 
 import style from './style.module.css';

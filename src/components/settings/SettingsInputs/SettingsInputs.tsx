@@ -66,8 +66,8 @@ export const SettingsInputs = () => {
             ? (
               <>
                 <span className={style.field_name}>{userMail}</span>
-                <svg width="100" height="2" viewBox="0 0 100 2" fill="none" className={style.line}>
-                  <path d="M0 1L99 1" stroke="#CEC485" strokeWidth="2" strokeLinecap="round" strokeDasharray="4 4" />
+                <svg width="95" height="2" viewBox="0 0 95 2" fill="none" className={style.line}>
+                  <path d="M0 1L94 1" stroke="#CEC485" strokeWidth="2" strokeLinecap="round" strokeDasharray="4 4" />
                 </svg>
               </>
             )
@@ -86,7 +86,6 @@ export const SettingsInputs = () => {
                 onChange={mailChange}
               />
             )}
-          <div className={style.btn} />
         </label>
         <label className={`form_label ${style.label}`} htmlFor="password">
           <KeyIcon className="form_input_icon" style={toggler ? iconStyleW : iconStyleB} />
@@ -94,8 +93,8 @@ export const SettingsInputs = () => {
             ? (
               <>
                 <span className={style.field_name}>password</span>
-                <svg width="100" height="2" viewBox="0 0 100 2" fill="none" className={style.line}>
-                  <path d="M0 1L99 1" stroke="#CEC485" strokeWidth="2" strokeLinecap="round" strokeDasharray="4 4" />
+                <svg width="95" height="2" viewBox="0 0 95 2" fill="none" className={style.line}>
+                  <path d="M0 1L94 1" stroke="#CEC485" strokeWidth="2" strokeLinecap="round" strokeDasharray="4 4" />
                 </svg>
               </>
             )
@@ -121,9 +120,9 @@ export const SettingsInputs = () => {
           && (
             <button
               type="submit"
-              className={style.btn}
+              className={`btn ${style.btn}`}
             >
-              submit
+              Submit
             </button>
           )}
       </form>
@@ -132,11 +131,12 @@ export const SettingsInputs = () => {
         && (
           <button
             type="button"
-            className={style.btn}
+            className={`btn ${style.btn}`}
             onClick={clickOnField}
             name="pswrd"
+            style={{ maxWidth: '320px' }}
           >
-            change
+            Change
           </button>
         )
       }

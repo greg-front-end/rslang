@@ -1,17 +1,14 @@
 .label {
   display: flex;
-  gap: 20px;
   align-items: center;
   height: 50px;
 }
 
 .btn {
   color: var(--color-white);
-  height: 50px;
-  width: 62px;
-  position: absolute;
-  right: 0;
-  top: 0;
+  padding: 20px 30px;
+  width: 100%;
+  max-width: 315px;
 }
 
 .field_name {
@@ -23,19 +20,23 @@
 .name_block {
   width: 100%;
   display: flex;
-  justify-content: start;
+  justify-content: end;
 }
 .name {
   font-size: 30px;
   font-weight: 700;
   width: max-content;
   padding: 0;
+  color: var(--color-bright-yellow);
 }
 
 .form {
   display: flex;
   flex-direction: column;
   row-gap: 20px;
+  width: 100%;
+  align-items: center;
+  max-width: 320px;
 }
 
 @media (max-width: 500px) {
@@ -52,12 +53,7 @@
     width: max-content;
     padding: 0;
   }
-  .btn {
-    left: 50%;
-    top: 100%;
-    transform: translate(-50%);
-  }
   .input {
-    width: 200px !important;
+    width: 100%;
   }
 }
