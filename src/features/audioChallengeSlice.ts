@@ -1,5 +1,7 @@
+/* eslint-disable no-underscore-dangle */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { ICreateWordOptions } from '../types/ICreateWordOptions';
 import { IWordsItem } from '../types/IWordsItem';
 
 interface IState {
@@ -35,10 +37,33 @@ const initialState: IState = {
   rowCounter: 0,
 };
 
+const fillElement = (el: IWordsItem, diff: ICreateWordOptions) => {
+  const word = el;
+  if (Object.hasOwn(word, 'userWord')) {
+    word.userWord.difficulty = diff.difficulty;
+    word.userWord.optional = diff.optional;
+  } else {
+    word.userWord = {
+      difficulty: diff.difficulty,
+      optional: {
+        right: 0,
+        wrong: 0,
+        rightInRow: 0,
+      },
+    };
+  }
+  return word;
+};
+
 const audioChallengeSlice = createSlice({
   name: 'audioChallenge',
   initialState,
   reducers: {
+    updateWords(state, action: PayloadAction<ICreateWordOptions>) {
+      const index = state.words.findIndex((el) => el._id === action.payload.wordId);
+      state.words = state.words
+        .map((el, i) => (i === index ? fillElement(el, action.payload) : el));
+    },
     setTextBookWords(state, action) {
       state.textBookWords = action.payload;
     },
@@ -82,6 +107,6 @@ const audioChallengeSlice = createSlice({
 
 export const {
   changeWords, changeCurrentWord, finishGame, addRightAnswer, resetInRow,
-  setInitState, setNextWord, setInRow, changeCounter, setTextBookWords,
+  setInitState, setNextWord, setInRow, changeCounter, setTextBookWords, updateWords,
 } = audioChallengeSlice.actions;
 export default audioChallengeSlice.reducer;
