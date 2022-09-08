@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { getAgregatedCard } from '../../api/getAggregatedCard';
 import { getNoEasyWords } from '../../api/getNoEasyWords';
 import { AudioGame } from '../../components/AudioGame/AudioGame';
-import { setTextBookWords } from '../../features/audioChallengeSlice';
-import { setInRow } from '../../features/sprintSlice';
+import { resetInRow, setTextBookWords } from '../../features/audioChallengeSlice';
 import { setPage } from '../../features/textBookSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
@@ -32,7 +31,7 @@ export const AudioCall = () => {
     if (previousPage === '/textbook') {
       setCheckArray(true);
     }
-    dispatch(setInRow(0));
+    dispatch(resetInRow());
     dispatch(getNoEasyWords({
       page: curPage,
       quantity: 10,
