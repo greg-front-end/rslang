@@ -51,6 +51,9 @@ const audioChallengeSlice = createSlice({
         state.inRow = action.payload;
       }
     },
+    resetInRow(state) {
+      state.inRow = 0;
+    },
     setNextWord(state, action: PayloadAction<boolean>) {
       state.nextWord = action.payload;
     },
@@ -78,7 +81,7 @@ const audioChallengeSlice = createSlice({
 });
 
 export const {
-  changeWords, changeCurrentWord, finishGame, addRightAnswer,
+  changeWords, changeCurrentWord, finishGame, addRightAnswer, resetInRow,
   setInitState, setNextWord, setInRow, changeCounter, setTextBookWords,
 } = audioChallengeSlice.actions;
 export default audioChallengeSlice.reducer;
