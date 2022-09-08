@@ -43,7 +43,7 @@ export const AvatarSettings = () => {
           />
         </div>
         <div className={`${style.avatar_wrapper}`}>
-          <img src={avatar} alt="avatar" className={avatar ? style.avatar : style.plug} />
+          <img src={avatar} alt="avatar" className={avatar === Plug ? style.plug : style.avatar} />
         </div>
       </div>
       <button

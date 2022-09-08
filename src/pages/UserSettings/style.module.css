@@ -36,6 +36,17 @@
   z-index: -1;
 }
 
+.del_btn {
+  width: 100% !important;
+  transition: 0.1s !important;
+}
+
+.del_btn:hover {
+  -webkit-box-shadow: 0px 0px 16px 14px rgba(234, 95, 95, 0.67);
+  -moz-box-shadow: 0px 0px 16px 14px rgba(234, 95, 95, 0.67);
+  box-shadow: 0px 0px 16px 14px rgba(234, 95, 95, 0.67);
+}
+
 .v1 {
   right: 50px;
   top: 10px;
