@@ -7,5 +7,5 @@ type Translate = {
 }
 
 export const Translate:React.FC<Translate> = ({ random }) => (
-  <div className={`${style.word} ${style.translate}`}>{random}</div>
+  <span className={`${style.word} ${style.translate}`}>{random}</span>
 );

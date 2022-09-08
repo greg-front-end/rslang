@@ -36,8 +36,8 @@ export const LoadAvatar = ({ img, setImg }: ILoadAvatarProps) => {
       <div className={`${style.upload_avatar}`}>
         <div className={`${style.loader_wrapper} ${showUpload}`}>
           <Avatar
-            width={300}
-            height={300}
+            width={200}
+            height={200}
             onClose={close}
             onCrop={crop}
             ref={imgCooser}

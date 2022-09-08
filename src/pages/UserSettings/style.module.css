@@ -8,6 +8,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  max-width: 360px;
+  width: 100%;
 }
 
 .settings_wrapper {
