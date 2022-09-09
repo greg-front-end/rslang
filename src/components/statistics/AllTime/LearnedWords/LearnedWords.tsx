@@ -12,7 +12,7 @@ Chart.register(...registerables);
 export const LearnedWords: FC = () => {
   const statistic = useAppSelector((state) => state.statistic.statistic);
 
-  const labels = [getYesterdayKey(), ...Object.keys(statistic.optional)];
+  const labels = [0, ...Object.keys(statistic.optional)];
 
   const words = getLearnedGraphInfo(statistic);
 

@@ -33,6 +33,8 @@ export const GameBtns = () => {
   const nextWord = useAppSelector((state) => state.audioChallenge.nextWord);
   const finish = useAppSelector((state) => state.audioChallenge.finish);
 
+  console.log('rowCounter', rowCounter);
+
   const [isHide, setIsHide] = useState(Array(4).fill(true));
   const [btns, setBtns] = useState<string[]>([]);
 

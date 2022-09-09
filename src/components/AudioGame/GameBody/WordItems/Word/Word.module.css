@@ -11,14 +11,15 @@
 
 @keyframes appere {
   0% {
-    transform: translate(-250px);
+    color: transparent;
+    transform: translateY(-250px);
   }
   10% {
     color: white;
-    transform: translate(-250px);
+    transform: translateY(-250px);
   }
   100% {
-    transform: translate(0px);
+    transform: translateY(0px);
   }
 }
 
@@ -29,6 +30,19 @@
   letter-spacing: 0em;
   text-align: left;
   width: 300px;
-  color: transparent;
-  transform: translate(-120px);
+  text-align: center;
+  animation: disappere 0.3s forwards ease-in-out;
+}
+
+@keyframes disappere {
+  0% {
+    transform: translateY(0);
+  }
+  90% {
+    color: transparent;
+    transform: translateY(250px);
+  }
+  100% {
+    transform: translateY(250px);
+  }
 }

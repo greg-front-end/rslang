@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useAppSelector } from '../../../../../hooks/useAppSelector';
 
@@ -9,10 +9,22 @@ const firstLetToUpCase = (word: string) => `${word[0].toUpperCase()}${word.slice
 export const Word = () => {
   const item = useAppSelector((state) => state.audioChallenge.currentWord);
   const nextWord = useAppSelector((state) => state.audioChallenge.nextWord);
+  const pushNextBtn = useAppSelector((state) => state.audioChallenge.isPushNextBtn);
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    if (nextWord) {
+      setShow(true);
+    }
+  }, [nextWord]);
+
+  useEffect(() => {
+    setShow(false);
+  }, [pushNextBtn]);
 
   return (
     <span
-      className={nextWord ? styles.word : styles.word_hide}
+      className={show ? styles.word : styles.word_hide}
     >
       {firstLetToUpCase(item.word)}
     </span>
