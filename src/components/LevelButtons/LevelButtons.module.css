@@ -12,9 +12,13 @@
     gap: 10px;
     transition: var(--transitionAll3sec);
 }
-.aside_wrapper_logput{ 
+.aside_wrapper_logput{
     top: 120px !important;
 }
+
+/* .aside_wrapper::-webkit-scrollbar {
+  width: 0;
+} */
 
 .title {
     width: 81px;

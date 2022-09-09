@@ -6,6 +6,20 @@
   text-align: left;
   width: 300px;
   text-align: center;
+  animation: appere 0.3s forwards ease-in-out;
+}
+
+@keyframes appere {
+  0% {
+    transform: translate(-250px);
+  }
+  10% {
+    color: white;
+    transform: translate(-250px);
+  }
+  100% {
+    transform: translate(0px);
+  }
 }
 
 .word_hide {
@@ -16,4 +30,5 @@
   text-align: left;
   width: 300px;
   color: transparent;
+  transform: translate(-120px);
 }
