@@ -1,0 +1,38 @@
+.menu_btn {
+  display: flex;
+  align-items: center;
+  gap: var(--pd10);
+  width: 32px;
+  height: 32px;
+  font-weight: 700;
+  position: fixed;
+  top: 30px;
+}
+.menu_btn::after {
+  content: '';
+  position: absolute;
+  width: 54px;
+  height: 54px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-blue);
+  z-index: -1;
+  border-radius: var(--border-radius)
+}
+.menu_btn svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--color-pink);
+  transform: rotateZ(90deg);
+}
+.menu_text {
+  color: var(--color-light-yellow);
+}
+.menu_btn svg {
+  transition: var(--transitionAll3sec);
+}
+
+.menu_btn:hover svg{
+  transform: rotateZ(0);
+}

@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  counter-reset: buttons;
+  color: var(--color-darkblue);
+}
+
+@media (max-width: 1024px) {
+  .wrapper {
+    flex-wrap: wrap;
+    margin-inline: auto;
+    max-width: 100%;
+  }
+}

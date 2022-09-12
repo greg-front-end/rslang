@@ -1,0 +1,70 @@
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(296.82deg, #2B2F48 0%, rgba(51, 62, 91, 0.83) 100%);
+}
+.login_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+  max-width: 1050px;
+  height: 630px;
+}
+.form {
+  width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--pd20);
+  margin-top: var(--pd60);
+  position: relative;
+}
+.form_icon {
+  width: 20px;
+  height: 20px;
+}
+.form_label_email {
+  margin-left: 100px;
+}
+.form_label_password {
+  margin-left: 60px;
+}
+.login {
+  background-image: url('../../assets/img/login/login-bg.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
+}
+.invalid_form {
+  position: absolute;
+  color: var(--color-red);
+  bottom: 0px;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transitionAll3sec);
+  text-align: center;
+  background-color: var(--color-white);
+  padding: var(--pd10);
+  border-radius: var(--border-radius);
+}
+.show_invalid_from {
+  opacity: 1;
+  visibility: visible;
+  bottom: -60px;
+}
+@media (max-width: 768px) {
+  .login {
+    background-size: auto;
+    background-image: url('../../assets/img/login/login_mobile-bg.png');
+  }
+  .form {
+    width: 100%;
+  }
+  .form_label_password,
+  .form_label_email {
+    margin-left: 0px;
+  }
+}

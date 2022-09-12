@@ -1,0 +1,53 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: flex-start;
+}
+
+.title {
+  padding-bottom: 11px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #CEC485;
+}
+
+.item {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 13px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.right {
+  color: var(--color-green);
+}
+
+.wrong {
+  color: var(--color-red);
+}
+
+.table {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: repeat();
+  gap: 9px;
+  height: max-content;
+  align-items: center;
+}
+
+.points {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 13px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.line {
+  width: 40px;
+}

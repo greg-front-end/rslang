@@ -1,0 +1,187 @@
+.wrapper {
+  margin-top: 30px;
+}
+
+.frame {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 360px;
+  width: 100%;
+}
+
+.settings_wrapper {
+  padding-top: 140px;
+  display: flex;
+  width: 100%;
+  justify-content: start;
+  position: relative;
+  column-gap: 40px;
+}
+
+.valve {
+  height: 300px;
+  position: absolute;
+  right: 0px;
+  bottom: -50px;
+  height: 400px;
+  z-index: -1;
+}
+
+.img_a {
+  position: absolute;
+  height: 100px;
+  z-index: -1;
+}
+
+.del_btn {
+  width: 100% !important;
+  transition: 0.1s !important;
+}
+
+.del_btn:hover {
+  -webkit-box-shadow: 0px 0px 16px 14px rgba(234, 95, 95, 0.67);
+  -moz-box-shadow: 0px 0px 16px 14px rgba(234, 95, 95, 0.67);
+  box-shadow: 0px 0px 16px 14px rgba(234, 95, 95, 0.67);
+}
+
+.v1 {
+  right: 50px;
+  top: 10px;
+}
+.v2 {
+  left: 50px;
+  top: 50px;
+}
+
+.v3 {
+  right: 500px;
+  top: -20px;
+}
+.v4 {
+  right: 400px;
+  bottom: -20px;
+}
+
+@media (max-width: 1200px) {
+
+  .settings_wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 50px;
+  }
+
+  .frame {
+    width: 100%;
+    max-width: 410px;
+    row-gap: 20px;
+    align-items: center;
+  }
+
+  .valve {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .v1 {
+  right: 50px;
+  top: 10px;
+  }
+  .v2 {
+    left: 50px;
+    top: 50px;
+  }
+
+  .v3 {
+    right: 600px;
+    top: 70px;
+  }
+  .v4 {
+    right: 100px;
+    bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .settings_wrapper {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 50px;
+  }
+
+  .frame {
+    width: 100%;
+    max-width: 410px;
+    row-gap: 20px;
+    align-items: center;
+  }
+
+  .valve {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .wrapper {
+    margin: 30px;
+  }
+
+  .title {
+    margin-left: 70px;
+  }
+
+  .settings_wrapper {
+    padding-top: 70px;
+  }
+
+  .v1 {
+  right: 50px;
+  top: 10px;
+  }
+  .v2 {
+    left: 50px;
+    top: 50px;
+  }
+
+  .v3 {
+    left: 0px;
+    top: 50%;
+  }
+  .v4 {
+    right: 400px;
+    bottom: -20px;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .settings_wrapper {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 50px;
+  }
+
+  .frame {
+    width: 100%;
+    max-width: 410px;
+    row-gap: 20px;
+    align-items: center;
+  }
+
+  .valve {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .wrapper {
+    margin: 10px;
+  }
+
+  .v3 {
+    bottom: 0px;
+    right: 10px;
+  }
+
+}

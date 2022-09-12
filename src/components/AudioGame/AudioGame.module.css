@@ -1,0 +1,113 @@
+.challenge_login {
+  padding: 30px 0;
+}
+.challenge_logout {
+  margin: 160px auto 50px;
+}
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: 1440px;
+  position: relative;
+}
+.audio_bg {
+  width: clamp(320px, 50vw, 610px);
+  height: 600px;
+  position: absolute;
+  right: 0;
+  bottom: 0px;
+  background: url('../../assets/img/games/audio-challenge/audio_challenge_bg.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center bottom;
+  z-index: -1;
+}
+.pause_decor {
+  width: 150px;
+  height: 141px;
+  position: absolute;
+  bottom: 0;
+  left: 101px;
+  background: url('../../assets/svg/games/audio-challenge/pause_large.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center bottom;
+  z-index: -1;
+}
+.play_decor {
+  width: 290px;
+  height: 203px;
+  position: absolute;
+  bottom: 10;
+  left: 554px;
+  background: url('../../assets/svg/games/audio-challenge/play_large.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center bottom;
+  z-index: -1;
+}
+.title {
+  margin: var(--pd30) 0 var(--pd50);
+}
+
+.visible {
+  transition: 0.3s;
+  transform: scale(1) translate(-50%, -50%);
+}
+
+.hidden {
+  transition: 0.3s;
+  transform: scale(0) translate(-50%, -50%);
+}
+
+.results_wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+@media (max-width: 1366px) {
+  .audio_bg {
+    opacity: 0.4;
+  }
+  .pause_decor {
+    height: 100px;
+  }
+  .play_decor {
+    width: 150px;
+    left: 450px;
+    bottom: 260px;
+  }
+}
+@media (max-width: 1024px) {
+  .audio_bg {
+    opacity: 0.4;
+  }
+  .play_decor {
+    width: 100px;
+    left: 400px;
+    z-index: -1;
+  }
+}
+@media (max-width: 768px) {
+  .play_decor {
+    width: 50px;
+    left: 250px;
+    top: 0;
+    z-index: -1;
+  }
+  .pause_decor {
+    bottom: 650px;
+    left: 0;
+  }
+}
+@media (max-width: 1024px) {
+  .challenge_logout {
+    margin: 100px auto 50px;
+  }
+  .title {
+    margin-left: 30px;
+  }
+}

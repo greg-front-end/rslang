@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+}
+
+.wrapper {
+    position: sticky;
+    top: 100px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    max-width: 816px;
+    height: 60px;
+    margin-top: 100px;
+}
+
+.log_out {
+    margin: 0 auto;
+}
+
+.btn_pagination {
+    width: 40px;
+    height: 40px;
+}
+
+.btn_incr_decr {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+.pageButtonsContainer {
+    display: flex;
+    gap: 20px;
+}
+
+.active {
+    box-shadow: -2px -2px 20px rgba(255, 255, 255, 0.7), 16.736px 16.736px 37.656px rgba(54, 59, 87, 0.2), inset 2.092px 2.092px 2.092px rgba(38, 49, 105, 0.05), inset -2.092px -2.092px 8.368px rgba(83, 92, 136, 0.12) !important;
+}
+
+.easy {
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    background-color: var(--color-green);
+    color: #ffffff;
+}
+@media (max-width: 520px) {
+    .wrapper {
+        justify-content: start;
+        overflow-y: scroll;
+        width: 100%;
+    }
+    .btn_pagination {
+        width: 30px;
+        height: 30px;
+    }
+}
