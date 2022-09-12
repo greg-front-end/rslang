@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: var(--pd90);
   justify-content: center;
-  max-width: 850px;
+  max-width: 860px;
   padding: var(--pd30) 0;
 }
 @media (max-width: 768px) {

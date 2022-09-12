@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import audio from '../../../../../assets/audio/audioGame/finish.wav';
 import {
-  changeCurrentWord, finishGame, setInRow, setNextWord,
+  changeCurrentWord, finishGame, pushNextButton, setInRow, setNextWord,
 } from '../../../../../features/audioChallengeSlice';
 import { useAppDispatch } from '../../../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../../../hooks/useAppSelector';
@@ -18,6 +18,7 @@ export const NextBtn = () => {
   const rowCounter = useAppSelector((state) => state.audioChallenge.rowCounter);
 
   const next = () => {
+    dispatch(pushNextButton());
     setTimeout(() => {
       if (words.length === index + 1) {
         dispatch(finishGame(true));
@@ -27,7 +28,7 @@ export const NextBtn = () => {
         dispatch(changeCurrentWord(changeWord(words, index)));
       }
       dispatch(setNextWord(false));
-    }, 300);
+    }, 500);
   };
 
   const defineBtn = (e: KeyboardEvent) => {

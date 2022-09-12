@@ -6,6 +6,21 @@
   text-align: left;
   width: 300px;
   text-align: center;
+  animation: appere 0.3s forwards ease-in-out;
+}
+
+@keyframes appere {
+  0% {
+    color: transparent;
+    transform: translateY(-250px);
+  }
+  10% {
+    color: white;
+    transform: translateY(-250px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .word_hide {
@@ -15,5 +30,19 @@
   letter-spacing: 0em;
   text-align: left;
   width: 300px;
-  color: transparent;
+  text-align: center;
+  animation: disappere 0.3s forwards ease-in-out;
+}
+
+@keyframes disappere {
+  0% {
+    transform: translateY(0);
+  }
+  90% {
+    color: transparent;
+    transform: translateY(250px);
+  }
+  100% {
+    transform: translateY(250px);
+  }
 }

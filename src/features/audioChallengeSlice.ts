@@ -14,6 +14,7 @@ interface IState {
   nextWord: boolean;
   inRow: number;
   rowCounter: number;
+  isPushNextBtn: boolean;
 }
 
 interface IInitState {
@@ -35,6 +36,7 @@ const initialState: IState = {
   nextWord: false,
   inRow: 0,
   rowCounter: 0,
+  isPushNextBtn: false,
 };
 
 const fillElement = (el: IWordsItem, diff: ICreateWordOptions) => {
@@ -59,6 +61,9 @@ const audioChallengeSlice = createSlice({
   name: 'audioChallenge',
   initialState,
   reducers: {
+    pushNextButton(state) {
+      state.isPushNextBtn = !state.isPushNextBtn;
+    },
     updateWords(state, action: PayloadAction<ICreateWordOptions>) {
       const index = state.words.findIndex((el) => el._id === action.payload.wordId);
       state.words = state.words
@@ -94,6 +99,8 @@ const audioChallengeSlice = createSlice({
       state.currentIndex = initialState.currentIndex;
       state.rightWords = [];
       state.finish = false;
+      state.inRow = 0;
+      state.rowCounter = 0;
     },
     changeWords(state, action: PayloadAction<IWordsItem[]>) {
       state.words = action.payload;
@@ -106,7 +113,7 @@ const audioChallengeSlice = createSlice({
 });
 
 export const {
-  changeWords, changeCurrentWord, finishGame, addRightAnswer, resetInRow,
+  changeWords, changeCurrentWord, finishGame, addRightAnswer, resetInRow, pushNextButton,
   setInitState, setNextWord, setInRow, changeCounter, setTextBookWords, updateWords,
 } = audioChallengeSlice.actions;
 export default audioChallengeSlice.reducer;

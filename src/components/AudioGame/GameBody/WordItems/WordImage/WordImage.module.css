@@ -7,20 +7,114 @@
   justify-content: center;
   overflow: hidden;
   position: relative;
+  z-index: 2;
 }
 
 .img {
   height: 100%;
   position: absolute;
   z-index: 0;
+  animation: appeare .3s ease-in-out forwards;
+}
+
+.img_dis {
+  height: 100%;
+  position: absolute;
+  z-index: 0;
+  animation: disappeare .3s ease-in-out forwards;
 }
 
 .plug {
   position: absolute;
   z-index: 5;
+  animation: appeare .3s ease-in-out forwards;
 }
 
 .plug_dis {
   position: absolute;
-  z-index: -1;
+  animation: disappeare .3s ease-in-out forwards;
 }
+
+@keyframes disappeare {
+  0% {
+      visibility: visible;
+      transform: rotateY(0deg);
+  }
+  50% {
+      visibility: visible;
+      transform: rotateY(90deg);
+  }
+  51% {
+      visibility: hidden;
+  }
+  100% {
+      visibility: hidden;
+  }
+}
+
+@keyframes appeare {
+  0% {
+      visibility: hidden;
+  }
+  50% {
+      visibility: hidden;
+  }
+  51% {
+      visibility: visible;
+      transform: rotateY(90deg);
+  }
+  100% {
+      visibility: visible;
+      transform: rotateY(0deg);
+  }
+}
+
+.notes {
+  position: absolute;
+  left: 23%;
+  top: 27%;
+  z-index: 6;
+  /* animation: notes 0.8s ease-in-out forwards infinite; */
+}
+/* @keyframes notes {
+  0% {
+      transform: translate(2%, 2%);
+  }
+  50% {
+      transform: translate(-2%, 2%);
+  }
+  51% {
+      visibility: visible;
+      transform: translate(2%, -2%);
+  }
+  100% {
+      visibility: visible;
+      transform: translate(0, 0);
+  }
+} */
+
+
+.stripes {
+  position: absolute;
+  left: 60%;
+  top: 57%;
+  z-index: 6;
+  /* animation: stripes 0.8s ease-in-out forwards infinite; */
+}
+
+/* @keyframes stripes {
+  0% {
+      transform: translate(2%, 2%);
+  }
+  50% {
+      transform: translate(-2%, 2%);
+  }
+  51% {
+      visibility: visible;
+      transform: translate(2%, -2%);
+  }
+  100% {
+      visibility: visible;
+      transform: translate(0, 0);
+  }
+} */

@@ -10,7 +10,7 @@ const KEY = dateKeyGenerator();
 
 export const AccuracyOfGame: FC = () => {
   const statistic = useAppSelector((state) => state.statistic.statistic);
-  const { generalAccuracy } = statistic.optional[KEY];
+  const { generalAccuracy } = statistic.optional[KEY] || 0;
   return (
     <div className={style.accuracy}>
       <div className={style.goal}>
