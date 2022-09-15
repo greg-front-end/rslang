@@ -2,14 +2,14 @@
 ### by [Greg Martinos](https://github.com/greg-front-end), [Lilith Primary](https://github.com/LilithPrimary) and [Maikl Shetinin](https://github.com/maiklshetinin)
 
 ## Used:
-**react** - JavaScript-библиотека для создания пользовательских интерфейсов  
-**reduxjs/toolkit** - управление стейтом  
-**react-redux** - позволяет использовать Provider, который даёт доступ к store children  
-**react-router-dom** - библиотека, которая предоставляет возможность беспрепятственно просматривать разные страницы или переходить с одной страницы на другую. Добавляет компоненты HashRouter и BrouserRouter.  
-**axios** - HTTP-клиент  
-**jwt-decode** - библиотека для работы с токеном  
-**react-chartjs-2** - библиотека построения графиков  
-**react-avatar-edit** - библиотека для загрузки изображения  
+[**react**](https://reactjs.org/) - A JavaScript library for building user interfaces  
+[**reduxjs/toolkit**](https://redux-toolkit.js.org/) - toolset for efficient Redux development  
+[**react-redux**](https://react-redux.js.org/) - allows to use Provider for access to store children  
+[**react-router-dom**](https://reactrouter.com/) - client side routing, allows to use HashRouter и BrouserRouter.  
+[**axios**](https://axios-http.com/) - promise based HTTP client for the browser and node.js  
+[**jwt-decode**](https://jwt.io/) - JSON Web Tokens library  
+[**react-chartjs-2**](https://react-chartjs-2.js.org/) - charting library  
+[**react-avatar-edit**](https://www.npmjs.com/package/react-avatar-edit) - library for avatars  
 
 ## RACI
 
