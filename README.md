@@ -1,6 +1,8 @@
 # RSLang
 ### by [Greg Martinos](https://github.com/greg-front-end), [Lilith Primary](https://github.com/LilithPrimary) and [Maikl Shetinin](https://github.com/maiklshetinin)
 
+###[deploy]https://rslang-greg-front-end.netlify.app/#/log-in
+
 ## Used:
 [**react**](https://reactjs.org/) - A JavaScript library for building user interfaces  
 [**reduxjs/toolkit**](https://redux-toolkit.js.org/) - toolset for efficient Redux development  
