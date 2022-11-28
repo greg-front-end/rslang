@@ -51,9 +51,11 @@ export const HeaderLogOut = () => {
             )}
           {!isSideBarBtnActive
             && (
-            <div className={style.logo}>
-              <img src={LogoImg} alt="Logo RSLang" />
-            </div>
+            <Link to="/#hero">
+              <div className={style.logo}>
+                <img src={LogoImg} alt="Logo RSLang" />
+              </div>
+            </Link>
             )}
           <nav className={isSideBarActive ? `${style.nav} ${style.nav_active}` : style.nav}>
             <NavHashLink
